@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -36,5 +38,19 @@ class PublicSiteTest extends TestCase
             ->assertSee('aria-current="page"', false)
             ->assertSee('fa-calendar-days', false)
             ->assertDontSee('<a href="/calendario"><button', false);
+    }
+
+    public function test_public_navigation_shows_contextual_session_action(): void
+    {
+        $this->get('/')
+            ->assertSee('Iniciar sesión')
+            ->assertDontSee('Panel administrativo');
+
+        $admin = User::factory()->create();
+        $admin->roles()->attach(Role::where('name', 'super-admin')->firstOrFail());
+
+        $this->actingAs($admin)->get('/')
+            ->assertSee('Panel administrativo')
+            ->assertDontSee('Iniciar sesión');
     }
 }

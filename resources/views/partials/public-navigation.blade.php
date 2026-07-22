@@ -40,4 +40,11 @@
             </li>
         @endforeach
     </ul>
+    @guest
+        <a class="session-link" href="{{ route('login') }}"><i class="fas fa-right-to-bracket" aria-hidden="true"></i><span>Iniciar sesión</span></a>
+    @else
+        @if(auth()->user()->hasPermission('admin.access'))
+            <a class="session-link admin" href="{{ route('admin.dashboard') }}"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>Panel administrativo</span></a>
+        @endif
+    @endguest
 </nav>
