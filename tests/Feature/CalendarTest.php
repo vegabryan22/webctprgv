@@ -22,6 +22,12 @@ class CalendarTest extends TestCase
     public function test_calendar_and_categories_are_seeded(): void
     {
         $this->assertSame(6, EventCategory::count());
+        $this->assertSame(24, Event::where('slug', 'like', 'mep-etp-2026-%')->count());
+        $this->assertDatabaseHas('events', [
+            'slug' => 'mep-etp-2026-expotecnica-nacional',
+            'starts_at' => '2026-11-23 00:00:00',
+            'status' => 'published',
+        ]);
         $this->get('/calendario')
             ->assertOk()
             ->assertSee('Calendario de actividades')

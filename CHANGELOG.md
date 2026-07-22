@@ -2,6 +2,18 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.4.2] - 2026-07-22
+
+### Añadido
+
+- Importación idempotente de 24 actividades de Educación Técnica del Calendario 2026 del MEP.
+- Referencia a la página de origen del PDF en la descripción de cada actividad.
+- Clasificación de audiencias para actividades estudiantiles, administrativas y generales.
+
+### Cambiado
+
+- Versión de la aplicación actualizada a `0.4.2`.
+
 ## [0.4.1] - 2026-07-22
 
 ### Corregido
