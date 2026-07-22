@@ -1,0 +1,8 @@
+@extends('layouts.admin')
+@section('title', 'Páginas')
+@section('content')
+<div class="page-heading"><div><h1>Páginas</h1><p class="muted">Contenido adicional gestionado desde el CMS.</p></div>@if(auth()->user()->hasPermission('pages.manage'))<a class="button" href="{{ route('admin.pages.create') }}">Nueva página</a>@endif</div>
+<div class="card table-wrap"><table><thead><tr><th>Título</th><th>Estado</th><th>Autor</th><th>Actualización</th><th>Acciones</th></tr></thead><tbody>
+@forelse($pages as $page)<tr><td><strong>{{ $page->title }}</strong><br><small class="muted">/paginas/{{ $page->slug }}</small></td><td><span class="badge">{{ ['draft'=>'Borrador','published'=>'Publicada','archived'=>'Archivada'][$page->status] }}</span></td><td>{{ $page->author?->name ?? '—' }}</td><td>{{ $page->updated_at->format('d/m/Y H:i') }}</td><td><div class="actions">@if($page->status === 'published')<a class="button link" target="_blank" href="{{ route('pages.show', $page) }}">Ver</a>@endif @if(auth()->user()->hasPermission('pages.manage'))<a class="button link" href="{{ route('admin.pages.edit', $page) }}">Editar</a><form method="POST" action="{{ route('admin.pages.destroy', $page) }}" onsubmit="return confirm('¿Eliminar esta página?')">@csrf @method('DELETE')<button class="button link" type="submit">Eliminar</button></form>@endif</div></td></tr>@empty<tr><td colspan="5">Todavía no hay páginas administrables.</td></tr>@endforelse
+</tbody></table>{{ $pages->links() }}</div>
+@endsection

@@ -1,0 +1,47 @@
+# Sitio web CTP Roberto Gamboa Valverde
+
+Aplicación web institucional desarrollada con Laravel 13 bajo arquitectura MVC. Incluye el sitio público migrado a Blade y un panel CMS para administrar contenido, configuración, usuarios, roles y permisos.
+
+## Requisitos
+
+- PHP 8.3–8.5 con extensiones `curl`, `fileinfo`, `mbstring`, `openssl`, `pdo_sqlite`, `sqlite3` y `zip`.
+- Composer 2.
+- SQLite para desarrollo local; MySQL o MariaDB para producción.
+
+En este equipo existe una instalación portátil en `../.tools`. Desde la raíz del proyecto:
+
+```powershell
+$php = '..\.tools\php-8.5.8\php.exe'
+& $php artisan migrate --seed
+& $php artisan serve
+```
+
+El sitio queda disponible en `http://127.0.0.1:8000` y el panel en `http://127.0.0.1:8000/administracion`.
+
+## Configuración inicial del administrador
+
+Antes de ejecutar las semillas en un entorno nuevo, defina en `.env`:
+
+```dotenv
+ADMIN_NAME="Administrador"
+ADMIN_EMAIL="administrador@dominio.test"
+ADMIN_PASSWORD="una-contraseña-unica-de-12-o-mas-caracteres"
+```
+
+El archivo `.env` nunca se almacena en Git. Consulte [DESARROLLO.md](docs/DESARROLLO.md) para el flujo completo.
+
+## Documentación
+
+- [Arquitectura](docs/ARQUITECTURA.md)
+- [Seguridad, roles y permisos](docs/SEGURIDAD.md)
+- [Desarrollo local](docs/DESARROLLO.md)
+- [Política de versiones](docs/VERSIONADO.md)
+- [Registro de cambios](CHANGELOG.md)
+
+## Verificación
+
+```powershell
+$php = '..\.tools\php-8.5.8\php.exe'
+& $php vendor\bin\pint --test
+& $php artisan test
+```
