@@ -20,6 +20,9 @@ La relación es de muchos a muchos: un usuario puede tener varios roles y cada r
 | Contenido | `pages.publish` | Publicar contenido visible |
 | Contenido | `menu.view` | Consultar el menú principal |
 | Contenido | `menu.manage` | Crear, ordenar, ocultar y eliminar opciones del menú |
+| Calendario | `events.view` | Consultar actividades en el panel |
+| Calendario | `events.manage` | Crear, editar, eliminar y administrar categorías |
+| Calendario | `events.publish` | Publicar y cancelar actividades |
 | Configuración | `settings.manage` | Modificar datos generales del sitio |
 | GitOps | `gitops.view` | Consultar repositorio y ejecuciones de Actions |
 | GitOps | `gitops.deploy` | Solicitar un workflow de despliegue manual |

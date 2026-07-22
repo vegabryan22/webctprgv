@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\EventCategory;
+use App\Models\NavigationItem;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\SiteSetting;
@@ -26,6 +28,9 @@ class DatabaseSeeder extends Seeder
             ['pages.publish', 'Publicar páginas', 'Contenido'],
             ['menu.view', 'Ver menú principal', 'Contenido'],
             ['menu.manage', 'Gestionar menú principal', 'Contenido'],
+            ['events.view', 'Ver actividades', 'Calendario'],
+            ['events.manage', 'Gestionar actividades y categorías', 'Calendario'],
+            ['events.publish', 'Publicar y cancelar actividades', 'Calendario'],
             ['settings.manage', 'Gestionar configuración', 'Configuración'],
             ['gitops.view', 'Ver estado GitOps', 'GitOps'],
             ['gitops.deploy', 'Solicitar despliegues', 'GitOps'],
@@ -67,6 +72,23 @@ class DatabaseSeeder extends Seeder
         ));
 
         app(LegacyPageImporter::class)->import();
+
+        collect([
+            ['Académica', 'academica', '#002f5d'],
+            ['Técnica', 'tecnica', '#4cb11d'],
+            ['Cultural', 'cultural', '#8b5cf6'],
+            ['Deportiva', 'deportiva', '#e67e22'],
+            ['Administrativa', 'administrativa', '#64748b'],
+            ['Institucional', 'institucional', '#c59f00'],
+        ])->each(fn (array $category) => EventCategory::firstOrCreate(
+            ['slug' => $category[1]],
+            ['name' => $category[0], 'color' => $category[2]],
+        ));
+
+        NavigationItem::firstOrCreate(
+            ['route_name' => 'calendar.index'],
+            ['label' => 'CALENDARIO', 'sort_order' => 70, 'is_active' => true],
+        );
 
         if (($email = env('ADMIN_EMAIL')) && ($password = env('ADMIN_PASSWORD'))) {
             $admin = User::updateOrCreate(

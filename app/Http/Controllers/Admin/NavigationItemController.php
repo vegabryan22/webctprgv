@@ -14,9 +14,12 @@ class NavigationItemController extends Controller
 {
     public function index(): View
     {
+        $destinations = ContentPage::whereNotNull('route_name')->orderBy('title')->get(['title', 'route_name']);
+        $destinations->push((object) ['title' => 'Calendario de actividades', 'route_name' => 'calendar.index']);
+
         return view('admin.navigation.index', [
             'items' => NavigationItem::orderBy('sort_order')->orderBy('id')->get(),
-            'pages' => ContentPage::whereNotNull('route_name')->orderBy('title')->get(),
+            'pages' => $destinations->sortBy('title'),
         ]);
     }
 
@@ -45,7 +48,7 @@ class NavigationItemController extends Controller
     {
         $data = $request->validate([
             'label' => ['required', 'string', 'max:60'],
-            'route_name' => ['nullable', 'string', Rule::exists('content_pages', 'route_name')],
+            'route_name' => ['nullable', 'string', Rule::in($this->allowedRoutes())],
             'url' => ['nullable', 'url:http,https', 'max:2048', 'required_without:route_name'],
             'sort_order' => ['required', 'integer', 'min:0', 'max:9999'],
             'is_active' => ['nullable', 'boolean'],
@@ -57,5 +60,10 @@ class NavigationItemController extends Controller
         $data['url'] = filled($data['route_name'] ?? null) ? null : ($data['url'] ?? null);
 
         return $data;
+    }
+
+    private function allowedRoutes(): array
+    {
+        return ContentPage::whereNotNull('route_name')->pluck('route_name')->push('calendar.index')->all();
     }
 }

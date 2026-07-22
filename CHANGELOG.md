@@ -2,6 +2,33 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.4.0] - 2026-07-22
+
+### Añadido
+
+- Calendario público mensual con navegación entre meses.
+- Listado de próximas actividades con filtros por categoría y público.
+- Página de detalle para cada actividad.
+- Exportación iCalendar (`.ics`) compatible con Google Calendar, Outlook y calendarios móviles.
+- Administración de actividades con borrador, publicación y cancelación.
+- Categorías administrables con color identificador.
+- Audiencias: general, estudiantes, familias, personal y comunidad.
+- Imagen destacada, documento adjunto, ubicación y enlace de inscripción.
+- Permisos `events.view`, `events.manage` y `events.publish`.
+- Indicador de próximas actividades en el resumen administrativo.
+
+### Cambiado
+
+- La aplicación utiliza la zona horaria `America/Costa_Rica` y el idioma español por defecto.
+- El menú inicial incorpora “CALENDARIO” sin sobrescribir personalizaciones existentes.
+
+### Seguridad
+
+- Los borradores no son accesibles mediante rutas públicas.
+- Publicar o cancelar requiere un permiso independiente.
+- Imágenes y documentos tienen validación de formato y tamaño.
+- Las descripciones se sanean antes de guardarse.
+
 ## [0.3.0] - 2026-07-22
 
 ### Añadido

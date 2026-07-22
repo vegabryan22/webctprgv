@@ -21,6 +21,8 @@ El proyecto separa presentación, reglas de aplicación y persistencia mediante 
 
 El menú se almacena en `navigation_items`. Cada opción puede apuntar a una ruta institucional o a una URL externa HTTP/HTTPS, y se ordena mediante `sort_order`.
 
+El calendario utiliza `events` y `event_categories`. `CalendarController` construye las vistas públicas y `EventController` gestiona el flujo editorial. `ICalendarService` genera archivos estándar `.ics` sin depender de proveedores externos.
+
 ## CMS
 
 El panel vive bajo `/administracion`. Cada solicitud requiere autenticación y el permiso `admin.access`; los módulos aplican además su permiso específico. La interfaz administrativa tiene CSS independiente para que los cambios del panel no afecten el sitio público.

@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventCategoryController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GitOpsController;
 use App\Http\Controllers\Admin\NavigationItemController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PublicSiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +23,13 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/contacto', 'contact')->name('contact');
     Route::get('/50-aniversario', 'anniversary')->name('anniversary');
     Route::get('/paginas/{page:slug}', 'page')->name('pages.show');
+});
+
+Route::controller(CalendarController::class)->prefix('calendario')->name('calendar.')->group(function (): void {
+    Route::get('/', 'index')->name('index');
+    Route::get('/actividades', 'listing')->name('list');
+    Route::get('/{event:slug}', 'show')->name('show');
+    Route::get('/{event:slug}/agregar', 'ical')->name('ical');
 });
 
 Route::middleware('guest')->group(function (): void {
@@ -57,6 +67,18 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');
     Route::put('/menu/{navigationItem}', [NavigationItemController::class, 'update'])->middleware('permission:menu.manage')->name('navigation.update');
     Route::delete('/menu/{navigationItem}', [NavigationItemController::class, 'destroy'])->middleware('permission:menu.manage')->name('navigation.destroy');
+
+    Route::get('/actividades', [EventController::class, 'index'])->middleware('permission:events.view')->name('events.index');
+    Route::get('/actividades/crear', [EventController::class, 'create'])->middleware('permission:events.manage')->name('events.create');
+    Route::post('/actividades', [EventController::class, 'store'])->middleware('permission:events.manage')->name('events.store');
+    Route::get('/actividades/{event}/editar', [EventController::class, 'edit'])->middleware('permission:events.manage')->name('events.edit');
+    Route::put('/actividades/{event}', [EventController::class, 'update'])->middleware('permission:events.manage')->name('events.update');
+    Route::delete('/actividades/{event}', [EventController::class, 'destroy'])->middleware('permission:events.manage')->name('events.destroy');
+
+    Route::get('/categorias-de-actividades', [EventCategoryController::class, 'index'])->middleware('permission:events.manage')->name('event-categories.index');
+    Route::post('/categorias-de-actividades', [EventCategoryController::class, 'store'])->middleware('permission:events.manage')->name('event-categories.store');
+    Route::put('/categorias-de-actividades/{eventCategory}', [EventCategoryController::class, 'update'])->middleware('permission:events.manage')->name('event-categories.update');
+    Route::delete('/categorias-de-actividades/{eventCategory}', [EventCategoryController::class, 'destroy'])->middleware('permission:events.manage')->name('event-categories.destroy');
 
     Route::get('/configuracion', [SiteSettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');
     Route::put('/configuracion', [SiteSettingController::class, 'update'])->middleware('permission:settings.manage')->name('settings.update');
