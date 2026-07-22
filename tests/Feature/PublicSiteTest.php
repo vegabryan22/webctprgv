@@ -27,6 +27,12 @@ class PublicSiteTest extends TestCase
     public function test_admin_redirects_guests_to_login(): void
     {
         $this->get('/administracion')->assertRedirect('/administracion/ingresar');
+        $this->get('/administracion/ingresar')
+            ->assertOk()
+            ->assertSee('class="login-remember"', false)
+            ->assertSee('Mantener sesión iniciada')
+            ->assertSee('Volver al sitio')
+            ->assertSee('admin.css?v=', false);
     }
 
     public function test_public_navigation_is_semantic_and_marks_current_page(): void

@@ -103,6 +103,12 @@ th { color: var(--navy); font-size: .82rem; text-transform: uppercase; }
 .login-card { width: min(430px, 100%); background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 24px 70px rgba(0,0,0,.3); }
 .login-brand { text-align: center; color: var(--navy); margin-bottom: 1.5rem; }
 .login-brand img { width: 76px; }
+.login-card form { display: grid; }
+.login-remember { display: inline-flex; width: fit-content; align-items: center; gap: .6rem; margin: 0 0 1.2rem; color: var(--text); font-weight: 600; cursor: pointer; }
+.login-remember input { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--green); cursor: pointer; }
+.login-submit { width: fit-content; }
+.login-back { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.35rem; color: var(--muted); font-size: .9rem; font-weight: 600; text-decoration: none; }
+.login-back:hover { color: var(--green); }
 .muted { color: var(--muted); }
 .admin-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; min-width: 520px; padding: 1.1rem .25rem .15rem; }
 .admin-pagination-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }

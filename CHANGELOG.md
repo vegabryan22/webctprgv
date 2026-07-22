@@ -2,6 +2,17 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.8] - 2026-07-22
+
+### Corregido
+
+- Alineación del control “Mantener sesión iniciada” en el formulario de acceso.
+- Versionado de la hoja de estilos del login para evitar estilos antiguos en caché.
+
+### Añadido
+
+- Enlace “Volver al sitio” desde la pantalla de administración.
+
 ## [0.5.7] - 2026-07-22
 
 ### Corregido
