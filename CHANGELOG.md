@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.4.3] - 2026-07-22
+
+### Corregido
+
+- Respuesta 404 de las páginas institucionales causada por fechas de publicación futuras tras una conversión de zona horaria.
+- Normalización segura de las fechas afectadas sin modificar borradores ni contenido editorial.
+
 ## [0.4.2] - 2026-07-22
 
 ### Añadido
