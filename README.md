@@ -36,6 +36,7 @@ El archivo `.env` nunca se almacena en Git. Consulte [DESARROLLO.md](docs/DESARR
 - [Seguridad, roles y permisos](docs/SEGURIDAD.md)
 - [Desarrollo local](docs/DESARROLLO.md)
 - [Política de versiones](docs/VERSIONADO.md)
+- [GitHub GitOps](docs/GITOPS.md)
 - [Registro de cambios](CHANGELOG.md)
 
 ## Verificación

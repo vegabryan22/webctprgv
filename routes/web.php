@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GitOpsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\UserController;
@@ -53,4 +54,7 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
 
     Route::get('/configuracion', [SiteSettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');
     Route::put('/configuracion', [SiteSettingController::class, 'update'])->middleware('permission:settings.manage')->name('settings.update');
+
+    Route::get('/gitops', [GitOpsController::class, 'index'])->middleware('permission:gitops.view')->name('gitops.index');
+    Route::post('/gitops/desplegar', [GitOpsController::class, 'dispatch'])->middleware('permission:gitops.deploy')->name('gitops.dispatch');
 });

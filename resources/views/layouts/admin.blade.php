@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Administración') · CTPRGV</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 <div class="admin-shell">
@@ -14,28 +15,32 @@
             <span>CTPRGV<br><small>Administración</small></span>
         </a>
         <nav>
-            <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Resumen</a>
+            <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fa-solid fa-chart-line"></i><span>Resumen</span></a>
             @if(auth()->user()->hasPermission('pages.view'))
                 <p class="nav-section">Contenido</p>
-                <a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}">Páginas</a>
+                <a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}"><i class="fa-regular fa-file-lines"></i><span>Páginas</span></a>
             @endif
             @if(auth()->user()->hasPermission('users.view') || auth()->user()->hasPermission('roles.view'))
                 <p class="nav-section">Seguridad</p>
-                @if(auth()->user()->hasPermission('users.view'))<a class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Usuarios</a>@endif
-                @if(auth()->user()->hasPermission('roles.view'))<a class="{{ request()->routeIs('admin.roles.*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">Roles y permisos</a>@endif
+                @if(auth()->user()->hasPermission('users.view'))<a class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}"><i class="fa-solid fa-users"></i><span>Usuarios</span></a>@endif
+                @if(auth()->user()->hasPermission('roles.view'))<a class="{{ request()->routeIs('admin.roles.*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}"><i class="fa-solid fa-shield-halved"></i><span>Roles y permisos</span></a>@endif
             @endif
             @if(auth()->user()->hasPermission('settings.manage'))
                 <p class="nav-section">Sistema</p>
-                <a class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.edit') }}">Configuración</a>
+                <a class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.edit') }}"><i class="fa-solid fa-sliders"></i><span>Configuración</span></a>
+            @endif
+            @if(auth()->user()->hasPermission('gitops.view'))
+                <p class="nav-section">Operaciones</p>
+                <a class="{{ request()->routeIs('admin.gitops.*') ? 'active' : '' }}" href="{{ route('admin.gitops.index') }}"><i class="fa-brands fa-github"></i><span>GitHub GitOps</span></a>
             @endif
         </nav>
     </aside>
     <div class="admin-main">
         <header class="topbar">
-            <a href="{{ route('home') }}" target="_blank">Ver sitio</a>
+            <a class="topbar-link" href="{{ route('home') }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver sitio</a>
             <div class="actions">
-                <span>{{ auth()->user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}">@csrf<button class="button link" type="submit">Salir</button></form>
+                <span><i class="fa-regular fa-circle-user"></i> {{ auth()->user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}">@csrf<button class="button ghost" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Salir</button></form>
             </div>
         </header>
         <main class="content">

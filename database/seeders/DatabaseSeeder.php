@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             ['pages.manage', 'Gestionar páginas', 'Contenido'],
             ['pages.publish', 'Publicar páginas', 'Contenido'],
             ['settings.manage', 'Gestionar configuración', 'Configuración'],
+            ['gitops.view', 'Ver estado GitOps', 'GitOps'],
+            ['gitops.deploy', 'Solicitar despliegues', 'GitOps'],
         ])->mapWithKeys(function (array $item): array {
             $permission = Permission::updateOrCreate(
                 ['name' => $item[0]],

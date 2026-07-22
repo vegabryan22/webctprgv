@@ -19,6 +19,8 @@ La relación es de muchos a muchos: un usuario puede tener varios roles y cada r
 | Contenido | `pages.manage` | Crear, editar, archivar y eliminar páginas |
 | Contenido | `pages.publish` | Publicar contenido visible |
 | Configuración | `settings.manage` | Modificar datos generales del sitio |
+| GitOps | `gitops.view` | Consultar repositorio y ejecuciones de Actions |
+| GitOps | `gitops.deploy` | Solicitar un workflow de despliegue manual |
 
 ## Roles iniciales
 

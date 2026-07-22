@@ -2,6 +2,28 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.2.0] - 2026-07-22
+
+### Añadido
+
+- Panel GitHub GitOps con estado del repositorio local e historial de commits.
+- Consulta configurable de las ejecuciones recientes de GitHub Actions.
+- Disparo manual del workflow de despliegue con confirmación y permiso independiente.
+- Bitácora local auditable para cada solicitud de despliegue.
+- Permisos `gitops.view` y `gitops.deploy`.
+- Iconos representativos en navegación, métricas, acciones y estados.
+
+### Cambiado
+
+- Botones y enlaces administrativos con mejores contrastes, foco visible, estados interactivos y variantes semánticas.
+- Etiquetas visuales diferenciadas para éxito, advertencia, error y estados neutrales.
+
+### Seguridad
+
+- El token de GitHub se mantiene exclusivamente en variables de entorno.
+- La consulta y el despliegue remoto requieren permisos distintos.
+- El panel nunca presenta el contenido del token configurado.
+
 ## [0.1.1] - 2026-07-22
 
 ### Cambiado

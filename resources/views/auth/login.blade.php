@@ -10,8 +10,9 @@
         <div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus autocomplete="username"></div>
         <div class="field"><label for="password">Contraseña</label><input id="password" name="password" type="password" required autocomplete="current-password"></div>
         <div class="field"><label><input name="remember" type="checkbox" value="1"> Mantener sesión iniciada</label></div>
-        <button class="button" type="submit">Ingresar al panel</button>
+        <button class="button" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Ingresar al panel</button>
     </form>
 </main>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </body>
 </html>
