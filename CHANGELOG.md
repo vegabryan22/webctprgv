@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.3] - 2026-07-22
+
+### Corregido
+
+- Los tooltips de redes sociales ahora se despliegan debajo de los iconos y permanecen dentro del área visible.
+
 ## [0.5.2] - 2026-07-22
 
 ### Corregido
