@@ -85,6 +85,17 @@ class CalendarTest extends TestCase
             ->assertDontSee('Showing 1 to 15');
     }
 
+    public function test_admin_activity_list_uses_compact_spanish_pagination(): void
+    {
+        $this->actingAs($this->superAdmin())->get('/administracion/actividades')
+            ->assertOk()
+            ->assertSee('Paginación de resultados')
+            ->assertSee('Mostrando 1–20 de 93 resultados')
+            ->assertSee('Siguiente')
+            ->assertDontSee('Showing 1 to 20')
+            ->assertDontSee('<svg', false);
+    }
+
     private function event(array $attributes = []): Event
     {
         return Event::create(array_merge([

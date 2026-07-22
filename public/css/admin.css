@@ -104,5 +104,13 @@ th { color: var(--navy); font-size: .82rem; text-transform: uppercase; }
 .login-brand { text-align: center; color: var(--navy); margin-bottom: 1.5rem; }
 .login-brand img { width: 76px; }
 .muted { color: var(--muted); }
+.admin-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; min-width: 520px; padding: 1.1rem .25rem .15rem; }
+.admin-pagination-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
+.admin-page-link { display: inline-flex; min-width: 38px; min-height: 38px; align-items: center; justify-content: center; gap: .35rem; padding: .5rem .68rem; border: 1px solid var(--border); border-radius: 8px; color: var(--navy); background: #fff; font-size: .88rem; font-weight: 700; text-decoration: none; }
+a.admin-page-link:hover, a.admin-page-link:focus-visible { border-color: var(--navy); color: #fff; background: var(--navy); }
+.admin-page-link.current { border-color: var(--navy); color: #fff; background: var(--navy); box-shadow: inset 0 -3px var(--yellow); }
+.admin-page-link.disabled { color: #929da7; background: #edf1f4; cursor: not-allowed; }
+.admin-page-ellipsis { padding: .5rem .2rem; color: var(--muted); }
+.admin-pagination p { margin: 0; color: var(--muted); font-size: .88rem; }
 @media (max-width: 1100px) { .menu-item-grid { grid-template-columns: repeat(2, 1fr); } .category-row { grid-template-columns: 1fr 120px; } }
 @media (max-width: 850px) { .admin-shell { grid-template-columns: 1fr; } .sidebar { position: static; } .field-grid, .split-grid, .menu-item-grid { grid-template-columns: 1fr; } .menu-item-footer { align-items: flex-start; flex-direction: column; } }

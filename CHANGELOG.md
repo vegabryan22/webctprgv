@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.7] - 2026-07-22
+
+### Corregido
+
+- Paginación sobredimensionada y en inglés en las tablas administrativas de actividades, páginas y usuarios.
+- Controles administrativos compactos, accesibles y coherentes con la paleta del CMS.
+
 ## [0.5.6] - 2026-07-22
 
 ### Corregido
