@@ -22,7 +22,11 @@ class CalendarTest extends TestCase
     public function test_calendar_and_categories_are_seeded(): void
     {
         $this->assertSame(6, EventCategory::count());
-        $this->get('/calendario')->assertOk()->assertSee('Calendario de actividades');
+        $this->get('/calendario')
+            ->assertOk()
+            ->assertSee('Calendario de actividades')
+            ->assertSee(now()->locale('es')->translatedFormat('F Y'))
+            ->assertSee('class="nav-toggle"', false);
     }
 
     public function test_published_event_appears_and_can_be_exported(): void

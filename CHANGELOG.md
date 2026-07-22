@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.4.1] - 2026-07-22
+
+### Corregido
+
+- Conflicto entre las clases del calendario nuevo y estilos heredados de la página de Noticias.
+- Celdas circulares, columnas fuera de pantalla y encabezado mensual con contraste insuficiente.
+- Idioma efectivo de meses y fechas en el entorno local.
+- Desbordamiento horizontal de la navegación pública al incorporar el calendario.
+
+### Añadido
+
+- Menú público adaptable tipo hamburguesa para pantallas medianas y pequeñas.
+- Versionado de hojas CSS para evitar que el navegador conserve estilos obsoletos.
+
 ## [0.4.0] - 2026-07-22
 
 ### Añadido

@@ -1,6 +1,6 @@
 @extends('layouts.public')
 @section('title', 'Próximas actividades - CTP Roberto Gamboa Valverde')
-@push('styles')<link rel="stylesheet" href="{{ asset('css/calendar.css') }}">@endpush
+@push('styles')<link rel="stylesheet" href="{{ asset('css/calendar.css') }}?v={{ config('version.number') }}">@endpush
 @section('content')
 <main class="calendar-page"><div class="calendar-shell"><header class="calendar-hero"><div><h1>Próximas actividades</h1><p>Filtre el calendario por categoría o público.</p></div><a class="calendar-button" href="{{ route('calendar.index') }}"><i class="far fa-calendar-days"></i> Vista mensual</a></header>
 <form class="calendar-filter" method="GET"><select name="category"><option value="">Todas las categorías</option>@foreach($categories as $category)<option value="{{ $category->slug }}" @selected(request('category') === $category->slug)>{{ $category->name }}</option>@endforeach</select><select name="audience"><option value="">Todos los públicos</option><option value="students" @selected(request('audience') === 'students')>Estudiantes</option><option value="families" @selected(request('audience') === 'families')>Familias</option><option value="staff" @selected(request('audience') === 'staff')>Personal</option><option value="community" @selected(request('audience') === 'community')>Comunidad</option></select><button class="calendar-button" type="submit"><i class="fas fa-filter"></i> Filtrar</button></form>

@@ -1,8 +1,8 @@
 @extends('layouts.public')
 @section('title', 'Calendario de actividades - CTP Roberto Gamboa Valverde')
-@push('styles')<link rel="stylesheet" href="{{ asset('css/calendar.css') }}">@endpush
+@push('styles')<link rel="stylesheet" href="{{ asset('css/calendar.css') }}?v={{ config('version.number') }}">@endpush
 @section('content')
-<main class="calendar-page"><div class="calendar-shell">
+<main class="calendar-page school-calendar"><div class="calendar-shell">
 <header class="calendar-hero"><div><h1>Calendario de actividades</h1><p>Consulte las próximas fechas académicas, técnicas, culturales e institucionales.</p></div><div class="calendar-actions"><a class="calendar-button" href="{{ route('calendar.list') }}"><i class="fas fa-list"></i> Ver como lista</a></div></header>
 <section><div class="month-nav"><a href="{{ route('calendar.index', ['month' => $month->copy()->subMonth()->format('Y-m')]) }}" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></a><h2>{{ $month->translatedFormat('F Y') }}</h2><a href="{{ route('calendar.index', ['month' => $month->copy()->addMonth()->format('Y-m')]) }}" aria-label="Mes siguiente"><i class="fas fa-chevron-right"></i></a></div>
 <div class="calendar-grid"><div class="weekday">Dom</div><div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mié</div><div class="weekday">Jue</div><div class="weekday">Vie</div><div class="weekday">Sáb</div>
