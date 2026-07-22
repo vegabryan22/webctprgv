@@ -19,6 +19,13 @@
 .day-number { display: block; margin-bottom: .4rem; font-weight: 700; }
 .calendar-event { display: block; margin: .3rem 0; padding: .35rem .45rem; border-left: 4px solid var(--event-color); border-radius: 5px; color: #243140; background: #f3f6f8; text-decoration: none; font-size: .78rem; line-height: 1.25; }
 .calendar-event.cancelled { text-decoration: line-through; opacity: .7; }
+.calendar-event.mep { border-style: dashed; background: #fff9df; }
+.calendar-source-notice { display: flex; gap: .8rem; margin: 0 0 1.25rem; padding: 1rem 1.15rem; border-left: 5px solid #c59f00; border-radius: 8px; color: #493c08; background: #fff9df; }
+.calendar-source-notice i { margin-top: .2rem; color: #9a7900; }
+.calendar-source-notice p { margin: .25rem 0 0; }
+.event-source { display: inline-flex; align-items: center; gap: .4rem; margin: .2rem .35rem .2rem 0; padding: .32rem .65rem; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.event-source.mep { color: #705600; background: #fff4bd; }
+.event-source.ctprgv { color: #124f09; background: #e8f7e3; }
 .upcoming-section { margin-top: 2.5rem; }
 .event-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
 .event-card-public { display: flex; gap: 1rem; padding: 1.1rem; border: 1px solid #dfe6ec; border-radius: 12px; background: white; box-shadow: 0 6px 18px rgba(0,47,93,.06); }

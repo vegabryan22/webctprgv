@@ -10,7 +10,8 @@ class Event extends Model
 {
     protected $fillable = [
         'event_category_id', 'author_id', 'title', 'slug', 'summary', 'description', 'starts_at', 'ends_at',
-        'all_day', 'location', 'audience', 'status', 'registration_url', 'image_path', 'attachment_path', 'published_at',
+        'all_day', 'location', 'audience', 'status', 'source', 'source_reference', 'is_tentative', 'source_priority',
+        'registration_url', 'image_path', 'attachment_path', 'published_at',
     ];
 
     protected function casts(): array
@@ -20,6 +21,7 @@ class Event extends Model
             'ends_at' => 'datetime',
             'published_at' => 'datetime',
             'all_day' => 'boolean',
+            'is_tentative' => 'boolean',
         ];
     }
 

@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.0] - 2026-07-22
+
+### Añadido
+
+- Importación de 56 fechas institucionales de la circular `DRED-SC07-CTPRGV-D-015-2026` para todos los niveles.
+- Importación de 13 fechas académicas de referencia del Calendario 2026 del MEP.
+- Metadatos de fuente, referencia, prioridad y carácter tentativo para cada actividad.
+- Aviso visible sobre la vigencia de las fechas y distintivos CTPRGV/MEP.
+
+### Cambiado
+
+- Las fechas institucionales del CTPRGV se muestran antes que las referencias MEP cuando coinciden.
+- El detalle de una actividad ahora presenta el intervalo completo de fechas.
+
+### Documentado
+
+- La circular institucional también advierte que sus fechas pueden cambiar por disposiciones ministeriales o situaciones fortuitas.
+
 ## [0.4.3] - 2026-07-22
 
 ### Corregido

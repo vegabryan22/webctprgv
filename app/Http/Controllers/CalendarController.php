@@ -19,14 +19,14 @@ class CalendarController extends Controller
         $calendarEnd = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
         $events = Event::with('category')->publiclyVisible()
             ->whereBetween('starts_at', [$calendarStart, $calendarEnd->endOfDay()])
-            ->orderBy('starts_at')->get();
+            ->orderBy('starts_at')->orderByDesc('source_priority')->get();
 
         return view('calendar.index', [
             'month' => $month,
             'calendarStart' => $calendarStart,
             'calendarEnd' => $calendarEnd,
             'eventsByDate' => $events->groupBy(fn (Event $event) => $event->starts_at->format('Y-m-d')),
-            'upcoming' => Event::with('category')->publiclyVisible()->where('starts_at', '>=', now()->startOfDay())->orderBy('starts_at')->limit(6)->get(),
+            'upcoming' => Event::with('category')->publiclyVisible()->where('starts_at', '>=', now()->startOfDay())->orderBy('starts_at')->orderByDesc('source_priority')->limit(6)->get(),
         ]);
     }
 
@@ -36,7 +36,7 @@ class CalendarController extends Controller
             ->when($request->filled('category'), fn ($query) => $query->whereHas('category', fn ($category) => $category->where('slug', $request->string('category'))))
             ->when($request->filled('audience'), fn ($query) => $query->where('audience', $request->string('audience')))
             ->where('starts_at', '>=', now()->startOfDay())
-            ->orderBy('starts_at')->paginate(15)->withQueryString();
+            ->orderBy('starts_at')->orderByDesc('source_priority')->paginate(15)->withQueryString();
 
         return view('calendar.list', ['events' => $events, 'categories' => EventCategory::orderBy('name')->get()]);
     }

@@ -23,6 +23,9 @@ class CalendarTest extends TestCase
     {
         $this->assertSame(6, EventCategory::count());
         $this->assertSame(24, Event::where('slug', 'like', 'mep-etp-2026-%')->count());
+        $this->assertSame(56, Event::where('slug', 'like', 'ctprgv-2026-%')->count());
+        $this->assertSame(13, Event::where('slug', 'like', 'mep-acad-2026-%')->count());
+        $this->assertTrue(Event::where('slug', 'mep-acad-2026-inicio-lecciones')->firstOrFail()->is_tentative);
         $this->assertDatabaseHas('events', [
             'slug' => 'mep-etp-2026-expotecnica-nacional',
             'starts_at' => '2026-11-23 00:00:00',
@@ -31,6 +34,7 @@ class CalendarTest extends TestCase
         $this->get('/calendario')
             ->assertOk()
             ->assertSee('Calendario de actividades')
+            ->assertSee('Las fechas del MEP son tentativas')
             ->assertSee(now()->locale('es')->translatedFormat('F Y'))
             ->assertSee('class="nav-toggle"', false);
     }

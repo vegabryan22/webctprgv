@@ -40,6 +40,13 @@ La versión 0.4.2 incorpora 24 actividades etiquetadas como **Educación Técnic
 
 Una vez importadas, las actividades son registros ordinarios del CMS: pueden corregirse, complementarse, reprogramarse o cancelarse desde **Contenido → Actividades**.
 
+## Fuentes y prioridad
+
+- **CTPRGV:** las fechas de la circular `DRED-SC07-CTPRGV-D-015-2026` tienen prioridad institucional. La propia circular señala que son aproximadas y que pueden modificarse.
+- **MEP:** las fechas del Calendario 2026 se muestran como referencias tentativas que deben confirmarse con el colegio.
+
+Los registros conservan `source`, `source_reference`, `is_tentative` y `source_priority`. Cuando dos actividades comienzan el mismo día, el calendario presenta primero la fuente de mayor prioridad sin eliminar la otra.
+
 ## Exportación
 
 La acción **Agregar a mi calendario** descarga un archivo `.ics` con fecha, hora, lugar, descripción, enlace y estado. Los eventos de día completo utilizan fechas sin zona horaria; los eventos con hora se exportan en UTC a partir de `America/Costa_Rica`.
