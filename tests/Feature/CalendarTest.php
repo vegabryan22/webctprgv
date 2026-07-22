@@ -75,6 +75,16 @@ class CalendarTest extends TestCase
         $this->assertDatabaseHas('events', ['slug' => 'reunion-familias', 'status' => 'published']);
     }
 
+    public function test_activity_list_uses_compact_spanish_pagination(): void
+    {
+        $this->get('/calendario/actividades')
+            ->assertOk()
+            ->assertSee('Paginación de actividades')
+            ->assertSee('Mostrando 1–15 de')
+            ->assertSee('Siguiente')
+            ->assertDontSee('Showing 1 to 15');
+    }
+
     private function event(array $attributes = []): Event
     {
         return Event::create(array_merge([

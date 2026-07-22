@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.4] - 2026-07-22
+
+### Corregido
+
+- Paginación pública del calendario reemplazada por controles compactos en español.
+- Eliminada la flecha SVG sobredimensionada producida por los estilos predeterminados de Laravel/Tailwind.
+
 ## [0.5.3] - 2026-07-22
 
 ### Corregido
