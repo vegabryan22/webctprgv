@@ -2748,9 +2748,15 @@ p {
 .session-link:hover i, .session-link:focus-visible i { color: #002f5d; }
 .session-link.admin { border-color: rgba(76,177,29,.8); }
 
-@media (max-width: 1500px) {
+@media (max-width: 1900px) {
     .site-brand > span { display: none; }
+}
+
+@media (max-width: 1720px) {
     .site-navbar .social-links { display: none; }
+}
+
+@media (max-width: 1500px) {
     .session-link span { display: none; }
     .session-link { width: 44px; padding: 0; justify-content: center; font-size: 1rem; }
 }

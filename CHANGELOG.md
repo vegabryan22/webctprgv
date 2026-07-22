@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.6] - 2026-07-22
+
+### Corregido
+
+- Desbordamiento del menú al mostrar “Panel administrativo” junto a Calendario y las redes sociales.
+- Puntos de quiebre progresivos que priorizan la navegación principal y el acceso administrativo.
+
 ## [0.5.5] - 2026-07-22
 
 ### Añadido
