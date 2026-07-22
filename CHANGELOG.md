@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.2] - 2026-07-22
+
+### Corregido
+
+- Etiqueta del menú público cambiada de “JUNTA” a “JUNTA ADMINISTRATIVA”.
+
 ## [0.5.1] - 2026-07-22
 
 ### Mejorado

@@ -12,7 +12,7 @@ class LegacyPageImporter
         ['route' => 'news', 'view' => 'news', 'title' => 'Noticias', 'slug' => 'noticias', 'label' => 'NOTICIAS'],
         ['route' => 'information', 'view' => 'information', 'title' => 'Información', 'slug' => 'informacion', 'label' => 'INFORMACIÓN'],
         ['route' => 'specialties', 'view' => 'specialties', 'title' => 'Especialidades', 'slug' => 'especialidades', 'label' => 'ESPECIALIDADES'],
-        ['route' => 'board', 'view' => 'board', 'title' => 'Junta Administrativa', 'slug' => 'junta-administrativa', 'label' => 'JUNTA'],
+        ['route' => 'board', 'view' => 'board', 'title' => 'Junta Administrativa', 'slug' => 'junta-administrativa', 'label' => 'JUNTA ADMINISTRATIVA'],
         ['route' => 'contact', 'view' => 'contact', 'title' => 'Contacto', 'slug' => 'contacto', 'label' => 'CONTACTO'],
         ['route' => 'anniversary', 'view' => 'anniversary', 'title' => '50 Aniversario', 'slug' => '50-aniversario', 'label' => null],
     ];

@@ -25,6 +25,7 @@ class CmsContentTest extends TestCase
         $this->assertSame(7, NavigationItem::count());
         $this->assertDatabaseHas('content_pages', ['route_name' => 'home', 'status' => 'published']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'contact', 'label' => 'CONTACTO']);
+        $this->assertDatabaseHas('navigation_items', ['route_name' => 'board', 'label' => 'JUNTA ADMINISTRATIVA']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'calendar.index', 'label' => 'CALENDARIO']);
     }
 
