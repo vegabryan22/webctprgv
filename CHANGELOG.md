@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.1] - 2026-07-22
+
+### Mejorado
+
+- Menú público compacto y adaptable que evita el desbordamiento horizontal en escritorio.
+- Iconos representativos, estado de página activa y foco visible para navegación por teclado.
+- Marca institucional resumida y enlaces sociales más discretos.
+- Estructura HTML válida mediante enlaces directos en lugar de botones anidados.
+
 ## [0.5.0] - 2026-07-22
 
 ### Añadido

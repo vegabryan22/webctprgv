@@ -26,4 +26,15 @@ class PublicSiteTest extends TestCase
     {
         $this->get('/administracion')->assertRedirect('/administracion/ingresar');
     }
+
+    public function test_public_navigation_is_semantic_and_marks_current_page(): void
+    {
+        $this->get('/calendario')
+            ->assertOk()
+            ->assertSee('aria-label="Navegación principal"', false)
+            ->assertSee('class="nav-link active"', false)
+            ->assertSee('aria-current="page"', false)
+            ->assertSee('fa-calendar-days', false)
+            ->assertDontSee('<a href="/calendario"><button', false);
+    }
 }
