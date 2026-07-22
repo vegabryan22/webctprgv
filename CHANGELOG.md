@@ -2,6 +2,29 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.3.0] - 2026-07-22
+
+### Añadido
+
+- Importación idempotente de las siete páginas institucionales existentes a MySQL.
+- Edición visual y HTML del contenido de páginas desde el CMS.
+- Administración del menú principal con etiqueta, página o URL, orden, visibilidad y apertura en nueva pestaña.
+- Permisos `menu.view` y `menu.manage`.
+- Saneamiento de HTML para retirar scripts, eventos, protocolos peligrosos e iframes no autorizados.
+- Protección de páginas institucionales contra eliminación accidental.
+
+### Cambiado
+
+- Todas las rutas públicas existentes obtienen su contenido desde MySQL.
+- La navegación pública se construye con los elementos administrados desde el CMS.
+- Los scripts técnicos heredados se conservan separados del contenido editorial.
+
+### Seguridad
+
+- El formulario editorial no permite modificar scripts de las páginas institucionales.
+- Los enlaces externos del menú solo aceptan los protocolos HTTP y HTTPS.
+- Las páginas institucionales conservan sus rutas protegidas aunque cambie su contenido.
+
 ## [0.2.0] - 2026-07-22
 
 ### Añadido

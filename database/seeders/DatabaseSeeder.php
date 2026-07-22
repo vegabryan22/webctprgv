@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\SiteSetting;
 use App\Models\User;
+use App\Services\LegacyPageImporter;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,8 @@ class DatabaseSeeder extends Seeder
             ['pages.view', 'Ver páginas', 'Contenido'],
             ['pages.manage', 'Gestionar páginas', 'Contenido'],
             ['pages.publish', 'Publicar páginas', 'Contenido'],
+            ['menu.view', 'Ver menú principal', 'Contenido'],
+            ['menu.manage', 'Gestionar menú principal', 'Contenido'],
             ['settings.manage', 'Gestionar configuración', 'Configuración'],
             ['gitops.view', 'Ver estado GitOps', 'GitOps'],
             ['gitops.deploy', 'Solicitar despliegues', 'GitOps'],
@@ -62,6 +65,8 @@ class DatabaseSeeder extends Seeder
             ['key' => $item[0]],
             ['value' => $item[1], 'group' => $item[2], 'label' => $item[3], 'type' => $item[4]],
         ));
+
+        app(LegacyPageImporter::class)->import();
 
         if (($email = env('ADMIN_EMAIL')) && ($password = env('ADMIN_PASSWORD'))) {
             $admin = User::updateOrCreate(

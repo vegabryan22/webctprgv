@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContentPage;
+use App\Services\HtmlContentSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -22,11 +23,12 @@ class ContentPageController extends Controller
         return view('admin.pages.form', ['page' => new ContentPage]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, HtmlContentSanitizer $sanitizer): RedirectResponse
     {
         $data = $this->validated($request);
         $this->ensureCanPublish($request, $data['status']);
         $data['slug'] = Str::slug($data['slug']);
+        $data['content'] = $sanitizer->sanitize($data['content'] ?? '');
         $data['author_id'] = $request->user()->id;
         $data['published_at'] = $data['status'] === 'published' ? now() : null;
         ContentPage::create($data);
@@ -39,11 +41,12 @@ class ContentPageController extends Controller
         return view('admin.pages.form', compact('page'));
     }
 
-    public function update(Request $request, ContentPage $page): RedirectResponse
+    public function update(Request $request, ContentPage $page, HtmlContentSanitizer $sanitizer): RedirectResponse
     {
         $data = $this->validated($request, $page);
         $this->ensureCanPublish($request, $data['status']);
-        $data['slug'] = Str::slug($data['slug']);
+        $data['slug'] = $page->is_system ? $page->slug : Str::slug($data['slug']);
+        $data['content'] = $sanitizer->sanitize($data['content'] ?? '');
         $data['published_at'] = $data['status'] === 'published' ? ($page->published_at ?? now()) : null;
         $page->update($data);
 
@@ -52,6 +55,7 @@ class ContentPageController extends Controller
 
     public function destroy(ContentPage $page): RedirectResponse
     {
+        abort_if($page->is_system, 422, 'Las páginas institucionales no se pueden eliminar.');
         $page->delete();
 
         return redirect()->route('admin.pages.index')->with('success', 'Página eliminada correctamente.');

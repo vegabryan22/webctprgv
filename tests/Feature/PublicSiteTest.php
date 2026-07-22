@@ -2,10 +2,19 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PublicSiteTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     public function test_public_pages_are_available(): void
     {
         foreach (['/', '/noticias', '/informacion', '/especialidades', '/junta-administrativa', '/contacto', '/50-aniversario'] as $uri) {

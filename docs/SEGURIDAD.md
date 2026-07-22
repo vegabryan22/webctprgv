@@ -18,6 +18,8 @@ La relación es de muchos a muchos: un usuario puede tener varios roles y cada r
 | Contenido | `pages.view` | Consultar páginas del CMS |
 | Contenido | `pages.manage` | Crear, editar, archivar y eliminar páginas |
 | Contenido | `pages.publish` | Publicar contenido visible |
+| Contenido | `menu.view` | Consultar el menú principal |
+| Contenido | `menu.manage` | Crear, ordenar, ocultar y eliminar opciones del menú |
 | Configuración | `settings.manage` | Modificar datos generales del sitio |
 | GitOps | `gitops.view` | Consultar repositorio y ejecuciones de Actions |
 | GitOps | `gitops.deploy` | Solicitar un workflow de despliegue manual |
@@ -35,4 +37,6 @@ La relación es de muchos a muchos: un usuario puede tener varios roles y cada r
 - Se debe aplicar el principio de menor privilegio.
 - La cuenta activa no puede eliminarse a sí misma.
 - Las acciones destructivas utilizan confirmación en la interfaz.
+- Las páginas institucionales no se pueden eliminar desde el CMS.
+- El HTML editorial se sanea en el servidor antes de guardarse.
 - `.env`, claves y contraseñas no deben incorporarse al repositorio.

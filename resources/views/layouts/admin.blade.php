@@ -19,6 +19,7 @@
             @if(auth()->user()->hasPermission('pages.view'))
                 <p class="nav-section">Contenido</p>
                 <a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}"><i class="fa-regular fa-file-lines"></i><span>Páginas</span></a>
+                @if(auth()->user()->hasPermission('menu.view'))<a class="{{ request()->routeIs('admin.navigation.*') ? 'active' : '' }}" href="{{ route('admin.navigation.index') }}"><i class="fa-solid fa-bars"></i><span>Menú principal</span></a>@endif
             @endif
             @if(auth()->user()->hasPermission('users.view') || auth()->user()->hasPermission('roles.view'))
                 <p class="nav-section">Seguridad</p>
@@ -52,5 +53,6 @@
         </main>
     </div>
 </div>
+@stack('scripts')
 </body>
 </html>

@@ -1,14 +1,6 @@
 <?php
 
 return [
-    'navigation' => [
-        ['label' => 'INICIO', 'route' => 'home'],
-        ['label' => 'NOTICIAS', 'route' => 'news'],
-        ['label' => 'INFORMACIÓN', 'route' => 'information'],
-        ['label' => 'ESPECIALIDADES', 'route' => 'specialties'],
-        ['label' => 'JUNTA', 'route' => 'board'],
-        ['label' => 'CONTACTO', 'route' => 'contact'],
-    ],
     'social' => [
         'facebook' => [
             'label' => 'Facebook',

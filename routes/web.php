@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GitOpsController;
+use App\Http\Controllers\Admin\NavigationItemController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\UserController;
@@ -51,6 +52,11 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/paginas/{page}/editar', [ContentPageController::class, 'edit'])->middleware('permission:pages.manage')->name('pages.edit');
     Route::put('/paginas/{page}', [ContentPageController::class, 'update'])->middleware('permission:pages.manage')->name('pages.update');
     Route::delete('/paginas/{page}', [ContentPageController::class, 'destroy'])->middleware('permission:pages.manage')->name('pages.destroy');
+
+    Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
+    Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');
+    Route::put('/menu/{navigationItem}', [NavigationItemController::class, 'update'])->middleware('permission:menu.manage')->name('navigation.update');
+    Route::delete('/menu/{navigationItem}', [NavigationItemController::class, 'destroy'])->middleware('permission:menu.manage')->name('navigation.destroy');
 
     Route::get('/configuracion', [SiteSettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');
     Route::put('/configuracion', [SiteSettingController::class, 'update'])->middleware('permission:settings.manage')->name('settings.update');

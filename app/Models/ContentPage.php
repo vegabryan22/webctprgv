@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ContentPage extends Model
 {
-    protected $fillable = ['title', 'slug', 'summary', 'content', 'status', 'author_id', 'published_at'];
+    protected $fillable = [
+        'title', 'slug', 'route_name', 'is_system', 'summary', 'content', 'script', 'status', 'author_id', 'published_at',
+    ];
 
     protected function casts(): array
     {
-        return ['published_at' => 'datetime'];
+        return ['published_at' => 'datetime', 'is_system' => 'boolean'];
     }
 
     public function author(): BelongsTo

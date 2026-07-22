@@ -17,7 +17,9 @@ El proyecto separa presentación, reglas de aplicación y persistencia mediante 
 
 ## Sitio público
 
-`PublicSiteController` sirve las páginas institucionales migradas. La navegación utiliza rutas con nombre para evitar enlaces rotos al cambiar direcciones. Las páginas creadas en el CMS se publican en `/paginas/{slug}` y su contenido se escapa antes de renderizar para prevenir inyección de HTML.
+`PublicSiteController` obtiene desde MySQL tanto las páginas institucionales como las páginas adicionales. Las páginas institucionales conservan rutas con nombre para evitar enlaces rotos; las adicionales se publican en `/paginas/{slug}`. El HTML se sanea al guardar y los scripts técnicos heredados permanecen separados del contenido editorial.
+
+El menú se almacena en `navigation_items`. Cada opción puede apuntar a una ruta institucional o a una URL externa HTTP/HTTPS, y se ordena mediante `sort_order`.
 
 ## CMS
 
