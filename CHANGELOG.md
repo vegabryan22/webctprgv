@@ -2,6 +2,18 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.1.1] - 2026-07-22
+
+### Cambiado
+
+- MySQL 8.0 pasa a ser el motor de base de datos predeterminado del proyecto.
+- La configuración de ejemplo utiliza la base `ctprgv` y un usuario de aplicación dedicado.
+
+### Seguridad
+
+- Laravel deja de conectarse con una cuenta administrativa de MySQL.
+- El usuario `ctprgv_app` limita sus permisos exclusivamente a la base `ctprgv`.
+
 ## [0.1.0] - 2026-07-22
 
 ### Añadido

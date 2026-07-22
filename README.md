@@ -6,7 +6,7 @@ Aplicación web institucional desarrollada con Laravel 13 bajo arquitectura MVC.
 
 - PHP 8.3–8.5 con extensiones `curl`, `fileinfo`, `mbstring`, `openssl`, `pdo_sqlite`, `sqlite3` y `zip`.
 - Composer 2.
-- SQLite para desarrollo local; MySQL o MariaDB para producción.
+- MySQL 8.0.
 
 En este equipo existe una instalación portátil en `../.tools`. Desde la raíz del proyecto:
 

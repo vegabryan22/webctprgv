@@ -29,7 +29,7 @@ $composer = '..\.tools\composer.phar'
 
 ## Base de datos
 
-SQLite se utiliza localmente. Producción debe configurar MySQL o MariaDB mediante variables `DB_*`; nunca se deben guardar credenciales reales en Git.
+MySQL 8.0 es el motor predeterminado tanto para desarrollo como para producción. La base recomendada es `ctprgv` y Laravel debe conectarse mediante un usuario dedicado con permisos limitados a esa base. Nunca se deben guardar credenciales reales en Git.
 
 ## Estilo público
 
