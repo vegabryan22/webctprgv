@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.6] - 2026-07-24
+
+### Actualizado
+
+- GitHub Actions utiliza `actions/checkout@v5`, compatible con el runtime Node.js 24 del runner.
+
 ## [0.6.5] - 2026-07-24
 
 ### Corregido
