@@ -2817,13 +2817,13 @@ p {
     .home-section-heading { align-items: start; flex-direction: column; }
 }
 
-.news-page { min-height: 60vh; background: #f3f7fa; color: #26384a; }
-.news-hero { padding: 4.5rem 1.5rem; background: linear-gradient(120deg, #002f5d, #075184); color: #fff; }
+.news-page { min-height: 60vh; padding-top: 91px; background: #f3f7fa; color: #26384a; }
+.news-hero { padding: 2.25rem 1.5rem 2.5rem; border-bottom: 3px solid #ffda00; background: linear-gradient(120deg, #002f5d, #075184); color: #fff; }
 .news-hero > div, .news-shell, .news-detail { width: min(1180px, 100%); margin: 0 auto; }
-.news-hero span { color: #ffda00; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.news-hero h1 { margin: .5rem 0; font-size: clamp(2.2rem, 5vw, 4rem); }
-.news-hero p { max-width: 680px; margin: 0; font-size: 1.1rem; opacity: .9; }
-.news-shell { padding: 3rem 1.5rem 4rem; }
+.news-hero span { color: #ffda00; font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.news-hero h1 { margin: .35rem 0 .45rem; color: #fff; font-size: clamp(1.85rem, 3.5vw, 2.65rem); line-height: 1.12; }
+.news-hero p { max-width: 680px; margin: 0; color: #edf6ff; font-size: 1rem; line-height: 1.5; }
+.news-shell { padding: 2rem 1.5rem 4rem; }
 .news-filters { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 1.5rem; }
 .news-filters a { padding: .55rem .9rem; border: 1px solid #cad8e3; border-radius: 999px; background: #fff; color: #003665; font-weight: 700; text-decoration: none; }
 .news-filters a.active, .news-filters a:hover { border-color: #003665; background: #003665; color: #fff; }
@@ -2853,4 +2853,9 @@ p {
 .news-download { display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem; padding: .8rem 1rem; border-radius: 9px; background: #003665; color: #fff; font-weight: 800; text-decoration: none; }
 
 @media (max-width: 900px) { .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 620px) { .news-grid { grid-template-columns: 1fr; } .news-shell, .news-detail { padding-left: 1rem; padding-right: 1rem; } }
+@media (max-width: 620px) {
+    .news-page { padding-top: 88px; }
+    .news-hero { padding: 1.6rem 1rem 1.8rem; }
+    .news-grid { grid-template-columns: 1fr; }
+    .news-shell, .news-detail { padding-left: 1rem; padding-right: 1rem; }
+}

@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.9.1] - 2026-07-24
+
+### Corregido
+
+- Encabezado de Noticias compacto y alineado con la navegación pública.
+- Contraste explícito del título y espaciado adaptable para evitar que el menú fijo cubra el contenido.
+- Separación y tamaños de texto optimizados para escritorio, tabletas y teléfonos.
+
 ## [0.9.0] - 2026-07-24
 
 ### Añadido
