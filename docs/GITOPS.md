@@ -44,3 +44,10 @@ Cada solicitud se registra en `git_ops_events`, incluyendo usuario, repositorio,
 2. Un usuario autorizado solicita el workflow desde el panel o GitHub lo ejecuta por su evento normal.
 3. GitHub Actions ejecuta pruebas y despliegue.
 4. El estado aparece en la tabla de ejecuciones del panel.
+# Selección de versiones
+
+El panel compara los tags semánticos de GitHub con la versión efectiva de producción. En **Aplicar versión** se muestran únicamente los tags más nuevos y la punta de la rama configurada.
+
+La referencia se valida contra GitHub antes de iniciar el workflow. Una versión anterior se aplica únicamente desde **Revertir despliegue**, que exige la confirmación `REVERTIR`.
+
+El workflow recibe `target_ref`, hace checkout de esa referencia, ejecuta pruebas, crea respaldo, aplica migraciones y registra la versión, commit y referencia desplegados.

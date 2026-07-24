@@ -146,3 +146,7 @@ a.admin-page-link:hover, a.admin-page-link:focus-visible { border-color: var(--n
 @media (max-width: 700px) {
     .audit-page__header { align-items: flex-start; flex-direction: column; }
 }
+.gitops-version-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .45rem .65rem; align-items: end; }
+.gitops-version-form label { grid-column: 1 / -1; font-size: .82rem; font-weight: 700; }
+.gitops-version-form select { min-width: 0; }
+@media (max-width: 650px) { .gitops-version-form { grid-template-columns: 1fr; } }

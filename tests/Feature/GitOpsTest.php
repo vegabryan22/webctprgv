@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Role;
 use App\Models\GitOpsSetting;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -31,20 +31,36 @@ class GitOpsTest extends TestCase
         config()->set('gitops.workflow', 'deploy.yml');
         config()->set('gitops.token', 'token-de-prueba');
         Http::fake([
+            'api.github.com/repos/ctprgv/sitio/tags*' => Http::response([['name' => 'v0.13.0', 'commit' => ['sha' => 'abc123']]]),
             'api.github.com/repos/ctprgv/sitio/actions/workflows/deploy.yml/dispatches' => Http::response([
                 'html_url' => 'https://github.com/ctprgv/sitio/actions/runs/1',
             ]),
         ]);
 
         $this->actingAs($this->superAdmin())
-            ->post('/administracion/gitops/desplegar')
+            ->post('/administracion/gitops/desplegar', ['target_ref' => 'v0.13.0'])
             ->assertSessionHas('success');
 
         $this->assertDatabaseHas('git_ops_events', [
             'action' => 'workflow_dispatch',
             'status' => 'accepted',
             'repository' => 'ctprgv/sitio',
+            'git_ref' => 'v0.13.0',
         ]);
+        Http::assertSent(fn ($request) => str_contains($request->url(), '/dispatches') && $request['inputs']['target_ref'] === 'v0.13.0');
+    }
+
+    public function test_deployment_rejects_ref_not_present_on_github(): void
+    {
+        config()->set('gitops.repository', 'ctprgv/sitio');
+        config()->set('gitops.branch', 'main');
+        config()->set('gitops.workflow', 'deploy.yml');
+        config()->set('gitops.token', 'token-de-prueba');
+        Http::fake(['api.github.com/repos/ctprgv/sitio/tags*' => Http::response([])]);
+
+        $this->actingAs($this->superAdmin())
+            ->post('/administracion/gitops/desplegar', ['target_ref' => 'v9.9.9'])
+            ->assertSessionHasErrors('target_ref');
     }
 
     public function test_super_admin_can_store_encrypted_gitops_settings(): void

@@ -30,8 +30,18 @@ class GitOpsController extends Controller
             $integrationError = 'No fue posible consultar toda la información de GitHub.';
         }
 
+        $productionStatus = $production->inspect();
+        $productionVersion = ltrim((string) $productionStatus['version'], 'v');
+        $availableTags = collect($data['tags'])
+            ->filter(fn (array $tag) => preg_match('/^v\d+\.\d+\.\d+$/', $tag['name'] ?? ''))
+            ->filter(fn (array $tag) => version_compare(ltrim($tag['name'], 'v'), $productionVersion, '>'))
+            ->sortBy(fn (array $tag) => ltrim($tag['name'], 'v'), SORT_NATURAL)
+            ->values();
+
         return view('admin.gitops.index', $data + [
-            'production' => $production->inspect(),
+            'production' => $productionStatus,
+            'availableTags' => $availableTags,
+            'latestTag' => $availableTags->last(),
             'integrationError' => $integrationError,
             'configured' => $github->isConfigured(),
             'canDispatch' => $github->canDispatch(),
@@ -64,7 +74,24 @@ class GitOpsController extends Controller
 
     public function dispatch(Request $request, GitHubActionsClient $github): RedirectResponse
     {
-        return $this->requestDeployment($request, $github, GitOpsSetting::current()->branch, 'deploy');
+        $settings = GitOpsSetting::current();
+        $data = $request->validate([
+            'target_ref' => ['required', 'regex:/^(?:v\d+\.\d+\.\d+|[A-Za-z0-9._\/-]+)$/'],
+        ], ['target_ref.required' => 'Seleccione la versión que desea aplicar.']);
+
+        try {
+            $allowed = collect($github->tags())->pluck('name')->push($settings->branch);
+        } catch (Throwable $exception) {
+            report($exception);
+
+            return back()->withErrors(['gitops' => 'No fue posible verificar la versión seleccionada con GitHub.']);
+        }
+
+        if (! $allowed->contains($data['target_ref'])) {
+            return back()->withErrors(['target_ref' => 'La versión seleccionada no existe en el repositorio remoto.']);
+        }
+
+        return $this->requestDeployment($request, $github, $data['target_ref'], 'deploy');
     }
 
     public function rollback(Request $request, GitHubActionsClient $github): RedirectResponse
@@ -89,9 +116,11 @@ class GitOpsController extends Controller
                 'repository' => GitOpsSetting::current()->repository, 'status' => 'accepted',
                 'message' => "Cancelación solicitada para la ejecución {$runId}.",
             ]);
+
             return back()->with('success', 'Cancelación solicitada correctamente.');
         } catch (Throwable $exception) {
             report($exception);
+
             return back()->withErrors(['gitops' => 'No fue posible cancelar la ejecución.']);
         }
     }
@@ -124,10 +153,12 @@ class GitOpsController extends Controller
                 'status' => 'accepted',
                 'message' => $operation === 'rollback' ? "Reversión solicitada a {$target}." : "Despliegue solicitado para {$target}.",
             ]);
+
             return back()->with('success', $operation === 'rollback' ? 'La reversión controlada fue solicitada.' : 'El despliegue fue solicitado correctamente.');
         } catch (Throwable $exception) {
             report($exception);
             GitOpsEvent::create($event + ['status' => 'failed', 'message' => $exception->getMessage()]);
+
             return back()->withErrors(['gitops' => 'GitHub rechazó la operación: '.$exception->getMessage()]);
         }
     }

@@ -50,7 +50,7 @@ class GitHubActionsClient
 
     public function tags(): array
     {
-        return $this->request()->get($this->endpoint('/tags'), ['per_page' => 15])->throw()->json();
+        return $this->request()->get($this->endpoint('/tags'), ['per_page' => 50])->throw()->json();
     }
 
     public function runners(): array

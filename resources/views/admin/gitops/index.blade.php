@@ -34,6 +34,7 @@
             <dt>Remoto</dt><dd>{{ $remote['default_branch'] ?? 'No disponible' }}</dd>
             <dt>Runner</dt><dd>@php($runner = collect($runners)->firstWhere('name', 'ctprgv-production'))<span class="badge {{ ($runner['status'] ?? null) === 'online' ? 'success' : 'warning' }}">{{ $runner['status'] ?? 'No visible' }}</span></dd>
             <dt>Integridad</dt><dd>{{ $production['commit'] && (($commits[0]['sha'] ?? null) === $production['commit']) ? 'Sincronizado con la rama' : 'Versión distinta a la punta remota' }}</dd>
+            <dt>Versiones nuevas</dt><dd>@if($availableTags->isNotEmpty())<span class="badge warning">{{ $availableTags->count() }} disponible(s)</span> · más reciente <strong>{{ $latestTag['name'] }}</strong>@else<span class="badge success">Producción al día</span>@endif</dd>
         </dl>
     </article>
 </section>
@@ -49,8 +50,18 @@
         </article>
         <article class="gitops-step">
             <div class="gitops-step-title"><span class="gitops-step-number">2</span><strong>Aplicar versión</strong><span class="badge {{ $canDispatch ? 'success' : 'warning' }}">{{ $canDispatch ? 'Disponible' : 'Inactivo' }}</span></div>
-            <p>{{ $settings->branch }} · versión actual v{{ $production['version'] }}</p>
-            @if(auth()->user()->hasPermission('gitops.deploy'))<form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Desplegar {{ $settings->branch }} en producción?')">@csrf<button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Desplegar {{ $settings->branch }}</button></form>@endif
+            <p>Producción: <strong>v{{ $production['version'] }}</strong>@if($latestTag) · disponible: <strong>{{ $latestTag['name'] }}</strong>@endif</p>
+            @if(auth()->user()->hasPermission('gitops.deploy'))
+                <form class="gitops-version-form" method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Aplicar la versión seleccionada en producción?')">@csrf
+                    <label for="deploy_target_ref">Versión objetivo</label>
+                    <select id="deploy_target_ref" name="target_ref" required>
+                        <option value="">Seleccione una versión…</option>
+                        @foreach($availableTags->reverse() as $tag)<option value="{{ $tag['name'] }}">{{ $tag['name'] }} · {{ substr($tag['commit']['sha'] ?? '', 0, 8) }}</option>@endforeach
+                        <option value="{{ $settings->branch }}">{{ $settings->branch }} · última versión de la rama</option>
+                    </select>
+                    <button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Aplicar versión</button>
+                </form>
+            @endif
         </article>
         <article class="gitops-step">
             <div class="gitops-step-title"><span class="gitops-step-number">3</span><strong>Validar servicio</strong><span class="badge {{ $production['http'] === 200 && $production['database'] ? 'success' : 'danger' }}">{{ $production['http'] === 200 && $production['database'] ? 'Saludable' : 'Alerta' }}</span></div>

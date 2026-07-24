@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.14.0] - 2026-07-24
+
+### Añadido
+
+- Indicador de versiones más nuevas que la versión efectiva de producción.
+- Selector de tag objetivo para aplicar versiones publicadas individualmente.
+- Opción explícita para desplegar la última versión de la rama configurada.
+- Verificación remota de la referencia antes de solicitar el workflow.
+
+### Mejorado
+
+- Separación clara entre actualización a una versión nueva y reversión a una versión anterior.
+- Bitácora GitOps registra la referencia exacta seleccionada para el despliegue.
+
 ## [0.13.0] - 2026-07-24
 
 ### Añadido
