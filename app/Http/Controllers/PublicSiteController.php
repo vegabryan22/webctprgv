@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\ContentPage;
 use App\Models\Event;
+use App\Models\NewsArticle;
+use App\Models\NewsCategory;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PublicSiteController extends Controller
@@ -22,9 +25,23 @@ class PublicSiteController extends Controller
         return view('public.home-page', compact('page', 'upcomingEvents'));
     }
 
-    public function news(): View
+    public function news(Request $request): View
     {
-        return $this->managed('news');
+        $articles = NewsArticle::with('category')->published()
+            ->when($request->filled('category'), fn ($query) => $query->whereHas('category', fn ($category) => $category->where('slug', $request->string('category'))))
+            ->orderByDesc('is_featured')->latest('published_at')->paginate(9)->withQueryString();
+
+        return view('public.news-index', [
+            'articles' => $articles,
+            'categories' => NewsCategory::whereHas('articles', fn ($query) => $query->published())->orderBy('name')->get(),
+        ]);
+    }
+
+    public function newsArticle(NewsArticle $article): View
+    {
+        abort_unless(NewsArticle::published()->whereKey($article)->exists(), 404);
+
+        return view('public.news-show', compact('article'));
     }
 
     public function information(): View

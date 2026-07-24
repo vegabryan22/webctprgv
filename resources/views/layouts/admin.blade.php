@@ -16,9 +16,10 @@
         </a>
         <nav>
             <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fa-solid fa-chart-line"></i><span>Resumen</span></a>
-            @if(auth()->user()->hasPermission('pages.view'))
+            @if(auth()->user()->hasPermission('pages.view') || auth()->user()->hasPermission('news.view') || auth()->user()->hasPermission('menu.view') || auth()->user()->hasPermission('events.view'))
                 <p class="nav-section">Contenido</p>
-                <a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}"><i class="fa-regular fa-file-lines"></i><span>Páginas</span></a>
+                @if(auth()->user()->hasPermission('pages.view'))<a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}"><i class="fa-regular fa-file-lines"></i><span>Páginas</span></a>@endif
+                @if(auth()->user()->hasPermission('news.view'))<a class="{{ request()->routeIs('admin.news.*') || request()->routeIs('admin.news-categories.*') ? 'active' : '' }}" href="{{ route('admin.news.index') }}"><i class="fa-regular fa-newspaper"></i><span>Noticias</span></a>@endif
                 @if(auth()->user()->hasPermission('menu.view'))<a class="{{ request()->routeIs('admin.navigation.*') ? 'active' : '' }}" href="{{ route('admin.navigation.index') }}"><i class="fa-solid fa-bars"></i><span>Menú principal</span></a>@endif
                 @if(auth()->user()->hasPermission('events.view'))<a class="{{ request()->routeIs('admin.events.*') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"><i class="fa-regular fa-calendar-days"></i><span>Actividades</span></a>@endif
                 @if(auth()->user()->hasPermission('events.manage'))<a class="{{ request()->routeIs('admin.event-categories.*') ? 'active' : '' }}" href="{{ route('admin.event-categories.index') }}"><i class="fa-solid fa-tags"></i><span>Categorías</span></a>@endif

@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\EventCategoryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GitOpsController;
 use App\Http\Controllers\Admin\NavigationItemController;
+use App\Http\Controllers\Admin\NewsArticleController;
+use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\UserController;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/', 'home')->name('home');
     Route::get('/noticias', 'news')->name('news');
+    Route::get('/noticias/{article:slug}', 'newsArticle')->name('news.show');
     Route::get('/informacion', 'information')->name('information');
     Route::get('/especialidades', 'specialties')->name('specialties');
     Route::get('/junta-administrativa', 'board')->name('board');
@@ -62,6 +65,17 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/paginas/{page}/editar', [ContentPageController::class, 'edit'])->middleware('permission:pages.manage')->name('pages.edit');
     Route::put('/paginas/{page}', [ContentPageController::class, 'update'])->middleware('permission:pages.manage')->name('pages.update');
     Route::delete('/paginas/{page}', [ContentPageController::class, 'destroy'])->middleware('permission:pages.manage')->name('pages.destroy');
+
+    Route::get('/noticias', [NewsArticleController::class, 'index'])->middleware('permission:news.view')->name('news.index');
+    Route::get('/noticias/crear', [NewsArticleController::class, 'create'])->middleware('permission:news.manage')->name('news.create');
+    Route::post('/noticias', [NewsArticleController::class, 'store'])->middleware('permission:news.manage')->name('news.store');
+    Route::get('/noticias/{article}/editar', [NewsArticleController::class, 'edit'])->middleware('permission:news.manage')->name('news.edit');
+    Route::put('/noticias/{article}', [NewsArticleController::class, 'update'])->middleware('permission:news.manage')->name('news.update');
+    Route::delete('/noticias/{article}', [NewsArticleController::class, 'destroy'])->middleware('permission:news.manage')->name('news.destroy');
+    Route::get('/categorias-de-noticias', [NewsCategoryController::class, 'index'])->middleware('permission:news.manage')->name('news-categories.index');
+    Route::post('/categorias-de-noticias', [NewsCategoryController::class, 'store'])->middleware('permission:news.manage')->name('news-categories.store');
+    Route::put('/categorias-de-noticias/{newsCategory}', [NewsCategoryController::class, 'update'])->middleware('permission:news.manage')->name('news-categories.update');
+    Route::delete('/categorias-de-noticias/{newsCategory}', [NewsCategoryController::class, 'destroy'])->middleware('permission:news.manage')->name('news-categories.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

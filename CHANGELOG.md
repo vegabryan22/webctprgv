@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.9.0] - 2026-07-24
+
+### Añadido
+
+- Módulo estructurado de noticias con categorías, borradores, publicación programada, expiración y destacados.
+- Administración de noticias, imágenes, documentos adjuntos y permisos separados de consulta, gestión y publicación.
+- Listado y detalle público adaptables con filtros por categoría y estado vacío institucional.
+- Pruebas de visibilidad, vencimiento, publicación administrativa y atribución del pie.
+
+### Cambiado
+
+- El pie acredita al Departamento de Redes, Prof. Bryan Vega Rondón y estudiantes de 12.º año, usando automáticamente el año en curso.
+- La página de Noticias deja de mostrar eventos demostrativos y el calendario estático de 2025.
+
+### Base de datos
+
+- Migración `2026_07_24_000300_create_news_tables.php` para noticias, categorías y permisos.
+
 ## [0.8.1] - 2026-07-24
 
 ### Añadido

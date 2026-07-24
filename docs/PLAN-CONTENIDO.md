@@ -99,9 +99,9 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | ID | Unidad | Estado | Dependencias | Entregables | Criterio específico |
 | --- | --- | --- | --- | --- | --- |
 | CTP-C01 | Portada dinámica | Completado | CTP-B03 | Accesos rápidos y próximas actividades | Conserva CMS, solo eventos públicos y distingue fechas MEP |
-| CTP-C02 | Noticias estructuradas | Pendiente | CTP-B02 | Modelo, migración, CRUD, permisos, listado y detalle | Fecha, categoría, autor, imagen, adjunto, estado y destacado |
+| CTP-C02 | Noticias estructuradas | Completado | CTP-B02 | Modelo, migración, CRUD, permisos, listado y detalle | Fecha, categoría, autor, imagen, adjunto, estado y destacado |
 | CTP-C03 | Saneamiento editorial | Pendiente | Ninguna | Inventario de textos demostrativos, enlaces vacíos y datos vencidos | Corregir o marcar pendiente de confirmación |
-| CTP-C04 | Actualidad en portada | Bloqueado | CTP-C02 | Noticias y avisos recientes en Inicio | Sin duplicación y con publicación/expiración |
+| CTP-C04 | Actualidad en portada | Preparado | CTP-C02 | Noticias y avisos recientes en Inicio | Sin duplicación y con publicación/expiración |
 
 ## Etapa 2 — Servicios institucionales
 
@@ -161,6 +161,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-07-24 | CTP-C01 | 0.8.0 | Completado | `eb83570` | `eb83570` | 27 pruebas, 109 aserciones aprobadas con PHP portátil | Accesos y cuatro actividades próximas |
 | 2026-07-24 | Control del proyecto | 0.8.1 | Completado | `7fe9a6d` | `8765589` | 27 pruebas aprobadas; Pint reporta dos diferencias preexistentes en GitOps | Etapas, dependencias, decisiones y bitácora |
+| 2026-07-24 | CTP-C02 | 0.9.0 | En revisión | Pendiente | Pendiente | 31 pruebas y 125 aserciones aprobadas; migración local correcta | Noticias estructuradas y retiro de demostraciones |
 
 ## Riesgos y bloqueos
 
@@ -174,12 +175,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C02 — Noticias estructuradas`
+`CTP-C03 — Saneamiento editorial`
 
-1. Diseñar tablas de noticias y categorías.
-2. Definir permisos `news.view` y `news.manage`.
-3. Construir CRUD administrativo.
-4. Crear listado, detalle y publicaciones destacadas.
-5. Migrar únicamente contenido confirmado.
-6. Probar publicación, borradores y vencimiento.
-7. Conectar CTP-C04 cuando el módulo esté validado.
+1. Inventariar afirmaciones, fechas, precios, contactos y enlaces heredados.
+2. Clasificar cada dato como confirmado, vencido, demostrativo o pendiente.
+3. Retirar datos demostrativos que puedan confundirse con información oficial.
+4. Preparar una lista de información que debe confirmar cada responsable.
+5. Aplicar correcciones sin sobrescribir cambios administrativos no relacionados.
+
+`CTP-C04 — Actualidad en portada` queda preparado y puede ejecutarse después de publicar las primeras noticias oficiales.

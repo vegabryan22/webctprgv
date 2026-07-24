@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© Redes 2025 Designed by Sebastian Mathieu &amp; Neithan Piedra · v{{ config('version.number') }}</p>
+            <p>© {{ now()->year }} Departamento de Redes · Prof. Bryan Vega Rondón y estudiantes de 12.º año · v{{ config('version.number') }}</p>
         </div>
     </div>
 </footer>
