@@ -26,7 +26,7 @@ php artisan migrate --force
 php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
-php artisan view:cache
+php artisan view:clear
 
 test "$(curl -k -sS -o /dev/null -w '%{http_code}' \
     --resolve ctprobertogamboa.com:443:127.0.0.1 \

@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.5] - 2026-07-24
+
+### Corregido
+
+- Las vistas Blade se limpian durante el despliegue y PHP-FPM las compila con el propietario correcto, evitando errores 500.
+
 ## [0.6.4] - 2026-07-24
 
 ### Corregido
