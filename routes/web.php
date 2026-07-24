@@ -86,4 +86,7 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/gitops', [GitOpsController::class, 'index'])->middleware('permission:gitops.view')->name('gitops.index');
     Route::put('/gitops/configuracion', [GitOpsController::class, 'updateSettings'])->middleware('permission:settings.manage')->name('gitops.settings.update');
     Route::post('/gitops/desplegar', [GitOpsController::class, 'dispatch'])->middleware('permission:gitops.deploy')->name('gitops.dispatch');
+    Route::post('/gitops/validar', [GitOpsController::class, 'validateProduction'])->middleware('permission:gitops.view')->name('gitops.validate');
+    Route::post('/gitops/cancelar/{runId}', [GitOpsController::class, 'cancel'])->middleware('permission:gitops.deploy')->whereNumber('runId')->name('gitops.cancel');
+    Route::post('/gitops/revertir', [GitOpsController::class, 'rollback'])->middleware('permission:gitops.rollback')->name('gitops.rollback');
 });

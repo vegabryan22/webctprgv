@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ['settings.manage', 'Gestionar configuración', 'Configuración'],
             ['gitops.view', 'Ver estado GitOps', 'GitOps'],
             ['gitops.deploy', 'Solicitar despliegues', 'GitOps'],
+            ['gitops.rollback', 'Revertir despliegues', 'GitOps'],
         ])->mapWithKeys(function (array $item): array {
             $permission = Permission::updateOrCreate(
                 ['name' => $item[0]],

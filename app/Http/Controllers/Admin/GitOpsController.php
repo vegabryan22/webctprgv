@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GitOpsEvent;
 use App\Models\GitOpsSetting;
 use App\Services\GitHubActionsClient;
-use App\Services\LocalRepositoryInspector;
+use App\Services\ProductionStatus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,25 +14,28 @@ use Throwable;
 
 class GitOpsController extends Controller
 {
-    public function index(LocalRepositoryInspector $repository, GitHubActionsClient $github): View
+    public function index(GitHubActionsClient $github, ProductionStatus $production): View
     {
+        $data = ['runs' => [], 'commits' => [], 'tags' => [], 'runners' => [], 'remote' => []];
         $integrationError = null;
-        $runs = [];
 
         try {
-            $runs = $github->workflowRuns();
+            $data['runs'] = $github->workflowRuns();
+            $data['commits'] = $github->commits();
+            $data['tags'] = $github->tags();
+            $data['runners'] = $github->runners();
+            $data['remote'] = $github->repository();
         } catch (Throwable $exception) {
             report($exception);
-            $integrationError = 'No fue posible consultar GitHub. Revise el repositorio, token y conectividad.';
+            $integrationError = 'No fue posible consultar toda la información de GitHub.';
         }
 
-        return view('admin.gitops.index', [
-            'repository' => $repository->inspect(),
-            'runs' => $runs,
+        return view('admin.gitops.index', $data + [
+            'production' => $production->inspect(),
             'integrationError' => $integrationError,
             'configured' => $github->isConfigured(),
             'canDispatch' => $github->canDispatch(),
-            'events' => GitOpsEvent::with('user')->latest()->limit(10)->get(),
+            'events' => GitOpsEvent::with('user')->latest()->limit(20)->get(),
             'settings' => GitOpsSetting::current(),
         ]);
     }
@@ -45,20 +48,15 @@ class GitOpsController extends Controller
             'workflow' => ['required', 'regex:/^[A-Za-z0-9._\/-]+\.ya?ml$/', 'max:255'],
             'token' => ['nullable', 'string', 'max:500'],
             'remove_token' => ['nullable', 'boolean'],
-        ], [
-            'repository.regex' => 'Use el formato propietario/repositorio.',
-            'workflow.regex' => 'Indique un archivo workflow .yml o .yaml.',
         ]);
 
         $settings = GitOpsSetting::current();
         $settings->fill(collect($data)->only(['repository', 'branch', 'workflow'])->all());
-
         if ($request->boolean('remove_token')) {
             $settings->token = null;
         } elseif (filled($data['token'] ?? null)) {
             $settings->token = $data['token'];
         }
-
         $settings->save();
 
         return back()->with('success', 'Configuración GitOps actualizada de forma segura.');
@@ -66,28 +64,71 @@ class GitOpsController extends Controller
 
     public function dispatch(Request $request, GitHubActionsClient $github): RedirectResponse
     {
+        return $this->requestDeployment($request, $github, GitOpsSetting::current()->branch, 'deploy');
+    }
+
+    public function rollback(Request $request, GitHubActionsClient $github): RedirectResponse
+    {
+        $data = $request->validate([
+            'target_ref' => ['required', 'regex:/^v\d+\.\d+\.\d+$/'],
+            'confirmation' => ['required', 'in:REVERTIR'],
+        ], [
+            'target_ref.regex' => 'Seleccione una versión publicada válida.',
+            'confirmation.in' => 'Escriba REVERTIR para confirmar.',
+        ]);
+
+        return $this->requestDeployment($request, $github, $data['target_ref'], 'rollback');
+    }
+
+    public function cancel(Request $request, GitHubActionsClient $github, int $runId): RedirectResponse
+    {
+        try {
+            $github->cancel($runId);
+            GitOpsEvent::create([
+                'user_id' => $request->user()->id, 'action' => 'workflow_cancel',
+                'repository' => GitOpsSetting::current()->repository, 'status' => 'accepted',
+                'message' => "Cancelación solicitada para la ejecución {$runId}.",
+            ]);
+            return back()->with('success', 'Cancelación solicitada correctamente.');
+        } catch (Throwable $exception) {
+            report($exception);
+            return back()->withErrors(['gitops' => 'No fue posible cancelar la ejecución.']);
+        }
+    }
+
+    public function validateProduction(Request $request, ProductionStatus $production): RedirectResponse
+    {
+        $status = $production->inspect();
+        $ok = $status['http'] === 200 && $status['database'];
+        GitOpsEvent::create([
+            'user_id' => $request->user()->id, 'action' => 'production_validate',
+            'repository' => GitOpsSetting::current()->repository, 'git_ref' => $status['ref'],
+            'status' => $ok ? 'ok' : 'failed',
+            'message' => "HTTP {$status['http']} · BD ".($status['database'] ? 'OK' : 'ERROR')." · {$status['latency_ms']} ms",
+        ]);
+
+        return back()->with($ok ? 'success' : 'error', $ok ? 'Servicio validado correctamente.' : 'La validación detectó errores.');
+    }
+
+    private function requestDeployment(Request $request, GitHubActionsClient $github, string $target, string $operation): RedirectResponse
+    {
         $event = [
-            'user_id' => $request->user()->id,
-            'action' => 'workflow_dispatch',
-            'repository' => GitOpsSetting::current()->repository,
-            'workflow' => GitOpsSetting::current()->workflow,
-            'git_ref' => GitOpsSetting::current()->branch,
+            'user_id' => $request->user()->id, 'action' => $operation === 'rollback' ? 'rollback_dispatch' : 'workflow_dispatch',
+            'repository' => GitOpsSetting::current()->repository, 'workflow' => GitOpsSetting::current()->workflow,
+            'git_ref' => $target,
         ];
 
         try {
-            $response = $github->dispatch();
+            $github->dispatch($target, $operation);
             GitOpsEvent::create($event + [
                 'status' => 'accepted',
-                'message' => 'GitHub aceptó la solicitud de despliegue.',
-                'external_url' => $response['html_url'] ?? null,
+                'message' => $operation === 'rollback' ? "Reversión solicitada a {$target}." : "Despliegue solicitado para {$target}.",
             ]);
-
-            return back()->with('success', 'El workflow de despliegue fue solicitado correctamente.');
+            return back()->with('success', $operation === 'rollback' ? 'La reversión controlada fue solicitada.' : 'El despliegue fue solicitado correctamente.');
         } catch (Throwable $exception) {
             report($exception);
             GitOpsEvent::create($event + ['status' => 'failed', 'message' => $exception->getMessage()]);
-
-            return back()->withErrors(['gitops' => 'GitHub rechazó la solicitud. Revise la configuración y los permisos del token.']);
+            return back()->withErrors(['gitops' => 'GitHub rechazó la operación: '.$exception->getMessage()]);
         }
     }
 }

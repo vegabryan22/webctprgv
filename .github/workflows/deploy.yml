@@ -2,6 +2,17 @@ name: Desplegar sitio
 
 on:
   workflow_dispatch:
+    inputs:
+      target_ref:
+        description: Rama, tag o commit que se desplegará
+        required: true
+        default: main
+      operation:
+        description: Tipo de operación auditada
+        required: true
+        type: choice
+        options: [deploy, rollback]
+        default: deploy
 
 concurrency:
   group: produccion-ctprgv
@@ -15,6 +26,8 @@ jobs:
     steps:
       - name: Obtener versión
         uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.target_ref }}
 
       - name: Preparar Composer actual
         run: |
@@ -31,4 +44,7 @@ jobs:
         run: php artisan test
 
       - name: Desplegar únicamente en html
+        env:
+          DEPLOY_OPERATION: ${{ inputs.operation }}
+          DEPLOY_TARGET_REF: ${{ inputs.target_ref }}
         run: bash scripts/deploy-self-hosted.sh

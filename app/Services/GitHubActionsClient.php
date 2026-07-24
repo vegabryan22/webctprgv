@@ -36,7 +36,29 @@ class GitHubActionsClient
             ->json('workflow_runs', []);
     }
 
-    public function dispatch(): array
+    public function repository(): array
+    {
+        return $this->request()->get($this->endpoint(''))->throw()->json();
+    }
+
+    public function commits(): array
+    {
+        return $this->request()->get($this->endpoint('/commits'), [
+            'sha' => $this->setting()->branch, 'per_page' => 8,
+        ])->throw()->json();
+    }
+
+    public function tags(): array
+    {
+        return $this->request()->get($this->endpoint('/tags'), ['per_page' => 15])->throw()->json();
+    }
+
+    public function runners(): array
+    {
+        return $this->request()->get($this->endpoint('/actions/runners'))->throw()->json('runners', []);
+    }
+
+    public function dispatch(?string $targetRef = null, string $operation = 'deploy'): array
     {
         if (! $this->canDispatch()) {
             throw new RuntimeException('La integración de despliegue no está configurada completamente.');
@@ -45,10 +67,19 @@ class GitHubActionsClient
         $response = $this->request()
             ->post($this->endpoint('/actions/workflows/'.rawurlencode($this->setting()->workflow).'/dispatches'), [
                 'ref' => $this->setting()->branch,
+                'inputs' => [
+                    'target_ref' => $targetRef ?: $this->setting()->branch,
+                    'operation' => $operation,
+                ],
             ])
             ->throw();
 
         return $response->json() ?? [];
+    }
+
+    public function cancel(int $runId): void
+    {
+        $this->request()->post($this->endpoint("/actions/runs/{$runId}/cancel"))->throw();
     }
 
     private function request(): PendingRequest

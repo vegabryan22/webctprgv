@@ -1,96 +1,90 @@
 @extends('layouts.admin')
-
-@section('title', 'GitHub GitOps')
-
+@section('title', 'Despliegue controlado')
 @section('content')
 <div class="page-heading">
-    <div>
-        <h1><i class="fa-brands fa-github"></i> GitHub GitOps</h1>
-        <p class="muted">Visibilidad del código, automatizaciones y despliegues del sitio.</p>
-    </div>
-    @if(auth()->user()->hasPermission('gitops.deploy'))
-        <form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Solicitar el despliegue de {{ $settings->branch }} mediante {{ $settings->workflow }}?')">
-            @csrf
-            <button class="button secondary" type="submit" @disabled(!$canDispatch)>
-                <i class="fa-solid fa-rocket"></i> Solicitar despliegue
-            </button>
-        </form>
-    @endif
+    <div><h1><i class="fa-brands fa-github"></i> Despliegue controlado</h1><p class="muted">Mantenimiento, validación y reversión segura mediante GitHub Actions.</p></div>
+    <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button link"><i class="fa-solid fa-rotate"></i> Actualizar y validar</button></form>
 </div>
 
-@if(!$configured)
-    <div class="alert error"><i class="fa-solid fa-circle-info"></i> La integración remota aún no está configurada. Complete la configuración GitOps en esta página.</div>
-@elseif($integrationError)
-    <div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>
-@endif
+@if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
 
 <section class="split-grid">
     <article class="card">
-        <div class="page-heading">
-            <div><h2><i class="fa-solid fa-code-branch"></i> Repositorio local</h2><p class="muted">Estado del código que ejecuta esta instancia.</p></div>
-            <span class="badge {{ !$repository['available'] ? 'neutral' : ($repository['clean'] ? 'success' : 'warning') }}"><span class="status-dot {{ !$repository['available'] ? 'neutral' : ($repository['clean'] ? 'success' : 'warning') }}"></span>{{ !$repository['available'] ? 'No disponible' : ($repository['clean'] ? 'Limpio' : 'Con cambios') }}</span>
+        <div class="page-heading"><div><h2><i class="fa-solid fa-server"></i> Servicio</h2><p class="muted">Estado efectivo de producción.</p></div>
+            <span class="badge {{ $production['http'] === 200 && $production['database'] ? 'success' : 'danger' }}"><span class="status-dot {{ $production['http'] === 200 ? 'success' : 'danger' }}"></span>{{ $production['http'] === 200 ? 'Activo' : 'Con alerta' }}</span>
         </div>
         <dl class="definition-list">
-            <dt>Rama</dt><dd><i class="fa-solid fa-code-branch"></i> {{ $repository['branch'] }}</dd>
-            <dt>Commit</dt><dd><code>{{ $repository['commit'] }}</code> · {{ $repository['message'] }}</dd>
-            <dt>Autor</dt><dd>{{ $repository['author'] }}</dd>
-            <dt>Fecha</dt><dd>{{ $repository['date'] }}</dd>
-            <dt>Remoto</dt><dd>{{ $repository['remote'] ?: 'No configurado' }}</dd>
+            <dt>HTTP</dt><dd>{{ $production['http'] ?: 'Sin respuesta' }} · {{ $production['latency_ms'] }} ms</dd>
+            <dt>Base de datos</dt><dd>{{ $production['database'] ? 'Conectada' : 'Error' }}</dd>
+            <dt>Versión</dt><dd><strong>v{{ $production['version'] }}</strong></dd>
+            <dt>Referencia</dt><dd>{{ $production['ref'] }}</dd>
+            <dt>Commit</dt><dd><code>{{ $production['commit'] ? substr($production['commit'], 0, 8) : 'Anterior al registro' }}</code></dd>
+            <dt>Último despliegue</dt><dd>{{ $production['deployed_at'] ?: 'Sin registro' }}</dd>
         </dl>
     </article>
-
     <article class="card">
-        <div class="page-heading"><div><h2><i class="fa-solid fa-cloud-arrow-up"></i> Integración remota</h2><p class="muted">Configuración efectiva, sin revelar el token.</p></div></div>
+        <div class="page-heading"><div><h2><i class="fa-solid fa-cloud"></i> Repositorio remoto</h2><p class="muted">GitHub es la fuente de verdad.</p></div></div>
         <dl class="definition-list">
             <dt>Repositorio</dt><dd>{{ $settings->repository ?: 'Pendiente' }}</dd>
-            <dt>Rama objetivo</dt><dd>{{ $settings->branch }}</dd>
+            <dt>Rama</dt><dd>{{ $settings->branch }}</dd>
             <dt>Workflow</dt><dd>{{ $settings->workflow }}</dd>
-            <dt>Token</dt><dd><span class="badge {{ filled($settings->token) ? 'success' : 'warning' }}">{{ filled($settings->token) ? 'Configurado' : 'Pendiente' }}</span></dd>
-            <dt>Despliegue</dt><dd><span class="badge {{ $canDispatch ? 'success' : 'neutral' }}">{{ $canDispatch ? 'Disponible' : 'Inactivo' }}</span></dd>
+            <dt>Remoto</dt><dd>{{ $remote['default_branch'] ?? 'No disponible' }}</dd>
+            <dt>Runner</dt><dd>@php($runner = collect($runners)->firstWhere('name', 'ctprgv-production'))<span class="badge {{ ($runner['status'] ?? null) === 'online' ? 'success' : 'warning' }}">{{ $runner['status'] ?? 'No visible' }}</span></dd>
+            <dt>Integridad</dt><dd>{{ $production['commit'] && (($commits[0]['sha'] ?? null) === $production['commit']) ? 'Sincronizado con la rama' : 'Versión distinta a la punta remota' }}</dd>
         </dl>
     </article>
 </section>
 
-@if(auth()->user()->hasPermission('settings.manage'))
-<section class="card" style="margin-top: 1rem">
-    <div class="page-heading"><div><h2><i class="fa-solid fa-gear"></i> Configuración GitOps</h2><p class="muted">El token se almacena cifrado y nunca se vuelve a mostrar.</p></div></div>
-    <form method="POST" action="{{ route('admin.gitops.settings.update') }}">
-        @csrf @method('PUT')
-        <div class="field-grid">
-            <div class="field"><label for="repository">Repositorio</label><input id="repository" name="repository" value="{{ old('repository', $settings->repository) }}" placeholder="propietario/repositorio" required></div>
-            <div class="field"><label for="branch">Rama objetivo</label><input id="branch" name="branch" value="{{ old('branch', $settings->branch) }}" required></div>
-            <div class="field"><label for="workflow">Workflow</label><input id="workflow" name="workflow" value="{{ old('workflow', $settings->workflow) }}" placeholder="deploy.yml" required></div>
-            <div class="field"><label for="token">Token de GitHub</label><input id="token" type="password" name="token" autocomplete="new-password" placeholder="{{ filled($settings->token) ? 'Configurado; déjelo vacío para conservarlo' : 'github_pat_…' }}"><small class="muted">Use un token de mínimo privilegio con acceso a Actions.</small></div>
+<section class="card" style="margin-top:1rem">
+    <div class="page-heading"><div><h2><i class="fa-solid fa-list-check"></i> Flujo de despliegue</h2><p class="muted">Cada solicitud ejecuta pruebas, respaldo, migraciones, cachés y salud HTTP.</p></div></div>
+    <div class="split-grid">
+        <div><h3>1 · Consultar remoto</h3><p class="muted">La información de GitHub se actualiza al abrir o validar esta página.</p></div>
+        <div><h3>2 · Aplicar versión</h3><p class="muted">Despliega la rama configurada sin operaciones simultáneas.</p>
+            @if(auth()->user()->hasPermission('gitops.deploy'))<form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Desplegar {{ $settings->branch }} en producción?')">@csrf<button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Desplegar {{ $settings->branch }}</button></form>@endif
         </div>
-        @if(filled($settings->token))<label><input type="checkbox" name="remove_token" value="1"> Eliminar el token almacenado</label>@endif
-        <div style="margin-top: 1rem"><button class="button secondary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar configuración</button></div>
+        <div><h3>3 · Validar servicio</h3><p class="muted">Comprueba HTTP y conexión de base de datos, dejando evidencia.</p>
+            <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button link"><i class="fa-solid fa-heart-pulse"></i> Validar ahora</button></form>
+        </div>
+    </div>
+</section>
+
+@if(auth()->user()->hasPermission('gitops.rollback'))
+<section class="card" style="margin-top:1rem">
+    <div class="page-heading"><div><h2><i class="fa-solid fa-clock-rotate-left"></i> Revertir despliegue</h2><p class="muted">Regresa a un tag publicado. El workflow crea un respaldo antes de aplicar la versión.</p></div></div>
+    <form method="POST" action="{{ route('admin.gitops.rollback') }}" onsubmit="return confirm('Esta operación cambiará producción. ¿Continuar?')">@csrf
+        <div class="field-grid">
+            <div class="field"><label for="target_ref">Versión destino</label><select id="target_ref" name="target_ref" required><option value="">Seleccione una versión…</option>@foreach($tags as $tag)<option value="{{ $tag['name'] }}">{{ $tag['name'] }} · {{ substr($tag['commit']['sha'] ?? '', 0, 8) }}</option>@endforeach</select></div>
+            <div class="field"><label for="confirmation">Confirmación</label><input id="confirmation" name="confirmation" placeholder="Escribe REVERTIR" autocomplete="off" required></div>
+        </div>
+        <button class="button danger"><i class="fa-solid fa-rotate-left"></i> Revertir a la versión seleccionada</button>
     </form>
 </section>
 @endif
 
-<section class="card" style="margin-top: 1rem">
-    <div class="page-heading"><div><h2><i class="fa-solid fa-clock-rotate-left"></i> Commits recientes</h2><p class="muted">Historial local de la rama actual.</p></div></div>
-    <div class="table-wrap"><table><thead><tr><th>Commit</th><th>Fecha</th><th>Autor</th><th>Mensaje</th></tr></thead><tbody>
-        @forelse($repository['commits'] as $commit)<tr><td><code>{{ $commit['hash'] }}</code></td><td>{{ $commit['date'] }}</td><td>{{ $commit['author'] }}</td><td>{{ $commit['message'] }}</td></tr>
-        @empty<tr><td colspan="4">El historial local no está disponible en este despliegue. Consulte GitHub Actions para el estado remoto.</td></tr>@endforelse
-    </tbody></table></div>
+<section class="split-grid" style="margin-top:1rem">
+    <article class="card"><div class="page-heading"><div><h2><i class="fa-solid fa-code-commit"></i> Versiones recientes</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Commit</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>
+        @forelse($commits as $commit)<tr><td><code>{{ substr($commit['sha'], 0, 8) }}</code></td><td>{{ $commit['commit']['message'] ?? '—' }}</td><td>{{ isset($commit['commit']['author']['date']) ? \Illuminate\Support\Carbon::parse($commit['commit']['author']['date'])->format('d/m/Y H:i') : '—' }}</td></tr>@empty<tr><td colspan="3">No disponible.</td></tr>@endforelse
+        </tbody></table></div>
+    </article>
+    <article class="card"><div class="page-heading"><div><h2><i class="fa-solid fa-gears"></i> Ejecuciones</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Estado</th><th>Rama</th><th>Fecha</th><th></th></tr></thead><tbody>
+        @forelse($runs as $run) @php($state = ($run['conclusion'] ?? null) === 'success' ? 'success' : (($run['status'] ?? null) === 'completed' ? 'danger' : 'warning'))
+        <tr><td><span class="badge {{ $state }}">{{ $run['conclusion'] ?? $run['status'] }}</span></td><td>{{ $run['head_branch'] ?? '—' }}</td><td>{{ \Illuminate\Support\Carbon::parse($run['created_at'])->format('d/m/Y H:i') }}</td><td><a href="{{ $run['html_url'] }}" target="_blank" rel="noopener">Abrir</a>@if(($run['status'] ?? null) !== 'completed' && auth()->user()->hasPermission('gitops.deploy')) <form style="display:inline" method="POST" action="{{ route('admin.gitops.cancel', $run['id']) }}">@csrf<button class="button link">Cancelar</button></form>@endif</td></tr>
+        @empty<tr><td colspan="4">No hay ejecuciones.</td></tr>@endforelse
+        </tbody></table></div>
+    </article>
 </section>
 
-<section class="card" style="margin-top: 1rem">
-    <div class="page-heading"><div><h2><i class="fa-solid fa-gears"></i> GitHub Actions</h2><p class="muted">Últimas ejecuciones reportadas por GitHub.</p></div></div>
-    <div class="table-wrap"><table><thead><tr><th>Workflow</th><th>Rama</th><th>Estado</th><th>Evento</th><th>Fecha</th><th></th></tr></thead><tbody>
-        @forelse($runs as $run)
-            @php($state = ($run['conclusion'] ?? null) === 'success' ? 'success' : (($run['status'] ?? null) === 'completed' ? 'danger' : 'warning'))
-            <tr><td>{{ $run['name'] ?? 'Workflow' }}</td><td>{{ $run['head_branch'] ?? '—' }}</td><td><span class="badge {{ $state }}">{{ $run['conclusion'] ?? $run['status'] ?? 'desconocido' }}</span></td><td>{{ $run['event'] ?? '—' }}</td><td>{{ isset($run['created_at']) ? \Illuminate\Support\Carbon::parse($run['created_at'])->format('d/m/Y H:i') : '—' }}</td><td>@if(isset($run['html_url']))<a class="button link" href="{{ $run['html_url'] }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir</a>@endif</td></tr>
-        @empty<tr><td colspan="6">No hay ejecuciones disponibles.</td></tr>@endforelse
-    </tbody></table></div>
-</section>
+<section class="card" style="margin-top:1rem"><div class="page-heading"><div><h2><i class="fa-solid fa-clipboard-list"></i> Bitácora GitOps</h2></div></div>
+<div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Usuario</th><th>Operación</th><th>Referencia</th><th>Resultado</th><th>Detalle</th></tr></thead><tbody>
+@forelse($events as $event)<tr><td>{{ $event->created_at->format('d/m/Y H:i:s') }}</td><td>{{ $event->user?->name ?? 'Sistema' }}</td><td>{{ $event->action }}</td><td>{{ $event->git_ref ?: '—' }}</td><td><span class="badge {{ in_array($event->status, ['accepted','ok']) ? 'success' : 'danger' }}">{{ $event->status }}</span></td><td>{{ $event->message }}</td></tr>@empty<tr><td colspan="6">Sin operaciones registradas.</td></tr>@endforelse
+</tbody></table></div></section>
 
-<section class="card" style="margin-top: 1rem">
-    <div class="page-heading"><div><h2><i class="fa-solid fa-clipboard-list"></i> Bitácora de operaciones</h2><p class="muted">Intentos de despliegue solicitados desde este panel.</p></div></div>
-    <div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Usuario</th><th>Acción</th><th>Referencia</th><th>Resultado</th><th>Detalle</th></tr></thead><tbody>
-        @forelse($events as $event)<tr><td>{{ $event->created_at->format('d/m/Y H:i') }}</td><td>{{ $event->user?->name ?? 'Sistema' }}</td><td>{{ $event->action }}</td><td>{{ $event->git_ref }}</td><td><span class="badge {{ $event->status === 'accepted' ? 'success' : 'danger' }}">{{ $event->status }}</span></td><td>{{ $event->message }} @if($event->external_url)<a href="{{ $event->external_url }}" target="_blank" rel="noopener noreferrer">Ver</a>@endif</td></tr>
-        @empty<tr><td colspan="6">No se han solicitado operaciones.</td></tr>@endforelse
-    </tbody></table></div>
-</section>
+@if(auth()->user()->hasPermission('settings.manage'))
+<section class="card" style="margin-top:1rem"><div class="page-heading"><div><h2><i class="fa-solid fa-sliders"></i> Configuración del repositorio</h2><p class="muted">El token permanece cifrado y nunca se muestra.</p></div></div>
+<form method="POST" action="{{ route('admin.gitops.settings.update') }}">@csrf @method('PUT')<div class="field-grid">
+<div class="field"><label>Repositorio</label><input name="repository" value="{{ old('repository',$settings->repository) }}" required></div><div class="field"><label>Rama</label><input name="branch" value="{{ old('branch',$settings->branch) }}" required></div><div class="field"><label>Workflow</label><input name="workflow" value="{{ old('workflow',$settings->workflow) }}" required></div><div class="field"><label>Reemplazar token</label><input type="password" name="token" autocomplete="new-password" placeholder="{{ filled($settings->token) ? 'Configurado; vacío para conservar' : 'Pendiente' }}"></div>
+</div><button class="button secondary"><i class="fa-solid fa-floppy-disk"></i> Guardar configuración</button></form></section>
+@endif
 @endsection

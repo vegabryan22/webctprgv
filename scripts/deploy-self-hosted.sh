@@ -28,6 +28,11 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:clear
 
+git rev-parse HEAD > "$APP/DEPLOYED_COMMIT"
+printf '%s\n' "${DEPLOY_TARGET_REF:-main}" > "$APP/DEPLOYED_REF"
+printf '%s\n' "${DEPLOY_OPERATION:-deploy}" > "$APP/DEPLOYED_OPERATION"
+date --iso-8601=seconds > "$APP/DEPLOYED_AT"
+
 test "$(curl -k -sS -o /dev/null -w '%{http_code}' \
     --resolve ctprobertogamboa.com:443:127.0.0.1 \
     https://ctprobertogamboa.com/)" = "200"

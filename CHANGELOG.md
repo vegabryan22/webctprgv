@@ -2,6 +2,16 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.7.0] - 2026-07-24
+
+### Añadido
+
+- Centro de despliegue controlado con salud HTTP y base de datos, versión efectiva, commit, referencia y runner.
+- Historial remoto de commits, tags y ejecuciones de GitHub Actions.
+- Validación manual con bitácora, cancelación de ejecuciones activas y reversión segura a tags publicados.
+- Confirmación obligatoria `REVERTIR` y permiso independiente `gitops.rollback`.
+- Registro persistente del commit, referencia, operación y fecha de cada despliegue.
+
 ## [0.6.6] - 2026-07-24
 
 ### Actualizado

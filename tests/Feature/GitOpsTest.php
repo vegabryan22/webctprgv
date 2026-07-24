@@ -63,6 +63,36 @@ class GitOpsTest extends TestCase
         $this->assertStringNotContainsString('github_pat_secreto', $setting->getRawOriginal('token'));
     }
 
+    public function test_rollback_requires_explicit_confirmation(): void
+    {
+        $this->actingAs($this->superAdmin())
+            ->post('/administracion/gitops/revertir', [
+                'target_ref' => 'v0.6.0',
+                'confirmation' => 'NO',
+            ])
+            ->assertSessionHasErrors('confirmation');
+    }
+
+    public function test_super_admin_can_dispatch_a_tag_rollback(): void
+    {
+        GitOpsSetting::create([
+            'repository' => 'vegabryan22/webctprgv', 'branch' => 'main',
+            'workflow' => 'deploy.yml', 'token' => 'token',
+        ]);
+        Http::fake([
+            'api.github.com/repos/vegabryan22/webctprgv/actions/workflows/deploy.yml/dispatches' => Http::response([], 204),
+        ]);
+
+        $this->actingAs($this->superAdmin())
+            ->post('/administracion/gitops/revertir', [
+                'target_ref' => 'v0.6.0', 'confirmation' => 'REVERTIR',
+            ])->assertSessionHas('success');
+
+        $this->assertDatabaseHas('git_ops_events', [
+            'action' => 'rollback_dispatch', 'git_ref' => 'v0.6.0', 'status' => 'accepted',
+        ]);
+    }
+
     private function superAdmin(): User
     {
         $role = Role::create(['name' => 'super-admin', 'display_name' => 'Superadministración']);
