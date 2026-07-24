@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.11.0] - 2026-07-24
+
+### Añadido
+
+- Catálogo estructurado de servicios con categorías, requisitos, público, responsables, horarios y contactos.
+- Administración de documentos, enlaces de gestión, fecha de verificación, orden y estados.
+- Permisos independientes para consultar, gestionar y publicar servicios.
+- Listado y detalle públicos adaptables, incorporados al menú principal.
+- Estado vacío que evita presentar servicios genéricos como información oficial.
+
+### Base de datos
+
+- Migración `2026_07_24_000400_create_service_catalog_tables.php` con tablas, categorías, permisos y navegación.
+
 ## [0.10.0] - 2026-07-24
 
 ### Añadido

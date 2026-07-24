@@ -42,6 +42,7 @@ El archivo `.env` nunca se almacena en Git. Consulte [DESARROLLO.md](docs/DESARR
 - [Plan maestro, dependencias y bitácora](docs/PLAN-CONTENIDO.md)
 - [Módulo de noticias](docs/NOTICIAS.md)
 - [Inventario y revisión editorial](docs/INVENTARIO-EDITORIAL.md)
+- [Catálogo de servicios](docs/SERVICIOS.md)
 - [Registro de cambios](CHANGELOG.md)
 
 ## Verificación

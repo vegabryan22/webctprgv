@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             ['news.view', 'Ver noticias', 'Noticias'],
             ['news.manage', 'Gestionar noticias y categorías', 'Noticias'],
             ['news.publish', 'Publicar noticias', 'Noticias'],
+            ['services.view', 'Ver servicios', 'Servicios'],
+            ['services.manage', 'Gestionar servicios y categorías', 'Servicios'],
+            ['services.publish', 'Publicar servicios', 'Servicios'],
             ['menu.view', 'Ver menú principal', 'Contenido'],
             ['menu.manage', 'Gestionar menú principal', 'Contenido'],
             ['events.view', 'Ver actividades', 'Calendario'],
@@ -57,7 +60,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],
@@ -92,6 +95,11 @@ class DatabaseSeeder extends Seeder
         NavigationItem::firstOrCreate(
             ['route_name' => 'calendar.index'],
             ['label' => 'CALENDARIO', 'sort_order' => 70, 'is_active' => true],
+        );
+
+        NavigationItem::firstOrCreate(
+            ['route_name' => 'services.index'],
+            ['label' => 'SERVICIOS', 'sort_order' => 65, 'is_active' => true],
         );
 
         if (($email = env('ADMIN_EMAIL')) && ($password = env('ADMIN_PASSWORD'))) {

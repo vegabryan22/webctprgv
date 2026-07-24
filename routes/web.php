@@ -10,11 +10,14 @@ use App\Http\Controllers\Admin\NavigationItemController;
 use App\Http\Controllers\Admin\NewsArticleController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PublicSiteController;
+use App\Http\Controllers\ServiceCatalogController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(PublicSiteController::class)->group(function (): void {
@@ -34,6 +37,11 @@ Route::controller(CalendarController::class)->prefix('calendario')->name('calend
     Route::get('/actividades', 'listing')->name('list');
     Route::get('/{event:slug}', 'show')->name('show');
     Route::get('/{event:slug}/agregar', 'ical')->name('ical');
+});
+
+Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('services.')->group(function (): void {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{service:slug}', 'show')->name('show');
 });
 
 Route::middleware('guest')->group(function (): void {
@@ -78,6 +86,17 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::post('/categorias-de-noticias', [NewsCategoryController::class, 'store'])->middleware('permission:news.manage')->name('news-categories.store');
     Route::put('/categorias-de-noticias/{newsCategory}', [NewsCategoryController::class, 'update'])->middleware('permission:news.manage')->name('news-categories.update');
     Route::delete('/categorias-de-noticias/{newsCategory}', [NewsCategoryController::class, 'destroy'])->middleware('permission:news.manage')->name('news-categories.destroy');
+
+    Route::get('/servicios', [ServiceController::class, 'index'])->middleware('permission:services.view')->name('services.index');
+    Route::get('/servicios/crear', [ServiceController::class, 'create'])->middleware('permission:services.manage')->name('services.create');
+    Route::post('/servicios', [ServiceController::class, 'store'])->middleware('permission:services.manage')->name('services.store');
+    Route::get('/servicios/{service}/editar', [ServiceController::class, 'edit'])->middleware('permission:services.manage')->name('services.edit');
+    Route::put('/servicios/{service}', [ServiceController::class, 'update'])->middleware('permission:services.manage')->name('services.update');
+    Route::delete('/servicios/{service}', [ServiceController::class, 'destroy'])->middleware('permission:services.manage')->name('services.destroy');
+    Route::get('/categorias-de-servicios', [ServiceCategoryController::class, 'index'])->middleware('permission:services.manage')->name('service-categories.index');
+    Route::post('/categorias-de-servicios', [ServiceCategoryController::class, 'store'])->middleware('permission:services.manage')->name('service-categories.store');
+    Route::put('/categorias-de-servicios/{serviceCategory}', [ServiceCategoryController::class, 'update'])->middleware('permission:services.manage')->name('service-categories.update');
+    Route::delete('/categorias-de-servicios/{serviceCategory}', [ServiceCategoryController::class, 'destroy'])->middleware('permission:services.manage')->name('service-categories.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

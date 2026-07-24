@@ -7,6 +7,7 @@
         'board' => 'fa-people-group',
         'contact' => 'fa-envelope',
         'calendar.index' => 'fa-calendar-days',
+        'services.index' => 'fa-hand-holding-heart',
     ];
 @endphp
 <nav class="navbar site-navbar" aria-label="Navegación principal">

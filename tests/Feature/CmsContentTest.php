@@ -24,11 +24,12 @@ class CmsContentTest extends TestCase
     public function test_existing_pages_and_menu_are_imported(): void
     {
         $this->assertSame(7, ContentPage::where('is_system', true)->count());
-        $this->assertSame(7, NavigationItem::count());
+        $this->assertSame(8, NavigationItem::count());
         $this->assertDatabaseHas('content_pages', ['route_name' => 'home', 'status' => 'published']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'contact', 'label' => 'CONTACTO']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'board', 'label' => 'JUNTA ADMINISTRATIVA']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'calendar.index', 'label' => 'CALENDARIO']);
+        $this->assertDatabaseHas('navigation_items', ['route_name' => 'services.index', 'label' => 'SERVICIOS']);
     }
 
     public function test_database_content_is_rendered_on_existing_route(): void

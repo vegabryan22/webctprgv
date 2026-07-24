@@ -107,7 +107,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 | ID | Unidad | Estado | Dependencias | Entregables | Criterio específico |
 | --- | --- | --- | --- | --- | --- |
-| CTP-C05 | Catálogo de servicios | Pendiente | CTP-B02 | Matrícula, becas, comedor, orientación y constancias | Público, requisitos, horario y responsable |
+| CTP-C05 | Catálogo de servicios | Completado | CTP-B02 | Servicios, categorías, requisitos, responsables y documentos | Solo información confirmada puede publicarse |
 | CTP-C07 | Directorio institucional | Pendiente | CTP-C05 | Departamentos, contactos, extensiones y horarios | Datos confirmados por Dirección o Secretaría |
 | CTP-C08 | Biblioteca de documentos | Pendiente | CTP-C05 | Reglamentos, formularios y circulares versionados | Archivo, vigencia, categoría y responsable visibles |
 
@@ -164,6 +164,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C02 | 0.9.0 | Completado | `8c143bf` | `d4bd2f2` | 31 pruebas y 125 aserciones aprobadas; migración local correcta | Noticias estructuradas y retiro de demostraciones |
 | 2026-07-24 | CTP-C02 | 0.9.1 | Completado | `052532f` | `052532f` | 31 pruebas y 125 aserciones aprobadas; HTTP 200 | Corrección adaptable del encabezado público |
 | 2026-07-24 | CTP-C03 | 0.10.0 | Completado | `c8fce6b` | `a773113` | 34 pruebas y 132 aserciones aprobadas; 6 páginas auditadas | Inventario y revisión editorial administrativa |
+| 2026-07-24 | CTP-C05 | 0.11.0 | En revisión | Pendiente | Pendiente | Pruebas específicas aprobadas; cierre pendiente | Catálogo estructurado de servicios |
 
 ## Riesgos y bloqueos
 
@@ -177,12 +178,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C05 — Catálogo de servicios`
+`CTP-C06 — Especialidades estructuradas`
 
-1. Diseñar servicios, categorías, requisitos, responsables, horarios y documentos.
-2. Definir permisos de consulta, gestión y publicación.
-3. Construir el CRUD administrativo.
-4. Sustituir las tarjetas genéricas de servicios por información estructurada.
-5. Mantener como borrador cualquier servicio cuyos datos no hayan sido confirmados.
+1. Diseñar fichas individuales y categorías de la oferta técnica.
+2. Contrastar nombres y programas con DETCE/MEP.
+3. Separar datos confirmados de afirmaciones pendientes.
+4. Crear administración, listado y detalle público.
+5. Mantener sin publicar empleabilidad, convenios o certificaciones sin fuente.
 
 `CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.

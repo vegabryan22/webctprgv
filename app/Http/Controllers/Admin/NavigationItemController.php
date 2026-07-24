@@ -16,6 +16,7 @@ class NavigationItemController extends Controller
     {
         $destinations = ContentPage::whereNotNull('route_name')->orderBy('title')->get(['title', 'route_name']);
         $destinations->push((object) ['title' => 'Calendario de actividades', 'route_name' => 'calendar.index']);
+        $destinations->push((object) ['title' => 'Catálogo de servicios', 'route_name' => 'services.index']);
 
         return view('admin.navigation.index', [
             'items' => NavigationItem::orderBy('sort_order')->orderBy('id')->get(),
@@ -64,6 +65,6 @@ class NavigationItemController extends Controller
 
     private function allowedRoutes(): array
     {
-        return ContentPage::whereNotNull('route_name')->pluck('route_name')->push('calendar.index')->all();
+        return ContentPage::whereNotNull('route_name')->pluck('route_name')->push('calendar.index')->push('services.index')->all();
     }
 }
