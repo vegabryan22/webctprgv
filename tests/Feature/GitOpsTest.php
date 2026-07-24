@@ -21,6 +21,7 @@ class GitOpsTest extends TestCase
             ->get('/administracion/gitops')
             ->assertOk()
             ->assertSee('Despliegue controlado')
+            ->assertSee('Repositorio de trabajo local')
             ->assertSee('Repositorio remoto');
     }
 

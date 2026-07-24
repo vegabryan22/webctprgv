@@ -11,6 +11,24 @@
 
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
 
+<section class="card" style="margin-bottom:1rem">
+    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-laptop-code"></i> Repositorio de trabajo local</h2><p class="muted">Consulta de solo lectura para desarrollo; no representa una versiÃ³n disponible en GitHub.</p></div><span class="badge {{ $localRepository['available'] ? 'success' : 'danger' }}">{{ $localRepository['available'] ? 'Disponible' : 'No disponible' }}</span></div>
+    @if($localRepository['available'])
+        <div class="status-grid">
+            <div><span>Rama</span><strong>{{ $localRepository['branch'] ?: 'HEAD separado' }}</strong></div>
+            <div><span>Commit</span><strong><code>{{ $localRepository['commit'] }}</code></strong></div>
+            <div><span>Diferencia con origin</span><strong>{{ $localRepository['ahead'] === null ? 'Sin referencia' : 'Ahead '.$localRepository['ahead'].' Â· Behind '.$localRepository['behind'] }}</strong></div>
+            <div><span>Cambios locales</span><strong>{{ count($localRepository['changes']) }}</strong></div>
+        </div>
+        @if($localRepository['changes'])
+            <details class="gitops-local-details"><summary>Ver cambios locales</summary><ul>@foreach($localRepository['changes'] as $change)<li><code>{{ $change }}</code></li>@endforeach</ul></details>
+        @endif
+        <p class="muted"><i class="fa-solid fa-circle-info"></i> Para desplegar una etiqueta o commit, primero debe existir en GitHub. El panel no modifica este repositorio local.</p>
+    @else
+        <p>No fue posible consultar Git en <code>{{ $localRepository['path'] }}</code>.</p>
+    @endif
+</section>
+
 <section class="split-grid">
     <article class="card">
         <div class="page-heading"><div><h2><i class="fa-solid fa-server"></i> Servicio</h2><p class="muted">Estado efectivo de producción.</p></div>

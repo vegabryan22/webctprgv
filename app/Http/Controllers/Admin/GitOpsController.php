@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GitOpsEvent;
 use App\Models\GitOpsSetting;
 use App\Services\GitHubActionsClient;
+use App\Services\LocalRepositoryStatus;
 use App\Services\ProductionStatus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ use Throwable;
 
 class GitOpsController extends Controller
 {
-    public function index(GitHubActionsClient $github, ProductionStatus $production): View
+    public function index(GitHubActionsClient $github, ProductionStatus $production, LocalRepositoryStatus $localRepository): View
     {
         $data = ['runs' => [], 'commits' => [], 'tags' => [], 'runners' => [], 'remote' => []];
         $integrationError = null;
@@ -47,6 +48,7 @@ class GitOpsController extends Controller
             'canDispatch' => $github->canDispatch(),
             'events' => GitOpsEvent::with('user')->latest()->limit(20)->get(),
             'settings' => GitOpsSetting::current(),
+            'localRepository' => $localRepository->inspect(),
         ]);
     }
 

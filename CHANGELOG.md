@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.1] - 2026-07-24
+
+### Documentación
+
+- Archivo `AGENTS.md` con instrucciones persistentes para continuar el proyecto desde cualquier computadora.
+- Guía de traspaso con arquitectura, módulos, reglas editoriales, migraciones y próximo trabajo.
+- Diferenciación explícita entre repositorio de trabajo local, remoto GitHub y producción GitOps.
+
 ## [0.18.0] - 2026-07-24
 
 ### Añadido
