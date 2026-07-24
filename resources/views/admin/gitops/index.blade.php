@@ -5,13 +5,14 @@
     <div><h1><i class="fa-brands fa-github"></i> Despliegue controlado</h1><p class="muted">Mantenimiento, validación y reversión segura mediante GitHub Actions.</p></div>
     <div class="actions">
         <a class="button ghost" href="{{ route('admin.gitops.index') }}"><i class="fa-solid fa-arrows-rotate"></i> Consultar GitHub</a>
-        <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button secondary"><i class="fa-solid fa-heart-pulse"></i> Validar servicio</button></form>
+        <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button secondary"><i class="fa-solid fa-heart-pulse"></i> Validar {{ $production['environment'] }}</button></form>
     </div>
 </div>
 
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
 @if($monitoring)<div class="alert"><i class="fa-solid fa-spinner fa-spin"></i> Despliegue en seguimiento. Esta página se actualizará automáticamente mientras GitHub Actions completa la operación.</div>@endif
 
+@if($isDevelopment)
 <section class="card" style="margin-bottom:1rem">
     <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-laptop-code"></i> Repositorio de trabajo local</h2><p class="muted">Consulta de solo lectura para desarrollo; no representa una versión disponible en GitHub.</p></div><span class="badge {{ $localRepository['available'] ? 'success' : 'danger' }}">{{ $localRepository['available'] ? 'Disponible' : 'No disponible' }}</span></div>
     @if($localRepository['available'])
@@ -29,10 +30,11 @@
         <p>No fue posible consultar Git en <code>{{ $localRepository['path'] }}</code>.</p>
     @endif
 </section>
+@endif
 
 <section class="split-grid">
     <article class="card">
-        <div class="page-heading"><div><h2><i class="fa-solid fa-server"></i> Servicio</h2><p class="muted">Estado efectivo de producción.</p></div>
+        <div class="page-heading"><div><h2><i class="fa-solid fa-server"></i> {{ $production['environment'] }}</h2><p class="muted">Estado efectivo de {{ strtolower($production['environment']) }}.</p></div>
             <span class="badge {{ $production['http'] === 200 && $production['database'] ? 'success' : 'danger' }}"><span class="status-dot {{ $production['http'] === 200 ? 'success' : 'danger' }}"></span>{{ $production['http'] === 200 ? 'Activo' : 'Con alerta' }}</span>
         </div>
         <dl class="definition-list">
@@ -60,7 +62,7 @@
 
 <section class="card gitops-flow" style="margin-top:1rem">
     @php($lastValidation = $events->firstWhere('action', 'production_validate'))
-    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-list-check"></i> Operaciones</h2><p class="muted">Consulta, despliegue y salud de producción.</p></div><span class="badge {{ $production['http'] === 200 ? 'success' : 'danger' }}">HTTP {{ $production['http'] ?: 'sin respuesta' }}</span></div>
+    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-list-check"></i> Operaciones</h2><p class="muted">Consulta, despliegue y salud de {{ strtolower($production['environment']) }}.</p></div><span class="badge {{ $production['http'] === 200 ? 'success' : 'danger' }}">HTTP {{ $production['http'] ?: 'sin respuesta' }}</span></div>
     <div class="gitops-steps">
         <article class="gitops-step">
             <div class="gitops-step-title"><span class="gitops-step-number">1</span><strong>Consultar remoto</strong><span class="badge {{ $integrationError ? 'danger' : 'success' }}">{{ $integrationError ? 'Error' : 'Actualizado' }}</span></div>
@@ -90,7 +92,7 @@
         <article class="gitops-step">
             <div class="gitops-step-title"><span class="gitops-step-number">3</span><strong>Validar servicio</strong><span class="badge {{ $production['http'] === 200 && $production['database'] ? 'success' : 'danger' }}">{{ $production['http'] === 200 && $production['database'] ? 'Saludable' : 'Alerta' }}</span></div>
             <p>@if($lastValidation)Última: {{ $lastValidation->message }}@else HTTP {{ $production['http'] }} · BD {{ $production['database'] ? 'OK' : 'ERROR' }}@endif</p>
-            <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button"><i class="fa-solid fa-heart-pulse"></i> Ejecutar validación</button></form>
+            <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button"><i class="fa-solid fa-heart-pulse"></i> Validar {{ strtolower($production['environment']) }}</button></form>
         </article>
     </div>
 </section>

@@ -17,6 +17,7 @@ class GitOpsController extends Controller
 {
     public function index(Request $request, GitHubActionsClient $github, ProductionStatus $production, LocalRepositoryStatus $localRepository): View
     {
+        $isDevelopment = app()->environment(['local', 'development']);
         $data = ['runs' => [], 'commits' => [], 'tags' => [], 'runners' => [], 'remote' => []];
         $integrationError = null;
 
@@ -48,7 +49,8 @@ class GitOpsController extends Controller
             'canDispatch' => $github->canDispatch(),
             'events' => GitOpsEvent::with('user')->latest()->limit(20)->get(),
             'settings' => GitOpsSetting::current(),
-            'localRepository' => $localRepository->inspect(),
+            'localRepository' => $isDevelopment ? $localRepository->inspect() : null,
+            'isDevelopment' => $isDevelopment,
             'monitoring' => $request->integer('monitor_until') > now()->timestamp,
         ]);
     }
@@ -136,10 +138,13 @@ class GitOpsController extends Controller
             'user_id' => $request->user()->id, 'action' => 'production_validate',
             'repository' => GitOpsSetting::current()->repository, 'git_ref' => $status['ref'],
             'status' => $ok ? 'ok' : 'failed',
-            'message' => "HTTP {$status['http']} · BD ".($status['database'] ? 'OK' : 'ERROR')." · {$status['latency_ms']} ms",
+            'message' => "{$status['environment']} · HTTP {$status['http']} · BD ".($status['database'] ? 'OK' : 'ERROR')." · {$status['latency_ms']} ms",
         ]);
 
-        return back()->with($ok ? 'success' : 'error', $ok ? 'Servicio validado correctamente.' : 'La validación detectó errores.');
+        return back()->with(
+            $ok ? 'success' : 'error',
+            $ok ? "{$status['environment']} validado correctamente." : "La validación de {$status['environment']} detectó errores.",
+        );
     }
 
     private function requestDeployment(Request $request, GitHubActionsClient $github, string $target, string $operation): RedirectResponse

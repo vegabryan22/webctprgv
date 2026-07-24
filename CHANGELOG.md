@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.5] - 2026-07-24
+
+### Corregido
+
+- La tarjeta del repositorio local solo se consulta y muestra en `local` o `development`.
+- Producción deja de intentar ejecutar Git dentro del directorio desplegado.
+- La validación usa `APP_URL` en desarrollo y `GITOPS_HEALTH_URL` en producción.
+- Etiquetas y mensajes del panel identifican el entorno que se está validando.
+
 ## [0.18.4] - 2026-07-24
 
 ### Corregido

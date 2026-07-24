@@ -10,11 +10,14 @@ class ProductionStatus
 {
     public function inspect(): array
     {
+        $isProduction = app()->environment('production');
+        $environment = $isProduction ? 'Producción' : 'Desarrollo';
+        $healthUrl = $isProduction ? config('gitops.health_url') : config('app.url');
         $started = microtime(true);
         $http = 0;
 
         try {
-            $http = Http::timeout(5)->get(config('gitops.health_url'))->status();
+            $http = Http::timeout(5)->get($healthUrl)->status();
         } catch (Throwable) {
         }
 
@@ -26,6 +29,8 @@ class ProductionStatus
         }
 
         return [
+            'environment' => $environment,
+            'health_url' => $healthUrl,
             'http' => $http,
             'latency_ms' => (int) ((microtime(true) - $started) * 1000),
             'database' => $database,

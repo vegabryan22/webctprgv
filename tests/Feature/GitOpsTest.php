@@ -21,8 +21,20 @@ class GitOpsTest extends TestCase
             ->get('/administracion/gitops')
             ->assertOk()
             ->assertSee('Despliegue controlado')
-            ->assertSee('Repositorio de trabajo local')
+            ->assertDontSee('Repositorio de trabajo local')
             ->assertSee('Repositorio remoto');
+    }
+
+    public function test_local_environment_shows_working_repository(): void
+    {
+        $this->app->instance('env', 'local');
+        Http::fake(['*' => Http::response([], 200)]);
+
+        $this->actingAs($this->superAdmin())
+            ->get('/administracion/gitops')
+            ->assertOk()
+            ->assertSee('Repositorio de trabajo local')
+            ->assertSee('Validar Desarrollo');
     }
 
     public function test_workflow_dispatch_is_sent_and_audited(): void
