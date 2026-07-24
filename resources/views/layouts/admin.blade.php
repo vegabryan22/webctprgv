@@ -19,6 +19,7 @@
             @if(auth()->user()->hasPermission('pages.view') || auth()->user()->hasPermission('news.view') || auth()->user()->hasPermission('menu.view') || auth()->user()->hasPermission('events.view'))
                 <p class="nav-section">Contenido</p>
                 @if(auth()->user()->hasPermission('pages.view'))<a class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}" href="{{ route('admin.pages.index') }}"><i class="fa-regular fa-file-lines"></i><span>Páginas</span></a>@endif
+                @if(auth()->user()->hasPermission('pages.view'))<a class="{{ request()->routeIs('admin.content-audit.*') ? 'active' : '' }}" href="{{ route('admin.content-audit.index') }}"><i class="fa-solid fa-magnifying-glass-chart"></i><span>Revisión editorial</span></a>@endif
                 @if(auth()->user()->hasPermission('news.view'))<a class="{{ request()->routeIs('admin.news.*') || request()->routeIs('admin.news-categories.*') ? 'active' : '' }}" href="{{ route('admin.news.index') }}"><i class="fa-regular fa-newspaper"></i><span>Noticias</span></a>@endif
                 @if(auth()->user()->hasPermission('menu.view'))<a class="{{ request()->routeIs('admin.navigation.*') ? 'active' : '' }}" href="{{ route('admin.navigation.index') }}"><i class="fa-solid fa-bars"></i><span>Menú principal</span></a>@endif
                 @if(auth()->user()->hasPermission('events.view'))<a class="{{ request()->routeIs('admin.events.*') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"><i class="fa-regular fa-calendar-days"></i><span>Actividades</span></a>@endif

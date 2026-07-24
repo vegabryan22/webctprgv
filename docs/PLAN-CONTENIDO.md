@@ -100,7 +100,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | --- | --- | --- | --- | --- | --- |
 | CTP-C01 | Portada dinámica | Completado | CTP-B03 | Accesos rápidos y próximas actividades | Conserva CMS, solo eventos públicos y distingue fechas MEP |
 | CTP-C02 | Noticias estructuradas | Completado | CTP-B02 | Modelo, migración, CRUD, permisos, listado y detalle | Fecha, categoría, autor, imagen, adjunto, estado y destacado |
-| CTP-C03 | Saneamiento editorial | Pendiente | Ninguna | Inventario de textos demostrativos, enlaces vacíos y datos vencidos | Corregir o marcar pendiente de confirmación |
+| CTP-C03 | Saneamiento editorial | Completado | Ninguna | Inventario, reglas automáticas y datos pendientes de confirmación | Cada hallazgo fue resuelto o quedó identificado con responsable |
 | CTP-C04 | Actualidad en portada | Preparado | CTP-C02 | Noticias y avisos recientes en Inicio | Sin duplicación y con publicación/expiración |
 
 ## Etapa 2 — Servicios institucionales
@@ -163,6 +163,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | Control del proyecto | 0.8.1 | Completado | `7fe9a6d` | `8765589` | 27 pruebas aprobadas; Pint reporta dos diferencias preexistentes en GitOps | Etapas, dependencias, decisiones y bitácora |
 | 2026-07-24 | CTP-C02 | 0.9.0 | Completado | `8c143bf` | `d4bd2f2` | 31 pruebas y 125 aserciones aprobadas; migración local correcta | Noticias estructuradas y retiro de demostraciones |
 | 2026-07-24 | CTP-C02 | 0.9.1 | Completado | `052532f` | `052532f` | 31 pruebas y 125 aserciones aprobadas; HTTP 200 | Corrección adaptable del encabezado público |
+| 2026-07-24 | CTP-C03 | 0.10.0 | En revisión | Pendiente | Pendiente | Auditoría local: 6 páginas activas; pruebas pendientes de cierre | Inventario y revisión editorial administrativa |
 
 ## Riesgos y bloqueos
 
@@ -176,12 +177,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C03 — Saneamiento editorial`
+`CTP-C05 — Catálogo de servicios`
 
-1. Inventariar afirmaciones, fechas, precios, contactos y enlaces heredados.
-2. Clasificar cada dato como confirmado, vencido, demostrativo o pendiente.
-3. Retirar datos demostrativos que puedan confundirse con información oficial.
-4. Preparar una lista de información que debe confirmar cada responsable.
-5. Aplicar correcciones sin sobrescribir cambios administrativos no relacionados.
+1. Diseñar servicios, categorías, requisitos, responsables, horarios y documentos.
+2. Definir permisos de consulta, gestión y publicación.
+3. Construir el CRUD administrativo.
+4. Sustituir las tarjetas genéricas de servicios por información estructurada.
+5. Mantener como borrador cualquier servicio cuyos datos no hayan sido confirmados.
 
-`CTP-C04 — Actualidad en portada` queda preparado y puede ejecutarse después de publicar las primeras noticias oficiales.
+`CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.

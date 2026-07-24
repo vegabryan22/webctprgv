@@ -131,3 +131,18 @@ a.admin-page-link:hover, a.admin-page-link:focus-visible { border-color: var(--n
 .admin-pagination p { margin: 0; color: var(--muted); font-size: .88rem; }
 @media (max-width: 1100px) { .menu-item-grid { grid-template-columns: repeat(2, 1fr); } .category-row { grid-template-columns: 1fr 120px; } }
 @media (max-width: 850px) { .admin-shell { grid-template-columns: 1fr; } .sidebar { position: static; } .field-grid, .split-grid, .menu-item-grid, .gitops-steps { grid-template-columns: 1fr; } .gitops-step + .gitops-step { border-left: 0; border-top: 1px solid var(--border); } .menu-item-footer { align-items: flex-start; flex-direction: column; } }
+.audit-list { display: grid; gap: 1rem; margin-top: 1rem; }
+.audit-page__header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.audit-page__header h2, .audit-page__header p { margin: 0; }
+.audit-findings { display: grid; gap: .6rem; }
+.audit-finding { display: flex; align-items: flex-start; gap: .75rem; padding: .8rem; border-left: 4px solid #64748b; border-radius: 7px; background: #f7f9fb; }
+.audit-finding.high { border-color: #c9342b; background: #fff1f0; }
+.audit-finding.medium { border-color: #c28b00; background: #fff9e8; }
+.audit-finding.low { border-color: #3478a5; background: #eff7fc; }
+.audit-finding strong, .audit-finding p { margin: 0; }
+.audit-finding p { margin-top: .2rem; color: #5f6f80; }
+.audit-ok { margin: 0; color: #397b17; }
+
+@media (max-width: 700px) {
+    .audit-page__header { align-items: flex-start; flex-direction: column; }
+}

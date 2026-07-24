@@ -2,6 +2,21 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.10.0] - 2026-07-24
+
+### Añadido
+
+- Revisión editorial administrativa sobre el contenido vigente del CMS.
+- Detección de enlaces vacíos, formularios incompletos, precios, fechas posiblemente vencidas y contenido demostrativo.
+- Alertas para afirmaciones de empleabilidad, convenios, práctica profesional, testimonios y multimedia repetida.
+- Inventario editorial con prioridades, responsables sugeridos y tratamiento de cada clasificación.
+- Puntuación orientativa por página sin modificar automáticamente el contenido.
+
+### Documentado
+
+- La Junta Administrativa, Contacto, Especialidades y 50 Aniversario requieren confirmaciones institucionales antes de considerarse saneadas.
+- El contenido heredado de Noticias queda excluido porque fue sustituido por el módulo estructurado.
+
 ## [0.9.1] - 2026-07-24
 
 ### Corregido

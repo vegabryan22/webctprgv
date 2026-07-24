@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContentAuditController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventCategoryController;
@@ -65,6 +66,7 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/paginas/{page}/editar', [ContentPageController::class, 'edit'])->middleware('permission:pages.manage')->name('pages.edit');
     Route::put('/paginas/{page}', [ContentPageController::class, 'update'])->middleware('permission:pages.manage')->name('pages.update');
     Route::delete('/paginas/{page}', [ContentPageController::class, 'destroy'])->middleware('permission:pages.manage')->name('pages.destroy');
+    Route::get('/revision-editorial', ContentAuditController::class)->middleware('permission:pages.view')->name('content-audit.index');
 
     Route::get('/noticias', [NewsArticleController::class, 'index'])->middleware('permission:news.view')->name('news.index');
     Route::get('/noticias/crear', [NewsArticleController::class, 'create'])->middleware('permission:news.manage')->name('news.create');
