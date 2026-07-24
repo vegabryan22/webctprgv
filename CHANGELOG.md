@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.3] - 2026-07-24
+
+### Corregido
+
+- Seguimiento temporal del despliegue después de solicitar una versión desde GitOps.
+- Actualización automática del panel mientras GitHub Actions aplica la referencia seleccionada.
+- Mensaje de confirmación que identifica la etiqueta o rama solicitada.
+
 ## [0.18.2] - 2026-07-24
 
 ### Corregido

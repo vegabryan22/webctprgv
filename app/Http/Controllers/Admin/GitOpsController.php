@@ -15,7 +15,7 @@ use Throwable;
 
 class GitOpsController extends Controller
 {
-    public function index(GitHubActionsClient $github, ProductionStatus $production, LocalRepositoryStatus $localRepository): View
+    public function index(Request $request, GitHubActionsClient $github, ProductionStatus $production, LocalRepositoryStatus $localRepository): View
     {
         $data = ['runs' => [], 'commits' => [], 'tags' => [], 'runners' => [], 'remote' => []];
         $integrationError = null;
@@ -49,6 +49,7 @@ class GitOpsController extends Controller
             'events' => GitOpsEvent::with('user')->latest()->limit(20)->get(),
             'settings' => GitOpsSetting::current(),
             'localRepository' => $localRepository->inspect(),
+            'monitoring' => $request->integer('monitor_until') > now()->timestamp,
         ]);
     }
 
@@ -156,7 +157,14 @@ class GitOpsController extends Controller
                 'message' => $operation === 'rollback' ? "Reversión solicitada a {$target}." : "Despliegue solicitado para {$target}.",
             ]);
 
-            return back()->with('success', $operation === 'rollback' ? 'La reversión controlada fue solicitada.' : 'El despliegue fue solicitado correctamente.');
+            return redirect()->route('admin.gitops.index', [
+                'monitor_until' => now()->addMinutes(2)->timestamp,
+            ])->with(
+                'success',
+                $operation === 'rollback'
+                    ? "La reversión a {$target} fue solicitada. El estado se actualizará automáticamente."
+                    : "El despliegue de {$target} fue solicitado. El estado se actualizará automáticamente.",
+            );
         } catch (Throwable $exception) {
             report($exception);
             GitOpsEvent::create($event + ['status' => 'failed', 'message' => $exception->getMessage()]);

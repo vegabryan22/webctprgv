@@ -38,9 +38,12 @@ class GitOpsTest extends TestCase
             ]),
         ]);
 
-        $this->actingAs($this->superAdmin())
+        $response = $this->actingAs($this->superAdmin())
             ->post('/administracion/gitops/desplegar', ['target_ref' => 'v0.13.0'])
+            ->assertRedirect()
             ->assertSessionHas('success');
+
+        $this->assertStringContainsString('monitor_until=', $response->headers->get('Location'));
 
         $this->assertDatabaseHas('git_ops_events', [
             'action' => 'workflow_dispatch',
@@ -49,6 +52,15 @@ class GitOpsTest extends TestCase
             'git_ref' => 'v0.13.0',
         ]);
         Http::assertSent(fn ($request) => str_contains($request->url(), '/dispatches') && $request['inputs']['target_ref'] === 'v0.13.0');
+    }
+
+    public function test_gitops_dashboard_shows_deployment_monitoring_state(): void
+    {
+        $this->actingAs($this->superAdmin())
+            ->get(route('admin.gitops.index', ['monitor_until' => now()->addMinute()->timestamp]))
+            ->assertOk()
+            ->assertSee('Despliegue en seguimiento')
+            ->assertSee('window.setTimeout', false);
     }
 
     public function test_deployment_rejects_ref_not_present_on_github(): void

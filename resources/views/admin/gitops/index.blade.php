@@ -10,6 +10,7 @@
 </div>
 
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
+@if($monitoring)<div class="alert"><i class="fa-solid fa-spinner fa-spin"></i> Despliegue en seguimiento. Esta página se actualizará automáticamente mientras GitHub Actions completa la operación.</div>@endif
 
 <section class="card" style="margin-bottom:1rem">
     <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-laptop-code"></i> Repositorio de trabajo local</h2><p class="muted">Consulta de solo lectura para desarrollo; no representa una versión disponible en GitHub.</p></div><span class="badge {{ $localRepository['available'] ? 'success' : 'danger' }}">{{ $localRepository['available'] ? 'Disponible' : 'No disponible' }}</span></div>
@@ -134,3 +135,9 @@
 </div><button class="button secondary"><i class="fa-solid fa-floppy-disk"></i> Guardar configuración</button></form></section>
 @endif
 @endsection
+
+@if($monitoring)
+    @push('scripts')
+        <script>window.setTimeout(() => window.location.reload(), 8000);</script>
+    @endpush
+@endif
