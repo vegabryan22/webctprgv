@@ -164,7 +164,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C02 | 0.9.0 | Completado | `8c143bf` | `d4bd2f2` | 31 pruebas y 125 aserciones aprobadas; migración local correcta | Noticias estructuradas y retiro de demostraciones |
 | 2026-07-24 | CTP-C02 | 0.9.1 | Completado | `052532f` | `052532f` | 31 pruebas y 125 aserciones aprobadas; HTTP 200 | Corrección adaptable del encabezado público |
 | 2026-07-24 | CTP-C03 | 0.10.0 | Completado | `c8fce6b` | `a773113` | 34 pruebas y 132 aserciones aprobadas; 6 páginas auditadas | Inventario y revisión editorial administrativa |
-| 2026-07-24 | CTP-C05 | 0.11.0 | En revisión | Pendiente | Pendiente | Pruebas específicas aprobadas; cierre pendiente | Catálogo estructurado de servicios |
+| 2026-07-24 | CTP-C05 | 0.11.0 | Completado | `2249a74` | Pendiente de registrar | 37 pruebas y 143 aserciones aprobadas; migración local y HTTP 200 | Catálogo estructurado de servicios |
 
 ## Riesgos y bloqueos
 
