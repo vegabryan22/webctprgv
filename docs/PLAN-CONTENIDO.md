@@ -175,6 +175,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C11 | 0.18.0 | Completado | `7101ec4` | `9766ff4` | 58 pruebas y 218 aserciones aprobadas; migración local y HTTP 200 | Integrantes vigentes y transparencia con fuentes verificables |
 | 2026-07-24 | Continuidad y GitOps local | 0.18.1 | Completado | `820af5d` | `1653bd2` | 58 pruebas y 219 aserciones aprobadas | Instrucciones persistentes e inspección Git local de solo lectura |
 | 2026-07-24 | GitOps local | 0.18.2 | Completado | `80b942c` | `46974f8` | 58 pruebas y 219 aserciones aprobadas | Alineación adaptable y corrección UTF-8 de la tarjeta local |
+| 2026-07-24 | Seguimiento GitOps | 0.18.3 | Completado | `76ab3d8` | Pendiente | 59 pruebas y 224 aserciones aprobadas | Actualización automática tras solicitar una versión |
 
 ## Riesgos y bloqueos
 
