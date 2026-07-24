@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.2] - 2026-07-24
+
+### Corregido
+
+- Alineación y separación visual de los datos del repositorio local en GitOps.
+- Codificación de los textos y adaptación de la tarjeta para pantallas pequeñas.
+
 ## [0.18.1] - 2026-07-24
 
 ### Documentación

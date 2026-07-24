@@ -12,14 +12,14 @@
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
 
 <section class="card" style="margin-bottom:1rem">
-    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-laptop-code"></i> Repositorio de trabajo local</h2><p class="muted">Consulta de solo lectura para desarrollo; no representa una versiÃ³n disponible en GitHub.</p></div><span class="badge {{ $localRepository['available'] ? 'success' : 'danger' }}">{{ $localRepository['available'] ? 'Disponible' : 'No disponible' }}</span></div>
+    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-laptop-code"></i> Repositorio de trabajo local</h2><p class="muted">Consulta de solo lectura para desarrollo; no representa una versión disponible en GitHub.</p></div><span class="badge {{ $localRepository['available'] ? 'success' : 'danger' }}">{{ $localRepository['available'] ? 'Disponible' : 'No disponible' }}</span></div>
     @if($localRepository['available'])
-        <div class="status-grid">
-            <div><span>Rama</span><strong>{{ $localRepository['branch'] ?: 'HEAD separado' }}</strong></div>
-            <div><span>Commit</span><strong><code>{{ $localRepository['commit'] }}</code></strong></div>
-            <div><span>Diferencia con origin</span><strong>{{ $localRepository['ahead'] === null ? 'Sin referencia' : 'Ahead '.$localRepository['ahead'].' Â· Behind '.$localRepository['behind'] }}</strong></div>
-            <div><span>Cambios locales</span><strong>{{ count($localRepository['changes']) }}</strong></div>
-        </div>
+        <dl class="definition-list gitops-local-status">
+            <dt>Rama</dt><dd>{{ $localRepository['branch'] ?: 'HEAD separado' }}</dd>
+            <dt>Commit</dt><dd><code>{{ $localRepository['commit'] }}</code></dd>
+            <dt>Diferencia con origin</dt><dd>{{ $localRepository['ahead'] === null ? 'Sin referencia' : 'Ahead '.$localRepository['ahead'].' · Behind '.$localRepository['behind'] }}</dd>
+            <dt>Cambios locales</dt><dd>{{ count($localRepository['changes']) }}</dd>
+        </dl>
         @if($localRepository['changes'])
             <details class="gitops-local-details"><summary>Ver cambios locales</summary><ul>@foreach($localRepository['changes'] as $change)<li><code>{{ $change }}</code></li>@endforeach</ul></details>
         @endif

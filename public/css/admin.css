@@ -95,6 +95,15 @@ th { color: var(--navy); font-size: .82rem; text-transform: uppercase; }
 .definition-list { display: grid; grid-template-columns: max-content 1fr; gap: .65rem 1rem; margin: 0; }
 .definition-list dt { color: var(--muted); }
 .definition-list dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.gitops-local-status { grid-template-columns: minmax(145px, max-content) 1fr; padding: .35rem 0 .9rem; }
+.gitops-local-status dt, .gitops-local-status dd { padding: .15rem 0; }
+.gitops-local-details { margin: .25rem 0 1rem; padding: .75rem 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--background); }
+.gitops-local-details summary { cursor: pointer; font-weight: 700; color: var(--primary); }
+.gitops-local-details ul { margin: .75rem 0 0; padding-left: 1.25rem; }
+@media (max-width: 620px) {
+    .gitops-local-status { grid-template-columns: 1fr; gap: .1rem; }
+    .gitops-local-status dd { margin-bottom: .6rem; }
+}
 .status-dot { width: .65rem; height: .65rem; border-radius: 50%; background: var(--muted); }
 .status-dot.success { background: var(--green); box-shadow: 0 0 0 4px rgba(76,177,29,.14); }
 .status-dot.warning { background: var(--yellow); box-shadow: 0 0 0 4px rgba(255,212,1,.18); }
