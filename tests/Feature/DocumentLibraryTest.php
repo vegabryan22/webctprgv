@@ -8,7 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
 class DocumentLibraryTest extends TestCase
@@ -40,8 +40,6 @@ class DocumentLibraryTest extends TestCase
 
     public function test_administrator_can_upload_and_publish_a_verified_document(): void
     {
-        Storage::fake('public');
-
         $this->actingAs($this->superAdmin())->post(route('admin.documents.store'), [
             'document_category_id' => DocumentCategory::firstOrFail()->id,
             'title' => 'Reglamento institucional',
@@ -58,14 +56,14 @@ class DocumentLibraryTest extends TestCase
         ])->assertRedirect(route('admin.documents.index'));
 
         $document = InstitutionalDocument::firstOrFail();
-        Storage::disk('public')->assertExists($document->file_path);
+        $storedPath = storage_path('app/public/'.$document->file_path);
+        $this->assertFileExists($storedPath);
         $this->get('/documentos')->assertOk()->assertSee('Reglamento institucional');
+        File::delete($storedPath);
     }
 
     public function test_published_document_requires_verification_date(): void
     {
-        Storage::fake('public');
-
         $this->actingAs($this->superAdmin())->post(route('admin.documents.store'), [
             'document_category_id' => DocumentCategory::firstOrFail()->id,
             'title' => 'Circular sin verificar',

@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.4] - 2026-07-24
+
+### Corregido
+
+- Separación de las pruebas en un runner de GitHub con PHP y `fileinfo` completos.
+- El runner de producción solo recibe versiones que superaron la validación.
+- Biblioteca documental compatible con enlaces y almacenamiento sin inicializar el detector MIME del servidor.
+- Enlaces de archivos públicos generados sin depender de `fileinfo`.
+
 ## [0.18.3] - 2026-07-24
 
 ### Corregido

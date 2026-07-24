@@ -4,7 +4,7 @@
 @section('content')
 <main class="event-detail">
     <article class="event-detail-card">
-        @if($event->image_path)<img src="{{ Storage::url($event->image_path) }}" alt="{{ $event->title }}">@endif
+        @if($event->image_path)<img src="{{ asset('storage/'.ltrim($event->image_path, '/')) }}" alt="{{ $event->title }}">@endif
         <div class="event-detail-body">
             @if($event->status === 'cancelled')<p class="event-cancelled"><i class="fas fa-triangle-exclamation"></i> Esta actividad fue cancelada.</p>@endif
             @include('calendar._source-badge')
@@ -20,7 +20,7 @@
             <div class="calendar-actions">
                 <a class="calendar-button" href="{{ route('calendar.ical', $event) }}"><i class="far fa-calendar-plus"></i> Agregar a mi calendario</a>
                 @if($event->registration_url)<a class="calendar-button secondary" href="{{ $event->registration_url }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-pen-to-square"></i> Inscripción / información</a>@endif
-                @if($event->attachment_path)<a class="calendar-button" href="{{ Storage::url($event->attachment_path) }}" target="_blank"><i class="fas fa-file-arrow-down"></i> Descargar documento</a>@endif
+                @if($event->attachment_path)<a class="calendar-button" href="{{ asset('storage/'.ltrim($event->attachment_path, '/')) }}" target="_blank"><i class="fas fa-file-arrow-down"></i> Descargar documento</a>@endif
             </div>
         </div>
     </article>

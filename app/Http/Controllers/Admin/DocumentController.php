@@ -7,7 +7,7 @@ use App\Models\DocumentCategory;
 use App\Models\InstitutionalDocument;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -51,7 +51,7 @@ class DocumentController extends Controller
 
     public function destroy(InstitutionalDocument $document): RedirectResponse
     {
-        Storage::disk('public')->delete($document->file_path);
+        $this->deleteFile($document->file_path);
         $document->delete();
 
         return back()->with('success', 'Documento eliminado.');
@@ -73,7 +73,7 @@ class DocumentController extends Controller
 
     private function validated(Request $request, ?InstitutionalDocument $document = null): array
     {
-        return $request->validate(['document_category_id' => ['required', 'exists:document_categories,id'], 'title' => ['required', 'string', 'max:255'], 'slug' => ['required', 'string', 'max:255', Rule::unique('institutional_documents')->ignore($document)], 'description' => ['nullable', 'string', 'max:2000'], 'file' => [$document ? 'nullable' : 'required', 'file', 'mimes:pdf,doc,docx,xls,xlsx', 'max:15360'], 'version' => ['nullable', 'string', 'max:50'], 'responsible' => ['required', 'string', 'max:255'], 'audience' => ['required', Rule::in(['general', 'students', 'families', 'staff', 'community'])], 'issued_at' => ['nullable', 'date'], 'expires_at' => ['nullable', 'date', 'after_or_equal:issued_at'], 'replaced_by_id' => ['nullable', 'exists:institutional_documents,id', Rule::notIn([$document?->id])], 'status' => ['required', Rule::in(['draft', 'published'])], 'verified_at' => ['nullable', 'date', 'required_if:status,published'], 'sort_order' => ['required', 'integer', 'min:0']]);
+        return $request->validate(['document_category_id' => ['required', 'exists:document_categories,id'], 'title' => ['required', 'string', 'max:255'], 'slug' => ['required', 'string', 'max:255', Rule::unique('institutional_documents')->ignore($document)], 'description' => ['nullable', 'string', 'max:2000'], 'file' => [$document ? 'nullable' : 'required', 'file', 'extensions:pdf,doc,docx,xls,xlsx', 'max:15360'], 'version' => ['nullable', 'string', 'max:50'], 'responsible' => ['required', 'string', 'max:255'], 'audience' => ['required', Rule::in(['general', 'students', 'families', 'staff', 'community'])], 'issued_at' => ['nullable', 'date'], 'expires_at' => ['nullable', 'date', 'after_or_equal:issued_at'], 'replaced_by_id' => ['nullable', 'exists:institutional_documents,id', Rule::notIn([$document?->id])], 'status' => ['required', Rule::in(['draft', 'published'])], 'verified_at' => ['nullable', 'date', 'required_if:status,published'], 'sort_order' => ['required', 'integer', 'min:0']]);
     }
 
     private function prepare(Request $request, array $data, ?InstitutionalDocument $document = null): array
@@ -83,11 +83,17 @@ class DocumentController extends Controller
         $data['published_at'] = $data['status'] === 'published' ? ($document?->published_at ?? now()) : null;
         if ($request->hasFile('file')) {
             if ($document?->file_path) {
-                Storage::disk('public')->delete($document->file_path);
+                $this->deleteFile($document->file_path);
             }
 
-            $data['original_filename'] = $request->file('file')->getClientOriginalName();
-            $data['file_path'] = $request->file('file')->store('documents', 'public');
+            $file = $request->file('file');
+            $extension = strtolower($file->getClientOriginalExtension());
+            $filename = Str::uuid().'.'.$extension;
+            $directory = storage_path('app/public/documents');
+            File::ensureDirectoryExists($directory);
+            $data['original_filename'] = $file->getClientOriginalName();
+            $file->move($directory, $filename);
+            $data['file_path'] = 'documents/'.$filename;
         }
 
         return $data;
@@ -96,5 +102,12 @@ class DocumentController extends Controller
     private function canPublish(Request $request, array $data): void
     {
         abort_if($data['status'] === 'published' && ! $request->user()->hasPermission('documents.publish'), 403);
+    }
+
+    private function deleteFile(?string $path): void
+    {
+        if ($path && Str::startsWith($path, 'documents/')) {
+            File::delete(storage_path('app/public/'.$path));
+        }
     }
 }

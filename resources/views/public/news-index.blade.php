@@ -8,7 +8,7 @@
         <div class="news-grid">
             @forelse($articles as $article)
                 <article class="news-card {{ $article->is_featured ? 'featured' : '' }}">
-                    @if($article->image_path)<img src="{{ Storage::url($article->image_path) }}" alt="">@else<div class="news-card__placeholder"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></div>@endif
+                    @if($article->image_path)<img src="{{ asset('storage/'.ltrim($article->image_path, '/')) }}" alt="">@else<div class="news-card__placeholder"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></div>@endif
                     <div class="news-card__body"><div class="news-card__meta"><span style="--category-color: {{ $article->category->color }}">{{ $article->category->name }}</span><time datetime="{{ $article->published_at->toDateString() }}">{{ $article->published_at->translatedFormat('d M Y') }}</time></div><h2><a href="{{ route('news.show', $article) }}">{{ $article->title }}</a></h2><p>{{ $article->summary }}</p><a class="news-card__link" href="{{ route('news.show', $article) }}">Leer noticia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
                 </article>
             @empty

@@ -19,8 +19,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validate:
+    name: Validar versión
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obtener versión
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.target_ref }}
+
+      - name: Preparar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: fileinfo, mbstring, pdo_sqlite, sqlite3
+          coverage: none
+
+      - name: Instalar dependencias PHP
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Ejecutar pruebas
+        env:
+          APP_KEY: base64:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
+        run: php artisan test
+
   deploy:
-    name: Validar y desplegar
+    name: Desplegar en producción
+    needs: validate
     runs-on: [self-hosted, linux, x64, ctprgv-production]
     timeout-minutes: 20
     steps:
@@ -37,11 +63,6 @@ jobs:
 
       - name: Instalar dependencias PHP
         run: php "$RUNNER_TEMP/composer" install --no-interaction --prefer-dist --no-progress --optimize-autoloader --ignore-platform-req=ext-fileinfo
-
-      - name: Ejecutar pruebas
-        env:
-          APP_KEY: base64:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
-        run: php artisan test
 
       - name: Desplegar únicamente en html
         env:
