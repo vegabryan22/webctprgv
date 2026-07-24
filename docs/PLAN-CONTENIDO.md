@@ -178,6 +178,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | Seguimiento GitOps | 0.18.3 | Completado | `76ab3d8` | `9205e4b` | 59 pruebas y 224 aserciones aprobadas | Actualización automática tras solicitar una versión |
 | 2026-07-24 | Compatibilidad del despliegue | 0.18.4 | Completado | `ee6646c` | `0078ff2` | 59 pruebas y 224 aserciones aprobadas | Validación separada del runner de producción sin fileinfo |
 | 2026-07-24 | Entornos GitOps | 0.18.5 | Completado | `a815e9a` | `af462ad` | 60 pruebas y 227 aserciones aprobadas | Inspección local solo en desarrollo y validación contextual |
+| 2026-07-24 | Fin de seguimiento GitOps | 0.18.6 | Completado | `20ebde2` | Pendiente | 61 pruebas y 232 aserciones aprobadas | El refresco termina según el resultado del workflow |
 
 ## Riesgos y bloqueos
 
