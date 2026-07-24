@@ -116,7 +116,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | ID | Unidad | Estado | Dependencias | Entregables | Criterio específico |
 | --- | --- | --- | --- | --- | --- |
 | CTP-C06 | Especialidades estructuradas | Completado | CTP-B02 | Ficha, perfil, áreas, contacto y programa oficial | Borradores sujetos a validación DETCE/MEP y Coordinación Técnica |
-| CTP-C09 | Empresas y práctica profesional | Pendiente | CTP-C06 | Práctica, pasantías, visitas y contacto empresarial | Sin convenios o estadísticas sin respaldo |
+| CTP-C09 | Empresas y práctica profesional | Completado | CTP-C06 | Práctica, pasantías, visitas y contacto empresarial | Sin convenios o estadísticas sin respaldo |
 
 ## Etapa 4 — Transparencia, historia y comunidad
 
@@ -171,6 +171,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-B04 | 0.14.1 | Completado | `c5c0639` | `c5c0639` | 6 pruebas GitOps y 15 aserciones aprobadas | Refinamiento visual del selector de despliegue |
 | 2026-07-24 | CTP-C07 | 0.15.0 | Completado | `99a54df` | `2c420af` | 46 pruebas y 173 aserciones aprobadas; migración local y HTTP 200 | Directorio institucional verificable |
 | 2026-07-24 | CTP-C08 | 0.16.0 | Completado | `b3fa8e0` | `2ab8e40` | 50 pruebas y 187 aserciones aprobadas; migración local y HTTP 200 | Biblioteca de documentos vigente y versionada |
+| 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | Pendiente | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
 
 ## Riesgos y bloqueos
 
@@ -184,12 +185,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C09 — Empresas y práctica profesional`
+`CTP-C11 — Junta y transparencia`
 
-1. Estructurar modalidades de práctica profesional, pasantías y visitas técnicas.
-2. Publicar requisitos, etapas, responsables y documentos vinculados.
-3. Crear un canal institucional para empresas interesadas en colaborar.
-4. Evitar publicar convenios, empresas o estadísticas sin respaldo verificable.
-5. Vincular el contenido con especialidades, servicios y biblioteca documental.
+1. Estructurar integrantes, cargos y periodos de vigencia de la Junta Administrativa.
+2. Publicar proyectos, procesos, informes y documentos relacionados.
+3. Mostrar fuente, responsable y fecha de verificación de cada contenido.
+4. Mantener en borrador información pendiente de aprobación o respaldo.
+5. Reutilizar la biblioteca documental para evitar archivos duplicados.
 
 `CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.
