@@ -2,6 +2,18 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.8.1] - 2026-07-24
+
+### Añadido
+
+- Plan maestro con etapas, unidades de trabajo, estados, dependencias y criterios de cierre.
+- Registro de decisiones, riesgos, responsables y bitácora de versiones y commits.
+- Proceso trazable desde la preparación local hasta la aplicación mediante GitOps.
+
+### Mejorado
+
+- Política de versionamiento vinculada con identificadores permanentes de trabajo y commits de implementación y cierre.
+
 ## [0.8.0] - 2026-07-24
 
 ### Añadido

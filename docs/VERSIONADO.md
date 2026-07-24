@@ -16,3 +16,17 @@ Durante la etapa inicial `0.x`, cada avance funcional incrementará el número m
 2. Añadir la sección correspondiente en `CHANGELOG.md` con fecha y cambios en español.
 3. Ejecutar pruebas y formateador.
 4. Crear una etiqueta Git anotada cuando la versión se considere entregable: `git tag -a v0.1.0 -m "Versión 0.1.0"`.
+
+## Trazabilidad del proyecto
+
+Cada cambio funcional debe asociarse con una unidad `CTP-CNN` del [plan maestro](PLAN-CONTENIDO.md). Al cerrar una unidad se registra:
+
+- Fecha de cierre.
+- Estado.
+- Versión publicada.
+- Commit de implementación.
+- Commit de cierre documental.
+- Resultado de pruebas.
+- Migraciones o dependencias relevantes.
+
+El commit de implementación contiene el cambio funcional. El commit de cierre actualiza la bitácora con el hash real del primero y puede coincidir con el commit etiquetado de la versión.
