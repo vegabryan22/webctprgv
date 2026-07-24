@@ -47,6 +47,7 @@ El archivo `.env` nunca se almacena en Git. Consulte [DESARROLLO.md](docs/DESARR
 - [Directorio institucional](docs/DIRECTORIO.md)
 - [Biblioteca de documentos](docs/DOCUMENTOS.md)
 - [Vinculación, empresas y práctica profesional](docs/PRACTICA-PROFESIONAL.md)
+- [Junta Administrativa y transparencia](docs/JUNTA-TRANSPARENCIA.md)
 - [Registro de cambios](CHANGELOG.md)
 
 ## Verificación

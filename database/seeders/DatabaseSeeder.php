@@ -47,6 +47,9 @@ class DatabaseSeeder extends Seeder
             ['experiences.view', 'Ver vinculación y práctica', 'Vinculación'],
             ['experiences.manage', 'Gestionar vinculación y práctica', 'Vinculación'],
             ['experiences.publish', 'Publicar vinculación y práctica', 'Vinculación'],
+            ['board.view', 'Ver Junta y transparencia', 'Junta Administrativa'],
+            ['board.manage', 'Gestionar Junta y transparencia', 'Junta Administrativa'],
+            ['board.publish', 'Publicar Junta y transparencia', 'Junta Administrativa'],
             ['menu.view', 'Ver menú principal', 'Contenido'],
             ['menu.manage', 'Gestionar menú principal', 'Contenido'],
             ['events.view', 'Ver actividades', 'Calendario'],
@@ -75,7 +78,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish', 'board.view', 'board.manage', 'board.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],

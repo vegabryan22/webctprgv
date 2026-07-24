@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.0] - 2026-07-24
+
+### Añadido
+
+- Gestión de integrantes, cargos y periodos de la Junta Administrativa.
+- Publicaciones de transparencia clasificadas como proyectos, procesos e informes.
+- Fuente, responsable, fecha y verificación obligatorios para la información pública.
+- Vinculación con documentos institucionales vigentes y permisos específicos.
+
+### Base de datos
+
+- Migración `2026_07_24_001000_create_board_transparency_tables.php`.
+
 ## [0.17.0] - 2026-07-24
 
 ### Añadido

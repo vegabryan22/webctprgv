@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BoardMemberController;
+use App\Http\Controllers\Admin\BoardTransparencyController;
 use App\Http\Controllers\Admin\ContentAuditController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -21,6 +23,7 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SpecialtyController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\DocumentLibraryController;
@@ -37,11 +40,11 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/especialidades', 'specialties')->name('specialties');
     Route::get('/especialidades/{specialty:slug}', 'specialty')->name('specialties.show');
     Route::get('/talleres-exploratorios', 'workshops')->name('workshops');
-    Route::get('/junta-administrativa', 'board')->name('board');
     Route::get('/contacto', 'contact')->name('contact');
     Route::get('/50-aniversario', 'anniversary')->name('anniversary');
     Route::get('/paginas/{page:slug}', 'page')->name('pages.show');
 });
+Route::get('/junta-administrativa', BoardController::class)->name('board');
 
 Route::controller(CalendarController::class)->prefix('calendario')->name('calendar.')->group(function (): void {
     Route::get('/', 'index')->name('index');
@@ -150,6 +153,18 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/vinculacion-y-practica/{experience}/editar', [AdminProfessionalExperienceController::class, 'edit'])->middleware('permission:experiences.manage')->name('experiences.edit');
     Route::put('/vinculacion-y-practica/{experience}', [AdminProfessionalExperienceController::class, 'update'])->middleware('permission:experiences.manage')->name('experiences.update');
     Route::delete('/vinculacion-y-practica/{experience}', [AdminProfessionalExperienceController::class, 'destroy'])->middleware('permission:experiences.manage')->name('experiences.destroy');
+    Route::get('/junta/integrantes', [BoardMemberController::class, 'index'])->middleware('permission:board.view')->name('board-members.index');
+    Route::get('/junta/integrantes/crear', [BoardMemberController::class, 'create'])->middleware('permission:board.manage')->name('board-members.create');
+    Route::post('/junta/integrantes', [BoardMemberController::class, 'store'])->middleware('permission:board.manage')->name('board-members.store');
+    Route::get('/junta/integrantes/{member}/editar', [BoardMemberController::class, 'edit'])->middleware('permission:board.manage')->name('board-members.edit');
+    Route::put('/junta/integrantes/{member}', [BoardMemberController::class, 'update'])->middleware('permission:board.manage')->name('board-members.update');
+    Route::delete('/junta/integrantes/{member}', [BoardMemberController::class, 'destroy'])->middleware('permission:board.manage')->name('board-members.destroy');
+    Route::get('/junta/transparencia', [BoardTransparencyController::class, 'index'])->middleware('permission:board.view')->name('board-records.index');
+    Route::get('/junta/transparencia/crear', [BoardTransparencyController::class, 'create'])->middleware('permission:board.manage')->name('board-records.create');
+    Route::post('/junta/transparencia', [BoardTransparencyController::class, 'store'])->middleware('permission:board.manage')->name('board-records.store');
+    Route::get('/junta/transparencia/{record}/editar', [BoardTransparencyController::class, 'edit'])->middleware('permission:board.manage')->name('board-records.edit');
+    Route::put('/junta/transparencia/{record}', [BoardTransparencyController::class, 'update'])->middleware('permission:board.manage')->name('board-records.update');
+    Route::delete('/junta/transparencia/{record}', [BoardTransparencyController::class, 'destroy'])->middleware('permission:board.manage')->name('board-records.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');
