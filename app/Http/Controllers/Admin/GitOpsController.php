@@ -39,6 +39,7 @@ class GitOpsController extends Controller
             ->filter(fn (array $tag) => version_compare(ltrim($tag['name'], 'v'), $productionVersion, '>'))
             ->sortBy(fn (array $tag) => ltrim($tag['name'], 'v'), SORT_NATURAL)
             ->values();
+        [$monitoring, $monitorResult] = $this->monitorState($request, $data['runs']);
 
         return view('admin.gitops.index', $data + [
             'production' => $productionStatus,
@@ -51,7 +52,8 @@ class GitOpsController extends Controller
             'settings' => GitOpsSetting::current(),
             'localRepository' => $isDevelopment ? $localRepository->inspect() : null,
             'isDevelopment' => $isDevelopment,
-            'monitoring' => $request->integer('monitor_until') > now()->timestamp,
+            'monitoring' => $monitoring,
+            'monitorResult' => $monitorResult,
         ]);
     }
 
@@ -163,7 +165,9 @@ class GitOpsController extends Controller
             ]);
 
             return redirect()->route('admin.gitops.index', [
+                'monitor_started' => now()->subSeconds(5)->timestamp,
                 'monitor_until' => now()->addMinutes(2)->timestamp,
+                'monitor_target' => $target,
             ])->with(
                 'success',
                 $operation === 'rollback'
@@ -176,5 +180,30 @@ class GitOpsController extends Controller
 
             return back()->withErrors(['gitops' => 'GitHub rechazó la operación: '.$exception->getMessage()]);
         }
+    }
+
+    private function monitorState(Request $request, array $runs): array
+    {
+        if ($request->integer('monitor_until') <= now()->timestamp) {
+            return [false, null];
+        }
+
+        $started = $request->integer(
+            'monitor_started',
+            max(0, $request->integer('monitor_until') - 120),
+        );
+        $run = collect($runs)->first(
+            fn (array $run) => strtotime((string) ($run['created_at'] ?? '')) >= $started,
+        );
+
+        if (! $run || ($run['status'] ?? null) !== 'completed') {
+            return [true, null];
+        }
+
+        return [false, [
+            'success' => ($run['conclusion'] ?? null) === 'success',
+            'target' => $request->string('monitor_target')->toString() ?: 'la versión solicitada',
+            'url' => $run['html_url'] ?? null,
+        ]];
     }
 }

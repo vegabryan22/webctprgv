@@ -75,6 +75,45 @@ class GitOpsTest extends TestCase
             ->assertSee('window.setTimeout', false);
     }
 
+    public function test_monitoring_stops_when_recent_workflow_finishes(): void
+    {
+        GitOpsSetting::create([
+            'repository' => 'ctprgv/sitio', 'branch' => 'main',
+            'workflow' => 'deploy.yml', 'token' => 'token',
+        ]);
+        Http::fake(function ($request) {
+            if (str_contains($request->url(), '/actions/runs')) {
+                return Http::response(['workflow_runs' => [[
+                    'id' => 99,
+                    'status' => 'completed',
+                    'conclusion' => 'success',
+                    'created_at' => now()->toIso8601String(),
+                    'html_url' => 'https://github.com/ctprgv/sitio/actions/runs/99',
+                ]]]);
+            }
+            if (str_contains($request->url(), '/actions/runners')) {
+                return Http::response(['runners' => []]);
+            }
+            if (str_contains($request->url(), '/commits') || str_contains($request->url(), '/tags')) {
+                return Http::response([]);
+            }
+
+            return Http::response(['default_branch' => 'main'], 200);
+        });
+
+        $this->actingAs($this->superAdmin())
+            ->get(route('admin.gitops.index', [
+                'monitor_started' => now()->subMinute()->timestamp,
+                'monitor_until' => now()->addMinute()->timestamp,
+                'monitor_target' => 'v0.18.5',
+            ]))
+            ->assertOk()
+            ->assertSee('Despliegue completado')
+            ->assertSee('v0.18.5')
+            ->assertDontSee('window.setTimeout', false)
+            ->assertSee('history.replaceState', false);
+    }
+
     public function test_deployment_rejects_ref_not_present_on_github(): void
     {
         config()->set('gitops.repository', 'ctprgv/sitio');

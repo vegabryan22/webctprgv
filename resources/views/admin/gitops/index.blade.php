@@ -11,6 +11,9 @@
 
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
 @if($monitoring)<div class="alert"><i class="fa-solid fa-spinner fa-spin"></i> Despliegue en seguimiento. Esta página se actualizará automáticamente mientras GitHub Actions completa la operación.</div>@endif
+@if($monitorResult)
+    <div class="alert {{ $monitorResult['success'] ? '' : 'error' }}"><i class="fa-solid {{ $monitorResult['success'] ? 'fa-circle-check' : 'fa-circle-xmark' }}"></i> {{ $monitorResult['success'] ? 'Despliegue completado' : 'El despliegue falló' }} para <strong>{{ $monitorResult['target'] }}</strong>. @if($monitorResult['url'])<a href="{{ $monitorResult['url'] }}" target="_blank" rel="noopener">Ver ejecución</a>@endif</div>
+@endif
 
 @if($isDevelopment)
 <section class="card" style="margin-bottom:1rem">
@@ -141,5 +144,9 @@
 @if($monitoring)
     @push('scripts')
         <script>window.setTimeout(() => window.location.reload(), 8000);</script>
+    @endpush
+@elseif($monitorResult)
+    @push('scripts')
+        <script>window.history.replaceState({}, document.title, @json(route('admin.gitops.index')));</script>
     @endpush
 @endif

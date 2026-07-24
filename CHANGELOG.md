@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.18.6] - 2026-07-24
+
+### Corregido
+
+- El seguimiento se detiene cuando la ejecución reciente de GitHub Actions termina.
+- Resultado final visible con enlace a la ejecución exitosa o fallida.
+- Limpieza automática de los parámetros de seguimiento en la URL.
+- Compatibilidad con enlaces de seguimiento generados desde `v0.18.3`.
+
 ## [0.18.5] - 2026-07-24
 
 ### Corregido
