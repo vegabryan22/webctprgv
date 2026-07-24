@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.1] - 2026-07-24
+
+### Añadido
+
+- Workflow manual de GitHub Actions para validar y desplegar el sitio mediante un runner autohospedado.
+- Despliegue restringido a `html`, con copia de seguridad, migraciones, cachés y comprobación HTTP.
+
 ## [0.6.0] - 2026-07-24
 
 ### Añadido

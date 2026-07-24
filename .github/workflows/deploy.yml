@@ -1,0 +1,26 @@
+name: Desplegar sitio
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: produccion-ctprgv
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Validar y desplegar
+    runs-on: [self-hosted, linux, x64, ctprgv-production]
+    timeout-minutes: 20
+    steps:
+      - name: Obtener versión
+        uses: actions/checkout@v4
+
+      - name: Instalar dependencias PHP
+        run: composer install --no-interaction --prefer-dist --no-progress --optimize-autoloader
+
+      - name: Ejecutar pruebas
+        run: php artisan test
+
+      - name: Desplegar únicamente en html
+        run: bash scripts/deploy-self-hosted.sh
