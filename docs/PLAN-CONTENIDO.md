@@ -160,7 +160,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | Fecha | Unidad | Versión | Estado | Commit implementación | Commit cierre | Validación | Observaciones |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-07-24 | CTP-C01 | 0.8.0 | Completado | `eb83570` | `eb83570` | 27 pruebas, 109 aserciones aprobadas con PHP portátil | Accesos y cuatro actividades próximas |
-| 2026-07-24 | Control del proyecto | 0.8.1 | Completado | `7fe9a6d` | Pendiente de registrar | 27 pruebas aprobadas; Pint reporta dos diferencias preexistentes en GitOps | Etapas, dependencias, decisiones y bitácora |
+| 2026-07-24 | Control del proyecto | 0.8.1 | Completado | `7fe9a6d` | `8765589` | 27 pruebas aprobadas; Pint reporta dos diferencias preexistentes en GitOps | Etapas, dependencias, decisiones y bitácora |
 
 ## Riesgos y bloqueos
 
