@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.0] - 2026-07-24
+
+### Añadido
+
+- Formulario administrativo para configurar repositorio, rama, workflow y token de GitHub desde el panel GitOps.
+- Almacenamiento cifrado del token en la base de datos, con opciones independientes para conservarlo, reemplazarlo o eliminarlo.
+
 ## [0.5.9] - 2026-07-24
 
 ### Corregido

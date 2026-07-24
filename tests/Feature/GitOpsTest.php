@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Role;
+use App\Models\GitOpsSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -44,6 +45,22 @@ class GitOpsTest extends TestCase
             'status' => 'accepted',
             'repository' => 'ctprgv/sitio',
         ]);
+    }
+
+    public function test_super_admin_can_store_encrypted_gitops_settings(): void
+    {
+        $this->actingAs($this->superAdmin())
+            ->put('/administracion/gitops/configuracion', [
+                'repository' => 'vegabryan22/webctprgv',
+                'branch' => 'main',
+                'workflow' => 'deploy.yml',
+                'token' => 'github_pat_secreto',
+            ])
+            ->assertSessionHas('success');
+
+        $setting = GitOpsSetting::firstOrFail();
+        $this->assertSame('github_pat_secreto', $setting->token);
+        $this->assertStringNotContainsString('github_pat_secreto', $setting->getRawOriginal('token'));
     }
 
     private function superAdmin(): User

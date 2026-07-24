@@ -9,7 +9,7 @@
         <p class="muted">Visibilidad del código, automatizaciones y despliegues del sitio.</p>
     </div>
     @if(auth()->user()->hasPermission('gitops.deploy'))
-        <form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Solicitar el despliegue de {{ config('gitops.branch') }} mediante {{ config('gitops.workflow') }}?')">
+        <form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Solicitar el despliegue de {{ $settings->branch }} mediante {{ $settings->workflow }}?')">
             @csrf
             <button class="button secondary" type="submit" @disabled(!$canDispatch)>
                 <i class="fa-solid fa-rocket"></i> Solicitar despliegue
@@ -19,7 +19,7 @@
 </div>
 
 @if(!$configured)
-    <div class="alert error"><i class="fa-solid fa-circle-info"></i> La integración remota aún no está configurada. Defina <code>GITHUB_REPOSITORY</code> y <code>GITHUB_TOKEN</code> en <code>.env</code>.</div>
+    <div class="alert error"><i class="fa-solid fa-circle-info"></i> La integración remota aún no está configurada. Complete la configuración GitOps en esta página.</div>
 @elseif($integrationError)
     <div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>
 @endif
@@ -42,14 +42,31 @@
     <article class="card">
         <div class="page-heading"><div><h2><i class="fa-solid fa-cloud-arrow-up"></i> Integración remota</h2><p class="muted">Configuración efectiva, sin revelar el token.</p></div></div>
         <dl class="definition-list">
-            <dt>Repositorio</dt><dd>{{ config('gitops.repository') ?: 'Pendiente' }}</dd>
-            <dt>Rama objetivo</dt><dd>{{ config('gitops.branch') }}</dd>
-            <dt>Workflow</dt><dd>{{ config('gitops.workflow') }}</dd>
-            <dt>Token</dt><dd><span class="badge {{ filled(config('gitops.token')) ? 'success' : 'warning' }}">{{ filled(config('gitops.token')) ? 'Configurado' : 'Pendiente' }}</span></dd>
+            <dt>Repositorio</dt><dd>{{ $settings->repository ?: 'Pendiente' }}</dd>
+            <dt>Rama objetivo</dt><dd>{{ $settings->branch }}</dd>
+            <dt>Workflow</dt><dd>{{ $settings->workflow }}</dd>
+            <dt>Token</dt><dd><span class="badge {{ filled($settings->token) ? 'success' : 'warning' }}">{{ filled($settings->token) ? 'Configurado' : 'Pendiente' }}</span></dd>
             <dt>Despliegue</dt><dd><span class="badge {{ $canDispatch ? 'success' : 'neutral' }}">{{ $canDispatch ? 'Disponible' : 'Inactivo' }}</span></dd>
         </dl>
     </article>
 </section>
+
+@if(auth()->user()->hasPermission('settings.manage'))
+<section class="card" style="margin-top: 1rem">
+    <div class="page-heading"><div><h2><i class="fa-solid fa-gear"></i> Configuración GitOps</h2><p class="muted">El token se almacena cifrado y nunca se vuelve a mostrar.</p></div></div>
+    <form method="POST" action="{{ route('admin.gitops.settings.update') }}">
+        @csrf @method('PUT')
+        <div class="field-grid">
+            <div class="field"><label for="repository">Repositorio</label><input id="repository" name="repository" value="{{ old('repository', $settings->repository) }}" placeholder="propietario/repositorio" required></div>
+            <div class="field"><label for="branch">Rama objetivo</label><input id="branch" name="branch" value="{{ old('branch', $settings->branch) }}" required></div>
+            <div class="field"><label for="workflow">Workflow</label><input id="workflow" name="workflow" value="{{ old('workflow', $settings->workflow) }}" placeholder="deploy.yml" required></div>
+            <div class="field"><label for="token">Token de GitHub</label><input id="token" type="password" name="token" autocomplete="new-password" placeholder="{{ filled($settings->token) ? 'Configurado; déjelo vacío para conservarlo' : 'github_pat_…' }}"><small class="muted">Use un token de mínimo privilegio con acceso a Actions.</small></div>
+        </div>
+        @if(filled($settings->token))<label><input type="checkbox" name="remove_token" value="1"> Eliminar el token almacenado</label>@endif
+        <div style="margin-top: 1rem"><button class="button secondary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar configuración</button></div>
+    </form>
+</section>
+@endif
 
 <section class="card" style="margin-top: 1rem">
     <div class="page-heading"><div><h2><i class="fa-solid fa-clock-rotate-left"></i> Commits recientes</h2><p class="muted">Historial local de la rama actual.</p></div></div>

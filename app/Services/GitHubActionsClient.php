@@ -2,20 +2,26 @@
 
 namespace App\Services;
 
+use App\Models\GitOpsSetting;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
 
 class GitHubActionsClient
 {
+    private function setting(): GitOpsSetting
+    {
+        return GitOpsSetting::current();
+    }
+
     public function isConfigured(): bool
     {
-        return filled(config('gitops.repository'));
+        return filled($this->setting()->repository);
     }
 
     public function canDispatch(): bool
     {
-        return $this->isConfigured() && filled(config('gitops.token')) && filled(config('gitops.workflow'));
+        return $this->isConfigured() && filled($this->setting()->token) && filled($this->setting()->workflow);
     }
 
     public function workflowRuns(): array
@@ -37,8 +43,8 @@ class GitHubActionsClient
         }
 
         $response = $this->request()
-            ->post($this->endpoint('/actions/workflows/'.rawurlencode(config('gitops.workflow')).'/dispatches'), [
-                'ref' => config('gitops.branch'),
+            ->post($this->endpoint('/actions/workflows/'.rawurlencode($this->setting()->workflow).'/dispatches'), [
+                'ref' => $this->setting()->branch,
             ])
             ->throw();
 
@@ -55,12 +61,12 @@ class GitHubActionsClient
             ])
             ->timeout(8);
 
-        return filled(config('gitops.token')) ? $request->withToken(config('gitops.token')) : $request;
+        return filled($this->setting()->token) ? $request->withToken($this->setting()->token) : $request;
     }
 
     private function endpoint(string $suffix): string
     {
-        $repository = trim((string) config('gitops.repository'), '/');
+        $repository = trim((string) $this->setting()->repository, '/');
 
         if (! preg_match('/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/', $repository)) {
             throw new RuntimeException('GITHUB_REPOSITORY debe usar el formato propietario/repositorio.');

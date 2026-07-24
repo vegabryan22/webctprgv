@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\GitOpsEvent;
+use App\Models\GitOpsSetting;
 use App\Services\GitHubActionsClient;
 use App\Services\LocalRepositoryInspector;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +33,35 @@ class GitOpsController extends Controller
             'configured' => $github->isConfigured(),
             'canDispatch' => $github->canDispatch(),
             'events' => GitOpsEvent::with('user')->latest()->limit(10)->get(),
+            'settings' => GitOpsSetting::current(),
         ]);
+    }
+
+    public function updateSettings(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'repository' => ['required', 'regex:/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/', 'max:255'],
+            'branch' => ['required', 'regex:/^[A-Za-z0-9._\/-]+$/', 'max:255'],
+            'workflow' => ['required', 'regex:/^[A-Za-z0-9._\/-]+\.ya?ml$/', 'max:255'],
+            'token' => ['nullable', 'string', 'max:500'],
+            'remove_token' => ['nullable', 'boolean'],
+        ], [
+            'repository.regex' => 'Use el formato propietario/repositorio.',
+            'workflow.regex' => 'Indique un archivo workflow .yml o .yaml.',
+        ]);
+
+        $settings = GitOpsSetting::current();
+        $settings->fill(collect($data)->only(['repository', 'branch', 'workflow'])->all());
+
+        if ($request->boolean('remove_token')) {
+            $settings->token = null;
+        } elseif (filled($data['token'] ?? null)) {
+            $settings->token = $data['token'];
+        }
+
+        $settings->save();
+
+        return back()->with('success', 'Configuración GitOps actualizada de forma segura.');
     }
 
     public function dispatch(Request $request, GitHubActionsClient $github): RedirectResponse
@@ -40,9 +69,9 @@ class GitOpsController extends Controller
         $event = [
             'user_id' => $request->user()->id,
             'action' => 'workflow_dispatch',
-            'repository' => config('gitops.repository'),
-            'workflow' => config('gitops.workflow'),
-            'git_ref' => config('gitops.branch'),
+            'repository' => GitOpsSetting::current()->repository,
+            'workflow' => GitOpsSetting::current()->workflow,
+            'git_ref' => GitOpsSetting::current()->branch,
         ];
 
         try {

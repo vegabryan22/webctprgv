@@ -84,5 +84,6 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::put('/configuracion', [SiteSettingController::class, 'update'])->middleware('permission:settings.manage')->name('settings.update');
 
     Route::get('/gitops', [GitOpsController::class, 'index'])->middleware('permission:gitops.view')->name('gitops.index');
+    Route::put('/gitops/configuracion', [GitOpsController::class, 'updateSettings'])->middleware('permission:settings.manage')->name('gitops.settings.update');
     Route::post('/gitops/desplegar', [GitOpsController::class, 'dispatch'])->middleware('permission:gitops.deploy')->name('gitops.dispatch');
 });
