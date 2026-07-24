@@ -172,7 +172,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C07 | 0.15.0 | Completado | `99a54df` | `2c420af` | 46 pruebas y 173 aserciones aprobadas; migración local y HTTP 200 | Directorio institucional verificable |
 | 2026-07-24 | CTP-C08 | 0.16.0 | Completado | `b3fa8e0` | `2ab8e40` | 50 pruebas y 187 aserciones aprobadas; migración local y HTTP 200 | Biblioteca de documentos vigente y versionada |
 | 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | `b8e8149` | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
-| 2026-07-24 | CTP-C11 | 0.18.0 | Completado | `7101ec4` | Pendiente | 58 pruebas y 218 aserciones aprobadas; migración local y HTTP 200 | Integrantes vigentes y transparencia con fuentes verificables |
+| 2026-07-24 | CTP-C11 | 0.18.0 | Completado | `7101ec4` | `9766ff4` | 58 pruebas y 218 aserciones aprobadas; migración local y HTTP 200 | Integrantes vigentes y transparencia con fuentes verificables |
 
 ## Riesgos y bloqueos
 
