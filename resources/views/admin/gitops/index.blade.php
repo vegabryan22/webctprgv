@@ -28,7 +28,7 @@
     <article class="card">
         <div class="page-heading">
             <div><h2><i class="fa-solid fa-code-branch"></i> Repositorio local</h2><p class="muted">Estado del código que ejecuta esta instancia.</p></div>
-            <span class="badge {{ $repository['clean'] ? 'success' : 'warning' }}"><span class="status-dot {{ $repository['clean'] ? 'success' : 'warning' }}"></span>{{ $repository['clean'] ? 'Limpio' : 'Con cambios' }}</span>
+            <span class="badge {{ !$repository['available'] ? 'neutral' : ($repository['clean'] ? 'success' : 'warning') }}"><span class="status-dot {{ !$repository['available'] ? 'neutral' : ($repository['clean'] ? 'success' : 'warning') }}"></span>{{ !$repository['available'] ? 'No disponible' : ($repository['clean'] ? 'Limpio' : 'Con cambios') }}</span>
         </div>
         <dl class="definition-list">
             <dt>Rama</dt><dd><i class="fa-solid fa-code-branch"></i> {{ $repository['branch'] }}</dd>
@@ -54,7 +54,8 @@
 <section class="card" style="margin-top: 1rem">
     <div class="page-heading"><div><h2><i class="fa-solid fa-clock-rotate-left"></i> Commits recientes</h2><p class="muted">Historial local de la rama actual.</p></div></div>
     <div class="table-wrap"><table><thead><tr><th>Commit</th><th>Fecha</th><th>Autor</th><th>Mensaje</th></tr></thead><tbody>
-        @foreach($repository['commits'] as $commit)<tr><td><code>{{ $commit['hash'] }}</code></td><td>{{ $commit['date'] }}</td><td>{{ $commit['author'] }}</td><td>{{ $commit['message'] }}</td></tr>@endforeach
+        @forelse($repository['commits'] as $commit)<tr><td><code>{{ $commit['hash'] }}</code></td><td>{{ $commit['date'] }}</td><td>{{ $commit['author'] }}</td><td>{{ $commit['message'] }}</td></tr>
+        @empty<tr><td colspan="4">El historial local no está disponible en este despliegue. Consulte GitHub Actions para el estado remoto.</td></tr>@endforelse
     </tbody></table></div>
 </section>
 

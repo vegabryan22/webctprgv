@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.5.9] - 2026-07-24
+
+### Corregido
+
+- El panel GitOps ya no produce un error 500 cuando PHP tiene `proc_open` deshabilitado o el despliegue no incluye el repositorio Git local.
+- El estado y el historial local muestran una indicación clara cuando no están disponibles, sin afectar la integración remota con GitHub Actions.
+
 ## [0.5.8] - 2026-07-22
 
 ### Corregido

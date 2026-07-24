@@ -3,22 +3,39 @@
 namespace App\Services;
 
 use Symfony\Component\Process\Process;
+use Throwable;
 
 class LocalRepositoryInspector
 {
     public function inspect(): array
     {
-        return [
-            'branch' => $this->run(['git', 'branch', '--show-current']),
-            'commit' => $this->run(['git', 'rev-parse', '--short', 'HEAD']),
-            'commit_full' => $this->run(['git', 'rev-parse', 'HEAD']),
-            'message' => $this->run(['git', 'log', '-1', '--pretty=%s']),
-            'author' => $this->run(['git', 'log', '-1', '--pretty=%an']),
-            'date' => $this->run(['git', 'log', '-1', '--date=iso-strict', '--pretty=%ad']),
-            'remote' => $this->run(['git', 'remote', 'get-url', 'origin'], false),
-            'clean' => $this->run(['git', 'status', '--porcelain']) === '',
-            'commits' => $this->recentCommits(),
-        ];
+        try {
+            return [
+                'available' => true,
+                'branch' => $this->run(['git', 'branch', '--show-current']),
+                'commit' => $this->run(['git', 'rev-parse', '--short', 'HEAD']),
+                'commit_full' => $this->run(['git', 'rev-parse', 'HEAD']),
+                'message' => $this->run(['git', 'log', '-1', '--pretty=%s']),
+                'author' => $this->run(['git', 'log', '-1', '--pretty=%an']),
+                'date' => $this->run(['git', 'log', '-1', '--date=iso-strict', '--pretty=%ad']),
+                'remote' => $this->run(['git', 'remote', 'get-url', 'origin'], false),
+                'clean' => $this->run(['git', 'status', '--porcelain']) === '',
+                'commits' => $this->recentCommits(),
+            ];
+        } catch (Throwable) {
+            return [
+                'available' => false,
+                'branch' => 'No disponible',
+                'commit' => '—',
+                'commit_full' => '',
+                'message' => 'El despliegue no expone un repositorio Git local.',
+                'author' => '—',
+                'date' => '—',
+                'remote' => '',
+                'clean' => null,
+                'commits' => [],
+            ];
+        }
     }
 
     private function recentCommits(): array
