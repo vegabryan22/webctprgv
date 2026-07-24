@@ -173,6 +173,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C08 | 0.16.0 | Completado | `b3fa8e0` | `2ab8e40` | 50 pruebas y 187 aserciones aprobadas; migración local y HTTP 200 | Biblioteca de documentos vigente y versionada |
 | 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | `b8e8149` | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
 | 2026-07-24 | CTP-C11 | 0.18.0 | Completado | `7101ec4` | `9766ff4` | 58 pruebas y 218 aserciones aprobadas; migración local y HTTP 200 | Integrantes vigentes y transparencia con fuentes verificables |
+| 2026-07-24 | Continuidad y GitOps local | 0.18.1 | Completado | `820af5d` | Pendiente | 58 pruebas y 219 aserciones aprobadas | Instrucciones persistentes e inspección Git local de solo lectura |
 
 ## Riesgos y bloqueos
 
