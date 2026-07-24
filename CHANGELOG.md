@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.15.0] - 2026-07-24
+
+### Añadido
+
+- Directorio institucional administrable con departamentos, cargos, teléfonos, extensiones, correos y horarios.
+- Búsqueda pública por departamento, cargo o persona.
+- Fecha obligatoria de verificación y permisos independientes de publicación.
+- Estado vacío que evita publicar contactos no confirmados.
+
+### Base de datos
+
+- Migración `2026_07_24_000700_create_directory_entries_table.php`.
+
 ## [0.14.1] - 2026-07-24
 
 ### Mejorado

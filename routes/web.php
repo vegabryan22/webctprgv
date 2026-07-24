@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ContentAuditController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DirectoryController as AdminDirectoryController;
 use App\Http\Controllers\Admin\EventCategoryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ExploratoryWorkshopController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\SpecialtyController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\PublicSiteController;
 use App\Http\Controllers\ServiceCatalogController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +49,7 @@ Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('s
     Route::get('/', 'index')->name('index');
     Route::get('/{service:slug}', 'show')->name('show');
 });
+Route::get('/directorio', DirectoryController::class)->name('directory');
 
 Route::middleware('guest')->group(function (): void {
     Route::get('/administracion/ingresar', [AuthController::class, 'create'])->name('login');
@@ -114,6 +117,13 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/talleres-exploratorios/{workshop}/editar', [ExploratoryWorkshopController::class, 'edit'])->middleware('permission:workshops.manage')->name('workshops.edit');
     Route::put('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'update'])->middleware('permission:workshops.manage')->name('workshops.update');
     Route::delete('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'destroy'])->middleware('permission:workshops.manage')->name('workshops.destroy');
+
+    Route::get('/directorio', [AdminDirectoryController::class, 'index'])->middleware('permission:directory.view')->name('directory.index');
+    Route::get('/directorio/crear', [AdminDirectoryController::class, 'create'])->middleware('permission:directory.manage')->name('directory.create');
+    Route::post('/directorio', [AdminDirectoryController::class, 'store'])->middleware('permission:directory.manage')->name('directory.store');
+    Route::get('/directorio/{entry}/editar', [AdminDirectoryController::class, 'edit'])->middleware('permission:directory.manage')->name('directory.edit');
+    Route::put('/directorio/{entry}', [AdminDirectoryController::class, 'update'])->middleware('permission:directory.manage')->name('directory.update');
+    Route::delete('/directorio/{entry}', [AdminDirectoryController::class, 'destroy'])->middleware('permission:directory.manage')->name('directory.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');
