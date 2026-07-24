@@ -26,6 +26,8 @@ jobs:
         run: php "$RUNNER_TEMP/composer" install --no-interaction --prefer-dist --no-progress --optimize-autoloader --ignore-platform-req=ext-fileinfo
 
       - name: Ejecutar pruebas
+        env:
+          APP_KEY: base64:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
         run: php artisan test
 
       - name: Desplegar únicamente en html
