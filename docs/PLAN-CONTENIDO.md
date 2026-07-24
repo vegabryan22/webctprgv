@@ -122,7 +122,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 | ID | Unidad | Estado | Dependencias | Entregables | Criterio específico |
 | --- | --- | --- | --- | --- | --- |
-| CTP-C11 | Junta y transparencia | Pendiente | CTP-C08 | Integrantes, proyectos, procesos, informes y documentos | Vigencia y fuente visibles |
+| CTP-C11 | Junta y transparencia | Completado | CTP-C08 | Integrantes, proyectos, procesos, informes y documentos | Vigencia y fuente visibles |
 | CTP-C12 | Historia institucional | Pendiente | CTP-C03 | Historia y línea del tiempo verificadas | Fuentes y autorización de Dirección |
 | CTP-C13 | Proyectos y egresados | Pendiente | CTP-C06 | Proyectos y testimonios autorizados | Consentimiento y fuente de fotografías |
 
@@ -172,6 +172,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C07 | 0.15.0 | Completado | `99a54df` | `2c420af` | 46 pruebas y 173 aserciones aprobadas; migración local y HTTP 200 | Directorio institucional verificable |
 | 2026-07-24 | CTP-C08 | 0.16.0 | Completado | `b3fa8e0` | `2ab8e40` | 50 pruebas y 187 aserciones aprobadas; migración local y HTTP 200 | Biblioteca de documentos vigente y versionada |
 | 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | `b8e8149` | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
+| 2026-07-24 | CTP-C11 | 0.18.0 | Completado | `7101ec4` | Pendiente | 58 pruebas y 218 aserciones aprobadas; migración local y HTTP 200 | Integrantes vigentes y transparencia con fuentes verificables |
 
 ## Riesgos y bloqueos
 
@@ -185,12 +186,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C11 — Junta y transparencia`
+`CTP-C12 — Historia institucional`
 
-1. Estructurar integrantes, cargos y periodos de vigencia de la Junta Administrativa.
-2. Publicar proyectos, procesos, informes y documentos relacionados.
-3. Mostrar fuente, responsable y fecha de verificación de cada contenido.
-4. Mantener en borrador información pendiente de aprobación o respaldo.
-5. Reutilizar la biblioteca documental para evitar archivos duplicados.
+1. Estructurar hitos de una línea del tiempo institucional.
+2. Registrar fecha, descripción, fuente y responsable de verificación.
+3. Incorporar fotografías únicamente cuando exista autorización.
+4. Mantener en borrador fechas o relatos sin respaldo documental.
+5. Integrar historia, misión y visión sin duplicar páginas del CMS.
 
 `CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.
