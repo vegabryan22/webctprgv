@@ -16,7 +16,7 @@ tar -czf "$BACKUPS/gitops_pre_${STAMP}.tar.gz" \
     -C "$TARGET" .app index.php 2>/dev/null
 
 rsync -a --delete \
-    --exclude='.env' --exclude='storage/' --exclude='.git/' \
+    --exclude='.env' --exclude='storage/' --exclude='bootstrap/cache/' --exclude='.git/' \
     ./ "$APP"/
 
 rsync -a --exclude='index.php' public/ "$TARGET"/

@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.4] - 2026-07-24
+
+### Corregido
+
+- El despliegue preserva `storage` y `bootstrap/cache`, compartidos de forma segura entre el runner y PHP-FPM.
+
 ## [0.6.3] - 2026-07-24
 
 ### Corregido
