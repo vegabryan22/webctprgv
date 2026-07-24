@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\GitOpsController;
 use App\Http\Controllers\Admin\NavigationItemController;
 use App\Http\Controllers\Admin\NewsArticleController;
 use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\ProfessionalExperienceController as AdminProfessionalExperienceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\DocumentLibraryController;
+use App\Http\Controllers\ProfessionalExperienceController;
 use App\Http\Controllers\PublicSiteController;
 use App\Http\Controllers\ServiceCatalogController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +56,10 @@ Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('s
 });
 Route::get('/directorio', DirectoryController::class)->name('directory');
 Route::get('/documentos', DocumentLibraryController::class)->name('documents');
+Route::controller(ProfessionalExperienceController::class)->prefix('practica-profesional')->name('experiences.')->group(function (): void {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{experience:slug}', 'show')->name('show');
+});
 
 Route::middleware('guest')->group(function (): void {
     Route::get('/administracion/ingresar', [AuthController::class, 'create'])->name('login');
@@ -138,6 +144,12 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::post('/categorias-de-documentos', [DocumentCategoryController::class, 'store'])->middleware('permission:documents.manage')->name('document-categories.store');
     Route::put('/categorias-de-documentos/{documentCategory}', [DocumentCategoryController::class, 'update'])->middleware('permission:documents.manage')->name('document-categories.update');
     Route::delete('/categorias-de-documentos/{documentCategory}', [DocumentCategoryController::class, 'destroy'])->middleware('permission:documents.manage')->name('document-categories.destroy');
+    Route::get('/vinculacion-y-practica', [AdminProfessionalExperienceController::class, 'index'])->middleware('permission:experiences.view')->name('experiences.index');
+    Route::get('/vinculacion-y-practica/crear', [AdminProfessionalExperienceController::class, 'create'])->middleware('permission:experiences.manage')->name('experiences.create');
+    Route::post('/vinculacion-y-practica', [AdminProfessionalExperienceController::class, 'store'])->middleware('permission:experiences.manage')->name('experiences.store');
+    Route::get('/vinculacion-y-practica/{experience}/editar', [AdminProfessionalExperienceController::class, 'edit'])->middleware('permission:experiences.manage')->name('experiences.edit');
+    Route::put('/vinculacion-y-practica/{experience}', [AdminProfessionalExperienceController::class, 'update'])->middleware('permission:experiences.manage')->name('experiences.update');
+    Route::delete('/vinculacion-y-practica/{experience}', [AdminProfessionalExperienceController::class, 'destroy'])->middleware('permission:experiences.manage')->name('experiences.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

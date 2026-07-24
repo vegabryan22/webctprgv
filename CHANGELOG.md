@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.17.0] - 2026-07-24
+
+### Añadido
+
+- Módulo administrable de práctica profesional, pasantías y visitas técnicas.
+- Relaciones con especialidades y documentos institucionales vigentes.
+- Requisitos, etapas, duración, responsables y canales diferenciados para comunidad educativa y empresas.
+- Publicación condicionada a fecha de verificación y permisos específicos.
+
+### Base de datos
+
+- Migración `2026_07_24_000900_create_professional_experiences_table.php`.
+
 ## [0.16.0] - 2026-07-24
 
 ### Añadido
