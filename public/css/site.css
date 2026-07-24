@@ -2767,3 +2767,52 @@ p {
     .site-navbar .nav-links { gap: .4rem; padding: .8rem 3% 1rem; }
     .site-navbar .nav-links a.nav-link { width: 100%; padding: .85rem 1rem; font-size: .9rem; }
 }
+.home-portal {
+    padding: 4.5rem 1.5rem;
+    background: #f3f7fa;
+    color: #183153;
+}
+
+.home-portal__inner { width: min(1180px, 100%); margin: 0 auto; }
+.home-portal__header { max-width: 720px; margin-bottom: 2rem; }
+.home-portal__eyebrow { display: inline-block; margin-bottom: .45rem; color: #356f13; font-size: .82rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.home-portal h2 { margin: 0 0 .6rem; color: #003665; font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.15; }
+.home-portal__header p { margin: 0; color: #5f6f80; font-size: 1.05rem; }
+.home-quick-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.home-quick-links > a { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .85rem; min-height: 94px; padding: 1rem; border: 1px solid #d8e2eb; border-radius: 14px; background: #fff; color: #003665; text-decoration: none; box-shadow: 0 7px 22px rgba(0, 47, 93, .07); transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.home-quick-links > a:hover, .home-quick-links > a:focus-visible { border-color: #58b72b; box-shadow: 0 10px 28px rgba(0, 47, 93, .13); transform: translateY(-2px); }
+.home-quick-links > a > i:first-child { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 11px; background: #eaf3e6; color: #397b17; font-size: 1.15rem; }
+.home-quick-links strong, .home-quick-links small { display: block; }
+.home-quick-links small { margin-top: .2rem; color: #6b7887; line-height: 1.35; }
+.home-quick-links > a > i:last-child { font-size: .8rem; }
+.home-upcoming { margin-top: 4rem; }
+.home-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.35rem; }
+.home-section-heading h2 { font-size: clamp(1.65rem, 2.4vw, 2.1rem); }
+.home-section-heading > a { color: #003665; font-weight: 800; text-decoration: none; }
+.home-section-heading > a:hover { text-decoration: underline; }
+.home-event-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.home-event-card { display: flex; min-width: 0; overflow: hidden; border: 1px solid #d8e2eb; border-radius: 14px; background: #fff; }
+.home-event-card__date { display: flex; width: 82px; flex: 0 0 82px; flex-direction: column; align-items: center; justify-content: center; border-top: 5px solid var(--event-color, #003665); background: #edf3f7; color: #003665; }
+.home-event-card__date strong { font-size: 1.85rem; line-height: 1; }
+.home-event-card__date span { margin-top: .25rem; font-size: .8rem; font-weight: 800; text-transform: uppercase; }
+.home-event-card__body { min-width: 0; padding: 1rem; }
+.home-event-card__meta { display: flex; flex-wrap: wrap; gap: .4rem; color: #647486; font-size: .76rem; font-weight: 700; }
+.home-event-card__tentative { padding: .15rem .4rem; border-radius: 999px; background: #fff3cd; color: #765700; }
+.home-event-card h3 { margin: .45rem 0 .6rem; font-size: 1rem; line-height: 1.35; }
+.home-event-card h3 a { color: #003665; text-decoration: none; }
+.home-event-card h3 a:hover { text-decoration: underline; }
+.home-event-card p { display: flex; flex-wrap: wrap; gap: .35rem .75rem; margin: 0; color: #647486; font-size: .86rem; }
+.home-empty-state { display: flex; grid-column: 1 / -1; align-items: center; gap: 1rem; padding: 1.25rem; border: 1px dashed #b8c7d4; border-radius: 14px; background: #fff; }
+.home-empty-state > i { color: #58a52d; font-size: 1.8rem; }
+.home-empty-state h3, .home-empty-state p { margin: 0; }
+.home-empty-state p { margin-top: .2rem; color: #647486; }
+
+@media (max-width: 980px) {
+    .home-quick-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+    .home-portal { padding: 3.25rem 1rem; }
+    .home-quick-links, .home-event-grid { grid-template-columns: 1fr; }
+    .home-section-heading { align-items: start; flex-direction: column; }
+}

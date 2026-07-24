@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\ContentPage;
+use App\Models\Event;
+use App\Models\EventCategory;
 use App\Models\NavigationItem;
 use App\Models\Role;
 use App\Models\User;
@@ -34,6 +36,44 @@ class CmsContentTest extends TestCase
         ContentPage::where('route_name', 'information')->update(['content' => '<main>Contenido editable desde MySQL</main>']);
 
         $this->get('/informacion')->assertOk()->assertSee('Contenido editable desde MySQL');
+    }
+
+    public function test_home_keeps_managed_content_and_adds_useful_dynamic_information(): void
+    {
+        ContentPage::where('route_name', 'home')->update(['content' => '<main>Portada administrable</main>']);
+        Event::query()->delete();
+        $event = Event::create([
+            'event_category_id' => EventCategory::firstOrFail()->id,
+            'title' => 'Actividad institucional próxima',
+            'slug' => 'actividad-institucional-proxima',
+            'starts_at' => now()->addWeek(),
+            'all_day' => true,
+            'audience' => 'general',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Portada administrable')
+            ->assertSee('Encuentre rápidamente lo que necesita')
+            ->assertSee('Actividad institucional próxima')
+            ->assertSee(route('calendar.show', $event));
+    }
+
+    public function test_home_does_not_show_draft_activities(): void
+    {
+        Event::create([
+            'event_category_id' => EventCategory::firstOrFail()->id,
+            'title' => 'Actividad interna no publicada',
+            'slug' => 'actividad-interna-no-publicada',
+            'starts_at' => now()->addWeek(),
+            'all_day' => true,
+            'audience' => 'general',
+            'status' => 'draft',
+        ]);
+
+        $this->get('/')->assertOk()->assertDontSee('Actividad interna no publicada');
     }
 
     public function test_system_page_cannot_be_deleted(): void

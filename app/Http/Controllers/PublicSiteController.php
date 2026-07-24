@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContentPage;
+use App\Models\Event;
 use Illuminate\View\View;
 
 class PublicSiteController extends Controller
 {
     public function home(): View
     {
-        return $this->managed('home');
+        $page = $this->publishedPage('home');
+        $upcomingEvents = Event::with('category')
+            ->publiclyVisible()
+            ->where('starts_at', '>=', now()->startOfDay())
+            ->orderBy('starts_at')
+            ->orderByDesc('source_priority')
+            ->limit(4)
+            ->get();
+
+        return view('public.home-page', compact('page', 'upcomingEvents'));
     }
 
     public function news(): View
@@ -51,9 +61,16 @@ class PublicSiteController extends Controller
 
     private function managed(string $routeName): View
     {
+        $page = $this->publishedPage($routeName);
+
+        return view('public.managed-page', compact('page'));
+    }
+
+    private function publishedPage(string $routeName): ContentPage
+    {
         $page = ContentPage::where('route_name', $routeName)->firstOrFail();
         abort_unless($page->status === 'published' && $page->published_at?->isPast(), 404);
 
-        return view('public.managed-page', compact('page'));
+        return $page;
     }
 }

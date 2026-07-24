@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.8.0] - 2026-07-24
+
+### Añadido
+
+- Accesos rápidos en la portada para calendario, especialidades, información estudiantil y contacto.
+- Bloque dinámico de próximas actividades conectado con el calendario administrable.
+- Identificación visible de las fechas tentativas procedentes del calendario MEP.
+- Plan editorial y matriz de responsables para las siguientes fases de contenido.
+
+### Mejorado
+
+- La portada conserva el contenido administrable del CMS y lo complementa con componentes estructurados.
+- Presentación adaptable y accesible de accesos y actividades para computadoras y dispositivos móviles.
+
 ## [0.7.3] - 2026-07-24
 
 ### Mejorado
