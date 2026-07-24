@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.7.2] - 2026-07-24
+
+### Corregido
+
+- El workflow captura el commit desde el workspace Git antes de entrar al artefacto de producción.
+
 ## [0.7.1] - 2026-07-24
 
 ### Corregido

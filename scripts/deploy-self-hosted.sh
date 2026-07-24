@@ -5,6 +5,7 @@ TARGET="/www/wwwroot/ctprobertogamboa.ed.cr/html"
 APP="$TARGET/.app"
 BACKUPS="$TARGET/.deploy/backups"
 STAMP="$(date +%Y%m%d_%H%M%S)"
+DEPLOY_COMMIT="$(git rev-parse HEAD)"
 
 [[ "$(pwd -P)" == "$TARGET/.deploy/actions-runner/_work/webctprgv/webctprgv" ]]
 test -f artisan
@@ -28,7 +29,7 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:clear
 
-git rev-parse HEAD > "$APP/DEPLOYED_COMMIT"
+printf '%s\n' "$DEPLOY_COMMIT" > "$APP/DEPLOYED_COMMIT"
 printf '%s\n' "${DEPLOY_TARGET_REF:-main}" > "$APP/DEPLOYED_REF"
 printf '%s\n' "${DEPLOY_OPERATION:-deploy}" > "$APP/DEPLOYED_OPERATION"
 date --iso-8601=seconds > "$APP/DEPLOYED_AT"
