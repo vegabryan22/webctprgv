@@ -29,11 +29,18 @@ class ProductionStatus
             'http' => $http,
             'latency_ms' => (int) ((microtime(true) - $started) * 1000),
             'database' => $database,
-            'version' => trim((string) @file_get_contents(base_path('VERSION'))),
-            'commit' => trim((string) @file_get_contents(base_path('DEPLOYED_COMMIT'))),
-            'ref' => trim((string) @file_get_contents(base_path('DEPLOYED_REF'))) ?: 'Despliegue anterior',
-            'operation' => trim((string) @file_get_contents(base_path('DEPLOYED_OPERATION'))) ?: 'deploy',
-            'deployed_at' => trim((string) @file_get_contents(base_path('DEPLOYED_AT'))),
+            'version' => $this->read('VERSION'),
+            'commit' => $this->read('DEPLOYED_COMMIT'),
+            'ref' => $this->read('DEPLOYED_REF') ?: 'Despliegue anterior',
+            'operation' => $this->read('DEPLOYED_OPERATION') ?: 'deploy',
+            'deployed_at' => $this->read('DEPLOYED_AT'),
         ];
+    }
+
+    private function read(string $file): string
+    {
+        $path = base_path($file);
+
+        return is_file($path) ? trim((string) file_get_contents($path)) : '';
     }
 }

@@ -20,8 +20,8 @@ class GitOpsTest extends TestCase
         $this->actingAs($user)
             ->get('/administracion/gitops')
             ->assertOk()
-            ->assertSee('GitHub GitOps')
-            ->assertSee('Repositorio local');
+            ->assertSee('Despliegue controlado')
+            ->assertSee('Repositorio remoto');
     }
 
     public function test_workflow_dispatch_is_sent_and_audited(): void

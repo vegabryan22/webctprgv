@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.7.1] - 2026-07-24
+
+### Corregido
+
+- Pruebas del panel actualizadas para la nueva terminología y lectura silenciosa del estado previo al primer despliegue registrado.
+
 ## [0.7.0] - 2026-07-24
 
 ### Añadido
