@@ -1,0 +1,10 @@
+@extends('layouts.admin')
+@section('title', $workshop->exists ? 'Editar taller' : 'Nuevo taller')
+@section('content')
+<div class="page-heading"><h1>{{ $workshop->exists ? 'Editar taller' : 'Nuevo taller exploratorio' }}</h1><a class="button ghost" href="{{ route('admin.workshops.index') }}">Volver</a></div><form class="card" method="POST" action="{{ $workshop->exists ? route('admin.workshops.update', $workshop) : route('admin.workshops.store') }}">@csrf @if($workshop->exists) @method('PUT') @endif
+<div class="field-grid"><div class="field"><label>Nombre</label><input name="name" value="{{ old('name', $workshop->name) }}" required></div><div class="field"><label>Dirección amigable</label><input name="slug" value="{{ old('slug', $workshop->slug) }}" required></div></div>
+<div class="field"><label>Nivel</label><select name="grade_level">@foreach(['7.º','8.º','9.º'] as $grade)<option @selected(old('grade_level', $workshop->grade_level) === $grade)>{{ $grade }}</option>@endforeach</select></div>
+<div class="field"><label>Resumen</label><textarea name="summary" rows="3" required>{{ old('summary', $workshop->summary) }}</textarea></div><div class="field"><label>Descripción</label><textarea class="code-editor" name="description" rows="9">{{ old('description', $workshop->description) }}</textarea></div>
+<div class="field-grid"><div class="field"><label>Responsable</label><input name="responsible" value="{{ old('responsible', $workshop->responsible) }}"></div><div class="field"><label>Fecha de verificación</label><input name="verified_at" type="date" value="{{ old('verified_at', $workshop->verified_at?->format('Y-m-d')) }}"></div><div class="field"><label>Orden</label><input name="sort_order" type="number" value="{{ old('sort_order', $workshop->sort_order ?? 0) }}"></div></div>
+<div class="field"><label>Estado</label><select name="status"><option value="draft">Borrador</option>@if(auth()->user()->hasPermission('workshops.publish'))<option value="published" @selected(old('status', $workshop->status) === 'published')>Publicado</option>@endif</select></div><button class="button secondary">Guardar taller</button></form>
+@endsection

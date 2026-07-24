@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventCategoryController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ExploratoryWorkshopController;
 use App\Http\Controllers\Admin\GitOpsController;
 use App\Http\Controllers\Admin\NavigationItemController;
 use App\Http\Controllers\Admin\NewsArticleController;
@@ -28,6 +29,7 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/informacion', 'information')->name('information');
     Route::get('/especialidades', 'specialties')->name('specialties');
     Route::get('/especialidades/{specialty:slug}', 'specialty')->name('specialties.show');
+    Route::get('/talleres-exploratorios', 'workshops')->name('workshops');
     Route::get('/junta-administrativa', 'board')->name('board');
     Route::get('/contacto', 'contact')->name('contact');
     Route::get('/50-aniversario', 'anniversary')->name('anniversary');
@@ -106,6 +108,12 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/especialidades/{specialty}/editar', [SpecialtyController::class, 'edit'])->middleware('permission:specialties.manage')->name('specialties.edit');
     Route::put('/especialidades/{specialty}', [SpecialtyController::class, 'update'])->middleware('permission:specialties.manage')->name('specialties.update');
     Route::delete('/especialidades/{specialty}', [SpecialtyController::class, 'destroy'])->middleware('permission:specialties.manage')->name('specialties.destroy');
+    Route::get('/talleres-exploratorios', [ExploratoryWorkshopController::class, 'index'])->middleware('permission:workshops.view')->name('workshops.index');
+    Route::get('/talleres-exploratorios/crear', [ExploratoryWorkshopController::class, 'create'])->middleware('permission:workshops.manage')->name('workshops.create');
+    Route::post('/talleres-exploratorios', [ExploratoryWorkshopController::class, 'store'])->middleware('permission:workshops.manage')->name('workshops.store');
+    Route::get('/talleres-exploratorios/{workshop}/editar', [ExploratoryWorkshopController::class, 'edit'])->middleware('permission:workshops.manage')->name('workshops.edit');
+    Route::put('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'update'])->middleware('permission:workshops.manage')->name('workshops.update');
+    Route::delete('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'destroy'])->middleware('permission:workshops.manage')->name('workshops.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

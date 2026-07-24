@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
             ['specialties.view', 'Ver especialidades', 'Especialidades'],
             ['specialties.manage', 'Gestionar especialidades', 'Especialidades'],
             ['specialties.publish', 'Publicar especialidades', 'Especialidades'],
+            ['workshops.view', 'Ver talleres exploratorios', 'Talleres'],
+            ['workshops.manage', 'Gestionar talleres exploratorios', 'Talleres'],
+            ['workshops.publish', 'Publicar talleres exploratorios', 'Talleres'],
             ['menu.view', 'Ver menú principal', 'Contenido'],
             ['menu.manage', 'Gestionar menú principal', 'Contenido'],
             ['events.view', 'Ver actividades', 'Calendario'],
@@ -63,7 +66,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],

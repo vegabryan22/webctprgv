@@ -2,6 +2,22 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.13.0] - 2026-07-24
+
+### Añadido
+
+- Módulo administrable de talleres exploratorios para 7.º, 8.º y 9.º.
+- Recorridos públicos diferenciados entre talleres exploratorios y especialidades técnicas.
+- Permisos de consulta, gestión y publicación para talleres.
+
+### Corregido
+
+- Las especialidades técnicas se identifican explícitamente como oferta para 10.º, 11.º y 12.º.
+
+### Base de datos
+
+- Migración `2026_07_24_000600_create_exploratory_workshops_table.php`.
+
 ## [0.12.0] - 2026-07-24
 
 ### Añadido

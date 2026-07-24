@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContentPage;
 use App\Models\Event;
+use App\Models\ExploratoryWorkshop;
 use App\Models\NewsArticle;
 use App\Models\NewsCategory;
 use App\Models\Specialty;
@@ -62,6 +63,11 @@ class PublicSiteController extends Controller
         abort_unless(Specialty::published()->whereKey($specialty)->exists(), 404);
 
         return view('specialties.show', compact('specialty'));
+    }
+
+    public function workshops(): View
+    {
+        return view('workshops.index', ['workshops' => ExploratoryWorkshop::published()->orderBy('grade_level')->orderBy('sort_order')->get()]);
     }
 
     public function board(): View

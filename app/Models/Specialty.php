@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Specialty extends Model
 {
     protected $fillable = [
-        'author_id', 'name', 'slug', 'summary', 'description', 'student_profile', 'curriculum',
+        'author_id', 'name', 'slug', 'summary', 'grade_levels', 'description', 'student_profile', 'curriculum',
         'career_opportunities', 'official_program_url', 'coordinator', 'contact_email', 'image_path',
         'status', 'verified_at', 'published_at', 'sort_order',
     ];

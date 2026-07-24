@@ -2,6 +2,8 @@
 
 ## Alcance
 
+Las especialidades corresponden a 10.º, 11.º y 12.º. Los talleres exploratorios de 7.º, 8.º y 9.º se administran en un módulo separado para no confundir ambos recorridos.
+
 Cada especialidad se administra como una ficha independiente con:
 
 - Nombre y resumen.

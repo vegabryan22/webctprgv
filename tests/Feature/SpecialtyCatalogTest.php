@@ -48,6 +48,7 @@ class SpecialtyCatalogTest extends TestCase
             'name' => $specialty->name,
             'slug' => $specialty->slug,
             'summary' => 'Resumen validado por Coordinación Técnica.',
+            'grade_levels' => '10.º, 11.º y 12.º',
             'description' => '<p>Descripción validada.</p>',
             'official_program_url' => 'https://detce.mep.go.cr/programas-estudio',
             'status' => 'published',

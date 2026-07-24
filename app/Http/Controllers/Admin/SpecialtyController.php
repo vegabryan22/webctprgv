@@ -65,6 +65,7 @@ class SpecialtyController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('specialties')->ignore($specialty)],
             'summary' => ['nullable', 'string', 'max:1000'],
+            'grade_levels' => ['required', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
             'student_profile' => ['nullable', 'string'],
             'curriculum' => ['nullable', 'string'],
