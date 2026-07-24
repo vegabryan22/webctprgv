@@ -2,6 +2,23 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.12.0] - 2026-07-24
+
+### Añadido
+
+- Fichas estructuradas de especialidades con perfil, formación, oportunidades, contacto y programa oficial.
+- Administración y permisos independientes de consulta, gestión y publicación.
+- Listado y detalle públicos adaptables sobre la ruta existente de Especialidades.
+- Precarga en borrador de los seis nombres heredados para revisión de Coordinación Técnica.
+
+### Cambiado
+
+- La página heredada deja de presentar automáticamente afirmaciones de empleabilidad, convenios y duración de práctica sin fuente.
+
+### Base de datos
+
+- Migración `2026_07_24_000500_create_specialties_table.php`.
+
 ## [0.11.0] - 2026-07-24
 
 ### Añadido

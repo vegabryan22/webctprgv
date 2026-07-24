@@ -115,7 +115,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 | ID | Unidad | Estado | Dependencias | Entregables | Criterio específico |
 | --- | --- | --- | --- | --- | --- |
-| CTP-C06 | Especialidades estructuradas | Pendiente | CTP-B02 | Ficha, perfil, áreas, recursos, contacto y programa oficial | Validación DETCE/MEP y Coordinación Técnica |
+| CTP-C06 | Especialidades estructuradas | Completado | CTP-B02 | Ficha, perfil, áreas, contacto y programa oficial | Borradores sujetos a validación DETCE/MEP y Coordinación Técnica |
 | CTP-C09 | Empresas y práctica profesional | Pendiente | CTP-C06 | Práctica, pasantías, visitas y contacto empresarial | Sin convenios o estadísticas sin respaldo |
 
 ## Etapa 4 — Transparencia, historia y comunidad
@@ -165,6 +165,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C02 | 0.9.1 | Completado | `052532f` | `052532f` | 31 pruebas y 125 aserciones aprobadas; HTTP 200 | Corrección adaptable del encabezado público |
 | 2026-07-24 | CTP-C03 | 0.10.0 | Completado | `c8fce6b` | `a773113` | 34 pruebas y 132 aserciones aprobadas; 6 páginas auditadas | Inventario y revisión editorial administrativa |
 | 2026-07-24 | CTP-C05 | 0.11.0 | Completado | `2249a74` | `2b84b68` | 37 pruebas y 143 aserciones aprobadas; migración local y HTTP 200 | Catálogo estructurado de servicios |
+| 2026-07-24 | CTP-C06 | 0.12.0 | En revisión | Pendiente | Pendiente | Pruebas específicas aprobadas; cierre pendiente | Especialidades estructuradas y borradores revisables |
 
 ## Riesgos y bloqueos
 
@@ -178,12 +179,12 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 
 ## Próxima unidad preparada
 
-`CTP-C06 — Especialidades estructuradas`
+`CTP-C07 — Directorio institucional`
 
-1. Diseñar fichas individuales y categorías de la oferta técnica.
-2. Contrastar nombres y programas con DETCE/MEP.
-3. Separar datos confirmados de afirmaciones pendientes.
-4. Crear administración, listado y detalle público.
-5. Mantener sin publicar empleabilidad, convenios o certificaciones sin fuente.
+1. Diseñar departamentos, cargos, teléfonos, extensiones, correos y horarios.
+2. Evitar publicar datos personales no autorizados.
+3. Construir administración, búsqueda y presentación pública.
+4. Vincular responsables del directorio con servicios y especialidades.
+5. Mantener contactos sin confirmar en borrador.
 
 `CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.

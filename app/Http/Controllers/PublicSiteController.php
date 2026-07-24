@@ -6,6 +6,7 @@ use App\Models\ContentPage;
 use App\Models\Event;
 use App\Models\NewsArticle;
 use App\Models\NewsCategory;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -51,7 +52,16 @@ class PublicSiteController extends Controller
 
     public function specialties(): View
     {
-        return $this->managed('specialties');
+        return view('specialties.index', [
+            'specialties' => Specialty::published()->orderBy('sort_order')->orderBy('name')->get(),
+        ]);
+    }
+
+    public function specialty(Specialty $specialty): View
+    {
+        abort_unless(Specialty::published()->whereKey($specialty)->exists(), 404);
+
+        return view('specialties.show', compact('specialty'));
     }
 
     public function board(): View

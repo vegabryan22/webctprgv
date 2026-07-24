@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\SpecialtyController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
@@ -26,6 +27,7 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/noticias/{article:slug}', 'newsArticle')->name('news.show');
     Route::get('/informacion', 'information')->name('information');
     Route::get('/especialidades', 'specialties')->name('specialties');
+    Route::get('/especialidades/{specialty:slug}', 'specialty')->name('specialties.show');
     Route::get('/junta-administrativa', 'board')->name('board');
     Route::get('/contacto', 'contact')->name('contact');
     Route::get('/50-aniversario', 'anniversary')->name('anniversary');
@@ -97,6 +99,13 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::post('/categorias-de-servicios', [ServiceCategoryController::class, 'store'])->middleware('permission:services.manage')->name('service-categories.store');
     Route::put('/categorias-de-servicios/{serviceCategory}', [ServiceCategoryController::class, 'update'])->middleware('permission:services.manage')->name('service-categories.update');
     Route::delete('/categorias-de-servicios/{serviceCategory}', [ServiceCategoryController::class, 'destroy'])->middleware('permission:services.manage')->name('service-categories.destroy');
+
+    Route::get('/especialidades', [SpecialtyController::class, 'index'])->middleware('permission:specialties.view')->name('specialties.index');
+    Route::get('/especialidades/crear', [SpecialtyController::class, 'create'])->middleware('permission:specialties.manage')->name('specialties.create');
+    Route::post('/especialidades', [SpecialtyController::class, 'store'])->middleware('permission:specialties.manage')->name('specialties.store');
+    Route::get('/especialidades/{specialty}/editar', [SpecialtyController::class, 'edit'])->middleware('permission:specialties.manage')->name('specialties.edit');
+    Route::put('/especialidades/{specialty}', [SpecialtyController::class, 'update'])->middleware('permission:specialties.manage')->name('specialties.update');
+    Route::delete('/especialidades/{specialty}', [SpecialtyController::class, 'destroy'])->middleware('permission:specialties.manage')->name('specialties.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

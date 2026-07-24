@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             ['services.view', 'Ver servicios', 'Servicios'],
             ['services.manage', 'Gestionar servicios y categorías', 'Servicios'],
             ['services.publish', 'Publicar servicios', 'Servicios'],
+            ['specialties.view', 'Ver especialidades', 'Especialidades'],
+            ['specialties.manage', 'Gestionar especialidades', 'Especialidades'],
+            ['specialties.publish', 'Publicar especialidades', 'Especialidades'],
             ['menu.view', 'Ver menú principal', 'Contenido'],
             ['menu.manage', 'Gestionar menú principal', 'Contenido'],
             ['events.view', 'Ver actividades', 'Calendario'],
@@ -60,7 +63,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],
