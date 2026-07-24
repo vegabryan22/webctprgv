@@ -169,7 +169,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-C06 | 0.13.0 | Completado | `f93f228` | `3a6d1d0` | 42 pruebas y 163 aserciones aprobadas; HTTP 200 en ambas rutas | Talleres 7.º–9.º y especialidades 10.º–12.º |
 | 2026-07-24 | CTP-B04 | 0.14.0 | Completado | `9bb7f3a` | `fb6a55d` | 43 pruebas y 166 aserciones aprobadas | Selector de versiones nuevas en GitOps |
 | 2026-07-24 | CTP-B04 | 0.14.1 | Completado | `c5c0639` | `c5c0639` | 6 pruebas GitOps y 15 aserciones aprobadas | Refinamiento visual del selector de despliegue |
-| 2026-07-24 | CTP-C07 | 0.15.0 | En revisión | Pendiente | Pendiente | Pendiente | Directorio institucional verificable |
+| 2026-07-24 | CTP-C07 | 0.15.0 | Completado | `99a54df` | Pendiente de registrar | 46 pruebas y 173 aserciones aprobadas; migración local y HTTP 200 | Directorio institucional verificable |
 
 ## Riesgos y bloqueos
 
