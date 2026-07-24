@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.14.1] - 2026-07-24
+
+### Mejorado
+
+- Selector de despliegue presentado como un control administrativo compacto y consistente.
+- Campo de versión de ancho completo, foco visible y descripción del proceso seguro.
+- Acciones adaptables con botón completo en pantallas pequeñas.
+
 ## [0.14.0] - 2026-07-24
 
 ### Añadido

@@ -146,7 +146,12 @@ a.admin-page-link:hover, a.admin-page-link:focus-visible { border-color: var(--n
 @media (max-width: 700px) {
     .audit-page__header { align-items: flex-start; flex-direction: column; }
 }
-.gitops-version-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .45rem .65rem; align-items: end; }
-.gitops-version-form label { grid-column: 1 / -1; font-size: .82rem; font-weight: 700; }
-.gitops-version-form select { min-width: 0; }
-@media (max-width: 650px) { .gitops-version-form { grid-template-columns: 1fr; } }
+.gitops-step .gitops-version-form { display: grid; gap: .7rem; padding: .8rem; border: 1px solid #d7e2eb; border-radius: 10px; background: #fff; box-shadow: 0 5px 14px rgba(0,47,93,.05); }
+.gitops-version-field { display: grid; gap: .35rem; }
+.gitops-version-field label { color: var(--navy); font-size: .82rem; font-weight: 800; }
+.gitops-version-field select { display: block; width: 100%; min-width: 0; min-height: 42px; padding: .65rem 2.25rem .65rem .75rem; border: 1px solid #b9c9d6; border-radius: 8px; color: var(--text); background-color: #fff; font: inherit; }
+.gitops-version-field select:focus { border-color: var(--navy); outline: 3px solid rgba(0,47,93,.12); }
+.gitops-version-actions { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.gitops-version-actions small { color: var(--muted); font-size: .75rem; line-height: 1.3; }
+.gitops-step .gitops-version-actions .button { flex: 0 0 auto; }
+@media (max-width: 650px) { .gitops-version-actions { align-items: stretch; flex-direction: column; } .gitops-step .gitops-version-actions .button { width: 100%; } }

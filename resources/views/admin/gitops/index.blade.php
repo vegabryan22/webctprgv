@@ -53,13 +53,18 @@
             <p>Producción: <strong>v{{ $production['version'] }}</strong>@if($latestTag) · disponible: <strong>{{ $latestTag['name'] }}</strong>@endif</p>
             @if(auth()->user()->hasPermission('gitops.deploy'))
                 <form class="gitops-version-form" method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Aplicar la versión seleccionada en producción?')">@csrf
-                    <label for="deploy_target_ref">Versión objetivo</label>
-                    <select id="deploy_target_ref" name="target_ref" required>
-                        <option value="">Seleccione una versión…</option>
-                        @foreach($availableTags->reverse() as $tag)<option value="{{ $tag['name'] }}">{{ $tag['name'] }} · {{ substr($tag['commit']['sha'] ?? '', 0, 8) }}</option>@endforeach
-                        <option value="{{ $settings->branch }}">{{ $settings->branch }} · última versión de la rama</option>
-                    </select>
-                    <button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Aplicar versión</button>
+                    <div class="gitops-version-field">
+                        <label for="deploy_target_ref"><i class="fa-solid fa-code-branch"></i> Versión objetivo</label>
+                        <select id="deploy_target_ref" name="target_ref" required>
+                            <option value="">Seleccione una versión disponible</option>
+                            @foreach($availableTags->reverse() as $tag)<option value="{{ $tag['name'] }}">{{ $tag['name'] }} · commit {{ substr($tag['commit']['sha'] ?? '', 0, 8) }}</option>@endforeach
+                            <option value="{{ $settings->branch }}">{{ $settings->branch }} · última versión de la rama</option>
+                        </select>
+                    </div>
+                    <div class="gitops-version-actions">
+                        <small><i class="fa-solid fa-shield-halved"></i> Se ejecutarán pruebas, respaldo y migraciones.</small>
+                        <button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Aplicar versión</button>
+                    </div>
                 </form>
             @endif
         </article>
