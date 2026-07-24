@@ -2912,3 +2912,4 @@ p {
 .directory-card dt { color: #64748b; }
 .directory-card dd { margin: 0; }
 @media(max-width:650px){.directory-grid{grid-template-columns:1fr}.directory-search>div{flex-direction:column}}
+.document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.document-card{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1.2rem;border:1px solid #d9e3eb;border-radius:14px;background:#fff}.document-card h2{margin:.25rem 0;color:#003665;font-size:1.2rem}.document-card p{color:#5f6f80}.directory-search select{padding:.7rem;border:1px solid #b9c9d6;border-radius:8px;background:#fff}@media(max-width:700px){.document-grid{grid-template-columns:1fr}}

@@ -1,0 +1,6 @@
+@extends('layouts.admin')
+@section('title','Categorías de documentos')
+@section('content')
+<div class="page-heading"><h1>Categorías de documentos</h1><a class="button ghost" href="{{ route('admin.documents.index') }}">Volver</a></div><form class="card" method="POST" action="{{ route('admin.document-categories.store') }}">@csrf<div class="field-grid"><div class="field"><label>Nombre</label><input name="name" required></div><div class="field"><label>Icono</label><input name="icon" value="fa-folder-open" required></div><div class="field"><label>Orden</label><input name="sort_order" type="number" value="0"></div></div><button class="button secondary">Agregar</button></form>
+<div class="card table-wrap"><table><thead><tr><th>Nombre</th><th>Icono</th><th>Orden</th><th>Documentos</th></tr></thead><tbody>@foreach($categories as $category)<tr><form method="POST" action="{{ route('admin.document-categories.update',$category) }}">@csrf @method('PUT')<td><input name="name" value="{{ $category->name }}"></td><td><input name="icon" value="{{ $category->icon }}"></td><td><input name="sort_order" type="number" value="{{ $category->sort_order }}"></td><td>{{ $category->documents_count }} <button class="button link">Guardar</button></td></form></tr>@endforeach</tbody></table></div>
+@endsection

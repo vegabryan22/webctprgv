@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\ContentAuditController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectoryController as AdminDirectoryController;
+use App\Http\Controllers\Admin\DocumentCategoryController;
+use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\EventCategoryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ExploratoryWorkshopController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DirectoryController;
+use App\Http\Controllers\DocumentLibraryController;
 use App\Http\Controllers\PublicSiteController;
 use App\Http\Controllers\ServiceCatalogController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +53,7 @@ Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('s
     Route::get('/{service:slug}', 'show')->name('show');
 });
 Route::get('/directorio', DirectoryController::class)->name('directory');
+Route::get('/documentos', DocumentLibraryController::class)->name('documents');
 
 Route::middleware('guest')->group(function (): void {
     Route::get('/administracion/ingresar', [AuthController::class, 'create'])->name('login');
@@ -124,6 +128,16 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/directorio/{entry}/editar', [AdminDirectoryController::class, 'edit'])->middleware('permission:directory.manage')->name('directory.edit');
     Route::put('/directorio/{entry}', [AdminDirectoryController::class, 'update'])->middleware('permission:directory.manage')->name('directory.update');
     Route::delete('/directorio/{entry}', [AdminDirectoryController::class, 'destroy'])->middleware('permission:directory.manage')->name('directory.destroy');
+    Route::get('/documentos', [DocumentController::class, 'index'])->middleware('permission:documents.view')->name('documents.index');
+    Route::get('/documentos/crear', [DocumentController::class, 'create'])->middleware('permission:documents.manage')->name('documents.create');
+    Route::post('/documentos', [DocumentController::class, 'store'])->middleware('permission:documents.manage')->name('documents.store');
+    Route::get('/documentos/{document}/editar', [DocumentController::class, 'edit'])->middleware('permission:documents.manage')->name('documents.edit');
+    Route::put('/documentos/{document}', [DocumentController::class, 'update'])->middleware('permission:documents.manage')->name('documents.update');
+    Route::delete('/documentos/{document}', [DocumentController::class, 'destroy'])->middleware('permission:documents.manage')->name('documents.destroy');
+    Route::get('/categorias-de-documentos', [DocumentCategoryController::class, 'index'])->middleware('permission:documents.manage')->name('document-categories.index');
+    Route::post('/categorias-de-documentos', [DocumentCategoryController::class, 'store'])->middleware('permission:documents.manage')->name('document-categories.store');
+    Route::put('/categorias-de-documentos/{documentCategory}', [DocumentCategoryController::class, 'update'])->middleware('permission:documents.manage')->name('document-categories.update');
+    Route::delete('/categorias-de-documentos/{documentCategory}', [DocumentCategoryController::class, 'destroy'])->middleware('permission:documents.manage')->name('document-categories.destroy');
 
     Route::get('/menu', [NavigationItemController::class, 'index'])->middleware('permission:menu.view')->name('navigation.index');
     Route::post('/menu', [NavigationItemController::class, 'store'])->middleware('permission:menu.manage')->name('navigation.store');

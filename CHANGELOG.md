@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.16.0] - 2026-07-24
+
+### Añadido
+
+- Biblioteca administrable de reglamentos, circulares, formularios y guías.
+- Categorías, búsqueda, filtros, público, responsable, versión, emisión y expiración.
+- Reemplazo controlado de documentos y ocultamiento automático de archivos vencidos.
+- Permisos independientes de consulta, gestión y publicación.
+
+### Base de datos
+
+- Migración `2026_07_24_000800_create_document_library_tables.php`.
+
 ## [0.15.0] - 2026-07-24
 
 ### Añadido
