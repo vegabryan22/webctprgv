@@ -80,6 +80,17 @@ th { color: var(--navy); font-size: .82rem; text-transform: uppercase; }
 .badge.danger { color: var(--danger); background: #fff0ef; }
 .badge.neutral { color: #53606d; background: #edf1f4; }
 .split-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.gitops-flow { padding: 1rem 1.15rem; }
+.gitops-flow-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }
+.gitops-flow-heading h2, .gitops-flow-heading p { margin: 0; }
+.gitops-flow-heading p { margin-top: .2rem; }
+.gitops-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.gitops-step { min-width: 0; padding: .9rem 1rem; background: #fbfcfd; }
+.gitops-step + .gitops-step { border-left: 1px solid var(--border); }
+.gitops-step-title { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; color: var(--navy); }
+.gitops-step-number { display: inline-grid; width: 1.65rem; height: 1.65rem; place-items: center; border-radius: 50%; color: white; background: var(--navy); font-size: .8rem; font-weight: 800; }
+.gitops-step p { min-height: 2.2rem; margin: .55rem 0 .7rem; color: var(--muted); font-size: .88rem; line-height: 1.35; }
+.gitops-step .button { min-height: 36px; padding: .5rem .75rem; font-size: .9rem; }
 .stack { display: grid; gap: 1rem; }
 .definition-list { display: grid; grid-template-columns: max-content 1fr; gap: .65rem 1rem; margin: 0; }
 .definition-list dt { color: var(--muted); }
@@ -119,4 +130,4 @@ a.admin-page-link:hover, a.admin-page-link:focus-visible { border-color: var(--n
 .admin-page-ellipsis { padding: .5rem .2rem; color: var(--muted); }
 .admin-pagination p { margin: 0; color: var(--muted); font-size: .88rem; }
 @media (max-width: 1100px) { .menu-item-grid { grid-template-columns: repeat(2, 1fr); } .category-row { grid-template-columns: 1fr 120px; } }
-@media (max-width: 850px) { .admin-shell { grid-template-columns: 1fr; } .sidebar { position: static; } .field-grid, .split-grid, .menu-item-grid { grid-template-columns: 1fr; } .menu-item-footer { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 850px) { .admin-shell { grid-template-columns: 1fr; } .sidebar { position: static; } .field-grid, .split-grid, .menu-item-grid, .gitops-steps { grid-template-columns: 1fr; } .gitops-step + .gitops-step { border-left: 0; border-top: 1px solid var(--border); } .menu-item-footer { align-items: flex-start; flex-direction: column; } }

@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.7.3] - 2026-07-24
+
+### Mejorado
+
+- Flujo GitOps compacto en tres columnas con estados, resultados y acciones visibles.
+- Consulta remota independiente y botón sólido para validar producción.
+- Adaptación vertical del flujo operativo para pantallas pequeñas.
+
 ## [0.7.2] - 2026-07-24
 
 ### Corregido

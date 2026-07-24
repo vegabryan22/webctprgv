@@ -3,7 +3,10 @@
 @section('content')
 <div class="page-heading">
     <div><h1><i class="fa-brands fa-github"></i> Despliegue controlado</h1><p class="muted">Mantenimiento, validación y reversión segura mediante GitHub Actions.</p></div>
-    <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button link"><i class="fa-solid fa-rotate"></i> Actualizar y validar</button></form>
+    <div class="actions">
+        <a class="button ghost" href="{{ route('admin.gitops.index') }}"><i class="fa-solid fa-arrows-rotate"></i> Consultar GitHub</a>
+        <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button secondary"><i class="fa-solid fa-heart-pulse"></i> Validar servicio</button></form>
+    </div>
 </div>
 
 @if($integrationError)<div class="alert error"><i class="fa-solid fa-triangle-exclamation"></i> {{ $integrationError }}</div>@endif
@@ -35,16 +38,25 @@
     </article>
 </section>
 
-<section class="card" style="margin-top:1rem">
-    <div class="page-heading"><div><h2><i class="fa-solid fa-list-check"></i> Flujo de despliegue</h2><p class="muted">Cada solicitud ejecuta pruebas, respaldo, migraciones, cachés y salud HTTP.</p></div></div>
-    <div class="split-grid">
-        <div><h3>1 · Consultar remoto</h3><p class="muted">La información de GitHub se actualiza al abrir o validar esta página.</p></div>
-        <div><h3>2 · Aplicar versión</h3><p class="muted">Despliega la rama configurada sin operaciones simultáneas.</p>
+<section class="card gitops-flow" style="margin-top:1rem">
+    @php($lastValidation = $events->firstWhere('action', 'production_validate'))
+    <div class="gitops-flow-heading"><div><h2><i class="fa-solid fa-list-check"></i> Operaciones</h2><p class="muted">Consulta, despliegue y salud de producción.</p></div><span class="badge {{ $production['http'] === 200 ? 'success' : 'danger' }}">HTTP {{ $production['http'] ?: 'sin respuesta' }}</span></div>
+    <div class="gitops-steps">
+        <article class="gitops-step">
+            <div class="gitops-step-title"><span class="gitops-step-number">1</span><strong>Consultar remoto</strong><span class="badge {{ $integrationError ? 'danger' : 'success' }}">{{ $integrationError ? 'Error' : 'Actualizado' }}</span></div>
+            <p>{{ count($commits) }} commits · {{ count($tags) }} versiones · {{ count($runs) }} ejecuciones</p>
+            <a class="button ghost" href="{{ route('admin.gitops.index') }}"><i class="fa-solid fa-cloud-arrow-down"></i> Actualizar estado</a>
+        </article>
+        <article class="gitops-step">
+            <div class="gitops-step-title"><span class="gitops-step-number">2</span><strong>Aplicar versión</strong><span class="badge {{ $canDispatch ? 'success' : 'warning' }}">{{ $canDispatch ? 'Disponible' : 'Inactivo' }}</span></div>
+            <p>{{ $settings->branch }} · versión actual v{{ $production['version'] }}</p>
             @if(auth()->user()->hasPermission('gitops.deploy'))<form method="POST" action="{{ route('admin.gitops.dispatch') }}" onsubmit="return confirm('¿Desplegar {{ $settings->branch }} en producción?')">@csrf<button class="button secondary" @disabled(!$canDispatch)><i class="fa-solid fa-rocket"></i> Desplegar {{ $settings->branch }}</button></form>@endif
-        </div>
-        <div><h3>3 · Validar servicio</h3><p class="muted">Comprueba HTTP y conexión de base de datos, dejando evidencia.</p>
-            <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button link"><i class="fa-solid fa-heart-pulse"></i> Validar ahora</button></form>
-        </div>
+        </article>
+        <article class="gitops-step">
+            <div class="gitops-step-title"><span class="gitops-step-number">3</span><strong>Validar servicio</strong><span class="badge {{ $production['http'] === 200 && $production['database'] ? 'success' : 'danger' }}">{{ $production['http'] === 200 && $production['database'] ? 'Saludable' : 'Alerta' }}</span></div>
+            <p>@if($lastValidation)Última: {{ $lastValidation->message }}@else HTTP {{ $production['http'] }} · BD {{ $production['database'] ? 'OK' : 'ERROR' }}@endif</p>
+            <form method="POST" action="{{ route('admin.gitops.validate') }}">@csrf<button class="button"><i class="fa-solid fa-heart-pulse"></i> Ejecutar validación</button></form>
+        </article>
     </div>
 </section>
 
