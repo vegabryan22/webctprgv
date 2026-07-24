@@ -171,7 +171,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | CTP-B04 | 0.14.1 | Completado | `c5c0639` | `c5c0639` | 6 pruebas GitOps y 15 aserciones aprobadas | Refinamiento visual del selector de despliegue |
 | 2026-07-24 | CTP-C07 | 0.15.0 | Completado | `99a54df` | `2c420af` | 46 pruebas y 173 aserciones aprobadas; migración local y HTTP 200 | Directorio institucional verificable |
 | 2026-07-24 | CTP-C08 | 0.16.0 | Completado | `b3fa8e0` | `2ab8e40` | 50 pruebas y 187 aserciones aprobadas; migración local y HTTP 200 | Biblioteca de documentos vigente y versionada |
-| 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | Pendiente | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
+| 2026-07-24 | CTP-C09 | 0.17.0 | Completado | `cf4e5cc` | `b8e8149` | 54 pruebas y 201 aserciones aprobadas; migración local y HTTP 200 | Práctica, pasantías y visitas vinculadas con especialidades y documentos |
 
 ## Riesgos y bloqueos
 
