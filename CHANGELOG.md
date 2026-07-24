@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.6.2] - 2026-07-24
+
+### Corregido
+
+- El workflow utiliza una versión aislada y actual de Composer, compatible con Laravel 13.
+- La construcción tolera que `fileinfo` no esté habilitado en PHP CLI sin modificar la configuración global del servidor.
+
 ## [0.6.1] - 2026-07-24
 
 ### Añadido

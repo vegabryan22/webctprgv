@@ -16,8 +16,14 @@ jobs:
       - name: Obtener versión
         uses: actions/checkout@v4
 
+      - name: Preparar Composer actual
+        run: |
+          curl -fsSL https://getcomposer.org/installer -o /tmp/composer-setup.php
+          php /tmp/composer-setup.php --quiet --install-dir="$RUNNER_TEMP" --filename=composer
+          rm -f /tmp/composer-setup.php
+
       - name: Instalar dependencias PHP
-        run: composer install --no-interaction --prefer-dist --no-progress --optimize-autoloader
+        run: php "$RUNNER_TEMP/composer" install --no-interaction --prefer-dist --no-progress --optimize-autoloader --ignore-platform-req=ext-fileinfo
 
       - name: Ejecutar pruebas
         run: php artisan test
