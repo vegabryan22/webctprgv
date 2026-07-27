@@ -190,7 +190,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | CTP-C06, ilustraciones curriculares | 0.23.0 | Completado | `41b6443` | `ffbdc93` | 69 pruebas y 404 aserciones aprobadas; listados y detalles con HTTP 200 | Atlas con 24 escenas temáticas y prioridad para imágenes del CMS |
 | 2026-07-27 | CTP-C06, recorte de ilustraciones | 0.23.1 | Completado | `02cb4e6` | `7bffb4a` | 69 pruebas y 404 aserciones aprobadas; listado con archivos individuales y HTTP 200 | Separación física de las 24 escenas para impedir recortes entre filas |
 | 2026-07-27 | CTP-C06, presentación de ilustraciones | 0.23.2 | Completado | `40931a5` | `c13b94d` | 69 pruebas y 404 aserciones aprobadas; HTML sin fondos en línea y HTTP 200 | Imágenes reales con encuadre completo y sin repetición en mosaico |
-| 2026-07-27 | CTP-C06, encuadre de ilustraciones | 0.23.3 | Completado | `6596d07` | Pendiente | 69 pruebas y 404 aserciones aprobadas; detalle con HTTP 200 | Cobertura total con posición superior y sin fondos repetibles |
+| 2026-07-27 | CTP-C06, encuadre de ilustraciones | 0.23.3 | Completado | `6596d07` | `290c2eb` | 69 pruebas y 404 aserciones aprobadas; detalle con HTTP 200 | Cobertura total con posición superior y sin fondos repetibles |
 
 ## Riesgos y bloqueos
 
