@@ -32,7 +32,7 @@ La migración solo reemplaza fichas provisionales que continúan intactas y crea
 
 La evidencia, las descripciones propuestas y los talleres clasificados por nivel se encuentran en [OFERTA-ACADEMICA-FUENTES.md](OFERTA-ACADEMICA-FUENTES.md).
 
-La presencia de un plan en el archivo documental no confirma por sí sola que la oferta se imparta actualmente en el CTPRGV. Coordinación Técnica debe confirmar cada ficha antes de publicarla.
+La versión `0.19.1` publica las fichas documentadas por solicitud expresa del usuario. La publicación respalda nombres y descripciones en los programas de estudio; no completa contactos, responsables, oportunidades laborales ni otros datos institucionales que continúan pendientes de confirmación.
 
 ## Regla editorial
 

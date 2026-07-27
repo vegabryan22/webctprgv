@@ -2,6 +2,18 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.19.1] - 2026-07-26
+
+### Añadido
+
+- Publicación del catálogo documentado en las páginas de especialidades y talleres.
+- Secciones públicas de talleres organizadas por 7.º, 8.º y 9.º.
+- Sección diferenciada para Inglés conversacional como programa de todo el tercer ciclo.
+
+### Base de datos
+
+- Migración `2026_07_26_000200_publish_documented_curricular_catalog.php`.
+
 ## [0.19.0] - 2026-07-26
 
 ### Añadido

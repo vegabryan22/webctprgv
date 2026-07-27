@@ -4,7 +4,7 @@
 
 Este documento consolida los nombres oficiales, niveles y descripciones breves de las especialidades técnicas y talleres exploratorios contenidos en `docs/1. Planes de estudio por departamento`.
 
-Las descripciones propuestas para la web son síntesis editoriales de los programas del Ministerio de Educación Pública (MEP). No afirman que un programa esté abierto, cuente con cupo o se imparta actualmente; esa condición debe confirmarla la Dirección o la Coordinación Técnica antes de publicarlo.
+Las descripciones publicadas en la web son síntesis editoriales de los programas del Ministerio de Educación Pública (MEP). No afirman que un programa esté abierto o cuente con cupo. Los contactos, responsables, oportunidades laborales y demás datos institucionales permanecen vacíos mientras no exista confirmación específica.
 
 ## Método y alcance
 
@@ -13,7 +13,7 @@ Las descripciones propuestas para la web son síntesis editoriales de los progra
 - Se consultaron las secciones de descripción, fundamentación, perfil y unidades de estudio.
 - Los planes de 10.º, 11.º y 12.º de una misma especialidad se consolidaron en una sola ficha.
 - Los dos programas en inglés de Administración logística y distribución se consideran material complementario, no especialidades adicionales.
-- Se mantienen como borrador todos los registros hasta confirmar que forman parte de la oferta vigente del CTPRGV.
+- Los registros se prepararon como borradores en `v0.19.0` y se publicaron por solicitud expresa del usuario en `v0.19.1`.
 
 ## Especialidades técnicas
 
@@ -86,13 +86,11 @@ Todas las especialidades documentadas corresponden a Educación Diversificada T�
 - 7 talleres exploratorios propios de 9.º.
 - 1 programa de Inglés conversacional común a 7.º, 8.º y 9.º.
 
-## Pendientes de confirmación institucional
+## Pendientes de confirmación institucional complementaria
 
-Antes de publicar estos registros, la Dirección o la Coordinación Técnica debe confirmar:
+La Dirección o la Coordinación Técnica debe completar:
 
-1. Cuáles especialidades y talleres se imparten actualmente en el CTPRGV.
-2. Si todos los planes incluidos en la carpeta corresponden a la oferta vigente y no solo a un archivo histórico.
-3. El enlace público oficial de cada programa o la autorización para publicar una copia.
-4. La persona o departamento responsable de verificar cada ficha.
-5. La fecha efectiva de verificación.
-
+1. Disponibilidad, cupos y condiciones vigentes de cada opción.
+2. El enlace público oficial de cada programa o la autorización para publicar una copia.
+3. La persona o departamento responsable de cada ficha.
+4. Contactos institucionales y oportunidades profesionales que puedan respaldarse.
