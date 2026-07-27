@@ -17,6 +17,19 @@ Las páginas institucionales muestran la etiqueta **Institucional** en el panel.
 - contenido;
 - estado de publicación.
 
+## Contacto público
+
+Desde `0.28.0`, la página `/contacto` no imprime el HTML heredado de la página del CMS. Utiliza parámetros estructurados de `site_settings`, administrables desde **Contenido → Contacto**:
+
+- título y texto introductorio;
+- teléfono principal y secundario;
+- correo electrónico;
+- horario;
+- dirección y enlace público del mapa;
+- fecha de verificación y fuente responsable.
+
+El permiso `contact.manage` controla esta pantalla. Los editores de contenido y la superadministración lo reciben de forma predeterminada. El formulario decorativo anterior fue retirado porque no tenía destino ni procesaba mensajes.
+
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 
 ## Editor

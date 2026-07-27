@@ -2,6 +2,29 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.28.0] - 2026-07-27
+
+### Añadido
+
+- Módulo “Contacto” en administración para editar título, introducción, teléfonos, correo, horario, dirección y enlace del mapa.
+- Campos de fecha y fuente de verificación para la información institucional.
+- Permiso `contact.manage`, asignado a superadministración y edición de contenido.
+- Enlace desde Contacto al directorio institucional.
+
+### Cambiado
+
+- La página `/contacto` utiliza datos estructurados almacenados en `site_settings`.
+- La presentación pública adopta un diseño compacto, adaptable y coherente con el sitio.
+
+### Eliminado
+
+- Formulario visual sin destino, que no enviaba ni almacenaba mensajes.
+- Tarjetas heredadas de servicios que duplicaban el catálogo administrable.
+
+### Base de datos
+
+- Migración `2026_07_27_000600_create_contact_settings.php`.
+
 ## [0.27.0] - 2026-07-27
 
 ### Añadido

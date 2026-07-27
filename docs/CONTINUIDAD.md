@@ -41,6 +41,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.25.1 | Navegación pública | Pie compacto con identidad, enlaces, redes y créditos discretos |
 | 0.26.0 | Identidad institucional | “Información” se aclara como “Nuestra institución” sin cambiar la URL |
 | 0.27.0 | Identidad institucional | Página visual con misión, visión, valores y navegación relacionada |
+| 0.28.0 | Contacto institucional | Canales, ubicación y verificación administrables desde el panel |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -59,6 +60,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_000300_enrich_curricular_catalog_from_study_plans.php`
 - `2026_07_27_000400_rename_information_as_institution.php`
 - `2026_07_27_000500_redesign_institution_page.php`
+- `2026_07_27_000600_create_contact_settings.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 
