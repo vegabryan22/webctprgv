@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.25.1] - 2026-07-27
+
+### Cambiado
+
+- Pie de página compacto con identidad, navegación útil y redes integradas.
+- Créditos y versión trasladados a una franja secundaria de menor peso visual.
+- Adaptación en dos columnas para tablet y una columna para móvil.
+
 ## [0.25.0] - 2026-07-27
 
 ### Añadido

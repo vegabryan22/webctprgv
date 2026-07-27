@@ -38,6 +38,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.23.3 | CTP-C06 | Cobertura completa de ilustraciones con anclaje superior |
 | 0.24.0 | Navegación pública | Encabezado simplificado, compacto y adaptable |
 | 0.25.0 | CTP-C01 y CTP-C04 | Portada estructurada con oferta, agenda y noticias condicionales |
+| 0.25.1 | Navegación pública | Pie compacto con identidad, enlaces, redes y créditos discretos |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
