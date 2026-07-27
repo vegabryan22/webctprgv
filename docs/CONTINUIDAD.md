@@ -45,6 +45,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.29.0 | Consultas públicas | Formulario funcional, notificaciones y bandeja administrativa |
 | 0.29.1 | Contacto institucional | Mapa visible generado desde la dirección administrada |
 | 0.29.2 | Contacto institucional | Formulario prioritario y canales compactos en columna lateral |
+| 0.29.3 | Contacto institucional | Redes sociales integradas en el espacio lateral |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

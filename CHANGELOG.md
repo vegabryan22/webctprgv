@@ -2,6 +2,16 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.29.3] - 2026-07-27
+
+### Añadido
+
+- Bloque compacto de Facebook, TikTok e Instagram en la columna lateral de Contacto.
+
+### Cambiado
+
+- Los enlaces sociales de Contacto reutilizan la configuración central utilizada por el pie de página.
+
 ## [0.29.2] - 2026-07-27
 
 ### Cambiado
