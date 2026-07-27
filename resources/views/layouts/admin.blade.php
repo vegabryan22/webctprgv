@@ -10,11 +10,17 @@
 <body>
 <div class="admin-shell">
     <aside class="sidebar">
-        <a class="brand" href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset('images/escudo.png') }}" alt="Escudo">
-            <span>CTPRGV<br><small>Administración</small></span>
-        </a>
-        <nav>
+        <div class="sidebar-header">
+            <a class="brand" href="{{ route('admin.dashboard') }}">
+                <img src="{{ asset('images/escudo.png') }}" alt="Escudo">
+                <span>CTPRGV<br><small>Administración</small></span>
+            </a>
+            <button class="admin-nav-toggle" type="button" aria-expanded="false" aria-controls="admin-navigation">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                <span>Menú</span>
+            </button>
+        </div>
+        <nav id="admin-navigation">
             <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fa-solid fa-chart-line"></i><span>Resumen</span></a>
             @if(auth()->user()->hasPermission('site-sections.manage') || auth()->user()->hasPermission('pages.view') || auth()->user()->hasPermission('contact.manage') || auth()->user()->hasPermission('news.view') || auth()->user()->hasPermission('services.view') || auth()->user()->hasPermission('specialties.view') || auth()->user()->hasPermission('workshops.view') || auth()->user()->hasPermission('directory.view') || auth()->user()->hasPermission('documents.view') || auth()->user()->hasPermission('experiences.view') || auth()->user()->hasPermission('board.view') || auth()->user()->hasPermission('menu.view') || auth()->user()->hasPermission('events.view'))
                 <p class="nav-section">Contenido</p>
@@ -66,6 +72,39 @@
         </main>
     </div>
 </div>
+<script>
+    (() => {
+        const sidebar = document.querySelector('.sidebar');
+        const toggle = document.querySelector('.admin-nav-toggle');
+        const navigation = document.querySelector('#admin-navigation');
+
+        if (!sidebar || !toggle || !navigation) return;
+
+        const closeNavigation = () => {
+            sidebar.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        };
+
+        toggle.addEventListener('click', () => {
+            const open = sidebar.classList.toggle('nav-open');
+            toggle.setAttribute('aria-expanded', String(open));
+        });
+
+        navigation.addEventListener('click', (event) => {
+            if (event.target.closest('a') && window.matchMedia('(max-width: 850px)').matches) {
+                closeNavigation();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeNavigation();
+        });
+
+        window.matchMedia('(min-width: 851px)').addEventListener('change', (event) => {
+            if (event.matches) closeNavigation();
+        });
+    })();
+</script>
 @stack('scripts')
 </body>
 </html>
