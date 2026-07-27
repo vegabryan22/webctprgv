@@ -235,7 +235,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Modo mantenimiento y revisión autenticada | 0.34.0 | Completado | `9597a87` | `9db5483` | 97 pruebas y 633 aserciones aprobadas; mantenimiento HTTP 503, acceso HTTP 200 y restauración HTTP 200 | Lector sin panel, retorno a la página solicitada y mensaje temporal administrable |
 | 2026-07-27 | Tablero operativo de administración | 0.35.0 | Completado | `79fc90d` | `4e9954d` | 100 pruebas y 648 aserciones aprobadas | Estado público, pendientes, módulos, agenda y consultas en una composición adaptable |
 | 2026-07-27 | Terminología del acceso de lectura | 0.35.1 | Completado | `eaf71b0` | `01f04b8` | 100 pruebas y 648 aserciones aprobadas | “Lector” sustituye “revisor” en mantenimiento, vista privada y tablero |
-| 2026-07-27 | Salud GitOps durante mantenimiento | 0.35.2 | Completado | `612508f` | Pendiente | 100 pruebas y 649 aserciones aprobadas; portada HTTP 503 y `/up` HTTP 200 verificados en producción | La ruta técnica evita falsos fallos y reporta el código recibido |
+| 2026-07-27 | Salud GitOps durante mantenimiento | 0.35.2 | Completado | `612508f` | `270acc2` | 100 pruebas y 649 aserciones aprobadas; portada HTTP 503 y `/up` HTTP 200 verificados en producción | La ruta técnica evita falsos fallos y reporta el código recibido |
 
 ## Riesgos y bloqueos
 
