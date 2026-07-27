@@ -45,6 +45,7 @@ class ExploratoryWorkshopTest extends TestCase
             ->assertSee('curricular-detail__plans')
             ->assertSee('Capacidades comunicativas')
             ->assertSee('nivel B1.1')
+            ->assertDontSee('7.º · Español')
             ->assertSee('Programa de Inglés conversacional de 7.º')
             ->assertSee('Programa de Inglés conversacional de 8.º')
             ->assertSee('Programa de Inglés conversacional de 9.º')

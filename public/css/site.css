@@ -3347,17 +3347,7 @@ p {
 }
 
 .curricular-detail .curricular-document__body > span {
-    align-items: center;
-    display: flex;
     font-size: 0.66rem;
-    gap: 0.35rem;
-}
-
-.curricular-detail .curricular-document__body > span i {
-    background: #a9b8c5;
-    border-radius: 50%;
-    height: 3px;
-    width: 3px;
 }
 
 .curricular-detail .curricular-document__body h3 {
