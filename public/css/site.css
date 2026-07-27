@@ -3049,7 +3049,8 @@ p {
 
 .catalog-card__media img.curricular-illustration__image {
     background: #eaf3f9;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .catalog-card__body {
@@ -3223,7 +3224,8 @@ p {
 
 .curricular-detail__visual img.curricular-illustration__image {
     background: #e7f1f8;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .curricular-detail__content {
