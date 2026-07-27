@@ -32,20 +32,11 @@
             </li>
         @endforeach
     </ul>
-    <ul class="wrapper social-links" aria-label="Redes sociales">
-        @foreach (config('site.social') as $network => $social)
-            <li class="icon {{ $network }}">
-                <a href="{{ $social['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $social['label'] }}">
-                    <i class="{{ $social['icon'] }}" aria-hidden="true"></i><span class="tooltip">{{ $social['label'] }}</span>
-                </a>
-            </li>
-        @endforeach
-    </ul>
     @guest
         <a class="session-link" href="{{ route('login') }}"><i class="fas fa-right-to-bracket" aria-hidden="true"></i><span>Iniciar sesión</span></a>
     @else
         @if(auth()->user()->hasPermission('admin.access'))
-            <a class="session-link admin" href="{{ route('admin.dashboard') }}"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>Panel administrativo</span></a>
+            <a class="session-link admin" href="{{ route('admin.dashboard') }}"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>Administración</span></a>
         @endif
     @endguest
 </nav>

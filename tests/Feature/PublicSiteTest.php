@@ -50,13 +50,14 @@ class PublicSiteTest extends TestCase
     {
         $this->get('/')
             ->assertSee('Iniciar sesión')
+            ->assertDontSee('social-links')
             ->assertDontSee('Panel administrativo');
 
         $admin = User::factory()->create();
         $admin->roles()->attach(Role::where('name', 'super-admin')->firstOrFail());
 
         $this->actingAs($admin)->get('/')
-            ->assertSee('Panel administrativo')
+            ->assertSee('Administración')
             ->assertDontSee('Iniciar sesión');
     }
 }

@@ -2568,7 +2568,7 @@ p {
     font-size: 1.25rem;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1380px) {
     .navbar {
         padding: .5rem 3%;
     }
@@ -2631,10 +2631,10 @@ p {
 
 /* Navegación pública unificada */
 .site-navbar {
-    min-height: 88px;
+    min-height: 76px;
     justify-content: flex-start;
-    gap: clamp(.7rem, 1.25vw, 1.4rem);
-    padding: .5rem clamp(1rem, 3vw, 3.5rem);
+    gap: clamp(.8rem, 1.5vw, 1.8rem);
+    padding: .35rem clamp(1rem, 2.6vw, 3rem);
     border-bottom: 3px solid rgba(255, 212, 1, .9);
     box-shadow: 0 5px 18px rgba(0, 25, 52, .22);
 }
@@ -2648,15 +2648,15 @@ p {
     text-decoration: none;
 }
 
-.site-brand img { width: 72px; height: 72px; object-fit: contain; }
+.site-brand img { width: 58px; height: 58px; object-fit: contain; }
 .site-brand > span { display: grid; line-height: 1.05; }
-.site-brand strong { font-size: 1.05rem; letter-spacing: .14em; }
-.site-brand small { margin-top: .28rem; max-width: 125px; color: #dce9f4; font-size: .68rem; line-height: 1.2; }
+.site-brand strong { font-size: .92rem; letter-spacing: .14em; }
+.site-brand small { margin-top: .22rem; max-width: 118px; color: #dce9f4; font-size: .62rem; line-height: 1.2; }
 
 .site-navbar .nav-links {
     flex: 1 1 auto;
     min-width: 0;
-    gap: clamp(.2rem, .55vw, .65rem);
+    gap: clamp(.2rem, .45vw, .55rem);
     justify-content: center;
 }
 
@@ -2664,16 +2664,16 @@ p {
     position: relative;
     display: flex;
     align-items: center;
-    gap: .45rem;
-    min-height: 44px;
-    padding: .65rem clamp(.55rem, .75vw, .9rem);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 8px;
+    gap: .38rem;
+    min-height: 40px;
+    padding: .55rem clamp(.38rem, .6vw, .7rem);
+    border: 0;
+    border-radius: 6px;
     color: #eef6fc;
-    background: rgba(255,255,255,.065);
-    font-size: clamp(.72rem, .75vw, .86rem);
+    background: transparent;
+    font-size: clamp(.68rem, .7vw, .79rem);
     font-weight: 700;
-    letter-spacing: .045em;
+    letter-spacing: .025em;
     line-height: 1;
     white-space: nowrap;
     transition: color .2s ease, background .2s ease, transform .2s ease, border-color .2s ease;
@@ -2695,17 +2695,15 @@ p {
 .site-navbar .nav-links a.nav-link:hover,
 .site-navbar .nav-links a.nav-link:focus-visible,
 .site-navbar .nav-links a.nav-link.active {
-    border-color: rgba(255, 212, 1, .55);
     color: #fff;
-    background: #174d7e;
-    transform: translateY(-1px);
+    background: rgba(255,255,255,.08);
     outline: none;
 }
 
 .site-navbar .nav-links a.nav-link:hover::after,
 .site-navbar .nav-links a.nav-link:focus-visible::after,
 .site-navbar .nav-links a.nav-link.active::after { transform: scaleX(1); }
-.site-navbar .nav-links a.nav-link i { color: #ffd401; font-size: .95rem; }
+.site-navbar .nav-links a.nav-link i { color: #ffd401; font-size: .82rem; }
 
 .site-navbar .social-links {
     flex: 0 0 auto;
@@ -2729,15 +2727,15 @@ p {
 .session-link {
     display: inline-flex;
     flex: 0 0 auto;
-    min-height: 42px;
+    min-height: 38px;
     align-items: center;
     gap: .45rem;
-    padding: .65rem .8rem;
+    padding: .55rem .75rem;
     border: 1px solid rgba(255, 212, 1, .65);
     border-radius: 8px;
     color: #fff;
     background: rgba(255,255,255,.08);
-    font-size: .78rem;
+    font-size: .72rem;
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
@@ -2748,20 +2746,13 @@ p {
 .session-link:hover i, .session-link:focus-visible i { color: #002f5d; }
 .session-link.admin { border-color: rgba(76,177,29,.8); }
 
-@media (max-width: 1900px) {
-    .site-brand > span { display: none; }
-}
-
-@media (max-width: 1720px) {
-    .site-navbar .social-links { display: none; }
-}
-
 @media (max-width: 1500px) {
+    .site-brand > span { display: none; }
     .session-link span { display: none; }
     .session-link { width: 44px; padding: 0; justify-content: center; font-size: 1rem; }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1380px) {
     .site-navbar { min-height: 76px; }
     .site-brand img { width: 60px; height: 60px; }
     .site-navbar .nav-links { gap: .4rem; padding: .8rem 3% 1rem; }
