@@ -3154,6 +3154,226 @@ p {
     }
 }
 
+/* Endurecimiento responsivo transversal */
+html,
+body {
+    max-width: 100%;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+    max-width: 100%;
+}
+
+main,
+section,
+article,
+aside,
+header,
+footer,
+nav,
+div {
+    min-width: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+dd,
+a,
+strong,
+small,
+span {
+    overflow-wrap: anywhere;
+}
+
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .nav-link,
+    .session-link,
+    .modern-home__button,
+    .calendar-button,
+    .contact-form button,
+    .curricular-document__actions a {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-navbar {
+        gap: 0.45rem;
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+    }
+
+    .site-brand img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .nav-toggle,
+    .session-link {
+        height: 42px;
+        min-height: 42px;
+        width: 42px;
+    }
+
+    .nav-toggle {
+        margin-left: auto;
+    }
+
+    .site-navbar .nav-links {
+        max-height: calc(100dvh - 76px);
+        padding: 0.7rem;
+    }
+
+    .service-shell,
+    .news-shell,
+    .calendar-shell {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .service-hero h1,
+    .news-hero h1,
+    .calendar-hero h1,
+    .board-hero h1 {
+        font-size: clamp(1.9rem, 10vw, 2.6rem);
+        line-height: 1.08;
+    }
+
+    .modern-home__hero {
+        min-height: 540px;
+        padding-bottom: 3rem;
+        padding-top: 7rem;
+    }
+
+    .modern-home__hero h1,
+    .institution-hero h1,
+    .contact-hero h1,
+    .curricular-detail .curricular-detail__hero h1 {
+        font-size: clamp(2rem, 11vw, 3rem);
+        overflow-wrap: anywhere;
+    }
+
+    .modern-home__button,
+    .modern-home__hero-actions > a {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .service-card,
+    .directory-card,
+    .document-card,
+    .board-member-card {
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .directory-card dl {
+        grid-template-columns: 1fr;
+    }
+
+    .directory-card dt {
+        margin-top: 0.45rem;
+    }
+
+    .curricular-document__actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .curricular-document__actions a {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .contact-card--location {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card--location > i {
+        margin: 1rem 1rem 0;
+    }
+
+    .contact-card--location > div:not(.contact-map) {
+        padding: 0 1rem 1rem;
+    }
+
+    .contact-card--location .contact-map {
+        grid-column: auto;
+    }
+
+    .contact-map,
+    .contact-map iframe {
+        min-height: 240px;
+    }
+
+    .contact-socials > div:last-child {
+        gap: 0.4rem;
+    }
+
+    .board-publication-card__top,
+    .modern-home__section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .site-brand img {
+        height: 44px;
+        width: 44px;
+    }
+
+    .site-navbar {
+        min-height: 68px;
+    }
+
+    .site-navbar .nav-links {
+        max-height: calc(100dvh - 68px);
+    }
+
+    .modern-home__quick-grid > a,
+    .institution-explore__grid > a {
+        grid-template-columns: auto 1fr;
+    }
+
+    .modern-home__quick-grid > a > i:last-child,
+    .institution-explore__grid > a > i:last-child {
+        display: none;
+    }
+
+    .contact-form-section__intro,
+    .contact-form {
+        padding: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
 /* Nuestra institución */
 .institution-page {
     background: #f3f7fa;
@@ -5144,5 +5364,66 @@ p {
 
     .curricular-detail .curricular-documents {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Prioridad final para pantallas estrechas */
+@media (max-width: 600px) {
+    .modern-home__hero {
+        min-height: 540px;
+        padding-bottom: 3rem;
+        padding-top: 7rem;
+    }
+
+    .modern-home__hero h1,
+    .institution-hero h1,
+    .contact-hero h1,
+    .curricular-detail .curricular-detail__hero h1 {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .contact-card--location {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card--location > i {
+        margin: 1rem 1rem 0;
+    }
+
+    .contact-card--location > div:not(.contact-map) {
+        padding: 0 1rem 1rem;
+    }
+
+    .contact-card--location .contact-map {
+        grid-column: auto;
+    }
+
+    .contact-map,
+    .contact-map iframe {
+        min-height: 240px;
+    }
+
+    .board-publication-card__top,
+    .modern-home__section-heading,
+    .curricular-detail__plans-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .modern-home__quick-grid > a,
+    .institution-explore__grid > a {
+        grid-template-columns: auto 1fr;
+    }
+
+    .modern-home__quick-grid > a > i:last-child,
+    .institution-explore__grid > a > i:last-child {
+        display: none;
+    }
+
+    .contact-form-section__intro,
+    .contact-form {
+        padding: 1rem;
     }
 }

@@ -23,7 +23,7 @@ class DocumentLibraryTest extends TestCase
 
     public function test_library_starts_empty(): void
     {
-        $this->get('/documentos')->assertOk()->assertSee('No hay documentos vigentes');
+        $this->get(route('documents'))->assertOk()->assertSee('No hay documentos vigentes');
     }
 
     public function test_expired_replaced_and_draft_documents_are_hidden(): void
@@ -35,7 +35,7 @@ class DocumentLibraryTest extends TestCase
         InstitutionalDocument::create(array_merge($base, ['title' => 'Borrador', 'slug' => 'borrador', 'status' => 'draft', 'published_at' => null]));
         $old = InstitutionalDocument::create(array_merge($base, ['title' => 'Documento reemplazado', 'slug' => 'reemplazado']));
         $old->update(['replaced_by_id' => $current->id]);
-        $this->get('/documentos')->assertSee('Reglamento vigente')->assertDontSee('Documento vencido')->assertDontSee('Documento reemplazado')->assertDontSee('Borrador');
+        $this->get(route('documents'))->assertSee('Reglamento vigente')->assertDontSee('Documento vencido')->assertDontSee('Documento reemplazado')->assertDontSee('Borrador');
     }
 
     public function test_administrator_can_upload_and_publish_a_verified_document(): void
@@ -58,7 +58,7 @@ class DocumentLibraryTest extends TestCase
         $document = InstitutionalDocument::firstOrFail();
         $storedPath = storage_path('app/public/'.$document->file_path);
         $this->assertFileExists($storedPath);
-        $this->get('/documentos')->assertOk()->assertSee('Reglamento institucional');
+        $this->get(route('documents'))->assertOk()->assertSee('Reglamento institucional');
         File::delete($storedPath);
     }
 

@@ -64,7 +64,7 @@ Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('s
     Route::get('/{service:slug}', 'show')->name('show');
 });
 Route::get('/directorio', DirectoryController::class)->middleware('section:directory')->name('directory');
-Route::get('/documentos', DocumentLibraryController::class)->middleware('section:documents')->name('documents');
+Route::get('/biblioteca-documental', DocumentLibraryController::class)->middleware('section:documents')->name('documents');
 Route::controller(ProfessionalExperienceController::class)->prefix('practica-profesional')->name('experiences.')->middleware('section:practice')->group(function (): void {
     Route::get('/', 'index')->name('index');
     Route::get('/{experience:slug}', 'show')->name('show');

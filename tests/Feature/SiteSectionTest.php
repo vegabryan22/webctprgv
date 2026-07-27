@@ -51,6 +51,12 @@ class SiteSectionTest extends TestCase
         $this->get('/contacto')->assertOk();
     }
 
+    public function test_document_library_avoids_the_public_documents_directory_collision(): void
+    {
+        $this->assertSame('/biblioteca-documental', route('documents', absolute: false));
+        $this->get('/biblioteca-documental')->assertOk()->assertSee('Biblioteca');
+    }
+
     public function test_specialty_and_workshop_can_be_deactivated_without_deletion(): void
     {
         $admin = $this->superAdmin();
