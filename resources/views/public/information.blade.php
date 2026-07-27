@@ -74,9 +74,15 @@
         <div class="institution-shell">
             <header><span class="institution-eyebrow">Continúe explorando</span><h2>Información relacionada</h2></header>
             <div class="institution-explore__grid">
+                @if($siteSections->get('services', true))
                 <a href="/servicios"><i class="fas fa-hand-holding-heart"></i><span><strong>Servicios</strong><small>Trámites, apoyos y atención institucional</small></span><i class="fas fa-arrow-right"></i></a>
+                @endif
+                @if($siteSections->get('board', true))
                 <a href="/junta-administrativa"><i class="fas fa-people-group"></i><span><strong>Junta Administrativa</strong><small>Gestión y transparencia institucional</small></span><i class="fas fa-arrow-right"></i></a>
+                @endif
+                @if($siteSections->get('contact', true))
                 <a href="/contacto"><i class="fas fa-address-book"></i><span><strong>Contacto</strong><small>Ubicación y medios de atención</small></span><i class="fas fa-arrow-right"></i></a>
+                @endif
             </div>
         </div>
     </section>

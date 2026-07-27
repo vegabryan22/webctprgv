@@ -6,6 +6,7 @@ use App\Models\EventCategory;
 use App\Models\NavigationItem;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\SiteSection;
 use App\Models\SiteSetting;
 use App\Models\User;
 use App\Services\LegacyPageImporter;
@@ -57,6 +58,7 @@ class DatabaseSeeder extends Seeder
             ['events.manage', 'Gestionar actividades y categorías', 'Calendario'],
             ['events.publish', 'Publicar y cancelar actividades', 'Calendario'],
             ['settings.manage', 'Gestionar configuración', 'Configuración'],
+            ['site-sections.manage', 'Gestionar estado público del sitio', 'Configuración'],
             ['gitops.view', 'Ver estado GitOps', 'GitOps'],
             ['gitops.deploy', 'Solicitar despliegues', 'GitOps'],
             ['gitops.rollback', 'Revertir despliegues', 'GitOps'],
@@ -79,7 +81,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'contact.manage', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish', 'board.view', 'board.manage', 'board.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'contact.manage', 'site-sections.manage', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish', 'board.view', 'board.manage', 'board.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],
@@ -103,6 +105,24 @@ class DatabaseSeeder extends Seeder
         ])->each(fn (array $item) => SiteSetting::updateOrCreate(
             ['key' => $item[0]],
             ['value' => $item[1], 'group' => $item[2], 'label' => $item[3], 'type' => $item[4]],
+        ));
+
+        collect([
+            ['news', 'Noticias', 'Publicaciones y actualidad institucional', 'news'],
+            ['institution', 'Institución', 'Misión, visión y valores', 'information'],
+            ['specialties', 'Especialidades', 'Oferta técnica de 10.º a 12.º', 'specialties'],
+            ['workshops', 'Talleres exploratorios', 'Oferta exploratoria de 7.º a 9.º', 'workshops'],
+            ['board', 'Junta Administrativa', 'Publicaciones, productos y transparencia', 'board'],
+            ['contact', 'Contacto', 'Canales, mapa y formulario de consultas', 'contact'],
+            ['services', 'Servicios', 'Catálogo de servicios institucionales', 'services.index'],
+            ['calendar', 'Calendario', 'Actividades y fechas institucionales', 'calendar.index'],
+            ['practice', 'Práctica profesional', 'Vinculación, pasantías y práctica', 'experiences.index'],
+            ['directory', 'Directorio', 'Contactos por departamento', 'directory'],
+            ['documents', 'Documentos', 'Biblioteca documental pública', 'documents'],
+            ['anniversary', '50 Aniversario', 'Contenido conmemorativo', 'anniversary'],
+        ])->each(fn (array $item, int $index) => SiteSection::updateOrCreate(
+            ['key' => $item[0]],
+            ['label' => $item[1], 'description' => $item[2], 'route_name' => $item[3], 'sort_order' => ($index + 1) * 10],
         ));
 
         app(LegacyPageImporter::class)->import();

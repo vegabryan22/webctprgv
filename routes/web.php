@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProfessionalExperienceController as AdminProfessi
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SiteSectionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SpecialtyController;
 use App\Http\Controllers\Admin\UserController;
@@ -37,34 +38,34 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/', 'home')->name('home');
-    Route::get('/noticias', 'news')->name('news');
-    Route::get('/noticias/{article:slug}', 'newsArticle')->name('news.show');
-    Route::get('/informacion', 'information')->name('information');
-    Route::get('/especialidades', 'specialties')->name('specialties');
-    Route::get('/especialidades/{specialty:slug}', 'specialty')->name('specialties.show');
-    Route::get('/talleres-exploratorios', 'workshops')->name('workshops');
-    Route::get('/talleres-exploratorios/{workshop:slug}', 'workshop')->name('workshops.show');
-    Route::get('/contacto', 'contact')->name('contact');
-    Route::get('/50-aniversario', 'anniversary')->name('anniversary');
+    Route::get('/noticias', 'news')->middleware('section:news')->name('news');
+    Route::get('/noticias/{article:slug}', 'newsArticle')->middleware('section:news')->name('news.show');
+    Route::get('/informacion', 'information')->middleware('section:institution')->name('information');
+    Route::get('/especialidades', 'specialties')->middleware('section:specialties')->name('specialties');
+    Route::get('/especialidades/{specialty:slug}', 'specialty')->middleware('section:specialties')->name('specialties.show');
+    Route::get('/talleres-exploratorios', 'workshops')->middleware('section:workshops')->name('workshops');
+    Route::get('/talleres-exploratorios/{workshop:slug}', 'workshop')->middleware('section:workshops')->name('workshops.show');
+    Route::get('/contacto', 'contact')->middleware('section:contact')->name('contact');
+    Route::get('/50-aniversario', 'anniversary')->middleware('section:anniversary')->name('anniversary');
     Route::get('/paginas/{page:slug}', 'page')->name('pages.show');
 });
-Route::get('/junta-administrativa', BoardController::class)->name('board');
-Route::post('/contacto', ContactSubmissionController::class)->middleware('throttle:5,1')->name('contact.submit');
+Route::get('/junta-administrativa', BoardController::class)->middleware('section:board')->name('board');
+Route::post('/contacto', ContactSubmissionController::class)->middleware(['section:contact', 'throttle:5,1'])->name('contact.submit');
 
-Route::controller(CalendarController::class)->prefix('calendario')->name('calendar.')->group(function (): void {
+Route::controller(CalendarController::class)->prefix('calendario')->name('calendar.')->middleware('section:calendar')->group(function (): void {
     Route::get('/', 'index')->name('index');
     Route::get('/actividades', 'listing')->name('list');
     Route::get('/{event:slug}', 'show')->name('show');
     Route::get('/{event:slug}/agregar', 'ical')->name('ical');
 });
 
-Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('services.')->group(function (): void {
+Route::controller(ServiceCatalogController::class)->prefix('servicios')->name('services.')->middleware('section:services')->group(function (): void {
     Route::get('/', 'index')->name('index');
     Route::get('/{service:slug}', 'show')->name('show');
 });
-Route::get('/directorio', DirectoryController::class)->name('directory');
-Route::get('/documentos', DocumentLibraryController::class)->name('documents');
-Route::controller(ProfessionalExperienceController::class)->prefix('practica-profesional')->name('experiences.')->group(function (): void {
+Route::get('/directorio', DirectoryController::class)->middleware('section:directory')->name('directory');
+Route::get('/documentos', DocumentLibraryController::class)->middleware('section:documents')->name('documents');
+Route::controller(ProfessionalExperienceController::class)->prefix('practica-profesional')->name('experiences.')->middleware('section:practice')->group(function (): void {
     Route::get('/', 'index')->name('index');
     Route::get('/{experience:slug}', 'show')->name('show');
 });
@@ -100,6 +101,8 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::put('/paginas/{page}', [ContentPageController::class, 'update'])->middleware('permission:pages.manage')->name('pages.update');
     Route::delete('/paginas/{page}', [ContentPageController::class, 'destroy'])->middleware('permission:pages.manage')->name('pages.destroy');
     Route::get('/revision-editorial', ContentAuditController::class)->middleware('permission:pages.view')->name('content-audit.index');
+    Route::get('/estado-del-sitio', [SiteSectionController::class, 'index'])->middleware('permission:site-sections.manage')->name('site-sections.index');
+    Route::put('/estado-del-sitio', [SiteSectionController::class, 'update'])->middleware('permission:site-sections.manage')->name('site-sections.update');
     Route::get('/contacto', [ContactSettingController::class, 'edit'])->middleware('permission:contact.manage')->name('contact.edit');
     Route::put('/contacto', [ContactSettingController::class, 'update'])->middleware('permission:contact.manage')->name('contact.update');
     Route::get('/contacto/consultas', [ContactMessageController::class, 'index'])->middleware('permission:contact.manage')->name('contact-messages.index');
@@ -133,12 +136,14 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::post('/especialidades', [SpecialtyController::class, 'store'])->middleware('permission:specialties.manage')->name('specialties.store');
     Route::get('/especialidades/{specialty}/editar', [SpecialtyController::class, 'edit'])->middleware('permission:specialties.manage')->name('specialties.edit');
     Route::put('/especialidades/{specialty}', [SpecialtyController::class, 'update'])->middleware('permission:specialties.manage')->name('specialties.update');
+    Route::put('/especialidades/{specialty}/estado', [SpecialtyController::class, 'toggle'])->middleware('permission:specialties.manage')->name('specialties.toggle');
     Route::delete('/especialidades/{specialty}', [SpecialtyController::class, 'destroy'])->middleware('permission:specialties.manage')->name('specialties.destroy');
     Route::get('/talleres-exploratorios', [ExploratoryWorkshopController::class, 'index'])->middleware('permission:workshops.view')->name('workshops.index');
     Route::get('/talleres-exploratorios/crear', [ExploratoryWorkshopController::class, 'create'])->middleware('permission:workshops.manage')->name('workshops.create');
     Route::post('/talleres-exploratorios', [ExploratoryWorkshopController::class, 'store'])->middleware('permission:workshops.manage')->name('workshops.store');
     Route::get('/talleres-exploratorios/{workshop}/editar', [ExploratoryWorkshopController::class, 'edit'])->middleware('permission:workshops.manage')->name('workshops.edit');
     Route::put('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'update'])->middleware('permission:workshops.manage')->name('workshops.update');
+    Route::put('/talleres-exploratorios/{workshop}/estado', [ExploratoryWorkshopController::class, 'toggle'])->middleware('permission:workshops.manage')->name('workshops.toggle');
     Route::delete('/talleres-exploratorios/{workshop}', [ExploratoryWorkshopController::class, 'destroy'])->middleware('permission:workshops.manage')->name('workshops.destroy');
 
     Route::get('/directorio', [AdminDirectoryController::class, 'index'])->middleware('permission:directory.view')->name('directory.index');

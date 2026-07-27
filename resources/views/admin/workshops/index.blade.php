@@ -1,5 +1,16 @@
 @extends('layouts.admin')
 @section('title', 'Talleres exploratorios')
 @section('content')
-<div class="page-heading"><div><h1><i class="fa-solid fa-compass-drafting"></i> Talleres exploratorios</h1><p class="muted">Oferta para 7.º, 8.º y 9.º.</p></div><div class="actions"><a class="button ghost" href="{{ route('workshops') }}" target="_blank">Ver sitio</a>@if(auth()->user()->hasPermission('workshops.manage'))<a class="button" href="{{ route('admin.workshops.create') }}">Nuevo taller</a>@endif</div></div><div class="card table-wrap"><table><thead><tr><th>Taller</th><th>Nivel</th><th>Verificación</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>@forelse($workshops as $workshop)<tr><td><strong>{{ $workshop->name }}</strong><br><small>{{ $workshop->summary }}</small></td><td>{{ $workshop->grade_level }}</td><td>{{ $workshop->verified_at?->format('d/m/Y') ?: 'Pendiente' }}</td><td><span class="badge {{ $workshop->status === 'published' ? 'success' : 'warning' }}">{{ $workshop->status === 'published' ? 'Publicado' : 'Borrador' }}</span></td><td><div class="actions"><a class="button link" href="{{ route('admin.workshops.edit', $workshop) }}">Editar</a><form method="POST" action="{{ route('admin.workshops.destroy', $workshop) }}">@csrf @method('DELETE')<button class="button link">Eliminar</button></form></div></td></tr>@empty<tr><td colspan="5">No hay talleres registrados. Agregue solo nombres confirmados.</td></tr>@endforelse</tbody></table></div>
+<div class="page-heading"><div><h1><i class="fa-solid fa-compass-drafting"></i> Talleres exploratorios</h1><p class="muted">Oferta para 7.º, 8.º y 9.º.</p></div><div class="actions"><a class="button ghost" href="{{ route('workshops') }}" target="_blank">Ver sitio</a>@if(auth()->user()->hasPermission('workshops.manage'))<a class="button" href="{{ route('admin.workshops.create') }}">Nuevo taller</a>@endif</div></div>
+<div class="card table-wrap"><table><thead><tr><th>Taller</th><th>Nivel</th><th>Verificación</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>
+@forelse($workshops as $workshop)
+<tr><td><strong>{{ $workshop->name }}</strong><br><small>{{ $workshop->summary }}</small></td><td>{{ $workshop->grade_level }}</td><td>{{ $workshop->verified_at?->format('d/m/Y') ?: 'Pendiente' }}</td><td><span class="badge {{ $workshop->status === 'published' ? 'success' : 'warning' }}">{{ $workshop->status === 'published' ? 'Publicado' : 'Borrador' }}</span></td><td><div class="actions">
+@if(auth()->user()->hasPermission('workshops.manage'))
+<form method="POST" action="{{ route('admin.workshops.toggle', $workshop) }}">@csrf @method('PUT')<button class="button link"><i class="fa-solid {{ $workshop->status === 'published' ? 'fa-toggle-off' : 'fa-toggle-on' }}"></i> {{ $workshop->status === 'published' ? 'Desactivar' : 'Activar' }}</button></form>
+<a class="button link" href="{{ route('admin.workshops.edit', $workshop) }}">Editar</a>
+<form method="POST" action="{{ route('admin.workshops.destroy', $workshop) }}" onsubmit="return confirm('¿Eliminar este taller?')">@csrf @method('DELETE')<button class="button link">Eliminar</button></form>
+@endif
+</div></td></tr>
+@empty<tr><td colspan="5">No hay talleres registrados. Agregue solo nombres confirmados.</td></tr>@endforelse
+</tbody></table></div>
 @endsection

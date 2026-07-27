@@ -63,6 +63,18 @@ class ExploratoryWorkshopController extends Controller
         return redirect()->route('admin.workshops.index')->with('success', 'Taller eliminado correctamente.');
     }
 
+    public function toggle(Request $request, ExploratoryWorkshop $workshop): RedirectResponse
+    {
+        $publishing = $workshop->status !== 'published';
+        abort_if($publishing && ! $request->user()->hasPermission('workshops.publish'), 403);
+        $workshop->update([
+            'status' => $publishing ? 'published' : 'draft',
+            'published_at' => $publishing ? now() : null,
+        ]);
+
+        return back()->with('success', $publishing ? 'Taller activado.' : 'Taller desactivado.');
+    }
+
     private function validated(Request $request, ?ExploratoryWorkshop $workshop = null): array
     {
         return $request->validate([

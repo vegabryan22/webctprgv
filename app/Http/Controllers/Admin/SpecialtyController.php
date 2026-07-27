@@ -63,6 +63,18 @@ class SpecialtyController extends Controller
         return redirect()->route('admin.specialties.index')->with('success', 'Especialidad eliminada correctamente.');
     }
 
+    public function toggle(Request $request, Specialty $specialty): RedirectResponse
+    {
+        $publishing = $specialty->status !== 'published';
+        abort_if($publishing && ! $request->user()->hasPermission('specialties.publish'), 403);
+        $specialty->update([
+            'status' => $publishing ? 'published' : 'draft',
+            'published_at' => $publishing ? now() : null,
+        ]);
+
+        return back()->with('success', $publishing ? 'Especialidad activada.' : 'Especialidad desactivada.');
+    }
+
     private function validated(Request $request, ?Specialty $specialty = null): array
     {
         return $request->validate([

@@ -8,17 +8,31 @@
 
             <nav class="site-footer__links" aria-label="Oferta educativa">
                 <strong>Oferta educativa</strong>
+                @if($siteSections->get('workshops', true))
                 <a href="{{ route('workshops') }}">Talleres exploratorios</a>
+                @endif
+                @if($siteSections->get('specialties', true))
                 <a href="{{ route('specialties') }}">Especialidades técnicas</a>
+                @endif
+                @if($siteSections->get('practice', true))
                 <a href="{{ route('experiences.index') }}">Práctica profesional</a>
+                @endif
             </nav>
 
             <nav class="site-footer__links" aria-label="Información institucional">
                 <strong>Institución</strong>
+                @if($siteSections->get('institution', true))
                 <a href="{{ route('information') }}">Nuestra institución</a>
+                @endif
+                @if($siteSections->get('services', true))
                 <a href="{{ route('services.index') }}">Servicios</a>
+                @endif
+                @if($siteSections->get('calendar', true))
                 <a href="{{ route('calendar.index') }}">Calendario</a>
+                @endif
+                @if($siteSections->get('contact', true))
                 <a href="{{ route('contact') }}">Contacto</a>
+                @endif
             </nav>
 
             <div class="site-footer__connect">
