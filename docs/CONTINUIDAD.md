@@ -49,6 +49,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.30.0 | CTP-C11 | Junta mantenible con categorías, productos y precios opcionales |
 | 0.31.0 | Control editorial | Estado global de secciones y desactivación curricular rápida |
 | 0.31.1 | Responsividad transversal | Sitio y panel adaptables; biblioteca documental sin colisión de URL |
+| 0.31.2 | Responsividad administrativa | Navegación plegable y contenido a ancho completo en móviles |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

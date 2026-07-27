@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.31.2] - 2026-07-27
+
+### Corregido
+
+- El panel administrativo usa todo el ancho disponible en teléfonos y tabletas.
+- La barra lateral se transforma en un encabezado compacto con navegación plegable.
+- El menú móvil puede cerrarse al elegir una sección o presionar Escape y limita su altura para permanecer utilizable.
+- El incremento de versión invalida el CSS administrativo anterior almacenado en caché.
+
 ## [0.31.1] - 2026-07-27
 
 ### Cambiado
