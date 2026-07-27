@@ -10,7 +10,7 @@ class LegacyPageImporter
     private const PAGES = [
         ['route' => 'home', 'view' => 'home', 'title' => 'Inicio', 'slug' => 'inicio', 'label' => 'INICIO'],
         ['route' => 'news', 'view' => 'news', 'title' => 'Noticias', 'slug' => 'noticias', 'label' => 'NOTICIAS'],
-        ['route' => 'information', 'view' => 'information', 'title' => 'Información', 'slug' => 'informacion', 'label' => 'INFORMACIÓN'],
+        ['route' => 'information', 'view' => 'information', 'title' => 'Nuestra institución', 'slug' => 'informacion', 'label' => 'INSTITUCIÓN'],
         ['route' => 'specialties', 'view' => 'specialties', 'title' => 'Especialidades', 'slug' => 'especialidades', 'label' => 'ESPECIALIDADES'],
         ['route' => 'board', 'view' => 'board', 'title' => 'Junta Administrativa', 'slug' => 'junta-administrativa', 'label' => 'JUNTA ADMINISTRATIVA'],
         ['route' => 'contact', 'view' => 'contact', 'title' => 'Contacto', 'slug' => 'contacto', 'label' => 'CONTACTO'],

@@ -30,6 +30,8 @@ class CmsContentTest extends TestCase
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'board', 'label' => 'JUNTA ADMINISTRATIVA']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'calendar.index', 'label' => 'CALENDARIO']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'services.index', 'label' => 'SERVICIOS']);
+        $this->assertDatabaseHas('navigation_items', ['route_name' => 'information', 'label' => 'INSTITUCIÓN']);
+        $this->assertDatabaseHas('content_pages', ['route_name' => 'information', 'title' => 'Nuestra institución']);
     }
 
     public function test_database_content_is_rendered_on_existing_route(): void

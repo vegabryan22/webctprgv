@@ -12,7 +12,7 @@
             <p>Formación académica y técnica para construir el futuro de nuestra comunidad estudiantil.</p>
             <div class="modern-home__hero-actions">
                 <a class="modern-home__button modern-home__button--primary" href="{{ route('specialties') }}">Explorar oferta técnica <i class="fas fa-arrow-right"></i></a>
-                <a class="modern-home__button modern-home__button--secondary" href="{{ route('information') }}">Información estudiantil</a>
+                <a class="modern-home__button modern-home__button--secondary" href="{{ route('information') }}">Conocer la institución</a>
             </div>
         </div>
         <a class="modern-home__scroll" href="#accesos" aria-label="Continuar a los accesos rápidos"><i class="fas fa-chevron-down"></i></a>
@@ -26,7 +26,7 @@
             <nav class="modern-home__quick-grid" aria-label="Accesos rápidos">
                 <a href="{{ route('calendar.index') }}"><i class="fas fa-calendar-days"></i><span><strong>Calendario</strong><small>Fechas y actividades</small></span><i class="fas fa-arrow-right"></i></a>
                 <a href="{{ route('services.index') }}"><i class="fas fa-hand-holding-heart"></i><span><strong>Servicios</strong><small>Atención institucional</small></span><i class="fas fa-arrow-right"></i></a>
-                <a href="{{ route('information') }}"><i class="fas fa-circle-info"></i><span><strong>Información</strong><small>Datos para estudiantes</small></span><i class="fas fa-arrow-right"></i></a>
+                <a href="{{ route('information') }}"><i class="fas fa-school"></i><span><strong>Institución</strong><small>Identidad y trayectoria</small></span><i class="fas fa-arrow-right"></i></a>
                 <a href="{{ route('contact') }}"><i class="fas fa-address-book"></i><span><strong>Contacto</strong><small>Ubicación y atención</small></span><i class="fas fa-arrow-right"></i></a>
             </nav>
         </div>

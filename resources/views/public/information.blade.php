@@ -1,6 +1,6 @@
 ﻿@extends('layouts.public')
 
-@section('title', 'Información - CTP Roberto Gamboa Valverde')
+@section('title', 'Nuestra institución - CTP Roberto Gamboa Valverde')
 
 @section('content')
 <header class="specialty-header">
@@ -83,4 +83,3 @@
         </div>
     </section>
 @endsection
-

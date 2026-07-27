@@ -2,7 +2,7 @@
     $navigationIcons = [
         'home' => 'fa-house',
         'news' => 'fa-newspaper',
-        'information' => 'fa-circle-info',
+        'information' => 'fa-school',
         'specialties' => 'fa-screwdriver-wrench',
         'board' => 'fa-people-group',
         'contact' => 'fa-envelope',

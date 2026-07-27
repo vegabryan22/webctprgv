@@ -15,7 +15,7 @@
 
             <nav class="site-footer__links" aria-label="Información institucional">
                 <strong>Institución</strong>
-                <a href="{{ route('information') }}">Información</a>
+                <a href="{{ route('information') }}">Nuestra institución</a>
                 <a href="{{ route('services.index') }}">Servicios</a>
                 <a href="{{ route('calendar.index') }}">Calendario</a>
                 <a href="{{ route('contact') }}">Contacto</a>

@@ -71,6 +71,15 @@ class PublicSiteTest extends TestCase
             ->assertDontSee('<a href="/calendario"><button', false);
     }
 
+    public function test_institution_keeps_the_existing_url_with_a_clear_public_name(): void
+    {
+        $this->get('/informacion')
+            ->assertOk()
+            ->assertSee('Nuestra institución')
+            ->assertSee('INSTITUCIÓN')
+            ->assertSee('fa-school');
+    }
+
     public function test_public_navigation_shows_contextual_session_action(): void
     {
         $this->get('/')
