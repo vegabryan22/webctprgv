@@ -200,7 +200,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Contacto institucional parametrizable | 0.28.0 | Completado | `20b9656` | `4558cd7` | 76 pruebas y 461 aserciones aprobadas; migración local y `/contacto` con HTTP 200 | Canales, ubicación y verificación editables; formulario inactivo retirado |
 | 2026-07-27 | Consultas públicas funcionales | 0.29.0 | Completado | `6584dcb` | `68fd2ce` | 79 pruebas y 482 aserciones aprobadas; migración local, formulario y siete rutas verificadas | Registro MySQL, correo configurable, antispam y bandeja con seguimiento |
 | 2026-07-27 | Mapa de contacto | 0.29.1 | Completado | `e67ea04` | `3979f6b` | 79 pruebas y 484 aserciones aprobadas; `/contacto` con iframe verificado y HTTP 200 | Mapa adaptable generado desde la dirección, con enlace externo independiente |
-| 2026-07-27 | Composición compacta de Contacto | 0.29.2 | Completado | `a1708fc` | Pendiente | 79 pruebas y 486 aserciones aprobadas; orden y cuadrícula verificados con HTTP 200 | Formulario primero, canales laterales y mapa inferior a todo lo ancho |
+| 2026-07-27 | Composición compacta de Contacto | 0.29.2 | Completado | `a1708fc` | `fcce3be` | 79 pruebas y 486 aserciones aprobadas; orden y cuadrícula verificados con HTTP 200 | Formulario primero, canales laterales y mapa inferior a todo lo ancho |
 
 ## Riesgos y bloqueos
 
