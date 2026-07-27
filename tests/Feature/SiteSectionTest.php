@@ -57,6 +57,14 @@ class SiteSectionTest extends TestCase
         $this->get('/biblioteca-documental')->assertOk()->assertSee('Biblioteca');
     }
 
+    public function test_admission_portal_can_be_disabled_from_the_quick_panel(): void
+    {
+        SiteSection::where('key', 'admission')->update(['is_active' => false]);
+
+        $this->get('/')->assertOk()->assertDontSee('ADMISIÓN');
+        $this->get('/admision-y-matricula')->assertNotFound();
+    }
+
     public function test_specialty_and_workshop_can_be_deactivated_without_deletion(): void
     {
         $admin = $this->superAdmin();

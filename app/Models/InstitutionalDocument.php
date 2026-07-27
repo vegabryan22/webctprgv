@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class InstitutionalDocument extends Model
 {
@@ -28,5 +29,19 @@ class InstitutionalDocument extends Model
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published')->where('published_at', '<=', now())->whereNull('replaced_by_id')->where(fn ($query) => $query->whereNull('expires_at')->orWhere('expires_at', '>=', today()));
+    }
+
+    public function publicUrl(): string
+    {
+        if (str_starts_with($this->file_path, 'public:')) {
+            return asset(substr($this->file_path, 7));
+        }
+
+        return Storage::disk('public')->url($this->file_path);
+    }
+
+    public function isBundledFile(): bool
+    {
+        return str_starts_with($this->file_path, 'public:');
     }
 }

@@ -30,6 +30,9 @@
                 @if($siteSections->get('calendar', true))
                 <a href="{{ route('calendar.index') }}">Calendario</a>
                 @endif
+                @if($siteSections->get('admission', true))
+                <a href="{{ route('admission') }}">Admisión y matrícula</a>
+                @endif
                 @if($siteSections->get('contact', true))
                 <a href="{{ route('contact') }}">Contacto</a>
                 @endif

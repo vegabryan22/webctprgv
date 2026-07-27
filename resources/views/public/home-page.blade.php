@@ -28,6 +28,9 @@
                 <div><span class="modern-home__eyebrow">Accesos rápidos</span><h2 id="quick-title">¿Qué necesita consultar?</h2></div>
             </header>
             <nav class="modern-home__quick-grid" aria-label="Accesos rápidos">
+                @if($siteSections->get('admission', true))
+                <a href="{{ route('admission') }}"><i class="fas fa-user-check"></i><span><strong>Admisión 2027</strong><small>Prematrícula y procesos de ingreso</small></span><i class="fas fa-arrow-right"></i></a>
+                @endif
                 @if($siteSections->get('calendar', true))
                 <a href="{{ route('calendar.index') }}"><i class="fas fa-calendar-days"></i><span><strong>Calendario</strong><small>Fechas y actividades</small></span><i class="fas fa-arrow-right"></i></a>
                 @endif

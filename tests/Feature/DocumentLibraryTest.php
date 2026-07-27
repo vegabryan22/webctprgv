@@ -21,9 +21,12 @@ class DocumentLibraryTest extends TestCase
         $this->seed();
     }
 
-    public function test_library_starts_empty(): void
+    public function test_library_starts_with_verified_admission_documents(): void
     {
-        $this->get(route('documents'))->assertOk()->assertSee('No hay documentos vigentes');
+        $this->get(route('documents'))
+            ->assertOk()
+            ->assertSee('Admisión y matrícula')
+            ->assertSee('Circular de prematrícula de 7.º');
     }
 
     public function test_expired_replaced_and_draft_documents_are_hidden(): void
@@ -55,7 +58,7 @@ class DocumentLibraryTest extends TestCase
             'sort_order' => 0,
         ])->assertRedirect(route('admin.documents.index'));
 
-        $document = InstitutionalDocument::firstOrFail();
+        $document = InstitutionalDocument::where('slug', 'reglamento-institucional')->firstOrFail();
         $storedPath = storage_path('app/public/'.$document->file_path);
         $this->assertFileExists($storedPath);
         $this->get(route('documents'))->assertOk()->assertSee('Reglamento institucional');
@@ -75,7 +78,7 @@ class DocumentLibraryTest extends TestCase
             'sort_order' => 0,
         ])->assertSessionHasErrors('verified_at');
 
-        $this->assertDatabaseCount('institutional_documents', 0);
+        $this->assertDatabaseMissing('institutional_documents', ['slug' => 'circular-sin-verificar']);
     }
 
     private function superAdmin(): User

@@ -4,6 +4,7 @@
         'news' => 'fa-newspaper',
         'information' => 'fa-school',
         'specialties' => 'fa-screwdriver-wrench',
+        'admission' => 'fa-user-check',
         'board' => 'fa-people-group',
         'contact' => 'fa-envelope',
         'calendar.index' => 'fa-calendar-days',

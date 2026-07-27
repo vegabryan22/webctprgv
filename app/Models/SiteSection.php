@@ -28,6 +28,7 @@ class SiteSection extends Model
             'board' => 'board',
             'contact' => 'contact',
             'calendar.index' => 'calendar',
+            'admission' => 'admission',
             'services.index' => 'services',
             'experiences.index' => 'practice',
             'directory' => 'directory',

@@ -41,6 +41,7 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/noticias', 'news')->middleware('section:news')->name('news');
     Route::get('/noticias/{article:slug}', 'newsArticle')->middleware('section:news')->name('news.show');
     Route::get('/informacion', 'information')->middleware('section:institution')->name('information');
+    Route::get('/admision-y-matricula', 'admission')->middleware('section:admission')->name('admission');
     Route::get('/especialidades', 'specialties')->middleware('section:specialties')->name('specialties');
     Route::get('/especialidades/{specialty:slug}', 'specialty')->middleware('section:specialties')->name('specialties.show');
     Route::get('/talleres-exploratorios', 'workshops')->middleware('section:workshops')->name('workshops');

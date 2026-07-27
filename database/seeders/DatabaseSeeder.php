@@ -116,6 +116,7 @@ class DatabaseSeeder extends Seeder
             ['contact', 'Contacto', 'Canales, mapa y formulario de consultas', 'contact'],
             ['services', 'Servicios', 'Catálogo de servicios institucionales', 'services.index'],
             ['calendar', 'Calendario', 'Actividades y fechas institucionales', 'calendar.index'],
+            ['admission', 'Admisión y matrícula', 'Procesos de ingreso a 7.º y elección de especialidad de 10.º', 'admission'],
             ['practice', 'Práctica profesional', 'Vinculación, pasantías y práctica', 'experiences.index'],
             ['directory', 'Directorio', 'Contactos por departamento', 'directory'],
             ['documents', 'Documentos', 'Biblioteca documental pública', 'documents'],
@@ -142,6 +143,11 @@ class DatabaseSeeder extends Seeder
         NavigationItem::firstOrCreate(
             ['route_name' => 'calendar.index'],
             ['label' => 'CALENDARIO', 'sort_order' => 70, 'is_active' => true],
+        );
+
+        NavigationItem::firstOrCreate(
+            ['route_name' => 'admission'],
+            ['label' => 'ADMISIÓN', 'sort_order' => 45, 'is_active' => true],
         );
 
         NavigationItem::firstOrCreate(

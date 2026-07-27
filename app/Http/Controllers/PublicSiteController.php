@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContentPage;
 use App\Models\Event;
 use App\Models\ExploratoryWorkshop;
+use App\Models\InstitutionalDocument;
 use App\Models\NewsArticle;
 use App\Models\NewsCategory;
 use App\Models\SiteSetting;
@@ -62,6 +63,27 @@ class PublicSiteController extends Controller
     public function information(): View
     {
         return $this->managed('information');
+    }
+
+    public function admission(): View
+    {
+        return view('public.admission', [
+            'page' => $this->publishedPage('admission'),
+            'events' => Event::with('category')
+                ->publiclyVisible()
+                ->where('slug', 'like', 'ctprgv-admision-2027-%')
+                ->orderBy('starts_at')
+                ->get(),
+            'documents' => InstitutionalDocument::with('category')
+                ->published()
+                ->whereIn('slug', [
+                    'circular-prematricula-setimo-2027',
+                    'circular-reglamento-admision-2027',
+                    'reglamento-admision-matricula-2027',
+                ])
+                ->orderBy('sort_order')
+                ->get(),
+        ]);
     }
 
     public function specialties(): View
