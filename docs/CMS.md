@@ -17,6 +17,20 @@ Las páginas institucionales muestran la etiqueta **Institucional** en el panel.
 - contenido;
 - estado de publicación.
 
+## Resumen administrativo
+
+Desde `0.35.0`, la entrada de Administración es un tablero operativo y no un simple contador. Presenta:
+
+- estado público o modo mantenimiento;
+- cantidad de secciones visibles;
+- contenido publicado y tareas pendientes;
+- publicaciones y borradores por módulo;
+- próximas actividades;
+- consultas recientes;
+- totales de usuarios y roles.
+
+Los enlaces y datos sensibles respetan los permisos del usuario autenticado. Las tarjetas se reorganizan progresivamente hasta una sola columna en teléfonos. Todos los indicadores se calculan desde el estado actual almacenado en MySQL.
+
 ## Contacto público
 
 Desde `0.28.0`, la página `/contacto` no imprime el HTML heredado de la página del CMS. Utiliza parámetros estructurados de `site_settings`, administrables desde **Contenido → Contacto**:

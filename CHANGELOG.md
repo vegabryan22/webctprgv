@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.35.0] - 2026-07-27
+
+### Cambiado
+
+- El resumen administrativo funciona ahora como centro de control operativo.
+- Los indicadores distinguen el estado público o de mantenimiento, las secciones visibles, el contenido publicado y los pendientes.
+- Cada módulo autorizado muestra sus registros publicados, borradores y un acceso directo.
+- La agenda próxima y las consultas recientes aparecen en paneles compactos.
+- La composición se adapta de cuatro columnas a una columna en pantallas pequeñas.
+
+### Seguridad
+
+- Los accesos a módulos y consultas continúan condicionados por los permisos del usuario autenticado.
+
 ## [0.34.0] - 2026-07-27
 
 ### Añadido

@@ -54,6 +54,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.33.0 | CTP-C15 | Portal administrable de admisión para 7.º y 10.º con cronograma y documentos |
 | 0.33.1 | CTP-C15 | Contraste y escala corregidos en el encabezado de Admisión |
 | 0.34.0 | Control de publicación | Mantenimiento público con revisión autenticada y rol lector |
+| 0.35.0 | Administración | Resumen convertido en tablero operativo, adaptable y sensible a permisos |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
