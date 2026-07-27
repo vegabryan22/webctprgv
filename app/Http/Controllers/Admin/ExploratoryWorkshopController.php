@@ -60,7 +60,7 @@ class ExploratoryWorkshopController extends Controller
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('exploratory_workshops')->ignore($workshop)],
-            'grade_level' => ['required', Rule::in(['7.º', '8.º', '9.º'])],
+            'grade_level' => ['required', Rule::in(['7.º', '8.º', '9.º', '7.º, 8.º y 9.º'])],
             'summary' => ['required', 'string', 'max:1000'],
             'description' => ['nullable', 'string'],
             'responsible' => ['nullable', 'string', 'max:255'],

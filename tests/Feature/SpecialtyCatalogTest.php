@@ -18,10 +18,18 @@ class SpecialtyCatalogTest extends TestCase
         $this->seed();
     }
 
-    public function test_existing_specialty_names_start_as_reviewable_drafts(): void
+    public function test_curricular_specialties_start_as_documented_reviewable_drafts(): void
     {
-        $this->assertSame(6, Specialty::where('status', 'draft')->count());
-        $this->assertDatabaseHas('specialties', ['name' => 'Redes de Computadoras', 'status' => 'draft']);
+        $this->assertSame(7, Specialty::where('status', 'draft')->count());
+        $this->assertDatabaseHas('specialties', [
+            'name' => 'Configuración y soporte a redes de comunicación y sistemas operativos',
+            'status' => 'draft',
+        ]);
+        $this->assertDatabaseHas('specialties', [
+            'name' => 'Instalación y mantenimiento de sistemas eléctricos industriales',
+            'status' => 'draft',
+        ]);
+        $this->assertDatabaseMissing('specialties', ['name' => 'Redes de Computadoras']);
         $this->get('/especialidades')->assertOk()->assertSee('Oferta técnica en proceso de verificación')->assertDontSee('alto índice de inserción laboral');
     }
 
