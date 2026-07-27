@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.29.2] - 2026-07-27
+
+### Cambiado
+
+- El formulario de contacto pasa a ser el primer elemento y ocupa el área principal.
+- Teléfonos, correo y horario se agrupan en una columna lateral compacta.
+- La ubicación y el mapa permanecen debajo a todo lo ancho.
+- En dispositivos móviles se conserva el formulario como primera acción.
+
 ## [0.29.1] - 2026-07-27
 
 ### Añadido
