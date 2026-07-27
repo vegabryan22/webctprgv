@@ -4,6 +4,8 @@
 
 Las páginas Inicio, Noticias, Información, Especialidades, Junta Administrativa, Contacto y 50 Aniversario se importan a `content_pages` durante la carga de datos iniciales. La importación es idempotente: crea registros ausentes, pero no sobrescribe cambios editoriales existentes.
 
+Desde `0.25.0`, Inicio utiliza una plantilla pública estructurada alimentada por especialidades, talleres, calendario y noticias. `content_pages` conserva el título y el contenido heredado como respaldo editorial, pero el campo `content` de Inicio no se imprime públicamente para evitar duplicar bloques trasladados a Información y otros módulos.
+
 Las páginas institucionales muestran la etiqueta **Institucional** en el panel. Se puede modificar:
 
 - título;

@@ -101,7 +101,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | CTP-C01 | Portada dinámica | Completado | CTP-B03 | Accesos rápidos y próximas actividades | Conserva CMS, solo eventos públicos y distingue fechas MEP |
 | CTP-C02 | Noticias estructuradas | Completado | CTP-B02 | Modelo, migración, CRUD, permisos, listado y detalle | Fecha, categoría, autor, imagen, adjunto, estado y destacado |
 | CTP-C03 | Saneamiento editorial | Completado | Ninguna | Inventario, reglas automáticas y datos pendientes de confirmación | Cada hallazgo fue resuelto o quedó identificado con responsable |
-| CTP-C04 | Actualidad en portada | Preparado | CTP-C02 | Noticias y avisos recientes en Inicio | Sin duplicación y con publicación/expiración |
+| CTP-C04 | Actualidad en portada | Completado | CTP-C02 | Noticias y avisos recientes en Inicio | Sin duplicación y con publicación/expiración |
 
 ## Etapa 2 — Servicios institucionales
 
@@ -154,6 +154,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | DEC-001 | El servidor no se modifica manualmente | Los cambios se aplican mediante GitOps | Todo debe versionarse antes del despliegue |
 | 2026-07-24 | DEC-002 | Inicio conserva el CMS y añade componentes dinámicos | Evita perder edición y duplicar calendario | CTP-C01 usa una vista específica |
 | 2026-07-24 | DEC-003 | El contenido futuro será estructurado | Los bloques HTML son difíciles de validar y reutilizar | Noticias, servicios y especialidades tendrán modelos propios |
+| 2026-07-27 | DEC-004 | Inicio conserva el título administrado, pero no imprime el HTML heredado | La portada anterior duplicaba misión, valores, video y componentes dinámicos | Inicio se alimenta de módulos estructurados y el contenido anterior permanece como respaldo |
 
 ## Bitácora de entregas
 
@@ -192,6 +193,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | CTP-C06, presentación de ilustraciones | 0.23.2 | Completado | `40931a5` | `c13b94d` | 69 pruebas y 404 aserciones aprobadas; HTML sin fondos en línea y HTTP 200 | Imágenes reales con encuadre completo y sin repetición en mosaico |
 | 2026-07-27 | CTP-C06, encuadre de ilustraciones | 0.23.3 | Completado | `6596d07` | `290c2eb` | 69 pruebas y 404 aserciones aprobadas; detalle con HTTP 200 | Cobertura total con posición superior y sin fondos repetibles |
 | 2026-07-27 | Navegación pública | 0.24.0 | Completado | `e5b9a98` | `939fa41` | 69 pruebas y 405 aserciones aprobadas; portada con HTTP 200 | Enlaces planos, redes en el pie, administración abreviada y menú móvil anticipado |
+| 2026-07-27 | CTP-C01 y CTP-C04, portada estructurada | 0.25.0 | Completado | `fa749f8` | Pendiente | 70 pruebas y 415 aserciones aprobadas; portada con HTTP 200 y sin bloques heredados | Hero compacto, accesos, recorridos, agenda, noticias condicionales e identidad |
 
 ## Riesgos y bloqueos
 
@@ -213,4 +215,4 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 4. Mantener en borrador fechas o relatos sin respaldo documental.
 5. Integrar historia, misión y visión sin duplicar páginas del CMS.
 
-`CTP-C04 — Actualidad en portada` permanece preparado y se ejecutará después de publicar las primeras noticias oficiales.
+`CTP-C04 — Actualidad en portada` quedó preparado funcionalmente en `0.25.0`: muestra hasta tres noticias publicadas y oculta la sección cuando no existen.

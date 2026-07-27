@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.25.0] - 2026-07-27
+
+### Añadido
+
+- Portada institucional estructurada con hero compacto, accesos rápidos y recorridos académicos.
+- Conteos dinámicos de especialidades y talleres publicados.
+- Noticias recientes en el inicio cuando existan publicaciones oficiales.
+- Cierre institucional con acceso a la información completa.
+
+### Cambiado
+
+- Próximas actividades se presentan en una cuadrícula compacta de hasta cuatro fechas.
+- El título de Inicio continúa administrado desde el CMS, pero el HTML heredado deja de imprimirse para evitar misión, visión, valores y video duplicados.
+
 ## [0.24.0] - 2026-07-27
 
 ### Cambiado

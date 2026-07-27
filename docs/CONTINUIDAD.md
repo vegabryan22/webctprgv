@@ -37,6 +37,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.23.2 | CTP-C06 | Encuadre completo y eliminación del mosaico en detalles |
 | 0.23.3 | CTP-C06 | Cobertura completa de ilustraciones con anclaje superior |
 | 0.24.0 | Navegación pública | Encabezado simplificado, compacto y adaptable |
+| 0.25.0 | CTP-C01 y CTP-C04 | Portada estructurada con oferta, agenda y noticias condicionales |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -106,7 +107,7 @@ php artisan serve
 
 CTP-C12 debe crear una historia institucional estructurada y una línea del tiempo con fecha, descripción, fuente, responsable y verificación. Las fotografías serán opcionales y solo podrán publicarse con autorización. Debe integrarse con la página informativa existente sin duplicar misión y visión.
 
-Después quedan CTP-C13 (proyectos y egresados), CTP-C04 (actualidad en portada cuando existan noticias oficiales) y CTP-C10 (revisión integral final), según las dependencias del plan.
+Después quedan CTP-C13 (proyectos y egresados) y CTP-C10 (revisión integral final), según las dependencias del plan. La portada ya admite noticias oficiales y oculta el bloque cuando no existen publicaciones.
 
 El catálogo curricular fue publicado en `v0.19.1` por solicitud expresa del usuario. Continúan pendientes los contactos, responsables, disponibilidad y oportunidades profesionales que requieran confirmación institucional adicional.
 
