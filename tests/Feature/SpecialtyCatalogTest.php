@@ -18,19 +18,23 @@ class SpecialtyCatalogTest extends TestCase
         $this->seed();
     }
 
-    public function test_curricular_specialties_start_as_documented_reviewable_drafts(): void
+    public function test_documented_curricular_specialties_are_published(): void
     {
-        $this->assertSame(7, Specialty::where('status', 'draft')->count());
+        $this->assertSame(7, Specialty::where('status', 'published')->count());
         $this->assertDatabaseHas('specialties', [
             'name' => 'Configuración y soporte a redes de comunicación y sistemas operativos',
-            'status' => 'draft',
+            'status' => 'published',
         ]);
         $this->assertDatabaseHas('specialties', [
             'name' => 'Instalación y mantenimiento de sistemas eléctricos industriales',
-            'status' => 'draft',
+            'status' => 'published',
         ]);
         $this->assertDatabaseMissing('specialties', ['name' => 'Redes de Computadoras']);
-        $this->get('/especialidades')->assertOk()->assertSee('Oferta técnica en proceso de verificación')->assertDontSee('alto índice de inserción laboral');
+        $this->get('/especialidades')
+            ->assertOk()
+            ->assertSee('Configuración y soporte a redes de comunicación y sistemas operativos')
+            ->assertSee('Instalación y mantenimiento de sistemas eléctricos industriales')
+            ->assertDontSee('alto índice de inserción laboral');
     }
 
     public function test_only_published_specialties_are_public(): void
@@ -43,10 +47,17 @@ class SpecialtyCatalogTest extends TestCase
             'verified_at' => now(),
             'published_at' => now(),
         ]);
+        $draft = Specialty::create([
+            'name' => 'Especialidad pendiente',
+            'slug' => 'especialidad-pendiente',
+            'summary' => 'Contenido sin publicar.',
+            'grade_levels' => '10.º, 11.º y 12.º',
+            'status' => 'draft',
+        ]);
 
         $this->get('/especialidades')->assertSee($specialty->name);
         $this->get(route('specialties.show', $specialty))->assertOk()->assertSee('Contenido oficial');
-        $this->get(route('specialties.show', Specialty::where('status', 'draft')->firstOrFail()))->assertNotFound();
+        $this->get(route('specialties.show', $draft))->assertNotFound();
     }
 
     public function test_super_admin_can_complete_and_publish_specialty(): void

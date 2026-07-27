@@ -67,7 +67,16 @@ class PublicSiteController extends Controller
 
     public function workshops(): View
     {
-        return view('workshops.index', ['workshops' => ExploratoryWorkshop::published()->orderBy('grade_level')->orderBy('sort_order')->get()]);
+        $workshops = ExploratoryWorkshop::published()->orderBy('sort_order')->orderBy('name')->get();
+
+        return view('workshops.index', [
+            'workshopGroups' => collect([
+                '7.º' => $workshops->where('grade_level', '7.º'),
+                '8.º' => $workshops->where('grade_level', '8.º'),
+                '9.º' => $workshops->where('grade_level', '9.º'),
+                '7.º, 8.º y 9.º' => $workshops->where('grade_level', '7.º, 8.º y 9.º'),
+            ])->filter->isNotEmpty(),
+        ]);
     }
 
     public function board(): View

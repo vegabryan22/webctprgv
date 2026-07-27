@@ -15,7 +15,7 @@ class ExploratoryWorkshopTest extends TestCase
     public function test_workshops_and_specialties_are_presented_as_different_grade_paths(): void
     {
         $this->seed();
-        $this->assertSame(17, ExploratoryWorkshop::where('status', 'draft')->count());
+        $this->assertSame(17, ExploratoryWorkshop::where('status', 'published')->count());
         $this->assertDatabaseHas('exploratory_workshops', [
             'name' => 'Oficina secretarial y la inteligencia de las cosas (AIoT)',
             'grade_level' => '7.º',
@@ -24,7 +24,13 @@ class ExploratoryWorkshopTest extends TestCase
             'name' => 'Inglés conversacional',
             'grade_level' => '7.º, 8.º y 9.º',
         ]);
-        $this->get('/talleres-exploratorios')->assertOk()->assertSee('7.º, 8.º y 9.º')->assertSee('Talleres pendientes de confirmación');
+        $this->get('/talleres-exploratorios')
+            ->assertOk()
+            ->assertSee('Talleres de 7.º')
+            ->assertSee('Talleres de 8.º')
+            ->assertSee('Talleres de 9.º')
+            ->assertSee('Programa para todo el tercer ciclo')
+            ->assertSee('Inglés conversacional');
         $this->get('/especialidades')->assertOk()->assertSee('10.º, 11.º y 12.º')->assertSee('¿Busca talleres de 7.º, 8.º y 9.º?');
     }
 
