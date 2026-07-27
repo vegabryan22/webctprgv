@@ -63,6 +63,8 @@ class ContactSettingsTest extends TestCase
             ->assertSee('Atención a la comunidad')
             ->assertSee('contacto@example.test')
             ->assertSee('Dirección verificada')
+            ->assertSee('contact-map')
+            ->assertSee('https://www.google.com/maps?q=Direcci%C3%B3n+verificada&amp;output=embed', false)
             ->assertSee('Verificado el 27/07/2026')
             ->assertSee('Fuente: Dirección');
     }

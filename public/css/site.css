@@ -3482,6 +3482,34 @@ p {
     margin-top: 0.8rem !important;
 }
 
+.contact-card--location {
+    grid-column: 1 / -1;
+    grid-template-columns: auto minmax(220px, 0.7fr) minmax(360px, 1.3fr);
+    padding: 0;
+    overflow: hidden;
+}
+
+.contact-card--location > i {
+    margin: 1.5rem 0 1.5rem 1.5rem;
+}
+
+.contact-card--location > div:not(.contact-map) {
+    align-self: center;
+    padding: 1.5rem 1rem 1.5rem 0;
+}
+
+.contact-map {
+    min-height: 300px;
+}
+
+.contact-map iframe {
+    border: 0;
+    display: block;
+    height: 100%;
+    min-height: 300px;
+    width: 100%;
+}
+
 .contact-verification {
     color: #617486;
     font-size: 0.82rem;
@@ -3714,6 +3742,14 @@ p {
 
     .contact-form {
         padding: 1.25rem;
+    }
+
+    .contact-card--location {
+        grid-template-columns: auto 1fr;
+    }
+
+    .contact-card--location .contact-map {
+        grid-column: 1 / -1;
     }
 
     .contact-content {

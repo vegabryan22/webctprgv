@@ -54,10 +54,18 @@
                 @endif
 
                 @if($address)
-                    <article class="contact-card">
+                    <article class="contact-card contact-card--location">
                         <i class="fa-solid fa-location-dot"></i>
                         <div><span>Visítenos</span><h2>Ubicación</h2><p>{{ $address }}</p>
                             @if($mapUrl)<a class="contact-card__action" href="{{ $mapUrl }}" target="_blank" rel="noopener">Abrir mapa <i class="fa-solid fa-arrow-up-right-from-square"></i></a>@endif
+                        </div>
+                        <div class="contact-map">
+                            <iframe
+                                src="https://www.google.com/maps?q={{ urlencode($address) }}&amp;output=embed"
+                                title="Mapa de ubicación del CTP Roberto Gamboa Valverde"
+                                loading="lazy"
+                                allowfullscreen
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </article>
                 @endif
