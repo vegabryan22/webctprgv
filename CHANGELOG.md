@@ -2,6 +2,27 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.30.0] - 2026-07-27
+
+### Añadido
+
+- Categorías administrables para proyectos, licitaciones o contrataciones, uniformes, materiales, informes y avisos.
+- Precio opcional, nota de precio y fecha de vigencia para las publicaciones de la Junta.
+- Publicaciones verificadas de camisas del uniforme y cuaderno de comunicaciones, sin inventar precios.
+
+### Cambiado
+
+- La página pública de la Junta adopta el formato visual actual del sitio y agrupa sus publicaciones por categoría.
+- Precios, fechas y condiciones solo aparecen cuando han sido confirmados.
+
+### Eliminado
+
+- Proyectos, licitaciones, productos, precios, teléfonos, horarios, formas de pago y demás afirmaciones demostrativas del HTML heredado.
+
+### Base de datos
+
+- Migración `2026_07_27_000800_expand_board_publications.php`.
+
 ## [0.29.3] - 2026-07-27
 
 ### Añadido

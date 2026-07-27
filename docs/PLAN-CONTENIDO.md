@@ -202,6 +202,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Mapa de contacto | 0.29.1 | Completado | `e67ea04` | `3979f6b` | 79 pruebas y 484 aserciones aprobadas; `/contacto` con iframe verificado y HTTP 200 | Mapa adaptable generado desde la dirección, con enlace externo independiente |
 | 2026-07-27 | Composición compacta de Contacto | 0.29.2 | Completado | `a1708fc` | `fcce3be` | 79 pruebas y 486 aserciones aprobadas; orden y cuadrícula verificados con HTTP 200 | Formulario primero, canales laterales y mapa inferior a todo lo ancho |
 | 2026-07-27 | Redes en Contacto | 0.29.3 | Completado | `ed59be4` | `75f55d9` | 79 pruebas y 493 aserciones aprobadas; tres redes verificadas con HTTP 200 | Bloque social compacto alimentado por la configuración central |
+| 2026-07-27 | Junta Administrativa mantenible | 0.30.0 | Completado | `69b9da6` | Pendiente | 80 pruebas y 508 aserciones aprobadas; migración local y `/junta-administrativa` con HTTP 200 | Categorías reales, precios opcionales y retiro integral de datos demostrativos |
 
 ## Riesgos y bloqueos
 

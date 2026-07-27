@@ -42,6 +42,21 @@ La consulta permanece guardada aunque el servicio de correo falle. El panel regi
 
 Desde `0.29.1`, cuando existe una dirección, Contacto genera un mapa visible y adaptable dentro de la página. El campo **Enlace público del mapa** continúa definiendo el destino del botón “Abrir mapa”; no se necesita pegar código de inserción ni un iframe en el CMS.
 
+## Junta Administrativa
+
+Desde `0.30.0`, **Contenido → Junta y transparencia** permite mantener publicaciones de:
+
+- proyectos;
+- licitaciones o contrataciones;
+- uniformes;
+- materiales;
+- informes;
+- avisos.
+
+Cada publicación admite resumen, contenido, responsable, fuente, fecha, vigencia, documentos y orden. El precio y su nota son opcionales: si no existe un monto confirmado, puede mostrarse una nota como “Precio pendiente de confirmación”. Para publicar siguen siendo obligatorias la fuente y la fecha de verificación.
+
+El HTML heredado con proyectos, licitaciones y precios demostrativos fue retirado. Las camisas del uniforme y el cuaderno de comunicaciones se cargaron como publicaciones verificadas sin precio.
+
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 
 ## Editor
