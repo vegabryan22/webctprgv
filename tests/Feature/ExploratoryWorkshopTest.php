@@ -41,11 +41,23 @@ class ExploratoryWorkshopTest extends TestCase
         $english = ExploratoryWorkshop::where('name', 'Inglés conversacional')->firstOrFail();
         $this->get(route('workshops.show', $english))
             ->assertOk()
+            ->assertSee('Capacidades comunicativas')
+            ->assertSee('nivel B1.1')
             ->assertSee('Programa de Inglés conversacional de 7.º')
             ->assertSee('Programa de Inglés conversacional de 8.º')
             ->assertSee('Programa de Inglés conversacional de 9.º')
             ->assertSee('ingles-conversacional-7-8-9.pdf');
         $this->get('/especialidades')->assertOk()->assertSee('10.º, 11.º y 12.º')->assertSee('¿Busca talleres de 7.º, 8.º y 9.º?');
+    }
+
+    public function test_all_documented_workshops_have_expanded_pdf_based_content(): void
+    {
+        $this->seed();
+
+        ExploratoryWorkshop::where('status', 'published')->each(function (ExploratoryWorkshop $workshop): void {
+            $this->assertStringContainsString('<ul>', $workshop->description, $workshop->name);
+            $this->assertStringContainsString('<li>', $workshop->description, $workshop->name);
+        });
     }
 
     public function test_only_published_workshops_are_visible(): void

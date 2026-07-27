@@ -44,10 +44,21 @@ class SpecialtyCatalogTest extends TestCase
         $networks = Specialty::where('name', 'Configuración y soporte a redes de comunicación y sistemas operativos')->firstOrFail();
         $this->get(route('specialties.show', $networks))
             ->assertOk()
+            ->assertSee('Perfil del estudiante')
+            ->assertSee('Administración de servidores y fundamentos de ciberseguridad.')
             ->assertSee('Planes de estudio por nivel')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-10.pdf')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-11.pdf')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-12.pdf');
+    }
+
+    public function test_all_documented_specialties_have_profile_and_expanded_training_content(): void
+    {
+        Specialty::where('status', 'published')->each(function (Specialty $specialty): void {
+            $this->assertNotEmpty($specialty->student_profile, $specialty->name);
+            $this->assertStringContainsString('<ul>', $specialty->curriculum, $specialty->name);
+            $this->assertNull($specialty->career_opportunities, $specialty->name);
+        });
     }
 
     public function test_every_curricular_document_points_to_a_public_file(): void
