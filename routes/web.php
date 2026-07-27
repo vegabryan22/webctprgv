@@ -40,6 +40,7 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/especialidades', 'specialties')->name('specialties');
     Route::get('/especialidades/{specialty:slug}', 'specialty')->name('specialties.show');
     Route::get('/talleres-exploratorios', 'workshops')->name('workshops');
+    Route::get('/talleres-exploratorios/{workshop:slug}', 'workshop')->name('workshops.show');
     Route::get('/contacto', 'contact')->name('contact');
     Route::get('/50-aniversario', 'anniversary')->name('anniversary');
     Route::get('/paginas/{page:slug}', 'page')->name('pages.show');

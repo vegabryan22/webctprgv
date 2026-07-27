@@ -80,6 +80,14 @@ class PublicSiteController extends Controller
         ]);
     }
 
+    public function workshop(ExploratoryWorkshop $workshop): View
+    {
+        abort_unless(ExploratoryWorkshop::published()->whereKey($workshop)->exists(), 404);
+        $workshop->load('curricularDocuments');
+
+        return view('workshops.show', compact('workshop'));
+    }
+
     public function board(): View
     {
         return $this->managed('board');

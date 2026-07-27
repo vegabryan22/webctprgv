@@ -7,6 +7,8 @@ use App\Models\Role;
 use App\Models\Specialty;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class SpecialtyCatalogTest extends TestCase
@@ -34,6 +36,7 @@ class SpecialtyCatalogTest extends TestCase
         $this->assertDatabaseMissing('specialties', ['name' => 'Redes de Computadoras']);
         $this->get('/especialidades')
             ->assertOk()
+            ->assertSee('catalog-grid')
             ->assertSee('Configuración y soporte a redes de comunicación y sistemas operativos')
             ->assertSee('Instalación y mantenimiento de sistemas eléctricos industriales')
             ->assertDontSee('alto índice de inserción laboral');
@@ -93,6 +96,36 @@ class SpecialtyCatalogTest extends TestCase
         ])->assertRedirect(route('admin.specialties.index'));
 
         $this->assertDatabaseHas('specialties', ['id' => $specialty->id, 'status' => 'published']);
+    }
+
+    public function test_super_admin_can_create_a_specialty_with_a_plan(): void
+    {
+        Storage::disk('public')->makeDirectory('curricular-plans');
+        $user = $this->superAdmin();
+
+        $this->actingAs($user)->post(route('admin.specialties.store'), [
+            'name' => 'Especialidad con plan',
+            'slug' => 'especialidad-con-plan',
+            'summary' => 'Resumen breve.',
+            'grade_levels' => '10.º, 11.º y 12.º',
+            'plan_files' => [UploadedFile::fake()->create('programa.pdf', 100, 'application/pdf')],
+            'plan_grades' => ['10.º'],
+            'plan_languages' => ['es'],
+            'plan_titles' => ['Programa oficial de 10.º'],
+            'status' => 'draft',
+            'sort_order' => 90,
+        ])->assertRedirect(route('admin.specialties.index'));
+
+        $specialty = Specialty::where('slug', 'especialidad-con-plan')->firstOrFail();
+        $this->assertDatabaseHas('curricular_documents', [
+            'specialty_id' => $specialty->id,
+            'title' => 'Programa oficial de 10.º',
+            'grade_level' => '10.º',
+        ]);
+
+        Storage::disk('public')->delete(
+            str($specialty->curricularDocuments()->firstOrFail()->file_path)->after('storage/')->toString(),
+        );
     }
 
     private function superAdmin(): User

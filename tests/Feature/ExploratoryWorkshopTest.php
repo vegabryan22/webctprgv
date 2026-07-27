@@ -7,6 +7,8 @@ use App\Models\ExploratoryWorkshop;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ExploratoryWorkshopTest extends TestCase
@@ -28,11 +30,17 @@ class ExploratoryWorkshopTest extends TestCase
         ]);
         $this->get('/talleres-exploratorios')
             ->assertOk()
-            ->assertSee('Talleres de 7.º')
-            ->assertSee('Talleres de 8.º')
-            ->assertSee('Talleres de 9.º')
-            ->assertSee('Programa para todo el tercer ciclo')
+            ->assertSee('7.º nivel')
+            ->assertSee('8.º nivel')
+            ->assertSee('9.º nivel')
+            ->assertSee('Todo el tercer ciclo')
+            ->assertDontSee('Talleres de 7.º')
             ->assertSee('Inglés conversacional')
+            ->assertSee('catalog-grid');
+
+        $english = ExploratoryWorkshop::where('name', 'Inglés conversacional')->firstOrFail();
+        $this->get(route('workshops.show', $english))
+            ->assertOk()
             ->assertSee('Programa de Inglés conversacional de 7.º')
             ->assertSee('Programa de Inglés conversacional de 8.º')
             ->assertSee('Programa de Inglés conversacional de 9.º')
@@ -46,6 +54,7 @@ class ExploratoryWorkshopTest extends TestCase
         ExploratoryWorkshop::create(['name' => 'Taller confirmado', 'slug' => 'taller-confirmado', 'grade_level' => '7.º', 'summary' => 'Exploración técnica.', 'status' => 'published', 'published_at' => now()]);
         ExploratoryWorkshop::create(['name' => 'Taller borrador', 'slug' => 'taller-borrador', 'grade_level' => '8.º', 'summary' => 'Pendiente.', 'status' => 'draft']);
         $this->get('/talleres-exploratorios')->assertSee('Taller confirmado')->assertDontSee('Taller borrador');
+        $this->get(route('workshops.show', ExploratoryWorkshop::where('slug', 'taller-borrador')->firstOrFail()))->assertNotFound();
     }
 
     public function test_super_admin_can_assign_a_workshop_to_all_third_cycle_levels(): void
@@ -70,5 +79,42 @@ class ExploratoryWorkshopTest extends TestCase
             'id' => $workshop->id,
             'grade_level' => '7.º, 8.º y 9.º',
         ]);
+    }
+
+    public function test_super_admin_can_create_a_workshop_with_image_and_plan(): void
+    {
+        Storage::disk('public')->makeDirectory('workshops');
+        Storage::disk('public')->makeDirectory('curricular-plans');
+        $this->seed();
+        $user = User::factory()->create();
+        $user->roles()->attach(Role::where('name', 'super-admin')->firstOrFail());
+
+        $this->actingAs($user)->post(route('admin.workshops.store'), [
+            'name' => 'Taller con recursos',
+            'slug' => 'taller-con-recursos',
+            'grade_level' => '8.º',
+            'summary' => 'Resumen breve.',
+            'description' => '<p>Descripción completa.</p>',
+            'image' => UploadedFile::fake()->image('taller.jpg', 800, 500),
+            'plan_files' => [UploadedFile::fake()->create('plan.pdf', 100, 'application/pdf')],
+            'plan_grades' => ['8.º'],
+            'plan_languages' => ['es'],
+            'plan_titles' => ['Plan oficial de 8.º'],
+            'status' => 'draft',
+            'sort_order' => 90,
+        ])->assertRedirect(route('admin.workshops.index'));
+
+        $workshop = ExploratoryWorkshop::where('slug', 'taller-con-recursos')->firstOrFail();
+        $this->assertNotNull($workshop->image_path);
+        $this->assertDatabaseHas('curricular_documents', [
+            'exploratory_workshop_id' => $workshop->id,
+            'title' => 'Plan oficial de 8.º',
+            'grade_level' => '8.º',
+        ]);
+
+        Storage::disk('public')->delete($workshop->image_path);
+        Storage::disk('public')->delete(
+            str($workshop->curricularDocuments()->firstOrFail()->file_path)->after('storage/')->toString(),
+        );
     }
 }
