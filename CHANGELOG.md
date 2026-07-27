@@ -2,6 +2,26 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.34.0] - 2026-07-27
+
+### Añadido
+
+- Modo mantenimiento administrable desde **Estado del sitio**.
+- Pantalla pública temporal con título y mensaje editables.
+- Rol de sistema **Lector del sitio**, sin acceso al panel administrativo.
+- Acceso completo al sitio para cualquier usuario autenticado mientras el mantenimiento está activo.
+- Franja de “Vista de revisión” para distinguir el contenido oculto al público.
+
+### Cambiado
+
+- Los usuarios autenticados sin `admin.access` permanecen conectados y regresan al sitio público.
+- El formulario de acceso conserva la página que el revisor intentaba consultar.
+- Los lectores disponen de una acción pública para cerrar sesión.
+
+### Base de datos
+
+- Migración `2026_07_27_001200_add_maintenance_review_mode.php`.
+
 ## [0.33.1] - 2026-07-27
 
 ### Corregido

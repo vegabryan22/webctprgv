@@ -53,6 +53,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.32.0 | CTP-C15 parcial | Cronograma oficial de prematrícula de 7.º incorporado al calendario |
 | 0.33.0 | CTP-C15 | Portal administrable de admisión para 7.º y 10.º con cronograma y documentos |
 | 0.33.1 | CTP-C15 | Contraste y escala corregidos en el encabezado de Admisión |
+| 0.34.0 | Control de publicación | Mantenimiento público con revisión autenticada y rol lector |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -77,6 +78,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_000900_create_site_sections_table.php`
 - `2026_07_27_001000_import_seventh_grade_admission_schedule.php`
 - `2026_07_27_001100_create_admission_portal.php`
+- `2026_07_27_001200_add_maintenance_review_mode.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 

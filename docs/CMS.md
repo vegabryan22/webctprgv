@@ -85,6 +85,26 @@ El panel **Estado del sitio** permite desactivar toda la sección sin eliminar s
 
 Los tres PDF recibidos se distribuyen como documentos versionados del proyecto. Si Dirección emite archivos corregidos, deben cargarse desde Documentos y marcar los anteriores como reemplazados. No se deben copiar al resumen público montos, fechas o requisitos contradictorios mientras no exista una comunicación aclaratoria.
 
+## Modo mantenimiento y revisión autenticada
+
+Desde `0.34.0`, **Contenido → Estado del sitio** incluye el control de mantenimiento general. Al activarlo:
+
+- las rutas públicas muestran una pantalla temporal y responden HTTP 503;
+- el formulario de inicio de sesión y el panel permanecen disponibles;
+- cualquier usuario autenticado puede navegar por el sitio público completo;
+- aparece una franja que advierte que se está utilizando la vista de revisión;
+- el contenido, los archivos y las secciones no se modifican.
+
+Para entregar acceso de revisión sin permisos administrativos:
+
+1. Ir a **Seguridad → Usuarios**.
+2. Crear o editar una cuenta.
+3. Asignar únicamente el rol **Lector del sitio**.
+4. Compartir de forma segura sus credenciales, nunca mediante archivos versionados.
+5. El lector inicia sesión desde el botón de la pantalla de mantenimiento y vuelve a la página que intentaba consultar.
+
+El rol lector no contiene `admin.access`; por ello, `/administracion` responde 403 para esa cuenta. Al cerrar sesión vuelve a aplicarse la pantalla de mantenimiento. El título y el mensaje públicos se editan junto al interruptor antes de guardar.
+
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 
 ## Editor
