@@ -188,7 +188,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | CTP-C06, etiquetas de planes | 0.22.2 | Completado | `e755551` | `32cfd32` | 67 pruebas y 375 aserciones aprobadas | El idioma se conserva en el CMS y se oculta en la presentación pública |
 | 2026-07-27 | CTP-C06, nivel de planes | 0.22.3 | Completado | `1964fc1` | `3accac7` | 67 pruebas y 377 aserciones aprobadas | El nivel se muestra únicamente dentro del nombre del documento |
 | 2026-07-27 | CTP-C06, ilustraciones curriculares | 0.23.0 | Completado | `41b6443` | `ffbdc93` | 69 pruebas y 404 aserciones aprobadas; listados y detalles con HTTP 200 | Atlas con 24 escenas temáticas y prioridad para imágenes del CMS |
-| 2026-07-27 | CTP-C06, recorte de ilustraciones | 0.23.1 | Completado | `02cb4e6` | Pendiente | 69 pruebas y 404 aserciones aprobadas; listado con archivos individuales y HTTP 200 | Separación física de las 24 escenas para impedir recortes entre filas |
+| 2026-07-27 | CTP-C06, recorte de ilustraciones | 0.23.1 | Completado | `02cb4e6` | `7bffb4a` | 69 pruebas y 404 aserciones aprobadas; listado con archivos individuales y HTTP 200 | Separación física de las 24 escenas para impedir recortes entre filas |
 
 ## Riesgos y bloqueos
 
