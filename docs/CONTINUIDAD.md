@@ -31,6 +31,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.22.0 | CTP-C06 | Perfiles, formación y contenidos ampliados desde los 40 planes |
 | 0.22.1 | CTP-C06 | Rediseño visual de fichas y planes curriculares compactos |
 | 0.22.2 | CTP-C06 | Simplificación de las etiquetas públicas de planes |
+| 0.22.3 | CTP-C06 | Eliminación del nivel duplicado en tarjetas de planes |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

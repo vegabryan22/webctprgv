@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.22.3] - 2026-07-27
+
+### Cambiado
+
+- Se eliminó el nivel duplicado de las tarjetas de planes cuando ya forma parte del nombre del documento.
+
 ## [0.22.2] - 2026-07-27
 
 ### Cambiado

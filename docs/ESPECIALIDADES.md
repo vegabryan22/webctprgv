@@ -74,6 +74,8 @@ Desde `0.22.1`, las páginas individuales emplean un encabezado visual, seccione
 
 Desde `0.22.2`, el idioma permanece disponible como metadato administrativo, pero no se presenta en las tarjetas públicas de los planes.
 
+Desde `0.22.3`, cada tarjeta presenta solo el nombre del documento; el nivel no se repite como etiqueta independiente.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.
