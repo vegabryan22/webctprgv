@@ -113,7 +113,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | CTP-C05 | Catálogo de servicios | Completado | CTP-B02 | Servicios, categorías, requisitos, responsables y documentos | Solo información confirmada puede publicarse |
 | CTP-C07 | Directorio institucional | Completado | CTP-C05 | Departamentos, contactos, extensiones, búsqueda y horarios | Datos confirmados por Dirección o Secretaría |
 | CTP-C08 | Biblioteca de documentos | Completado | CTP-C05 | Reglamentos, formularios y circulares versionados | Archivo, vigencia, categoría y responsable visibles |
-| CTP-C15 | Admisión y matrícula | Bloqueado | CTP-C05, CTP-C08 | Página pública para 7.º y 10.º, cronograma, avisos y documentos oficiales | Dirección confirma vigencia y resuelve contradicciones entre fuentes |
+| CTP-C15 | Admisión y matrícula | En revisión | CTP-C05, CTP-C08 | Página pública para 7.º y 10.º, cronograma, avisos y documentos oficiales | Portal funcional; Dirección aún debe resolver contradicciones entre fuentes |
 
 ## Etapa 3 — Oferta técnica y vinculación
 
@@ -230,6 +230,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Responsividad transversal | 0.31.1 | Completado | `e3b8fd8` | `4dad41e` | 86 pruebas y 562 aserciones aprobadas; once rutas públicas con HTTP 200 | Sitio público, calendario y panel adaptados desde teléfonos hasta pantallas amplias; biblioteca sin colisión de URL |
 | 2026-07-27 | Responsividad administrativa | 0.31.2 | Completado | `f199361` | `4aaff19` | 87 pruebas y 569 aserciones aprobadas | Menú lateral convertido en navegación móvil plegable y contenido administrativo a ancho completo |
 | 2026-07-27 | CTP-C15, cronograma de admisión de 7.º | 0.32.0 | Completado | `226bbff` | `70b6d28` | 88 pruebas y 577 aserciones aprobadas; cinco meses del calendario con HTTP 200 | Siete hitos publicados sin reproducir montos ni años contradictorios de la circular |
+| 2026-07-27 | CTP-C15, portal de admisión y matrícula | 0.33.0 | En revisión | `5858ff4` | Pendiente | 92 pruebas y 605 aserciones aprobadas; página, biblioteca y tres PDF con HTTP 200 | Recorridos 7.º/10.º, cronograma, documentos y administración integrada; correcciones documentales pendientes de Dirección |
 
 ## Riesgos y bloqueos
 

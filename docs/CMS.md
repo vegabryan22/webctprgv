@@ -59,7 +59,7 @@ El HTML heredado con proyectos, licitaciones y precios demostrativos fue retirad
 
 ## Estado público del sitio
 
-Desde `0.31.0`, **Contenido → Estado del sitio** muestra en un solo panel las doce secciones públicas principales. Un editor autorizado puede activar o desactivar Noticias, Institución, Especialidades, Talleres, Junta Administrativa, Contacto, Servicios, Calendario, Práctica profesional, Directorio, Documentos y 50 Aniversario.
+Desde `0.31.0`, **Contenido → Estado del sitio** muestra en un solo panel las secciones públicas principales. Un editor autorizado puede activar o desactivar Noticias, Institución, Especialidades, Talleres, Junta Administrativa, Contacto, Servicios, Calendario, Práctica profesional, Directorio, Documentos, Admisión y matrícula y 50 Aniversario.
 
 Cuando una sección está desactivada:
 
@@ -71,6 +71,19 @@ Cuando una sección está desactivada:
 Inicio y Administración no se pueden desactivar desde este panel. El permiso requerido es `site-sections.manage`.
 
 Los listados administrativos de Especialidades y Talleres ofrecen además una acción rápida **Activar/Desactivar** para cada ficha. Desactivar cambia el registro a borrador, lo retira del catálogo público y conserva toda su información, imagen y planes.
+
+## Admisión y matrícula
+
+Desde `0.33.0`, el portal `/admision-y-matricula` integra información administrada desde cuatro lugares:
+
+- **Contenido → Páginas:** título, resumen e introducción de la página de Admisión.
+- **Contenido → Actividades:** fechas del proceso y categoría Admisión.
+- **Contenido → Documentos:** circulares, reglamentos, vigencia y responsable.
+- **Contenido → Menú principal:** etiqueta, posición y visibilidad del acceso.
+
+El panel **Estado del sitio** permite desactivar toda la sección sin eliminar sus datos. La página separa el ingreso a 7.º de la elección de especialidad para 10.º y no duplica los eventos ni los archivos.
+
+Los tres PDF recibidos se distribuyen como documentos versionados del proyecto. Si Dirección emite archivos corregidos, deben cargarse desde Documentos y marcar los anteriores como reemplazados. No se deben copiar al resumen público montos, fechas o requisitos contradictorios mientras no exista una comunicación aclaratoria.
 
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 

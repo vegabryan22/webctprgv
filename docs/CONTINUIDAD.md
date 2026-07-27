@@ -51,6 +51,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.31.1 | Responsividad transversal | Sitio y panel adaptables; biblioteca documental sin colisión de URL |
 | 0.31.2 | Responsividad administrativa | Navegación plegable y contenido a ancho completo en móviles |
 | 0.32.0 | CTP-C15 parcial | Cronograma oficial de prematrícula de 7.º incorporado al calendario |
+| 0.33.0 | CTP-C15 | Portal administrable de admisión para 7.º y 10.º con cronograma y documentos |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -73,6 +74,8 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_000700_create_contact_messages_table.php`
 - `2026_07_27_000800_expand_board_publications.php`
 - `2026_07_27_000900_create_site_sections_table.php`
+- `2026_07_27_001000_import_seventh_grade_admission_schedule.php`
+- `2026_07_27_001100_create_admission_portal.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 

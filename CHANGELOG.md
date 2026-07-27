@@ -2,6 +2,32 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.33.0] - 2026-07-27
+
+### Añadido
+
+- Portal público **Admisión y matrícula 2027** con recorridos independientes para 7.º y 10.º.
+- Cronograma de 7.º conectado directamente con las actividades del calendario.
+- Tres fuentes oficiales descargables: dos circulares institucionales y el reglamento completo.
+- Accesos desde Inicio, menú principal y pie de página.
+- Sección **Admisión y matrícula** en el panel rápido de estado del sitio.
+
+### Administración
+
+- La introducción se edita desde Páginas.
+- Las fechas se mantienen desde Actividades y la categoría Admisión.
+- Los archivos y metadatos se mantienen desde Documentos.
+- El acceso principal se ordena o desactiva desde Menú principal.
+
+### Seguridad editorial
+
+- Los PDF originales se conservan íntegros y el portal advierte sobre comunicaciones posteriores.
+- Los montos y años contradictorios no se presentan como datos resumidos ni confirmados.
+
+### Base de datos
+
+- Migración `2026_07_27_001100_create_admission_portal.php`.
+
 ## [0.32.0] - 2026-07-27
 
 ### Añadido
