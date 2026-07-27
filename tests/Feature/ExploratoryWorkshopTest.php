@@ -71,7 +71,7 @@ class ExploratoryWorkshopTest extends TestCase
         $this->seed();
 
         ExploratoryWorkshop::each(
-            fn (ExploratoryWorkshop $workshop) => $this->assertNotNull(CurricularIllustrations::style($workshop->slug)),
+            fn (ExploratoryWorkshop $workshop) => $this->assertNotNull(CurricularIllustrations::path($workshop->slug)),
         );
     }
 

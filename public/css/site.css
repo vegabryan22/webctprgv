@@ -3048,10 +3048,9 @@ p {
 }
 
 .curricular-illustration {
-    background-image: url("/images/curricular/catalog-atlas.png");
-    background-position: var(--atlas-x, 0) var(--atlas-y, 0);
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 400% 600%;
+    background-size: cover;
 }
 
 .catalog-card__body {

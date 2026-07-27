@@ -7,7 +7,7 @@
         <div class="catalog-grid">
             @forelse($specialties as $specialty)
             <article class="catalog-card">
-                <a class="catalog-card__media @if(!$specialty->image_path) curricular-illustration @endif" href="{{ route('specialties.show', $specialty) }}" @if(!$specialty->image_path) style="{{ \App\Support\CurricularIllustrations::style($specialty->slug) }}" @endif>
+                <a class="catalog-card__media @if(!$specialty->image_path) curricular-illustration @endif" href="{{ route('specialties.show', $specialty) }}" @if(!$specialty->image_path) style="background-image: url('{{ asset(\App\Support\CurricularIllustrations::path($specialty->slug)) }}')" @endif>
                     @if($specialty->image_path)<img src="{{ asset('storage/'.ltrim($specialty->image_path, '/')) }}" alt="">@endif
                 </a>
                 <div class="catalog-card__body">

@@ -80,7 +80,7 @@ class SpecialtyCatalogTest extends TestCase
         $this->assertFileExists(public_path('images/curricular/catalog-atlas.png'));
 
         Specialty::each(
-            fn (Specialty $specialty) => $this->assertNotNull(CurricularIllustrations::style($specialty->slug)),
+            fn (Specialty $specialty) => $this->assertNotNull(CurricularIllustrations::path($specialty->slug)),
         );
     }
 

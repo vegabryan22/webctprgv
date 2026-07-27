@@ -10,7 +10,7 @@
             <div class="catalog-grid">
                 @foreach($workshops as $workshop)
                 <article class="catalog-card">
-                    <a class="catalog-card__media @if(!$workshop->image_path) curricular-illustration @endif" href="{{ route('workshops.show', $workshop) }}" @if(!$workshop->image_path) style="{{ \App\Support\CurricularIllustrations::style($workshop->slug) }}" @endif>
+                    <a class="catalog-card__media @if(!$workshop->image_path) curricular-illustration @endif" href="{{ route('workshops.show', $workshop) }}" @if(!$workshop->image_path) style="background-image: url('{{ asset(\App\Support\CurricularIllustrations::path($workshop->slug)) }}')" @endif>
                         @if($workshop->image_path)<img src="{{ asset('storage/'.ltrim($workshop->image_path, '/')) }}" alt="">@endif
                     </a>
                     <div class="catalog-card__body">
