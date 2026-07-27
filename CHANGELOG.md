@@ -2,6 +2,23 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.22.0] - 2026-07-27
+
+### Añadido
+
+- Perfil recomendado y formación ampliada para las siete especialidades técnicas.
+- Descripciones completas y contenidos principales para los diecisiete talleres exploratorios.
+- Cobertura automatizada para comprobar que todas las fichas documentadas contienen información ampliada.
+
+### Seguridad editorial
+
+- La carga conserva cualquier edición manual que ya no coincida con el contenido base.
+- Las oportunidades profesionales continúan vacías mientras no exista confirmación institucional.
+
+### Base de datos
+
+- Migración `2026_07_27_000300_enrich_curricular_catalog_from_study_plans.php`.
+
 ## [0.21.0] - 2026-07-27
 
 ### Añadido

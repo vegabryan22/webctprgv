@@ -14,6 +14,7 @@ Las descripciones publicadas en la web son síntesis editoriales de los programa
 - Los planes de 10.º, 11.º y 12.º de una misma especialidad se consolidaron en una sola ficha.
 - Los dos programas en inglés de Administración logística y distribución se consideran material complementario, no especialidades adicionales.
 - Los registros se prepararon como borradores en `v0.19.0` y se publicaron por solicitud expresa del usuario en `v0.19.1`.
+- En `v0.22.0`, estas mismas fuentes se utilizaron para ampliar perfiles, áreas formativas y contenidos principales sin incorporar oportunidades laborales ni datos institucionales no confirmados.
 
 ## Especialidades técnicas
 

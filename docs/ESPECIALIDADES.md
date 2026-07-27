@@ -59,6 +59,17 @@ Los formularios administrativos de especialidades y talleres permiten:
 
 Los planes cargados desde el CMS se guardan en el disco público bajo `storage/curricular-plans`. Retirar una asociación solo elimina físicamente los archivos administrados desde el CMS; los planes versionados en `public/documentos/planes-estudio` permanecen protegidos.
 
+## Contenido ampliado desde los planes
+
+La versión `0.22.0` completa las fichas utilizando exclusivamente los 40 programas inventariados:
+
+- Las siete especialidades incorporan perfil recomendado y una lista ampliada de áreas formativas.
+- Los diecisiete talleres incorporan descripción completa y contenidos principales.
+- Inglés conversacional identifica las capacidades comunicativas y la progresión indicada por su programa.
+- La migración solo completa perfiles vacíos y sustituye el resumen formativo o la descripción cuando todavía coinciden exactamente con el contenido base de `0.19.0`.
+
+El campo de oportunidades profesionales permanece vacío. Los planes respaldan competencias y perfiles ocupacionales, pero la oferta laboral, los convenios y las condiciones vigentes requieren confirmación institucional.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.
