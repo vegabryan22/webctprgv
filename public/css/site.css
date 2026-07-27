@@ -3337,6 +3337,237 @@ p {
     }
 }
 
+/* Contacto estructurado */
+.contact-page {
+    background: #f3f7fa;
+    color: #284158;
+    padding-top: 76px;
+}
+
+.contact-shell {
+    margin: 0 auto;
+    width: min(1180px, 100%);
+}
+
+.contact-hero {
+    background:
+        radial-gradient(circle at 85% 15%, rgba(255, 218, 0, 0.22), transparent 24%),
+        linear-gradient(125deg, #003764, #075d8d);
+    color: #fff;
+    padding: 5rem 1.5rem 4.5rem;
+    position: relative;
+}
+
+.contact-hero::after {
+    background: #ffda00;
+    bottom: 0;
+    content: "";
+    height: 5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.contact-eyebrow {
+    color: #ffda00;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.contact-hero h1 {
+    color: #fff;
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.03;
+    margin: 0.7rem 0 1rem;
+}
+
+.contact-hero p {
+    color: #dcecf5;
+    font-size: clamp(1rem, 1.7vw, 1.2rem);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 720px;
+}
+
+.contact-content {
+    padding: 4.5rem 1.5rem;
+}
+
+.contact-section-heading {
+    margin-bottom: 1.8rem;
+    max-width: 720px;
+}
+
+.contact-section-heading .contact-eyebrow {
+    color: #4b8f20;
+}
+
+.contact-section-heading h2 {
+    color: #003764;
+    font-size: clamp(1.8rem, 3vw, 2.55rem);
+    margin: 0.45rem 0 0.65rem;
+}
+
+.contact-section-heading p {
+    color: #657789;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.contact-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-card {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #d9e5ec;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 55, 100, 0.06);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto 1fr;
+    min-height: 170px;
+    padding: 1.5rem;
+}
+
+.contact-card > i {
+    align-items: center;
+    background: #eaf4e5;
+    border-radius: 12px;
+    color: #43831d;
+    display: flex;
+    font-size: 1.15rem;
+    height: 48px;
+    justify-content: center;
+    width: 48px;
+}
+
+.contact-card span {
+    color: #718394;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.contact-card h2 {
+    color: #003764;
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.75rem;
+}
+
+.contact-card a,
+.contact-card p {
+    color: #536b7e;
+    display: block;
+    line-height: 1.55;
+    margin: 0.25rem 0;
+    overflow-wrap: anywhere;
+}
+
+.contact-card a {
+    color: #075788;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.contact-card__action {
+    font-size: 0.86rem;
+    margin-top: 0.8rem !important;
+}
+
+.contact-verification {
+    color: #617486;
+    font-size: 0.82rem;
+    margin: 1.2rem 0 0;
+}
+
+.contact-verification i {
+    color: #4b941f;
+}
+
+.contact-empty {
+    background: #fff;
+    border: 1px solid #d9e5ec;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.contact-empty > i {
+    color: #4b941f;
+    font-size: 2rem;
+}
+
+.contact-empty h2 {
+    color: #003764;
+}
+
+.contact-directory-callout {
+    align-items: center;
+    background: linear-gradient(120deg, #003764, #075788);
+    border-radius: 16px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.2rem;
+    padding: 1.25rem 1.4rem;
+}
+
+.contact-directory-callout > div {
+    align-items: center;
+    display: flex;
+    gap: 0.9rem;
+}
+
+.contact-directory-callout > div > i {
+    color: #ffda00;
+    font-size: 1.4rem;
+}
+
+.contact-directory-callout strong,
+.contact-directory-callout small {
+    display: block;
+}
+
+.contact-directory-callout small {
+    color: #cbdde8;
+    margin-top: 0.2rem;
+}
+
+.contact-directory-callout > a {
+    background: #ffda00;
+    border-radius: 9px;
+    color: #003764;
+    font-size: 0.86rem;
+    font-weight: 850;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        padding: 3.25rem 1rem;
+    }
+
+    .contact-directory-callout {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
 /* Portada pública estructurada */
 .modern-home {
     background: #f4f8fb;

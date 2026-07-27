@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\ExploratoryWorkshop;
 use App\Models\NewsArticle;
 use App\Models\NewsCategory;
+use App\Models\SiteSetting;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -107,7 +108,10 @@ class PublicSiteController extends Controller
 
     public function contact(): View
     {
-        return $this->managed('contact');
+        return view('public.contact-page', [
+            'page' => $this->publishedPage('contact'),
+            'contact' => SiteSetting::where('group', 'contacto')->pluck('value', 'key'),
+        ]);
     }
 
     public function anniversary(): View

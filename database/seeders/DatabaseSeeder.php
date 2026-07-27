@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ['pages.view', 'Ver páginas', 'Contenido'],
             ['pages.manage', 'Gestionar páginas', 'Contenido'],
             ['pages.publish', 'Publicar páginas', 'Contenido'],
+            ['contact.manage', 'Gestionar información de contacto', 'Contacto'],
             ['news.view', 'Ver noticias', 'Noticias'],
             ['news.manage', 'Gestionar noticias y categorías', 'Noticias'],
             ['news.publish', 'Publicar noticias', 'Noticias'],
@@ -78,7 +79,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'editor'],
             ['display_name' => 'Editor de contenido', 'description' => 'Gestiona y publica el contenido del sitio.', 'is_system' => true],
         );
-        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish', 'board.view', 'board.manage', 'board.publish'])->pluck('id'));
+        $editor->permissions()->sync($permissions->only(['admin.access', 'pages.view', 'pages.manage', 'pages.publish', 'contact.manage', 'news.view', 'news.manage', 'news.publish', 'services.view', 'services.manage', 'services.publish', 'specialties.view', 'specialties.manage', 'specialties.publish', 'workshops.view', 'workshops.manage', 'workshops.publish', 'directory.view', 'directory.manage', 'directory.publish', 'documents.view', 'documents.manage', 'documents.publish', 'experiences.view', 'experiences.manage', 'experiences.publish', 'board.view', 'board.manage', 'board.publish'])->pluck('id'));
 
         $userManager = Role::updateOrCreate(
             ['name' => 'gestor-usuarios'],
@@ -88,9 +89,16 @@ class DatabaseSeeder extends Seeder
 
         collect([
             ['site_name', 'CTP Roberto Gamboa Valverde', 'general', 'Nombre del sitio', 'text'],
-            ['contact_phone', '2215-1100', 'contacto', 'Teléfono', 'text'],
-            ['contact_email', '', 'contacto', 'Correo electrónico', 'email'],
-            ['office_hours', 'L-V 8:00 AM - 4:00 PM', 'contacto', 'Horario de atención', 'text'],
+            ['contact_phone', '2250-8555', 'contacto', 'Teléfono', 'text'],
+            ['contact_phone_secondary', '2250-8547', 'contacto', 'Teléfono secundario', 'text'],
+            ['contact_email', 'ctp.robertogamboa@mep.go.cr', 'contacto', 'Correo electrónico', 'email'],
+            ['contact_heading', 'Comuníquese con nosotros', 'contacto', 'Título', 'text'],
+            ['contact_intro', 'Consulte los canales oficiales disponibles para recibir atención institucional.', 'contacto', 'Texto introductorio', 'textarea'],
+            ['contact_hours', '', 'contacto', 'Horario de atención', 'text'],
+            ['contact_address', '', 'contacto', 'Dirección', 'textarea'],
+            ['contact_map_url', '', 'contacto', 'Enlace del mapa', 'url'],
+            ['contact_verified_at', '', 'contacto', 'Fecha de verificación', 'date'],
+            ['contact_source', '', 'contacto', 'Fuente o responsable', 'text'],
         ])->each(fn (array $item) => SiteSetting::updateOrCreate(
             ['key' => $item[0]],
             ['value' => $item[1], 'group' => $item[2], 'label' => $item[3], 'type' => $item[4]],
