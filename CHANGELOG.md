@@ -2,6 +2,17 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.29.1] - 2026-07-27
+
+### Añadido
+
+- Mapa integrado y adaptable dentro de la tarjeta de ubicación de Contacto.
+
+### Cambiado
+
+- El mapa visible se genera con la dirección administrada, sin exigir una URL especial de inserción.
+- El enlace configurado se conserva en “Abrir mapa” para consultar la ubicación en una pestaña independiente.
+
 ## [0.29.0] - 2026-07-27
 
 ### Añadido

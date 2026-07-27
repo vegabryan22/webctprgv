@@ -40,6 +40,8 @@ Desde `0.29.0`, el formulario público es funcional. Cada envío:
 
 La consulta permanece guardada aunque el servicio de correo falle. El panel registra las fechas de lectura y atención, y no expone los mensajes en rutas públicas.
 
+Desde `0.29.1`, cuando existe una dirección, Contacto genera un mapa visible y adaptable dentro de la página. El campo **Enlace público del mapa** continúa definiendo el destino del botón “Abrir mapa”; no se necesita pegar código de inserción ni un iframe en el CMS.
+
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 
 ## Editor
