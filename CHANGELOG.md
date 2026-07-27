@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.35.2] - 2026-07-27
+
+### Corregido
+
+- El despliegue comprueba la ruta técnica `/up` en lugar de exigir que la portada pública responda HTTP 200.
+- El modo mantenimiento ya no provoca falsos fallos de GitHub Actions.
+- La validación informa la URL y el código HTTP recibido cuando la salud técnica falla.
+- El panel GitOps utiliza por defecto la misma ruta de salud.
+
 ## [0.35.1] - 2026-07-27
 
 ### Corregido

@@ -56,6 +56,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.34.0 | Control de publicación | Mantenimiento público con revisión autenticada y rol lector |
 | 0.35.0 | Administración | Resumen convertido en tablero operativo, adaptable y sensible a permisos |
 | 0.35.1 | Control de publicación | Terminología pública unificada para el acceso de lectores |
+| 0.35.2 | GitOps | Verificación técnica compatible con el modo mantenimiento |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

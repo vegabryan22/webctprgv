@@ -51,3 +51,9 @@ El panel compara los tags semánticos de GitHub con la versión efectiva de prod
 La referencia se valida contra GitHub antes de iniciar el workflow. Una versión anterior se aplica únicamente desde **Revertir despliegue**, que exige la confirmación `REVERTIR`.
 
 El workflow recibe `target_ref`, hace checkout de esa referencia, ejecuta pruebas, crea respaldo, aplica migraciones y registra la versión, commit y referencia desplegados.
+
+## Verificación de salud
+
+La disponibilidad técnica se comprueba mediante `https://ctprobertogamboa.com/up`. Esta ruta debe responder HTTP 200 aunque la portada pública se encuentre temporalmente en mantenimiento y responda HTTP 503.
+
+La variable `GITOPS_HEALTH_URL` debe apuntar a `/up`. El script de despliegue muestra la URL y el código recibido si la comprobación no devuelve 200, evitando confundir un mantenimiento editorial con una caída de la aplicación.
