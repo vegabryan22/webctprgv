@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.24.0] - 2026-07-27
+
+### Cambiado
+
+- Navegación pública más baja, ligera y legible.
+- Los enlaces dejan de competir como botones independientes y utilizan estados sutiles.
+- El acceso al panel se presenta como “Administración”.
+- El menú adaptable se activa antes de que los enlaces comiencen a comprimirse.
+
+### Eliminado
+
+- Redes sociales duplicadas en el encabezado; continúan disponibles en el pie de página.
+
 ## [0.23.3] - 2026-07-27
 
 ### Cambiado

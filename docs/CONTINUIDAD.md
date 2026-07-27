@@ -36,6 +36,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.23.1 | CTP-C06 | Separación física y corrección de recortes de las 24 ilustraciones |
 | 0.23.2 | CTP-C06 | Encuadre completo y eliminación del mosaico en detalles |
 | 0.23.3 | CTP-C06 | Cobertura completa de ilustraciones con anclaje superior |
+| 0.24.0 | Navegación pública | Encabezado simplificado, compacto y adaptable |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
