@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.27.0] - 2026-07-27
+
+### Añadido
+
+- Portada visual para “Nuestra institución” con fotografía, escudo e identidad institucional.
+- Bloques diferenciados para misión, visión, características y valores institucionales.
+- Accesos relacionados a Servicios, Junta Administrativa y Contacto.
+
+### Cambiado
+
+- La información institucional se presenta en una composición compacta, adaptable y coherente con el resto del sitio.
+- Se retiran de esta página los bloques heredados de horarios, admisión, certificaciones y ubicación para evitar afirmaciones sin fuente y duplicidad con otros módulos.
+- El contenido renovado permanece almacenado y editable desde MySQL.
+
+### Base de datos
+
+- Migración `2026_07_27_000500_redesign_institution_page.php`, condicionada para no sobrescribir ediciones posteriores.
+
 ## [0.26.0] - 2026-07-27
 
 ### Cambiado

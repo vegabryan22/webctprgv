@@ -8,6 +8,8 @@ Desde `0.25.0`, Inicio utiliza una plantilla pública estructurada alimentada po
 
 Desde `0.26.0`, la página con `route_name=information` se presenta editorialmente como “Nuestra institución”. La ruta histórica `/informacion` no cambia. El módulo conserva misión, visión, identidad e historia; los trámites y apoyos deben mantenerse en Servicios.
 
+Desde `0.27.0`, esta página utiliza una composición visual propia con portada, características, misión, visión, valores y accesos relacionados. La estructura HTML se conserva en `content_pages.content`, por lo que continúa disponible en el editor avanzado del CMS. La migración de actualización solo reemplaza el contenido heredado reconocible y no sobrescribe una edición manual distinta.
+
 Las páginas institucionales muestran la etiqueta **Institucional** en el panel. Se puede modificar:
 
 - título;
