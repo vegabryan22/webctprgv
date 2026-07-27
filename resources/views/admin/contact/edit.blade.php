@@ -8,7 +8,10 @@
         <h1><i class="fa-solid fa-address-card"></i> Contacto público</h1>
         <p class="muted">Administre los datos que aparecen en la página pública de contacto.</p>
     </div>
-    <a class="button ghost" href="{{ route('contact') }}" target="_blank"><i class="fa-solid fa-eye"></i> Ver página</a>
+    <div class="actions">
+        <a class="button ghost" href="{{ route('admin.contact-messages.index') }}"><i class="fa-solid fa-inbox"></i> Ver consultas</a>
+        <a class="button ghost" href="{{ route('contact') }}" target="_blank"><i class="fa-solid fa-eye"></i> Ver página</a>
+    </div>
 </div>
 
 <form class="card" method="POST" action="{{ route('admin.contact.update') }}">
@@ -38,6 +41,11 @@
         <div class="field">
             <label for="contact_email">Correo electrónico</label>
             <input id="contact_email" type="email" name="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? '') }}">
+        </div>
+        <div class="field">
+            <label for="contact_notification_email">Correo receptor del formulario</label>
+            <input id="contact_notification_email" type="email" name="contact_notification_email" value="{{ old('contact_notification_email', $settings['contact_notification_email'] ?? '') }}">
+            <small class="muted">Si queda vacío, las notificaciones llegarán al correo público.</small>
         </div>
         <div class="field">
             <label for="contact_hours">Horario de atención</label>

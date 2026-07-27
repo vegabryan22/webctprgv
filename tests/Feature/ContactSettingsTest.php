@@ -18,7 +18,7 @@ class ContactSettingsTest extends TestCase
         $this->seed();
     }
 
-    public function test_contact_page_uses_structured_settings_without_inactive_form(): void
+    public function test_contact_page_uses_structured_settings_and_functional_form(): void
     {
         $this->get('/contacto')
             ->assertOk()
@@ -26,8 +26,9 @@ class ContactSettingsTest extends TestCase
             ->assertSee('2250-8555')
             ->assertSee('ctp.robertogamboa@mep.go.cr')
             ->assertSee('Ver directorio')
-            ->assertDontSee('Formulario de Contacto')
-            ->assertDontSee('<form', false);
+            ->assertSee('Envíe su consulta')
+            ->assertSee(route('contact.submit'))
+            ->assertSee('privacy_consent');
     }
 
     public function test_editor_can_manage_public_contact_information(): void
@@ -47,6 +48,7 @@ class ContactSettingsTest extends TestCase
                 'contact_phone' => '2200-0000',
                 'contact_phone_secondary' => '',
                 'contact_email' => 'contacto@example.test',
+                'contact_notification_email' => 'buzon@example.test',
                 'contact_hours' => 'Lunes a viernes',
                 'contact_address' => 'Dirección verificada',
                 'contact_map_url' => 'https://maps.google.com/example',

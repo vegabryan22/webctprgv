@@ -87,13 +87,14 @@ class PublicSiteTest extends TestCase
             ->assertDontSee('location-section');
     }
 
-    public function test_contact_is_structured_and_does_not_offer_an_inactive_form(): void
+    public function test_contact_is_structured_and_offers_a_real_form(): void
     {
         $this->get('/contacto')
             ->assertOk()
             ->assertSee('Canales oficiales')
             ->assertSee('Ver directorio')
-            ->assertDontSee('Formulario de Contacto')
+            ->assertSee('Envíe su consulta')
+            ->assertSee('action="'.route('contact.submit').'"', false)
             ->assertDontSee('specialty-header');
     }
 

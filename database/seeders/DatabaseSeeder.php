@@ -92,6 +92,7 @@ class DatabaseSeeder extends Seeder
             ['contact_phone', '2250-8555', 'contacto', 'Teléfono', 'text'],
             ['contact_phone_secondary', '2250-8547', 'contacto', 'Teléfono secundario', 'text'],
             ['contact_email', 'ctp.robertogamboa@mep.go.cr', 'contacto', 'Correo electrónico', 'email'],
+            ['contact_notification_email', '', 'contacto', 'Correo receptor del formulario', 'email'],
             ['contact_heading', 'Comuníquese con nosotros', 'contacto', 'Título', 'text'],
             ['contact_intro', 'Consulte los canales oficiales disponibles para recibir atención institucional.', 'contacto', 'Texto introductorio', 'textarea'],
             ['contact_hours', '', 'contacto', 'Horario de atención', 'text'],

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BoardMemberController;
 use App\Http\Controllers\Admin\BoardTransparencyController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\ContactSettingController;
 use App\Http\Controllers\Admin\ContentAuditController;
 use App\Http\Controllers\Admin\ContentPageController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\DocumentLibraryController;
 use App\Http\Controllers\ProfessionalExperienceController;
@@ -47,6 +49,7 @@ Route::controller(PublicSiteController::class)->group(function (): void {
     Route::get('/paginas/{page:slug}', 'page')->name('pages.show');
 });
 Route::get('/junta-administrativa', BoardController::class)->name('board');
+Route::post('/contacto', ContactSubmissionController::class)->middleware('throttle:5,1')->name('contact.submit');
 
 Route::controller(CalendarController::class)->prefix('calendario')->name('calendar.')->group(function (): void {
     Route::get('/', 'index')->name('index');
@@ -99,6 +102,9 @@ Route::prefix('administracion')->name('admin.')->middleware(['auth', 'permission
     Route::get('/revision-editorial', ContentAuditController::class)->middleware('permission:pages.view')->name('content-audit.index');
     Route::get('/contacto', [ContactSettingController::class, 'edit'])->middleware('permission:contact.manage')->name('contact.edit');
     Route::put('/contacto', [ContactSettingController::class, 'update'])->middleware('permission:contact.manage')->name('contact.update');
+    Route::get('/contacto/consultas', [ContactMessageController::class, 'index'])->middleware('permission:contact.manage')->name('contact-messages.index');
+    Route::get('/contacto/consultas/{contactMessage}', [ContactMessageController::class, 'show'])->middleware('permission:contact.manage')->name('contact-messages.show');
+    Route::put('/contacto/consultas/{contactMessage}', [ContactMessageController::class, 'update'])->middleware('permission:contact.manage')->name('contact-messages.update');
 
     Route::get('/noticias', [NewsArticleController::class, 'index'])->middleware('permission:news.view')->name('news.index');
     Route::get('/noticias/crear', [NewsArticleController::class, 'create'])->middleware('permission:news.manage')->name('news.create');
