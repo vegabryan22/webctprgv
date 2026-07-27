@@ -3047,10 +3047,9 @@ p {
     justify-content: center;
 }
 
-.curricular-illustration {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.catalog-card__media img.curricular-illustration__image {
+    background: #eaf3f9;
+    object-fit: contain;
 }
 
 .catalog-card__body {
@@ -3210,10 +3209,6 @@ p {
     min-height: 100%;
 }
 
-.curricular-detail__visual.curricular-illustration {
-    background-color: #e7f1f8;
-}
-
 .curricular-detail__visual > i {
     color: #ffda00;
     font-size: 4.5rem;
@@ -3224,6 +3219,11 @@ p {
     height: 100%;
     object-fit: cover;
     width: 100%;
+}
+
+.curricular-detail__visual img.curricular-illustration__image {
+    background: #e7f1f8;
+    object-fit: contain;
 }
 
 .curricular-detail__content {

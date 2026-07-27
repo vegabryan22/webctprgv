@@ -19,9 +19,11 @@
                     @endif
                 </div>
             </div>
-            <div class="curricular-detail__visual @if(!$workshop->image_path) curricular-illustration @endif" @if(!$workshop->image_path) style="background-image: url('{{ asset(\App\Support\CurricularIllustrations::path($workshop->slug)) }}')" @endif>
+            <div class="curricular-detail__visual">
                 @if($workshop->image_path)
                 <img src="{{ asset('storage/'.ltrim($workshop->image_path, '/')) }}" alt="">
+                @else
+                <img class="curricular-illustration__image" src="{{ asset(\App\Support\CurricularIllustrations::path($workshop->slug)) }}" alt="">
                 @endif
             </div>
         </header>
