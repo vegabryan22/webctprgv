@@ -52,6 +52,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.31.2 | Responsividad administrativa | Navegación plegable y contenido a ancho completo en móviles |
 | 0.32.0 | CTP-C15 parcial | Cronograma oficial de prematrícula de 7.º incorporado al calendario |
 | 0.33.0 | CTP-C15 | Portal administrable de admisión para 7.º y 10.º con cronograma y documentos |
+| 0.33.1 | CTP-C15 | Contraste y escala corregidos en el encabezado de Admisión |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
