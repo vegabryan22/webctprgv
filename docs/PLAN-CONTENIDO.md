@@ -233,7 +233,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | CTP-C15, portal de admisión y matrícula | 0.33.0 | En revisión | `5858ff4` | `8962e3b` | 92 pruebas y 605 aserciones aprobadas; página, biblioteca y tres PDF con HTTP 200 | Recorridos 7.º/10.º, cronograma, documentos y administración integrada; correcciones documentales pendientes de Dirección |
 | 2026-07-27 | CTP-C15, contraste del encabezado | 0.33.1 | Completado | `f6ac960` | `750a8df` | 93 pruebas y 607 aserciones aprobadas | Título blanco, escala controlada y renovación de caché CSS |
 | 2026-07-27 | Modo mantenimiento y revisión autenticada | 0.34.0 | Completado | `9597a87` | `9db5483` | 97 pruebas y 633 aserciones aprobadas; mantenimiento HTTP 503, acceso HTTP 200 y restauración HTTP 200 | Lector sin panel, retorno a la página solicitada y mensaje temporal administrable |
-| 2026-07-27 | Tablero operativo de administración | 0.35.0 | Completado | `79fc90d` | Pendiente | 100 pruebas y 648 aserciones aprobadas | Estado público, pendientes, módulos, agenda y consultas en una composición adaptable |
+| 2026-07-27 | Tablero operativo de administración | 0.35.0 | Completado | `79fc90d` | `4e9954d` | 100 pruebas y 648 aserciones aprobadas | Estado público, pendientes, módulos, agenda y consultas en una composición adaptable |
 
 ## Riesgos y bloqueos
 
