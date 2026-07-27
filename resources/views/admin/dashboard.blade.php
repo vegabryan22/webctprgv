@@ -22,7 +22,7 @@
     <article class="dashboard-stat dashboard-stat--state">
         <div><i class="fa-solid fa-globe"></i></div>
         <span>Estado público</span>
-        <strong>{{ $overview['maintenance'] ? 'Revisión privada' : 'En línea' }}</strong>
+        <strong>{{ $overview['maintenance'] ? 'Acceso para lectores' : 'En línea' }}</strong>
         @if(auth()->user()->hasPermission('site-sections.manage'))
         <a href="{{ route('admin.site-sections.index') }}">Administrar <i class="fa-solid fa-arrow-right"></i></a>
         @endif

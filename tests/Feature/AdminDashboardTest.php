@@ -70,7 +70,7 @@ class AdminDashboardTest extends TestCase
             ->get(route('admin.dashboard'))
             ->assertOk()
             ->assertSee('En mantenimiento')
-            ->assertSee('Revisión privada');
+            ->assertSee('Acceso para lectores');
     }
 
     public function test_dashboard_styles_include_responsive_layouts(): void

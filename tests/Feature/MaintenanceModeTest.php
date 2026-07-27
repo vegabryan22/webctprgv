@@ -27,7 +27,7 @@ class MaintenanceModeTest extends TestCase
             ->assertStatus(503)
             ->assertHeader('Retry-After', '3600')
             ->assertSee('Estamos preparando el sitio')
-            ->assertSee('Iniciar sesión como revisor');
+            ->assertSee('Iniciar sesión como lector');
         $this->get('/admision-y-matricula')->assertStatus(503)->assertDontSee('Prematrícula para 7.º');
         $this->get(route('login'))->assertOk();
     }
@@ -41,7 +41,7 @@ class MaintenanceModeTest extends TestCase
         $this->actingAs($reader)
             ->get('/')
             ->assertOk()
-            ->assertSee('Vista de revisión')
+            ->assertSee('Vista de lector')
             ->assertSee('Cerrar sesión');
         $this->actingAs($reader)->get('/admision-y-matricula')->assertOk()->assertSee('Prematrícula para 7.º');
         $this->actingAs($reader)->get('/administracion')->assertForbidden();

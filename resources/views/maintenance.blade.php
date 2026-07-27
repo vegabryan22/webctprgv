@@ -12,12 +12,12 @@
     <main class="maintenance-screen">
         <section class="maintenance-screen__card">
             <img src="{{ asset('images/escudo.png') }}" alt="Escudo del CTP Roberto Gamboa Valverde">
-            <span><i class="fas fa-person-digging"></i> Sitio en revisión</span>
+            <span><i class="fas fa-person-digging"></i> Sitio en mantenimiento</span>
             <h1>{{ $title }}</h1>
             <p>{{ $message }}</p>
             <div class="maintenance-screen__divider"></div>
-            <p class="maintenance-screen__review">Si cuenta con acceso de revisión, inicie sesión para consultar el sitio completo.</p>
-            <a href="{{ route('login', ['redirect' => $returnTo]) }}"><i class="fas fa-right-to-bracket"></i> Iniciar sesión como revisor</a>
+            <p class="maintenance-screen__review">Si cuenta con acceso de lector, inicie sesión para consultar el sitio completo.</p>
+            <a href="{{ route('login', ['redirect' => $returnTo]) }}"><i class="fas fa-right-to-bracket"></i> Iniciar sesión como lector</a>
         </section>
     </main>
 </body>
