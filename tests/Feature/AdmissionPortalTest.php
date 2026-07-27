@@ -62,4 +62,12 @@ class AdmissionPortalTest extends TestCase
         $this->assertTrue($page->is_system);
         $this->assertSame('Admisión y matrícula 2027', $page->title);
     }
+
+    public function test_admission_hero_keeps_a_readable_title(): void
+    {
+        $css = file_get_contents(public_path('css/site.css'));
+
+        $this->assertMatchesRegularExpression('/\\.admission-hero h1\\s*\\{[^}]*color:\\s*#fff;/s', $css);
+        $this->assertStringContainsString('font-size: clamp(2.6rem, 5vw, 4.8rem)', $css);
+    }
 }
