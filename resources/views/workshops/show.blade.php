@@ -19,11 +19,9 @@
                     @endif
                 </div>
             </div>
-            <div class="curricular-detail__visual">
+            <div class="curricular-detail__visual @if(!$workshop->image_path) curricular-illustration @endif" @if(!$workshop->image_path) style="{{ \App\Support\CurricularIllustrations::style($workshop->slug) }}" @endif>
                 @if($workshop->image_path)
                 <img src="{{ asset('storage/'.ltrim($workshop->image_path, '/')) }}" alt="">
-                @else
-                <i class="fa-solid fa-compass-drafting"></i>
                 @endif
             </div>
         </header>

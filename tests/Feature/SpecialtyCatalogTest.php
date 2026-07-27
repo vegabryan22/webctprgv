@@ -6,6 +6,7 @@ use App\Models\CurricularDocument;
 use App\Models\Role;
 use App\Models\Specialty;
 use App\Models\User;
+use App\Support\CurricularIllustrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -37,6 +38,7 @@ class SpecialtyCatalogTest extends TestCase
         $this->get('/especialidades')
             ->assertOk()
             ->assertSee('catalog-grid')
+            ->assertSee('curricular-illustration')
             ->assertSee('Configuración y soporte a redes de comunicación y sistemas operativos')
             ->assertSee('Instalación y mantenimiento de sistemas eléctricos industriales')
             ->assertDontSee('alto índice de inserción laboral');
@@ -70,6 +72,15 @@ class SpecialtyCatalogTest extends TestCase
     {
         CurricularDocument::each(
             fn (CurricularDocument $document) => $this->assertFileExists(public_path($document->file_path)),
+        );
+    }
+
+    public function test_every_curricular_item_has_an_illustration_in_the_atlas(): void
+    {
+        $this->assertFileExists(public_path('images/curricular/catalog-atlas.png'));
+
+        Specialty::each(
+            fn (Specialty $specialty) => $this->assertNotNull(CurricularIllustrations::style($specialty->slug)),
         );
     }
 

@@ -3047,6 +3047,13 @@ p {
     justify-content: center;
 }
 
+.curricular-illustration {
+    background-image: url("/images/curricular/catalog-atlas.png");
+    background-position: var(--atlas-x, 0) var(--atlas-y, 0);
+    background-repeat: no-repeat;
+    background-size: 400% 600%;
+}
+
 .catalog-card__body {
     display: flex;
     flex-direction: column;
@@ -3202,6 +3209,10 @@ p {
     display: flex;
     justify-content: center;
     min-height: 100%;
+}
+
+.curricular-detail__visual.curricular-illustration {
+    background-color: #e7f1f8;
 }
 
 .curricular-detail__visual > i {

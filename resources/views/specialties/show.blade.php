@@ -19,11 +19,9 @@
                     @endif
                 </div>
             </div>
-            <div class="curricular-detail__visual">
+            <div class="curricular-detail__visual @if(!$specialty->image_path) curricular-illustration @endif" @if(!$specialty->image_path) style="{{ \App\Support\CurricularIllustrations::style($specialty->slug) }}" @endif>
                 @if($specialty->image_path)
                 <img src="{{ asset('storage/'.ltrim($specialty->image_path, '/')) }}" alt="">
-                @else
-                <i class="fa-solid fa-screwdriver-wrench"></i>
                 @endif
             </div>
         </header>

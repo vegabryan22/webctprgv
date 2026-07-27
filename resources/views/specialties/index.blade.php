@@ -1,5 +1,25 @@
 @extends('layouts.public')
 @section('title', 'Especialidades - CTP Roberto Gamboa Valverde')
 @section('content')
-<main class="service-page"><header class="service-hero"><div><span>Educación técnica · 10.º a 12.º</span><h1>Especialidades técnicas</h1><p>Formación técnica diversificada para estudiantes de 10.º, 11.º y 12.º.</p><a class="education-path-link" href="{{ route('workshops') }}">¿Busca talleres de 7.º, 8.º y 9.º? <i class="fa-solid fa-arrow-right"></i></a></div></header><div class="service-shell"><div class="catalog-grid">@forelse($specialties as $specialty)<article class="catalog-card"><a class="catalog-card__media" href="{{ route('specialties.show', $specialty) }}">@if($specialty->image_path)<img src="{{ asset('storage/'.ltrim($specialty->image_path, '/')) }}" alt="">@else<span><i class="fa-solid fa-screwdriver-wrench"></i></span>@endif</a><div class="catalog-card__body"><h2><a href="{{ route('specialties.show', $specialty) }}">{{ $specialty->name }}</a></h2><p>{{ $specialty->summary }}</p><a class="catalog-card__link" href="{{ route('specialties.show', $specialty) }}">Ver especialidad <i class="fa-solid fa-arrow-right"></i></a></div></article>@empty<div class="news-empty"><i class="fa-solid fa-screwdriver-wrench"></i><h2>Oferta técnica en proceso de verificación</h2><p>Las fichas se publicarán conforme sean confirmadas por Coordinación Técnica y contrastadas con los programas oficiales.</p></div>@endforelse</div></div></main>
+<main class="service-page">
+    <header class="service-hero"><div><span>Educación técnica · 10.º a 12.º</span><h1>Especialidades técnicas</h1><p>Formación técnica diversificada para estudiantes de 10.º, 11.º y 12.º.</p><a class="education-path-link" href="{{ route('workshops') }}">¿Busca talleres de 7.º, 8.º y 9.º? <i class="fa-solid fa-arrow-right"></i></a></div></header>
+    <div class="service-shell">
+        <div class="catalog-grid">
+            @forelse($specialties as $specialty)
+            <article class="catalog-card">
+                <a class="catalog-card__media @if(!$specialty->image_path) curricular-illustration @endif" href="{{ route('specialties.show', $specialty) }}" @if(!$specialty->image_path) style="{{ \App\Support\CurricularIllustrations::style($specialty->slug) }}" @endif>
+                    @if($specialty->image_path)<img src="{{ asset('storage/'.ltrim($specialty->image_path, '/')) }}" alt="">@endif
+                </a>
+                <div class="catalog-card__body">
+                    <h2><a href="{{ route('specialties.show', $specialty) }}">{{ $specialty->name }}</a></h2>
+                    <p>{{ $specialty->summary }}</p>
+                    <a class="catalog-card__link" href="{{ route('specialties.show', $specialty) }}">Ver especialidad <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+            @empty
+            <div class="news-empty"><i class="fa-solid fa-screwdriver-wrench"></i><h2>Oferta técnica en proceso de verificación</h2><p>Las fichas se publicarán conforme sean confirmadas por Coordinación Técnica y contrastadas con los programas oficiales.</p></div>
+            @endforelse
+        </div>
+    </div>
+</main>
 @endsection

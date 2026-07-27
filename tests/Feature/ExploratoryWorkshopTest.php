@@ -6,6 +6,7 @@ use App\Models\CurricularDocument;
 use App\Models\ExploratoryWorkshop;
 use App\Models\Role;
 use App\Models\User;
+use App\Support\CurricularIllustrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +37,8 @@ class ExploratoryWorkshopTest extends TestCase
             ->assertSee('Todo el tercer ciclo')
             ->assertDontSee('Talleres de 7.º')
             ->assertSee('Inglés conversacional')
-            ->assertSee('catalog-grid');
+            ->assertSee('catalog-grid')
+            ->assertSee('curricular-illustration');
 
         $english = ExploratoryWorkshop::where('name', 'Inglés conversacional')->firstOrFail();
         $this->get(route('workshops.show', $english))
@@ -62,6 +64,15 @@ class ExploratoryWorkshopTest extends TestCase
             $this->assertStringContainsString('<ul>', $workshop->description, $workshop->name);
             $this->assertStringContainsString('<li>', $workshop->description, $workshop->name);
         });
+    }
+
+    public function test_every_workshop_has_an_illustration_in_the_atlas(): void
+    {
+        $this->seed();
+
+        ExploratoryWorkshop::each(
+            fn (ExploratoryWorkshop $workshop) => $this->assertNotNull(CurricularIllustrations::style($workshop->slug)),
+        );
     }
 
     public function test_only_published_workshops_are_visible(): void
