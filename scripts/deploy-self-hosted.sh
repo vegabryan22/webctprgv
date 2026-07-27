@@ -34,8 +34,15 @@ printf '%s\n' "${DEPLOY_TARGET_REF:-main}" > "$APP/DEPLOYED_REF"
 printf '%s\n' "${DEPLOY_OPERATION:-deploy}" > "$APP/DEPLOYED_OPERATION"
 date --iso-8601=seconds > "$APP/DEPLOYED_AT"
 
-test "$(curl -k -sS -o /dev/null -w '%{http_code}' \
+HEALTH_URL="https://ctprobertogamboa.com/up"
+HEALTH_CODE="$(curl -k -sS -o /dev/null -w '%{http_code}' \
     --resolve ctprobertogamboa.com:443:127.0.0.1 \
-    https://ctprobertogamboa.com/)" = "200"
+    "$HEALTH_URL")"
+
+if [[ "$HEALTH_CODE" != "200" ]]; then
+    printf 'Error de salud: %s respondió HTTP %s; se esperaba 200.\n' \
+        "$HEALTH_URL" "$HEALTH_CODE" >&2
+    exit 1
+fi
 
 echo "Despliegue completado: $(tr -d '\r\n' < VERSION)"

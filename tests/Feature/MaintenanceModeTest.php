@@ -23,6 +23,7 @@ class MaintenanceModeTest extends TestCase
     {
         $this->enableMaintenance();
 
+        $this->get('/up')->assertOk();
         $this->get('/')
             ->assertStatus(503)
             ->assertHeader('Retry-After', '3600')
