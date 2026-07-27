@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.26.0] - 2026-07-27
+
+### Cambiado
+
+- “Información” pasa a presentarse como “Institución” en la navegación.
+- El título público se aclara como “Nuestra institución”.
+- Inicio y pie de página diferencian identidad institucional de información para estudiantes.
+- La ruta `/informacion` se conserva para mantener compatibilidad con enlaces existentes.
+
+### Base de datos
+
+- Migración `2026_07_27_000400_rename_information_as_institution.php`.
+
 ## [0.25.1] - 2026-07-27
 
 ### Cambiado

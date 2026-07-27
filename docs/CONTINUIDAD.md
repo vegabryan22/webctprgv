@@ -39,6 +39,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.24.0 | Navegación pública | Encabezado simplificado, compacto y adaptable |
 | 0.25.0 | CTP-C01 y CTP-C04 | Portada estructurada con oferta, agenda y noticias condicionales |
 | 0.25.1 | Navegación pública | Pie compacto con identidad, enlaces, redes y créditos discretos |
+| 0.26.0 | Identidad institucional | “Información” se aclara como “Nuestra institución” sin cambiar la URL |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -55,6 +56,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_000100_create_curricular_documents_table.php`
 - `2026_07_27_000200_add_image_to_exploratory_workshops.php`
 - `2026_07_27_000300_enrich_curricular_catalog_from_study_plans.php`
+- `2026_07_27_000400_rename_information_as_institution.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 

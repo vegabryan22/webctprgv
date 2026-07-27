@@ -6,6 +6,8 @@ Las páginas Inicio, Noticias, Información, Especialidades, Junta Administrativ
 
 Desde `0.25.0`, Inicio utiliza una plantilla pública estructurada alimentada por especialidades, talleres, calendario y noticias. `content_pages` conserva el título y el contenido heredado como respaldo editorial, pero el campo `content` de Inicio no se imprime públicamente para evitar duplicar bloques trasladados a Información y otros módulos.
 
+Desde `0.26.0`, la página con `route_name=information` se presenta editorialmente como “Nuestra institución”. La ruta histórica `/informacion` no cambia. El módulo conserva misión, visión, identidad e historia; los trámites y apoyos deben mantenerse en Servicios.
+
 Las páginas institucionales muestran la etiqueta **Institucional** en el panel. Se puede modificar:
 
 - título;
