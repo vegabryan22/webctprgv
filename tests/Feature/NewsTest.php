@@ -67,7 +67,8 @@ class NewsTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('© '.now()->year.' Departamento de Redes')
+            ->assertSee('© '.now()->year.' CTP Roberto Gamboa Valverde')
+            ->assertSee('Departamento de Redes')
             ->assertSee('Prof. Bryan Vega Rondón y estudiantes de 12.º año');
     }
 

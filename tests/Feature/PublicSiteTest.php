@@ -38,6 +38,17 @@ class PublicSiteTest extends TestCase
             ->assertDontSee('feature-card');
     }
 
+    public function test_public_footer_is_compact_and_contains_useful_navigation(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('site-footer__main')
+            ->assertSee('Oferta educativa')
+            ->assertSee('Talleres exploratorios')
+            ->assertSee('Síganos')
+            ->assertDontSee('footer-content');
+    }
+
     public function test_admin_redirects_guests_to_login(): void
     {
         $this->get('/administracion')->assertRedirect('/administracion/ingresar');
