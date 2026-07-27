@@ -32,6 +32,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.22.1 | CTP-C06 | Rediseño visual de fichas y planes curriculares compactos |
 | 0.22.2 | CTP-C06 | Simplificación de las etiquetas públicas de planes |
 | 0.22.3 | CTP-C06 | Eliminación del nivel duplicado en tarjetas de planes |
+| 0.23.0 | CTP-C06 | Ilustraciones temáticas para las 24 fichas curriculares |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -110,3 +111,5 @@ Los 40 planes curriculares están versionados en `public/documentos/planes-estud
 Los planes nuevos cargados desde el CMS se almacenan en `storage/app/public/curricular-plans`. Especialidades y talleres admiten imágenes y muestran listados compactos; el contenido completo se presenta en sus páginas individuales.
 
 Las fichas curriculares publicadas contienen perfiles, áreas formativas y contenidos sintetizados desde los programas. `career_opportunities` continúa sin precarga hasta contar con confirmación institucional.
+
+El catálogo utiliza `public/images/curricular/catalog-atlas.png`, un atlas de 24 ilustraciones editoriales. `App\Support\CurricularIllustrations` resuelve el recorte por slug; las imágenes administradas desde el CMS tienen prioridad.

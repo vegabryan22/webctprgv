@@ -76,6 +76,12 @@ Desde `0.22.2`, el idioma permanece disponible como metadato administrativo, per
 
 Desde `0.22.3`, cada tarjeta presenta solo el nombre del documento; el nivel no se repite como etiqueta independiente.
 
+## Ilustraciones del catálogo
+
+La versión `0.23.0` incorpora un atlas gráfico con 24 ilustraciones temáticas: siete para especialidades y diecisiete para talleres. Se utiliza el mismo recurso optimizado en listados y detalles, recortando la escena correspondiente mediante `CurricularIllustrations`.
+
+Las ilustraciones son editoriales y no deben interpretarse como fotografías de instalaciones, personal o equipos disponibles en el CTPRGV. Si el CMS contiene una imagen específica para una ficha, esa imagen sustituye automáticamente la ilustración predeterminada.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.

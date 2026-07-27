@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.23.0] - 2026-07-27
+
+### Añadido
+
+- Colección de 24 ilustraciones educativas, una para cada especialidad y taller.
+- Ilustraciones temáticas en las tarjetas del catálogo y en los encabezados de las fichas.
+- Mapeo centralizado de cada ficha con su posición dentro del atlas optimizado.
+
+### Editorial
+
+- Las ilustraciones son recursos gráficos generados para orientar visualmente; no representan instalaciones, equipos ni personas reales del colegio.
+- Las imágenes cargadas manualmente desde el CMS conservan prioridad sobre la ilustración predeterminada.
+
 ## [0.22.3] - 2026-07-27
 
 ### Cambiado
