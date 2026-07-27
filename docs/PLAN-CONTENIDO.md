@@ -231,7 +231,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Responsividad administrativa | 0.31.2 | Completado | `f199361` | `4aaff19` | 87 pruebas y 569 aserciones aprobadas | Menú lateral convertido en navegación móvil plegable y contenido administrativo a ancho completo |
 | 2026-07-27 | CTP-C15, cronograma de admisión de 7.º | 0.32.0 | Completado | `226bbff` | `70b6d28` | 88 pruebas y 577 aserciones aprobadas; cinco meses del calendario con HTTP 200 | Siete hitos publicados sin reproducir montos ni años contradictorios de la circular |
 | 2026-07-27 | CTP-C15, portal de admisión y matrícula | 0.33.0 | En revisión | `5858ff4` | `8962e3b` | 92 pruebas y 605 aserciones aprobadas; página, biblioteca y tres PDF con HTTP 200 | Recorridos 7.º/10.º, cronograma, documentos y administración integrada; correcciones documentales pendientes de Dirección |
-| 2026-07-27 | CTP-C15, contraste del encabezado | 0.33.1 | Completado | `f6ac960` | Pendiente | 93 pruebas y 607 aserciones aprobadas | Título blanco, escala controlada y renovación de caché CSS |
+| 2026-07-27 | CTP-C15, contraste del encabezado | 0.33.1 | Completado | `f6ac960` | `750a8df` | 93 pruebas y 607 aserciones aprobadas | Título blanco, escala controlada y renovación de caché CSS |
 
 ## Riesgos y bloqueos
 
