@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.21.0] - 2026-07-27
+
+### Añadido
+
+- Página de detalle para cada taller exploratorio con descripción completa y planes de estudio.
+- Carga y retiro de hasta cinco planes PDF por operación desde la edición de especialidades y talleres.
+- Carga de imagen para los talleres exploratorios.
+
+### Cambiado
+
+- Tarjetas uniformes de especialidades y talleres con cuatro columnas en escritorio.
+- Los listados muestran únicamente imagen, nombre, resumen breve y acceso al detalle.
+- Los encabezados de nivel de talleres eliminan la repetición entre insignia y título.
+
+### Base de datos
+
+- Migración `2026_07_27_000200_add_image_to_exploratory_workshops.php`.
+
 ## [0.20.0] - 2026-07-27
 
 ### Añadido

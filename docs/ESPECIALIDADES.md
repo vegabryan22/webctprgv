@@ -46,6 +46,19 @@ La versión `0.20.0` incorpora los 40 PDF al despliegue y los relaciona mediante
 
 Los archivos públicos utilizan nombres estables sin espacios ni tildes en `public/documentos/planes-estudio`.
 
+## Presentación y administración
+
+La versión `0.21.0` presenta especialidades y talleres mediante tarjetas uniformes de cuatro columnas en escritorio. Cada tarjeta conserva únicamente imagen, nombre y resumen breve; la descripción completa y los planes se consultan en la página individual.
+
+Los formularios administrativos de especialidades y talleres permiten:
+
+- Adjuntar hasta cinco planes PDF por operación.
+- Indicar nivel, idioma y un título opcional para cada plan.
+- Abrir o retirar planes previamente asociados.
+- Cargar una imagen representativa; los talleres incorporan esta capacidad desde `0.21.0`.
+
+Los planes cargados desde el CMS se guardan en el disco público bajo `storage/curricular-plans`. Retirar una asociación solo elimina físicamente los archivos administrados desde el CMS; los planes versionados en `public/documentos/planes-estudio` permanecen protegidos.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.

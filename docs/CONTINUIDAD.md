@@ -27,6 +27,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.19.0 | CTP-C06 | Catálogo curricular documentado con siete especialidades y diecisiete talleres en borrador |
 | 0.19.1 | CTP-C06 | Catálogo curricular publicado y talleres organizados por nivel |
 | 0.20.0 | CTP-C06 | Planes de estudio públicos por especialidad, taller y nivel |
+| 0.21.0 | CTP-C06 | Catálogo compacto, detalle de talleres y carga administrativa de planes |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -41,6 +42,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_26_000100_prepare_curricular_catalog_drafts.php`
 - `2026_07_26_000200_publish_documented_curricular_catalog.php`
 - `2026_07_27_000100_create_curricular_documents_table.php`
+- `2026_07_27_000200_add_image_to_exploratory_workshops.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 
@@ -99,3 +101,5 @@ Después quedan CTP-C13 (proyectos y egresados), CTP-C04 (actualidad en portada 
 El catálogo curricular fue publicado en `v0.19.1` por solicitud expresa del usuario. Continúan pendientes los contactos, responsables, disponibilidad y oportunidades profesionales que requieran confirmación institucional adicional.
 
 Los 40 planes curriculares están versionados en `public/documentos/planes-estudio` y asociados mediante `curricular_documents`. No deben renombrarse sin agregar una migración que actualice `file_path`.
+
+Los planes nuevos cargados desde el CMS se almacenan en `storage/app/public/curricular-plans`. Especialidades y talleres admiten imágenes y muestran listados compactos; el contenido completo se presenta en sus páginas individuales.

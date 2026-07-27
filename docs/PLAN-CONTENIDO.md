@@ -182,6 +182,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-26 | CTP-C06, catálogo curricular | 0.19.0 | Completado | `9af5ae3` | `d0089ba` | 62 pruebas y 240 aserciones aprobadas; migración local correcta | Siete especialidades y diecisiete talleres documentados como borradores |
 | 2026-07-26 | CTP-C06, publicación curricular | 0.19.1 | Completado | `3fa923e` | `b0b8d9d` | 62 pruebas y 244 aserciones aprobadas; HTTP 200 | Catálogo público y talleres agrupados por nivel |
 | 2026-07-27 | CTP-C06, planes por nivel | 0.20.0 | Completado | `20ef7ca` | `4263466` | 63 pruebas y 297 aserciones aprobadas; 40 PDF con HTTP 200 | Apertura y descarga de planes por especialidad, taller y nivel |
+| 2026-07-27 | CTP-C06, presentación y administración | 0.21.0 | Completado | `7d617d2` | Pendiente | 65 pruebas y 309 aserciones aprobadas; rutas públicas con HTTP 200 | Tarjetas uniformes, detalle de talleres, imágenes y carga administrativa de planes |
 
 ## Riesgos y bloqueos
 
