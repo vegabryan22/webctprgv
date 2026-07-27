@@ -70,6 +70,8 @@ La versión `0.22.0` completa las fichas utilizando exclusivamente los 40 progra
 
 El campo de oportunidades profesionales permanece vacío. Los planes respaldan competencias y perfiles ocupacionales, pero la oferta laboral, los convenios y las condiciones vigentes requieren confirmación institucional.
 
+Desde `0.22.1`, las páginas individuales emplean un encabezado visual, secciones con iconografía y planes compactos en cuadrícula. La información oficial no genera espacios vacíos cuando todavía no hay coordinación, contacto o enlace confirmado.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.

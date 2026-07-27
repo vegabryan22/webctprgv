@@ -29,6 +29,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.20.0 | CTP-C06 | Planes de estudio públicos por especialidad, taller y nivel |
 | 0.21.0 | CTP-C06 | Catálogo compacto, detalle de talleres y carga administrativa de planes |
 | 0.22.0 | CTP-C06 | Perfiles, formación y contenidos ampliados desde los 40 planes |
+| 0.22.1 | CTP-C06 | Rediseño visual de fichas y planes curriculares compactos |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

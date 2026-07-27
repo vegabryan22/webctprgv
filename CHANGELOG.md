@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.22.1] - 2026-07-27
+
+### Cambiado
+
+- Rediseño visual de los detalles de especialidades y talleres con encabezado destacado, iconografía y mejor jerarquía.
+- Perfil y formación distribuidos en una composición adaptable de dos columnas.
+- Planes de estudio compactos en una cuadrícula por nivel con acciones simplificadas.
+- La sección de información oficial se oculta completamente cuando no contiene datos.
+
 ## [0.22.0] - 2026-07-27
 
 ### Añadido
