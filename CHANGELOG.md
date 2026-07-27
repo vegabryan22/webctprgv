@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.23.2] - 2026-07-27
+
+### Corregido
+
+- Las ilustraciones predeterminadas se renderizan como elementos de imagen y no como fondos repetibles.
+- Las tarjetas utilizan encuadre completo para evitar cortes excesivos.
+- Los detalles muestran una sola ilustración sin efecto de mosaico.
+
 ## [0.23.1] - 2026-07-27
 
 ### Corregido

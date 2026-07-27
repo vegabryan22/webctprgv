@@ -34,6 +34,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.22.3 | CTP-C06 | Eliminación del nivel duplicado en tarjetas de planes |
 | 0.23.0 | CTP-C06 | Ilustraciones temáticas para las 24 fichas curriculares |
 | 0.23.1 | CTP-C06 | Separación física y corrección de recortes de las 24 ilustraciones |
+| 0.23.2 | CTP-C06 | Encuadre completo y eliminación del mosaico en detalles |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
