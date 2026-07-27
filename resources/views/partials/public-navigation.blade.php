@@ -38,6 +38,11 @@
     @else
         @if(auth()->user()->hasPermission('admin.access'))
             <a class="session-link admin" href="{{ route('admin.dashboard') }}"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>Administración</span></a>
+        @else
+            <form class="public-session-form" method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="session-link" type="submit"><i class="fas fa-right-from-bracket" aria-hidden="true"></i><span>Cerrar sesión</span></button>
+            </form>
         @endif
     @endguest
 </nav>

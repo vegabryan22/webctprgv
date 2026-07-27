@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\NavigationItem;
 use App\Models\SiteSection;
+use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('layouts.public', function ($view): void {
+            $maintenance = Schema::hasTable('site_settings')
+                ? SiteSetting::where('key', 'maintenance_enabled')->value('value') === '1'
+                : false;
+            $view->with('maintenancePreview', $maintenance && auth()->check());
+        });
+
         View::composer('partials.public-navigation', function ($view): void {
             $items = Schema::hasTable('navigation_items')
                 ? NavigationItem::where('is_active', true)->orderBy('sort_order')->orderBy('id')->get()

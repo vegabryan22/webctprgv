@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnsurePermission;
+use App\Http\Middleware\EnsurePublicSiteAvailable;
 use App\Http\Middleware\EnsureSiteSectionActive;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            EnsurePublicSiteAvailable::class,
+        ]);
+
         $middleware->alias([
             'permission' => EnsurePermission::class,
             'section' => EnsureSiteSectionActive::class,

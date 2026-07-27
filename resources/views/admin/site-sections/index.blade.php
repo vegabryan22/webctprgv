@@ -11,6 +11,21 @@
 <form method="POST" action="{{ route('admin.site-sections.update') }}">
     @csrf
     @method('PUT')
+    <section class="maintenance-control {{ $maintenance->get('maintenance_enabled') === '1' ? 'active' : '' }}">
+        <div class="maintenance-control__heading">
+            <div class="maintenance-control__icon"><i class="fa-solid fa-person-digging"></i></div>
+            <div><span>Acceso público</span><h2>Modo mantenimiento</h2><p>El público verá una pantalla temporal. Cualquier usuario autenticado podrá revisar el sitio completo; el rol Lector del sitio no permite entrar al panel.</p></div>
+            <label class="maintenance-control__toggle">
+                <input type="checkbox" name="maintenance_enabled" value="1" @checked($maintenance->get('maintenance_enabled') === '1')>
+                <span aria-hidden="true"></span>
+                <strong>Activar</strong>
+            </label>
+        </div>
+        <div class="field-grid maintenance-control__fields">
+            <div class="field"><label>Título público</label><input name="maintenance_title" value="{{ old('maintenance_title', $maintenance->get('maintenance_title')) }}" required maxlength="120"></div>
+            <div class="field"><label>Mensaje público</label><textarea name="maintenance_message" required maxlength="500">{{ old('maintenance_message', $maintenance->get('maintenance_message')) }}</textarea></div>
+        </div>
+    </section>
     <div class="section-status-grid">
         @foreach($sections as $section)
             <label class="section-status-card">

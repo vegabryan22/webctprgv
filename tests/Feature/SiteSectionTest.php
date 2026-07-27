@@ -34,7 +34,11 @@ class SiteSectionTest extends TestCase
 
         $active = SiteSection::whereNotIn('key', ['board', 'contact', 'news'])->pluck('key')->all();
         $this->actingAs($editor)
-            ->put(route('admin.site-sections.update'), ['active' => $active])
+            ->put(route('admin.site-sections.update'), [
+                'active' => $active,
+                'maintenance_title' => 'Estamos preparando el sitio',
+                'maintenance_message' => 'Estamos revisando el contenido.',
+            ])
             ->assertSessionHas('success');
 
         $this->assertFalse(SiteSection::where('key', 'board')->firstOrFail()->is_active);

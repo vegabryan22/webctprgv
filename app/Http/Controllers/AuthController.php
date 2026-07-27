@@ -11,6 +11,11 @@ class AuthController extends Controller
 {
     public function create(): View
     {
+        $returnTo = request()->string('redirect')->toString();
+        if (str_starts_with($returnTo, '/') && ! str_starts_with($returnTo, '//')) {
+            request()->session()->put('url.intended', $returnTo);
+        }
+
         return view('auth.login');
     }
 
@@ -28,9 +33,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         if (! $request->user()->hasPermission('admin.access')) {
-            Auth::logout();
-
-            return back()->withErrors(['email' => 'Su cuenta no tiene acceso al panel.']);
+            return redirect()->intended(route('home'));
         }
 
         return redirect()->intended(route('admin.dashboard'));
@@ -42,6 +45,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

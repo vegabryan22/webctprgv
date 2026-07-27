@@ -89,6 +89,11 @@ class DatabaseSeeder extends Seeder
         );
         $userManager->permissions()->sync($permissions->only(['admin.access', 'users.view', 'users.create', 'users.update', 'users.delete', 'roles.view'])->pluck('id'));
 
+        Role::updateOrCreate(
+            ['name' => 'lector-sitio'],
+            ['display_name' => 'Lector del sitio', 'description' => 'Revisa el sitio público durante mantenimiento, sin acceso al panel.', 'is_system' => true],
+        );
+
         collect([
             ['site_name', 'CTP Roberto Gamboa Valverde', 'general', 'Nombre del sitio', 'text'],
             ['contact_phone', '2250-8555', 'contacto', 'Teléfono', 'text'],
@@ -102,6 +107,9 @@ class DatabaseSeeder extends Seeder
             ['contact_map_url', '', 'contacto', 'Enlace del mapa', 'url'],
             ['contact_verified_at', '', 'contacto', 'Fecha de verificación', 'date'],
             ['contact_source', '', 'contacto', 'Fuente o responsable', 'text'],
+            ['maintenance_enabled', '0', 'mantenimiento', 'Modo mantenimiento', 'boolean'],
+            ['maintenance_title', 'Estamos preparando el sitio', 'mantenimiento', 'Título de mantenimiento', 'text'],
+            ['maintenance_message', 'Estamos revisando y actualizando el contenido institucional. Regrese pronto.', 'mantenimiento', 'Mensaje de mantenimiento', 'textarea'],
         ])->each(fn (array $item) => SiteSetting::updateOrCreate(
             ['key' => $item[0]],
             ['value' => $item[1], 'group' => $item[2], 'label' => $item[3], 'type' => $item[4]],

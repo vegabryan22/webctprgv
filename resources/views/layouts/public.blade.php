@@ -11,6 +11,10 @@
 <body>
     @include('partials.public-navigation')
 
+    @if($maintenancePreview)
+    <div class="maintenance-preview"><i class="fas fa-eye"></i><span><strong>Vista de revisión:</strong> el modo mantenimiento está activo y el público no puede ver el sitio.</span></div>
+    @endif
+
     @yield('content')
 
     @include('partials.public-footer')
