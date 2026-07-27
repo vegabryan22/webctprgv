@@ -18,12 +18,17 @@ class BoardTransparencyTest extends TestCase
         $this->seed();
     }
 
-    public function test_board_page_starts_without_unverified_people_or_records(): void
+    public function test_board_page_starts_with_confirmed_products_without_invented_prices(): void
     {
         $this->get('/junta-administrativa')
             ->assertOk()
             ->assertSee('Integración pendiente de verificación')
-            ->assertSee('Sin publicaciones verificadas');
+            ->assertSee('Camisas del uniforme')
+            ->assertSee('Cuaderno de comunicaciones')
+            ->assertSee('Precio pendiente de confirmación')
+            ->assertDontSee('₡8,500')
+            ->assertDontSee('Licitación #CTPRGV-2025-003')
+            ->assertDontSee('Renovación del laboratorio de cómputo');
     }
 
     public function test_expired_members_and_drafts_are_not_public(): void
@@ -54,13 +59,14 @@ class BoardTransparencyTest extends TestCase
         ])->assertRedirect(route('admin.board-members.index'));
 
         $this->actingAs($admin)->post(route('admin.board-records.store'), [
-            'title' => 'Informe anual',
-            'slug' => 'informe-anual',
-            'type' => 'report',
-            'summary' => 'Resumen institucional verificado.',
+            'title' => 'Contratación institucional',
+            'slug' => 'contratacion-institucional',
+            'type' => 'procurement',
+            'summary' => 'Proceso institucional verificado.',
             'responsible' => 'Junta Administrativa',
             'source' => 'Acta 02-2026',
             'record_date' => today()->toDateString(),
+            'valid_until' => today()->addMonth()->toDateString(),
             'status' => 'published',
             'verified_at' => today()->toDateString(),
             'sort_order' => 0,
@@ -69,7 +75,8 @@ class BoardTransparencyTest extends TestCase
         $this->get('/junta-administrativa')
             ->assertOk()
             ->assertSee('Persona autorizada')
-            ->assertSee('Informe anual')
+            ->assertSee('Contratación institucional')
+            ->assertSee('Licitaciones y contrataciones')
             ->assertSee('Acta 02-2026');
     }
 
@@ -84,7 +91,39 @@ class BoardTransparencyTest extends TestCase
             'sort_order' => 0,
         ])->assertSessionHasErrors(['source', 'verified_at']);
 
-        $this->assertDatabaseCount('board_transparency_records', 0);
+        $this->assertDatabaseCount('board_transparency_records', 2);
+    }
+
+    public function test_board_maintenance_supports_categories_and_optional_prices(): void
+    {
+        $admin = $this->superAdmin();
+
+        $this->actingAs($admin)
+            ->get(route('admin.board-records.create'))
+            ->assertOk()
+            ->assertSee('Licitación o contratación')
+            ->assertSee('Uniforme')
+            ->assertSee('Material')
+            ->assertSee('Precio (opcional)');
+
+        $this->actingAs($admin)->post(route('admin.board-records.store'), [
+            'title' => 'Producto con precio confirmado',
+            'slug' => 'producto-con-precio-confirmado',
+            'type' => 'uniform',
+            'summary' => 'Producto institucional verificado.',
+            'price' => '9500.00',
+            'price_note' => 'Precio vigente',
+            'responsible' => 'Junta Administrativa',
+            'source' => 'Lista oficial',
+            'record_date' => today()->toDateString(),
+            'status' => 'published',
+            'verified_at' => today()->toDateString(),
+            'sort_order' => 30,
+        ])->assertRedirect(route('admin.board-records.index'));
+
+        $this->get('/junta-administrativa')
+            ->assertSee('Producto con precio confirmado')
+            ->assertSee('₡9.500,00');
     }
 
     private function memberAttributes(array $overrides = []): array

@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class BoardTransparencyRecord extends Model
 {
-    protected $fillable = ['author_id', 'title', 'slug', 'type', 'summary', 'content', 'responsible', 'source', 'record_date', 'status', 'verified_at', 'published_at', 'sort_order'];
+    protected $fillable = ['author_id', 'title', 'slug', 'type', 'summary', 'content', 'price', 'price_note', 'responsible', 'source', 'record_date', 'valid_until', 'status', 'verified_at', 'published_at', 'sort_order'];
 
     protected function casts(): array
     {
-        return ['record_date' => 'date', 'verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
+        return ['price' => 'decimal:2', 'record_date' => 'date', 'valid_until' => 'date', 'verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
     }
 
     public function author(): BelongsTo
@@ -35,8 +35,12 @@ class BoardTransparencyRecord extends Model
     {
         return match ($this->type) {
             'project' => 'Proyecto',
-            'process' => 'Proceso',
+            'procurement' => 'Licitación o contratación',
+            'uniform' => 'Uniforme',
+            'material' => 'Material',
             'report' => 'Informe',
+            'notice' => 'Aviso',
+            'process' => 'Proceso',
         };
     }
 }
