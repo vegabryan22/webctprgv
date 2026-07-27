@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.22.2] - 2026-07-27
+
+### Cambiado
+
+- Los planes de estudio públicos muestran únicamente el nivel y omiten el idioma para evitar confusión.
+
 ## [0.22.1] - 2026-07-27
 
 ### Cambiado

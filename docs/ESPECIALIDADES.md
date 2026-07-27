@@ -72,6 +72,8 @@ El campo de oportunidades profesionales permanece vacío. Los planes respaldan c
 
 Desde `0.22.1`, las páginas individuales emplean un encabezado visual, secciones con iconografía y planes compactos en cuadrícula. La información oficial no genera espacios vacíos cuando todavía no hay coordinación, contacto o enlace confirmado.
 
+Desde `0.22.2`, el idioma permanece disponible como metadato administrativo, pero no se presenta en las tarjetas públicas de los planes.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.
