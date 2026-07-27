@@ -195,7 +195,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Navegación pública | 0.24.0 | Completado | `e5b9a98` | `939fa41` | 69 pruebas y 405 aserciones aprobadas; portada con HTTP 200 | Enlaces planos, redes en el pie, administración abreviada y menú móvil anticipado |
 | 2026-07-27 | CTP-C01 y CTP-C04, portada estructurada | 0.25.0 | Completado | `fa749f8` | `782f482` | 70 pruebas y 415 aserciones aprobadas; portada con HTTP 200 y sin bloques heredados | Hero compacto, accesos, recorridos, agenda, noticias condicionales e identidad |
 | 2026-07-27 | Navegación pública, pie de página | 0.25.1 | Completado | `d35ead1` | `2879830` | 71 pruebas y 422 aserciones aprobadas; portada con HTTP 200 | Pie compacto con navegación, redes y créditos de menor jerarquía |
-| 2026-07-27 | Identidad institucional | 0.26.0 | Completado | `4a1558f` | Pendiente | 72 pruebas y 428 aserciones aprobadas; `/informacion` con HTTP 200 | Nombre público “Institución”, título claro y URL histórica conservada |
+| 2026-07-27 | Identidad institucional | 0.26.0 | Completado | `4a1558f` | `f067307` | 72 pruebas y 428 aserciones aprobadas; `/informacion` con HTTP 200 | Nombre público “Institución”, título claro y URL histórica conservada |
 
 ## Riesgos y bloqueos
 
