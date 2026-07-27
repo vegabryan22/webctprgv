@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.20.0] - 2026-07-27
+
+### Añadido
+
+- Acceso público para abrir y descargar los planes de estudio de cada especialidad por nivel.
+- Plan correspondiente en cada taller exploratorio.
+- Tres accesos por nivel para el programa integral de Inglés conversacional.
+- Documentos complementarios en inglés disponibles para 10.º y 11.º de Administración logística y distribución.
+- Modelo estructurado para relacionar especialidades y talleres con documentos curriculares.
+
+### Cambiado
+
+- Los 40 PDF fueron normalizados y trasladados a `public/documentos/planes-estudio`.
+
+### Base de datos
+
+- Migración `2026_07_27_000100_create_curricular_documents_table.php`.
+
 ## [0.19.1] - 2026-07-26
 
 ### Añadido

@@ -181,6 +181,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | Fin de seguimiento GitOps | 0.18.6 | Completado | `20ebde2` | `ad98efe` | 61 pruebas y 232 aserciones aprobadas | El refresco termina según el resultado del workflow |
 | 2026-07-26 | CTP-C06, catálogo curricular | 0.19.0 | Completado | `9af5ae3` | `d0089ba` | 62 pruebas y 240 aserciones aprobadas; migración local correcta | Siete especialidades y diecisiete talleres documentados como borradores |
 | 2026-07-26 | CTP-C06, publicación curricular | 0.19.1 | Completado | `3fa923e` | `b0b8d9d` | 62 pruebas y 244 aserciones aprobadas; HTTP 200 | Catálogo público y talleres agrupados por nivel |
+| 2026-07-27 | CTP-C06, planes por nivel | 0.20.0 | En revisión | `20ef7ca` | Pendiente | 63 pruebas y 297 aserciones aprobadas; 40 PDF con HTTP 200 | Apertura y descarga de planes por especialidad, taller y nivel |
 
 ## Riesgos y bloqueos
 

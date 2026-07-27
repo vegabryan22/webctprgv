@@ -34,6 +34,18 @@ La evidencia, las descripciones propuestas y los talleres clasificados por nivel
 
 La versión `0.19.1` publica las fichas documentadas por solicitud expresa del usuario. La publicación respalda nombres y descripciones en los programas de estudio; no completa contactos, responsables, oportunidades laborales ni otros datos institucionales que continúan pendientes de confirmación.
 
+## Planes de estudio por nivel
+
+La versión `0.20.0` incorpora los 40 PDF al despliegue y los relaciona mediante `curricular_documents`:
+
+- Cada especialidad presenta los programas disponibles de 10.º, 11.º y 12.º.
+- Administración logística y distribución diferencia los documentos en español y los complementarios en inglés.
+- Cada taller presenta su plan correspondiente.
+- Inglés conversacional ofrece accesos diferenciados para 7.º, 8.º y 9.º al mismo programa integral.
+- Todos los documentos pueden abrirse en una pestaña nueva o descargarse.
+
+Los archivos públicos utilizan nombres estables sin espacios ni tildes en `public/documentos/planes-estudio`.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.
