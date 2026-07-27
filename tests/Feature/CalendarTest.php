@@ -21,11 +21,19 @@ class CalendarTest extends TestCase
 
     public function test_calendar_and_categories_are_seeded(): void
     {
-        $this->assertSame(6, EventCategory::count());
+        $this->assertSame(7, EventCategory::count());
         $this->assertSame(24, Event::where('slug', 'like', 'mep-etp-2026-%')->count());
         $this->assertSame(56, Event::where('slug', 'like', 'ctprgv-2026-%')->count());
         $this->assertSame(13, Event::where('slug', 'like', 'mep-acad-2026-%')->count());
         $this->assertTrue(Event::where('slug', 'mep-acad-2026-inicio-lecciones')->firstOrFail()->is_tentative);
+        $this->assertSame(7, Event::where('slug', 'like', 'ctprgv-admision-2027-%')->count());
+        $this->assertDatabaseHas('events', [
+            'slug' => 'ctprgv-admision-2027-prueba',
+            'starts_at' => '2026-09-17 07:30:00',
+            'ends_at' => '2026-09-17 10:00:00',
+            'source_reference' => 'Circular DRED-SCE07-CTPRGV-D-206-2026',
+            'status' => 'published',
+        ]);
         $this->assertDatabaseHas('events', [
             'slug' => 'mep-etp-2026-expotecnica-nacional',
             'starts_at' => '2026-11-23 00:00:00',
@@ -37,6 +45,20 @@ class CalendarTest extends TestCase
             ->assertSee('Las fechas del MEP son tentativas')
             ->assertSee(now()->locale('es')->translatedFormat('F Y'))
             ->assertSee('class="nav-toggle"', false);
+    }
+
+    public function test_seventh_grade_admission_schedule_avoids_unconfirmed_amounts(): void
+    {
+        $events = Event::where('slug', 'like', 'ctprgv-admision-2027-%')->get();
+        $content = $events->pluck('description')->implode(' ');
+
+        $this->assertStringNotContainsString('₡3.000', $content);
+        $this->assertStringNotContainsString('₡4.000', $content);
+        $this->assertStringNotContainsString('I periodo 2025', $content);
+        $this->get('/calendario?month=2026-09')
+            ->assertOk()
+            ->assertSee('Prueba de admisión para 7.º')
+            ->assertSee('Análisis del proceso de admisión de 7.º');
     }
 
     public function test_published_event_appears_and_can_be_exported(): void
@@ -90,7 +112,7 @@ class CalendarTest extends TestCase
         $this->actingAs($this->superAdmin())->get('/administracion/actividades')
             ->assertOk()
             ->assertSee('Paginación de resultados')
-            ->assertSee('Mostrando 1–20 de 93 resultados')
+            ->assertSee('Mostrando 1–20 de 100 resultados')
             ->assertSee('Siguiente')
             ->assertDontSee('Showing 1 to 20')
             ->assertDontSee('<svg', false);
