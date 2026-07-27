@@ -67,6 +67,14 @@
                             <article class="contact-card"><i class="fa-solid fa-clock"></i><div><span>Disponibilidad</span><h2>Horario</h2><p>{{ $hours }}</p></div></article>
                         @endif
                     </div>
+                    <nav class="contact-socials" aria-label="Redes sociales institucionales">
+                        <div><span class="contact-eyebrow">También en redes</span><strong>Síganos</strong></div>
+                        <div>
+                            @foreach(config('site.social') as $social)
+                                <a href="{{ $social['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $social['label'] }}"><i class="{{ $social['icon'] }}" aria-hidden="true"></i><span>{{ $social['label'] }}</span></a>
+                            @endforeach
+                        </div>
+                    </nav>
                     @if(!empty($contact['contact_verified_at']) || !empty($contact['contact_source']))
                         <p class="contact-verification"><i class="fa-solid fa-circle-check"></i>
                             @if(!empty($contact['contact_verified_at'])) Verificado el {{ \Illuminate\Support\Carbon::parse($contact['contact_verified_at'])->format('d/m/Y') }}.@endif

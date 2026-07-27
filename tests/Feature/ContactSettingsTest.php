@@ -23,6 +23,7 @@ class ContactSettingsTest extends TestCase
         $response = $this->get('/contacto')
             ->assertOk()
             ->assertSee('contact-primary')
+            ->assertSee('contact-socials')
             ->assertSee('contact-hero')
             ->assertSee('2250-8555')
             ->assertSee('ctp.robertogamboa@mep.go.cr')
@@ -30,6 +31,10 @@ class ContactSettingsTest extends TestCase
             ->assertSee('Envíe su consulta')
             ->assertSee(route('contact.submit'))
             ->assertSee('privacy_consent');
+
+        foreach (config('site.social') as $social) {
+            $response->assertSee($social['url'])->assertSee($social['label']);
+        }
 
         $this->assertLessThan(
             strpos($response->getContent(), 'contact-channels'),
