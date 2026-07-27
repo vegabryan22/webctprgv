@@ -20,8 +20,9 @@ class ContactSettingsTest extends TestCase
 
     public function test_contact_page_uses_structured_settings_and_functional_form(): void
     {
-        $this->get('/contacto')
+        $response = $this->get('/contacto')
             ->assertOk()
+            ->assertSee('contact-primary')
             ->assertSee('contact-hero')
             ->assertSee('2250-8555')
             ->assertSee('ctp.robertogamboa@mep.go.cr')
@@ -29,6 +30,11 @@ class ContactSettingsTest extends TestCase
             ->assertSee('Envíe su consulta')
             ->assertSee(route('contact.submit'))
             ->assertSee('privacy_consent');
+
+        $this->assertLessThan(
+            strpos($response->getContent(), 'contact-channels'),
+            strpos($response->getContent(), 'formulario-contacto'),
+        );
     }
 
     public function test_editor_can_manage_public_contact_information(): void

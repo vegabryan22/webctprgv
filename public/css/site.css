@@ -3485,6 +3485,7 @@ p {
 .contact-card--location {
     grid-column: 1 / -1;
     grid-template-columns: auto minmax(220px, 0.7fr) minmax(360px, 1.3fr);
+    margin-top: 1rem;
     padding: 0;
     overflow: hidden;
 }
@@ -3530,6 +3531,71 @@ p {
     grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
     margin-top: 2.2rem;
     overflow: hidden;
+}
+
+.contact-primary {
+    align-items: start;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 2fr) minmax(270px, 0.82fr);
+}
+
+.contact-primary .contact-form-section {
+    grid-template-columns: minmax(190px, 0.58fr) minmax(0, 1.42fr);
+    margin-top: 0;
+}
+
+.contact-channels {
+    background: #eaf1f5;
+    border: 1px solid #d5e2ea;
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.contact-channels > header {
+    padding: 0.25rem 0.25rem 0.8rem;
+}
+
+.contact-channels > header .contact-eyebrow {
+    color: #4b8f20;
+}
+
+.contact-channels > header h2 {
+    color: #003764;
+    font-size: 1.35rem;
+    margin: 0.3rem 0 0;
+}
+
+.contact-channels .contact-grid {
+    grid-template-columns: 1fr;
+}
+
+.contact-channels .contact-card {
+    border-radius: 12px;
+    box-shadow: none;
+    gap: 0.75rem;
+    min-height: 0;
+    padding: 1rem;
+}
+
+.contact-channels .contact-card > i {
+    height: 40px;
+    width: 40px;
+}
+
+.contact-channels .contact-card h2 {
+    font-size: 1rem;
+    margin: 0.15rem 0 0.35rem;
+}
+
+.contact-channels .contact-card a,
+.contact-channels .contact-card p {
+    font-size: 0.86rem;
+    line-height: 1.4;
+}
+
+.contact-channels .contact-verification {
+    padding: 0 0.25rem;
 }
 
 .contact-form-section__intro {
@@ -3735,8 +3801,13 @@ p {
         grid-template-columns: 1fr;
     }
 
+    .contact-primary,
     .contact-form-section,
     .contact-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-primary .contact-form-section {
         grid-template-columns: 1fr;
     }
 
