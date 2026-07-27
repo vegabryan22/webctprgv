@@ -5,7 +5,6 @@
     <article class="curricular-document">
         <div class="curricular-document__icon"><i class="fa-solid fa-file-pdf"></i></div>
         <div class="curricular-document__body">
-            <span>{{ $document->grade_level }}</span>
             <h3>{{ $document->title }}</h3>
         </div>
         <div class="curricular-document__actions">

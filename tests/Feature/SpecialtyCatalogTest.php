@@ -50,6 +50,7 @@ class SpecialtyCatalogTest extends TestCase
             ->assertSee('Administración de servidores y fundamentos de ciberseguridad.')
             ->assertDontSee('Información oficial')
             ->assertDontSee('10.º · Español')
+            ->assertDontSee('<span>10.º</span>', false)
             ->assertSee('Planes de estudio por nivel')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-10.pdf')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-11.pdf')
