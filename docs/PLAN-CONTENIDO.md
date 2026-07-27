@@ -186,7 +186,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | CTP-C06, contenido ampliado | 0.22.0 | Completado | `863fa2f` | `0e582ae` | 67 pruebas y 368 aserciones aprobadas; rutas de detalle con HTTP 200 | Perfiles y formación de 7 especialidades; contenidos de 17 talleres extraídos de 40 PDF |
 | 2026-07-27 | CTP-C06, diseño de fichas | 0.22.1 | Completado | `aef4ae1` | `d0da25d` | 67 pruebas y 373 aserciones aprobadas; detalles con HTTP 200 | Encabezado visual, secciones equilibradas, planes compactos y eliminación de espacios vacíos |
 | 2026-07-27 | CTP-C06, etiquetas de planes | 0.22.2 | Completado | `e755551` | `32cfd32` | 67 pruebas y 375 aserciones aprobadas | El idioma se conserva en el CMS y se oculta en la presentación pública |
-| 2026-07-27 | CTP-C06, nivel de planes | 0.22.3 | Completado | `1964fc1` | Pendiente | 67 pruebas y 377 aserciones aprobadas | El nivel se muestra únicamente dentro del nombre del documento |
+| 2026-07-27 | CTP-C06, nivel de planes | 0.22.3 | Completado | `1964fc1` | `3accac7` | 67 pruebas y 377 aserciones aprobadas | El nivel se muestra únicamente dentro del nombre del documento |
 
 ## Riesgos y bloqueos
 
