@@ -1,6 +1,6 @@
 # Continuidad del proyecto
 
-Fecha de actualización: 2026-07-24.
+Fecha de actualización: 2026-07-27.
 
 Este documento permite retomar el proyecto después de clonar el repositorio en otra computadora. Las instrucciones obligatorias están en `AGENTS.md`.
 
@@ -48,6 +48,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.29.3 | Contacto institucional | Redes sociales integradas en el espacio lateral |
 | 0.30.0 | CTP-C11 | Junta mantenible con categorías, productos y precios opcionales |
 | 0.31.0 | Control editorial | Estado global de secciones y desactivación curricular rápida |
+| 0.31.1 | Responsividad transversal | Sitio y panel adaptables; biblioteca documental sin colisión de URL |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

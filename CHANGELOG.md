@@ -2,6 +2,20 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.31.1] - 2026-07-27
+
+### Cambiado
+
+- El sitio público se adapta de forma transversal a teléfonos, tabletas, portátiles y pantallas amplias.
+- La navegación, tarjetas, formularios, mapas, planes de estudio y calendario reducen su densidad sin provocar desbordamiento horizontal.
+- El panel administrativo presenta navegación horizontal desplazable, tablas contenidas y formularios apilados en pantallas estrechas.
+- Los controles táctiles mantienen un área mínima cómoda y las animaciones respetan la preferencia de movimiento reducido.
+
+### Corregido
+
+- La biblioteca pública utiliza `/biblioteca-documental` para evitar el conflicto con la carpeta física `public/documentos`.
+- Las imágenes, textos extensos y elementos embebidos respetan el ancho disponible.
+
 ## [0.31.0] - 2026-07-27
 
 ### Añadido
