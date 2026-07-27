@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.23.3] - 2026-07-27
+
+### Cambiado
+
+- Las ilustraciones cubren completamente su área y se alinean desde el borde superior para preservar el sujeto principal.
+
 ## [0.23.2] - 2026-07-27
 
 ### Corregido

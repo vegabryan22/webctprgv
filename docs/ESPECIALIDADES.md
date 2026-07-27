@@ -86,6 +86,8 @@ La versión `0.23.1` conserva el atlas como fuente, pero publica cada escena com
 
 La versión `0.23.2` presenta esos archivos mediante elementos `<img>` con encuadre completo. No se utilizan como fondos CSS, por lo que no pueden repetirse en mosaico y las tarjetas preservan la composición de cada ilustración.
 
+La versión `0.23.3` utiliza cobertura completa con anclaje superior: la imagen llena tarjetas y detalles, conserva la parte alta de la composición y recorta únicamente el excedente necesario.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.
