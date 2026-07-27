@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Specialty extends Model
 {
@@ -22,6 +23,11 @@ class Specialty extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function curricularDocuments(): HasMany
+    {
+        return $this->hasMany(CurricularDocument::class)->orderBy('sort_order');
     }
 
     public function scopePublished(Builder $query): Builder

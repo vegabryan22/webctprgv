@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\CurricularDocument;
 use App\Models\ExploratoryWorkshop;
 use App\Models\Role;
 use App\Models\User;
@@ -16,6 +17,7 @@ class ExploratoryWorkshopTest extends TestCase
     {
         $this->seed();
         $this->assertSame(17, ExploratoryWorkshop::where('status', 'published')->count());
+        $this->assertSame(19, CurricularDocument::whereNotNull('exploratory_workshop_id')->count());
         $this->assertDatabaseHas('exploratory_workshops', [
             'name' => 'Oficina secretarial y la inteligencia de las cosas (AIoT)',
             'grade_level' => '7.º',
@@ -30,7 +32,11 @@ class ExploratoryWorkshopTest extends TestCase
             ->assertSee('Talleres de 8.º')
             ->assertSee('Talleres de 9.º')
             ->assertSee('Programa para todo el tercer ciclo')
-            ->assertSee('Inglés conversacional');
+            ->assertSee('Inglés conversacional')
+            ->assertSee('Programa de Inglés conversacional de 7.º')
+            ->assertSee('Programa de Inglés conversacional de 8.º')
+            ->assertSee('Programa de Inglés conversacional de 9.º')
+            ->assertSee('ingles-conversacional-7-8-9.pdf');
         $this->get('/especialidades')->assertOk()->assertSee('10.º, 11.º y 12.º')->assertSee('¿Busca talleres de 7.º, 8.º y 9.º?');
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ExploratoryWorkshop extends Model
 {
@@ -12,6 +13,11 @@ class ExploratoryWorkshop extends Model
     protected function casts(): array
     {
         return ['verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
+    }
+
+    public function curricularDocuments(): HasMany
+    {
+        return $this->hasMany(CurricularDocument::class)->orderBy('sort_order');
     }
 
     public function scopePublished(Builder $query): Builder

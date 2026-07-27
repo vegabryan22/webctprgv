@@ -2915,3 +2915,82 @@ p {
 .document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.document-card{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1.2rem;border:1px solid #d9e3eb;border-radius:14px;background:#fff}.document-card h2{margin:.25rem 0;color:#003665;font-size:1.2rem}.document-card p{color:#5f6f80}.directory-search select{padding:.7rem;border:1px solid #b9c9d6;border-radius:8px;background:#fff}@media(max-width:700px){.document-grid{grid-template-columns:1fr}}
 .company-callout{margin-top:2rem;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;background:#eaf3fa;border-left:5px solid #ffd500;border-radius:14px;color:#003764}.company-callout>i{font-size:2rem}.company-callout h2{margin:0 0 .35rem}.company-callout p{margin:0}.experience-detail{max-width:1050px}.experience-detail>section{margin-top:2rem}.experience-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}.experience-facts>div{display:flex;flex-direction:column;gap:.3rem;padding:1rem;background:#eef4f8;border-radius:12px}.document-tags{display:flex;flex-wrap:wrap;gap:.65rem}.document-tags a{padding:.55rem .85rem;border-radius:999px;background:#eaf3fa;color:#003764;font-weight:700}.document-list{display:grid;gap:.65rem}.document-list>a{display:flex;align-items:center;gap:.8rem;padding:1rem;border:1px solid #d6e0e8;border-radius:12px;color:#003764}.document-list>a span{display:flex;flex:1;flex-direction:column}.company-contact{padding:1.25rem;background:#003764;color:#fff;border-radius:14px}.company-contact a{color:#ffd500}
 .board-member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.board-member-card{display:flex;gap:1rem;padding:1.2rem;border:1px solid #d6e0e8;border-radius:14px;background:#fff}.board-member-card>i{font-size:1.8rem;color:#c59f00}.board-member-card h3,.board-member-card p{margin:0 0 .3rem}.board-member-card small{color:#64748b}.transparency-section{margin-top:3rem}.transparency-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.transparency-column>h3{padding-bottom:.55rem;border-bottom:3px solid #ffd500;color:#003764}.transparency-card{margin-bottom:1rem;padding:1.1rem;border:1px solid #d6e0e8;border-radius:14px;background:#fff}.transparency-card>span{font-size:.8rem;font-weight:800;text-transform:uppercase;color:#597084}.transparency-card h4{margin:.4rem 0;font-size:1.15rem;color:#003764}.transparency-card small{display:block;color:#64748b}.transparency-documents{display:grid;gap:.4rem;margin-top:.8rem}.transparency-documents a{color:#003764;font-weight:700}@media(max-width:850px){.transparency-columns{grid-template-columns:1fr}}
+.curricular-documents {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1rem;
+}
+
+.curricular-document {
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid #dbe4ec;
+    border-radius: 12px;
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.9rem;
+}
+
+.curricular-document__icon {
+    align-items: center;
+    background: #fff1f2;
+    border-radius: 10px;
+    color: #be123c;
+    display: flex;
+    flex: 0 0 2.75rem;
+    font-size: 1.3rem;
+    height: 2.75rem;
+    justify-content: center;
+}
+
+.curricular-document__body {
+    min-width: 0;
+}
+
+.curricular-document__body > span {
+    color: #52616f;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.curricular-document__body h3 {
+    color: #17324d;
+    font-size: 1rem;
+    margin: 0.15rem 0 0.45rem;
+}
+
+.curricular-document__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+}
+
+.curricular-document__actions a {
+    color: #005b96;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.curricular-document__actions a:hover {
+    text-decoration: underline;
+}
+
+.workshop-plans {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+}
+
+.workshop-plans h4 {
+    color: #17324d;
+    margin: 0;
+}
+
+@media (max-width: 520px) {
+    .curricular-document {
+        align-items: flex-start;
+    }
+}

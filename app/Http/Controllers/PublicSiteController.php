@@ -61,13 +61,14 @@ class PublicSiteController extends Controller
     public function specialty(Specialty $specialty): View
     {
         abort_unless(Specialty::published()->whereKey($specialty)->exists(), 404);
+        $specialty->load('curricularDocuments');
 
         return view('specialties.show', compact('specialty'));
     }
 
     public function workshops(): View
     {
-        $workshops = ExploratoryWorkshop::published()->orderBy('sort_order')->orderBy('name')->get();
+        $workshops = ExploratoryWorkshop::with('curricularDocuments')->published()->orderBy('sort_order')->orderBy('name')->get();
 
         return view('workshops.index', [
             'workshopGroups' => collect([

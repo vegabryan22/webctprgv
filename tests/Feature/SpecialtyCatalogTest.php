@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\CurricularDocument;
 use App\Models\Role;
 use App\Models\Specialty;
 use App\Models\User;
@@ -21,6 +22,7 @@ class SpecialtyCatalogTest extends TestCase
     public function test_documented_curricular_specialties_are_published(): void
     {
         $this->assertSame(7, Specialty::where('status', 'published')->count());
+        $this->assertSame(23, CurricularDocument::whereNotNull('specialty_id')->count());
         $this->assertDatabaseHas('specialties', [
             'name' => 'Configuración y soporte a redes de comunicación y sistemas operativos',
             'status' => 'published',
@@ -35,6 +37,21 @@ class SpecialtyCatalogTest extends TestCase
             ->assertSee('Configuración y soporte a redes de comunicación y sistemas operativos')
             ->assertSee('Instalación y mantenimiento de sistemas eléctricos industriales')
             ->assertDontSee('alto índice de inserción laboral');
+
+        $networks = Specialty::where('name', 'Configuración y soporte a redes de comunicación y sistemas operativos')->firstOrFail();
+        $this->get(route('specialties.show', $networks))
+            ->assertOk()
+            ->assertSee('Planes de estudio por nivel')
+            ->assertSee('configuracion-soporte-redes-sistemas-operativos-10.pdf')
+            ->assertSee('configuracion-soporte-redes-sistemas-operativos-11.pdf')
+            ->assertSee('configuracion-soporte-redes-sistemas-operativos-12.pdf');
+    }
+
+    public function test_every_curricular_document_points_to_a_public_file(): void
+    {
+        CurricularDocument::each(
+            fn (CurricularDocument $document) => $this->assertFileExists(public_path($document->file_path)),
+        );
     }
 
     public function test_only_published_specialties_are_public(): void
