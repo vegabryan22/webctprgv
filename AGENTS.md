@@ -46,7 +46,7 @@ En otra computadora puede usarse el PHP instalado globalmente si cumple los requ
 ## Estado actual
 
 - Última etapa funcional cerrada: CTP-C11, Junta Administrativa y transparencia.
-- Última versión funcional: `v0.31.2`.
+- Última versión funcional: `v0.32.0`.
 - Próxima etapa preparada: CTP-C12, Historia institucional.
 - Consulte siempre `VERSION`, `git log`, `git status`, las etiquetas y `docs/PLAN-CONTENIDO.md`; estos datos pueden haber avanzado después de redactar este resumen.
 

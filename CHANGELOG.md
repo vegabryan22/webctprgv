@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.32.0] - 2026-07-27
+
+### Añadido
+
+- Categoría de calendario **Admisión**.
+- Siete hitos del proceso de prematrícula para 7.º del curso lectivo 2027.
+- Fechas de entrega de insumos, recepción documental, casos justificados, prueba, análisis, resultados y ratificación.
+- Referencia visible a la circular `DRED-SCE07-CTPRGV-D-206-2026`.
+
+### Seguridad editorial
+
+- Los montos contradictorios y la referencia inconsistente al primer periodo 2025/2026 no se reproducen en los eventos.
+- La ratificación se presenta como periodo general y advierte que el día específico será comunicado posteriormente.
+
+### Base de datos
+
+- Migración `2026_07_27_001000_import_seventh_grade_admission_schedule.php`.
+
 ## [0.31.2] - 2026-07-27
 
 ### Corregido
