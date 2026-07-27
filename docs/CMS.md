@@ -106,7 +106,7 @@ Desde `0.34.0`, **Contenido → Estado del sitio** incluye el control de manteni
 - las rutas públicas muestran una pantalla temporal y responden HTTP 503;
 - el formulario de inicio de sesión y el panel permanecen disponibles;
 - cualquier usuario autenticado puede navegar por el sitio público completo;
-- aparece una franja que advierte que se está utilizando la vista de revisión;
+- aparece una franja que advierte que se está utilizando la vista de lector;
 - el contenido, los archivos y las secciones no se modifican.
 
 Para entregar acceso de revisión sin permisos administrativos:

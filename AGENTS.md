@@ -46,7 +46,7 @@ En otra computadora puede usarse el PHP instalado globalmente si cumple los requ
 ## Estado actual
 
 - Última etapa funcional implementada: CTP-C15, Admisión y matrícula.
-- Última versión funcional: `v0.35.0`.
+- Última versión funcional: `v0.35.1`.
 - Próxima etapa preparada: CTP-C12, Historia institucional.
 - Consulte siempre `VERSION`, `git log`, `git status`, las etiquetas y `docs/PLAN-CONTENIDO.md`; estos datos pueden haber avanzado después de redactar este resumen.
 

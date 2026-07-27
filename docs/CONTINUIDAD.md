@@ -55,6 +55,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.33.1 | CTP-C15 | Contraste y escala corregidos en el encabezado de Admisión |
 | 0.34.0 | Control de publicación | Mantenimiento público con revisión autenticada y rol lector |
 | 0.35.0 | Administración | Resumen convertido en tablero operativo, adaptable y sensible a permisos |
+| 0.35.1 | Control de publicación | Terminología pública unificada para el acceso de lectores |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 

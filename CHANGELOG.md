@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.35.1] - 2026-07-27
+
+### Corregido
+
+- La pantalla de mantenimiento utiliza “lector” en lugar de “revisor”.
+- La franja privada y el resumen administrativo mantienen la misma terminología.
+
 ## [0.35.0] - 2026-07-27
 
 ### Cambiado
@@ -24,12 +31,12 @@ Todos los cambios relevantes del proyecto se documentan aquí en español. El fo
 - Pantalla pública temporal con título y mensaje editables.
 - Rol de sistema **Lector del sitio**, sin acceso al panel administrativo.
 - Acceso completo al sitio para cualquier usuario autenticado mientras el mantenimiento está activo.
-- Franja de “Vista de revisión” para distinguir el contenido oculto al público.
+- Franja de acceso privado para distinguir el contenido oculto al público.
 
 ### Cambiado
 
 - Los usuarios autenticados sin `admin.access` permanecen conectados y regresan al sitio público.
-- El formulario de acceso conserva la página que el revisor intentaba consultar.
+- El formulario de acceso conserva la página que el lector intentaba consultar.
 - Los lectores disponen de una acción pública para cerrar sesión.
 
 ### Base de datos
