@@ -32,6 +32,11 @@ class CmsContentTest extends TestCase
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'services.index', 'label' => 'SERVICIOS']);
         $this->assertDatabaseHas('navigation_items', ['route_name' => 'information', 'label' => 'INSTITUCIÓN']);
         $this->assertDatabaseHas('content_pages', ['route_name' => 'information', 'title' => 'Nuestra institución']);
+
+        $institution = ContentPage::where('route_name', 'information')->firstOrFail();
+        $this->assertStringContainsString('institution-purpose', $institution->content);
+        $this->assertStringContainsString('Valores institucionales', $institution->content);
+        $this->assertStringNotContainsString('Información Académica', $institution->content);
     }
 
     public function test_database_content_is_rendered_on_existing_route(): void

@@ -77,7 +77,14 @@ class PublicSiteTest extends TestCase
             ->assertOk()
             ->assertSee('Nuestra institución')
             ->assertSee('INSTITUCIÓN')
-            ->assertSee('fa-school');
+            ->assertSee('fa-school')
+            ->assertSee('institution-hero')
+            ->assertSee('Misión')
+            ->assertSee('Visión')
+            ->assertSee('Valores institucionales')
+            ->assertDontSee('Información Académica')
+            ->assertDontSee('specialty-header')
+            ->assertDontSee('location-section');
     }
 
     public function test_public_navigation_shows_contextual_session_action(): void
