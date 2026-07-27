@@ -82,6 +82,8 @@ La versión `0.23.0` incorpora un atlas gráfico con 24 ilustraciones temáticas
 
 Las ilustraciones son editoriales y no deben interpretarse como fotografías de instalaciones, personal o equipos disponibles en el CTPRGV. Si el CMS contiene una imagen específica para una ficha, esa imagen sustituye automáticamente la ilustración predeterminada.
 
+La versión `0.23.1` conserva el atlas como fuente, pero publica cada escena como un JPEG independiente en `public/images/curricular/items`. Esto evita que las diferencias de altura entre filas produzcan recortes con fragmentos de imágenes vecinas.
+
 ## Regla editorial
 
 No publicar cifras de empleabilidad, duración de práctica, convenios, certificaciones, equipos disponibles ni reconocimiento universitario sin una fuente verificable y vigente.

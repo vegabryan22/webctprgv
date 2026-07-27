@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.23.1] - 2026-07-27
+
+### Corregido
+
+- Las 24 escenas del atlas fueron separadas en archivos individuales con los límites reales de cada celda.
+- Las tarjetas y fichas ya no pueden mostrar fragmentos de una ilustración vecina.
+
 ## [0.23.0] - 2026-07-27
 
 ### Añadido
