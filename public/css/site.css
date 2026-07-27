@@ -2986,6 +2986,519 @@ p {
     }
 }
 
+/* Portada pública estructurada */
+.modern-home {
+    background: #f4f8fb;
+    color: #24394d;
+}
+
+.modern-home__shell {
+    margin: 0 auto;
+    width: min(1180px, 100%);
+}
+
+.modern-home__hero {
+    align-items: center;
+    background-image: url("../images/cole.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    min-height: min(700px, 82vh);
+    overflow: hidden;
+    padding: 8rem max(1.5rem, calc((100vw - 1180px) / 2)) 4rem;
+    position: relative;
+}
+
+.modern-home__hero-overlay {
+    background:
+        linear-gradient(90deg, rgba(0, 35, 70, 0.92) 0%, rgba(0, 47, 93, 0.76) 43%, rgba(0, 47, 93, 0.18) 78%),
+        linear-gradient(0deg, rgba(0, 25, 52, 0.42), transparent 45%);
+    inset: 0;
+    position: absolute;
+}
+
+.modern-home__hero-content {
+    color: #fff;
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+}
+
+.modern-home__eyebrow {
+    color: #4b8f20;
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.modern-home__hero .modern-home__eyebrow {
+    color: #ffda00;
+}
+
+.modern-home__hero h1 {
+    color: #fff;
+    font-size: clamp(2.65rem, 6vw, 5rem);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin: 0.8rem 0 1.1rem;
+}
+
+.modern-home__hero p {
+    color: #eaf4fb;
+    font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 650px;
+}
+
+.modern-home__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+}
+
+.modern-home__button {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    display: inline-flex;
+    font-size: 0.9rem;
+    font-weight: 800;
+    gap: 0.55rem;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+}
+
+.modern-home__button--primary {
+    background: #ffda00;
+    color: #003764;
+}
+
+.modern-home__button--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #fff;
+}
+
+.modern-home__scroll {
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    bottom: 1.5rem;
+    color: #003764;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    text-decoration: none;
+    transform: translateX(-50%);
+    width: 42px;
+    z-index: 1;
+}
+
+.modern-home__quick,
+.modern-home__academic,
+.modern-home__agenda,
+.modern-home__news {
+    padding: 4.5rem 1.5rem;
+}
+
+.modern-home__quick {
+    background: #fff;
+}
+
+.modern-home__section-heading {
+    align-items: end;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 1.7rem;
+}
+
+.modern-home__section-heading--center {
+    justify-content: center;
+    text-align: center;
+}
+
+.modern-home__section-heading--center > div {
+    max-width: 720px;
+}
+
+.modern-home__section-heading h2,
+.modern-home__identity h2 {
+    color: #003764;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0.35rem 0 0;
+}
+
+.modern-home__section-heading p {
+    color: #647587;
+    line-height: 1.6;
+    margin: 0.65rem 0 0;
+}
+
+.modern-home__section-heading > a {
+    color: #003764;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.modern-home__quick-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.modern-home__quick-grid > a {
+    align-items: center;
+    background: #f6f9fb;
+    border: 1px solid #dce6ed;
+    border-radius: 14px;
+    color: #003764;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: auto 1fr auto;
+    min-width: 0;
+    padding: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.modern-home__quick-grid > a:hover {
+    border-color: #5ca732;
+    transform: translateY(-2px);
+}
+
+.modern-home__quick-grid > a > i:first-child {
+    align-items: center;
+    background: #e8f3e3;
+    border-radius: 10px;
+    color: #43831d;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+.modern-home__quick-grid strong,
+.modern-home__quick-grid small {
+    display: block;
+}
+
+.modern-home__quick-grid small {
+    color: #6d7d8b;
+    font-size: 0.76rem;
+    margin-top: 0.15rem;
+}
+
+.modern-home__quick-grid > a > i:last-child {
+    font-size: 0.72rem;
+}
+
+.modern-home__academic {
+    background: #f1f6f9;
+}
+
+.modern-home__pathways {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.modern-home__pathway {
+    background: #fff;
+    border: 1px solid #d9e4eb;
+    border-radius: 18px;
+    box-shadow: 0 12px 34px rgba(0, 55, 100, 0.08);
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.modern-home__pathway img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.modern-home__pathway > div {
+    align-self: center;
+    padding: 1.5rem;
+}
+
+.modern-home__pathway span {
+    color: #4b8f20;
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.modern-home__pathway h3 {
+    color: #003764;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin: 0.45rem 0 0.7rem;
+}
+
+.modern-home__pathway p {
+    color: #627486;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+.modern-home__pathway a {
+    color: #005b96;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.modern-home__agenda {
+    background: #fff;
+}
+
+.modern-home__event-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.modern-home__event {
+    background: #fff;
+    border: 1px solid #dce5ec;
+    border-radius: 14px;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: 58px 1fr;
+    min-width: 0;
+    padding: 1rem;
+}
+
+.modern-home__event-date {
+    align-items: center;
+    align-self: start;
+    background: #edf3f7;
+    border-top: 4px solid var(--event-color, #003764);
+    border-radius: 9px;
+    color: #003764;
+    display: flex;
+    flex-direction: column;
+    padding: 0.65rem 0.25rem;
+}
+
+.modern-home__event-date strong {
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.modern-home__event-date span,
+.modern-home__event-category {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.modern-home__event-category {
+    color: #657789;
+}
+
+.modern-home__event h3 {
+    font-size: 0.94rem;
+    line-height: 1.35;
+    margin: 0.35rem 0 0.55rem;
+}
+
+.modern-home__event h3 a {
+    color: #003764;
+    text-decoration: none;
+}
+
+.modern-home__event p {
+    color: #6d7d8c;
+    font-size: 0.76rem;
+    margin: 0;
+}
+
+.modern-home__empty {
+    align-items: center;
+    border: 1px dashed #b8c8d4;
+    border-radius: 14px;
+    display: flex;
+    gap: 1rem;
+    grid-column: 1 / -1;
+    padding: 1.5rem;
+}
+
+.modern-home__empty > i {
+    color: #4b8f20;
+    font-size: 1.8rem;
+}
+
+.modern-home__empty h3,
+.modern-home__empty p {
+    margin: 0;
+}
+
+.modern-home__news {
+    background: #eef4f7;
+}
+
+.modern-home__news-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.modern-home__news-card {
+    background: #fff;
+    border: 1px solid #d8e3ea;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.modern-home__news-card > img,
+.modern-home__news-card > div {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.modern-home__news-card > div {
+    align-items: center;
+    background: #e7f0f5;
+    color: #4b8f20;
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+.modern-home__news-card section {
+    padding: 1.15rem;
+}
+
+.modern-home__news-card span {
+    color: #6b7c8c;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.modern-home__news-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin: 0.45rem 0;
+}
+
+.modern-home__news-card h3 a {
+    color: #003764;
+    text-decoration: none;
+}
+
+.modern-home__news-card p {
+    color: #627486;
+    display: -webkit-box;
+    line-height: 1.5;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.modern-home__identity {
+    background: linear-gradient(120deg, #003764, #075788);
+    color: #fff;
+    padding: 3.5rem 1.5rem;
+}
+
+.modern-home__identity .modern-home__shell {
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.modern-home__identity h2 {
+    color: #fff;
+}
+
+.modern-home__identity p {
+    color: #dcebf5;
+    line-height: 1.6;
+    margin: 0.65rem 0 0;
+    max-width: 720px;
+}
+
+@media (max-width: 1000px) {
+    .modern-home__quick-grid,
+    .modern-home__event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .modern-home__pathway {
+        grid-template-columns: 36% 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .modern-home__hero {
+        min-height: 620px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .modern-home__hero-overlay {
+        background: rgba(0, 42, 82, 0.82);
+    }
+
+    .modern-home__pathways,
+    .modern-home__news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-home__section-heading,
+    .modern-home__identity .modern-home__shell {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 560px) {
+    .modern-home__quick,
+    .modern-home__academic,
+    .modern-home__agenda,
+    .modern-home__news {
+        padding: 3.25rem 1rem;
+    }
+
+    .modern-home__quick-grid,
+    .modern-home__event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-home__pathway {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-home__pathway img {
+        height: 190px;
+    }
+
+    .modern-home__hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
 .catalog-section-heading {
     margin: 0 0 1rem;
 }

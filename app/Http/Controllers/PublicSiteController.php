@@ -24,7 +24,19 @@ class PublicSiteController extends Controller
             ->limit(4)
             ->get();
 
-        return view('public.home-page', compact('page', 'upcomingEvents'));
+        $latestNews = NewsArticle::with('category')
+            ->published()
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+
+        return view('public.home-page', [
+            'page' => $page,
+            'upcomingEvents' => $upcomingEvents,
+            'latestNews' => $latestNews,
+            'specialtyCount' => Specialty::published()->count(),
+            'workshopCount' => ExploratoryWorkshop::published()->count(),
+        ]);
     }
 
     public function news(Request $request): View

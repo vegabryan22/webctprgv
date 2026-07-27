@@ -39,9 +39,12 @@ class CmsContentTest extends TestCase
         $this->get('/informacion')->assertOk()->assertSee('Contenido editable desde MySQL');
     }
 
-    public function test_home_keeps_managed_content_and_adds_useful_dynamic_information(): void
+    public function test_home_uses_managed_title_and_structured_dynamic_information(): void
     {
-        ContentPage::where('route_name', 'home')->update(['content' => '<main>Portada administrable</main>']);
+        ContentPage::where('route_name', 'home')->update([
+            'title' => 'Portada administrable',
+            'content' => '<main>Contenido heredado del inicio</main>',
+        ]);
         Event::query()->delete();
         $event = Event::create([
             'event_category_id' => EventCategory::firstOrFail()->id,
@@ -57,7 +60,8 @@ class CmsContentTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('Portada administrable')
-            ->assertSee('Encuentre rápidamente lo que necesita')
+            ->assertDontSee('Contenido heredado del inicio')
+            ->assertSee('¿Qué necesita consultar?')
             ->assertSee('Actividad institucional próxima')
             ->assertSee(route('calendar.show', $event));
     }

@@ -24,6 +24,20 @@ class PublicSiteTest extends TestCase
         }
     }
 
+    public function test_home_uses_the_structured_portal_without_legacy_sections(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('modern-home__hero')
+            ->assertSee('¿Qué necesita consultar?')
+            ->assertSee('Talleres exploratorios')
+            ->assertSee('Especialidades técnicas')
+            ->assertSee('Próximas actividades')
+            ->assertDontSee('values-section')
+            ->assertDontSee('video-section')
+            ->assertDontSee('feature-card');
+    }
+
     public function test_admin_redirects_guests_to_login(): void
     {
         $this->get('/administracion')->assertRedirect('/administracion/ingresar');
