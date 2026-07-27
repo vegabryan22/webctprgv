@@ -28,7 +28,17 @@ Desde `0.28.0`, la página `/contacto` no imprime el HTML heredado de la página
 - dirección y enlace público del mapa;
 - fecha de verificación y fuente responsable.
 
-El permiso `contact.manage` controla esta pantalla. Los editores de contenido y la superadministración lo reciben de forma predeterminada. El formulario decorativo anterior fue retirado porque no tenía destino ni procesaba mensajes.
+El permiso `contact.manage` controla esta pantalla. Los editores de contenido y la superadministración lo reciben de forma predeterminada.
+
+Desde `0.29.0`, el formulario público es funcional. Cada envío:
+
+- se valida y almacena en `contact_messages`;
+- exige consentimiento para atender la consulta;
+- aplica una trampa antispam y límite de frecuencia;
+- notifica al correo receptor configurado o, en su ausencia, al correo público;
+- aparece en **Contenido → Consultas** con estados nuevo, leído, atendido y archivado.
+
+La consulta permanece guardada aunque el servicio de correo falle. El panel registra las fechas de lectura y atención, y no expone los mensajes en rutas públicas.
 
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 

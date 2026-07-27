@@ -2,6 +2,26 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.29.0] - 2026-07-27
+
+### Añadido
+
+- Formulario público de contacto que almacena las consultas en MySQL.
+- Bandeja administrativa con filtros y estados nuevo, leído, atendido y archivado.
+- Notificación por correo al destinatario configurable, con respaldo en el correo público.
+- Consentimiento obligatorio, campo trampa y límite de cinco envíos por minuto.
+- Registro de lectura y atención de cada consulta.
+
+### Seguridad
+
+- Validación de longitud y formato para todos los campos.
+- Los mensajes se presentan escapados en el panel y en las notificaciones.
+- No se almacenan datos técnicos adicionales de la persona remitente.
+
+### Base de datos
+
+- Migración `2026_07_27_000700_create_contact_messages_table.php`.
+
 ## [0.28.0] - 2026-07-27
 
 ### Añadido
