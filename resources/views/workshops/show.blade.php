@@ -2,18 +2,52 @@
 @section('title', $workshop->name . ' - CTP Roberto Gamboa Valverde')
 @section('content')
 <main class="service-page">
-    <article class="service-detail workshop-detail">
-        <a class="news-detail__back" href="{{ route('workshops') }}"><i class="fa-solid fa-arrow-left"></i> Volver a talleres</a>
-        <header>
-            <span>Taller exploratorio · {{ $workshop->grade_level }}</span>
-            <h1>{{ $workshop->name }}</h1>
-            <p>{{ $workshop->summary }}</p>
-            @if($workshop->verified_at)<small><i class="fa-solid fa-circle-check"></i> Información verificada el {{ $workshop->verified_at->format('d/m/Y') }}</small>@endif
+    <article class="service-detail curricular-detail">
+        <a class="news-detail__back curricular-detail__back" href="{{ route('workshops') }}">
+            <i class="fa-solid fa-arrow-left"></i> Volver a talleres
+        </a>
+
+        <header class="curricular-detail__hero">
+            <div class="curricular-detail__hero-copy">
+                <span class="curricular-detail__eyebrow"><i class="fa-solid fa-compass-drafting"></i> Taller exploratorio</span>
+                <h1>{{ $workshop->name }}</h1>
+                <p>{{ $workshop->summary }}</p>
+                <div class="curricular-detail__meta">
+                    <span><i class="fa-solid fa-layer-group"></i> {{ $workshop->grade_level }}</span>
+                    @if($workshop->verified_at)
+                    <span><i class="fa-solid fa-circle-check"></i> Verificado el {{ $workshop->verified_at->format('d/m/Y') }}</span>
+                    @endif
+                </div>
+            </div>
+            <div class="curricular-detail__visual">
+                @if($workshop->image_path)
+                <img src="{{ asset('storage/'.ltrim($workshop->image_path, '/')) }}" alt="">
+                @else
+                <i class="fa-solid fa-compass-drafting"></i>
+                @endif
+            </div>
         </header>
-        @if($workshop->image_path)<img class="news-detail__image" src="{{ asset('storage/'.ltrim($workshop->image_path, '/')) }}" alt="">@endif
-        <div class="specialty-detail">
-            @if($workshop->description)<section><h2>Descripción</h2><div>{!! $workshop->description !!}</div></section>@endif
-            @if($workshop->curricularDocuments->isNotEmpty())<section><h2>Planes de estudio</h2><p>Consulte o descargue los programas oficiales disponibles.</p><x-curricular-documents :documents="$workshop->curricularDocuments" /></section>@endif
+
+        <div class="curricular-detail__content">
+            @if($workshop->description)
+            <section class="curricular-detail__section curricular-detail__section--wide">
+                <div class="curricular-detail__section-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div><h2>Descubre este taller</h2><div>{!! $workshop->description !!}</div></div>
+            </section>
+            @endif
+
+            @if($workshop->curricularDocuments->isNotEmpty())
+            <section class="curricular-detail__plans curricular-detail__section--wide">
+                <div class="curricular-detail__plans-heading">
+                    <div>
+                        <span>Documento oficial</span>
+                        <h2>Plan de estudio</h2>
+                    </div>
+                    <p>Ábrelo en línea o descarga el PDF.</p>
+                </div>
+                <x-curricular-documents :documents="$workshop->curricularDocuments" />
+            </section>
+            @endif
         </div>
     </article>
 </main>

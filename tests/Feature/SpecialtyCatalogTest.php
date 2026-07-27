@@ -44,8 +44,11 @@ class SpecialtyCatalogTest extends TestCase
         $networks = Specialty::where('name', 'Configuración y soporte a redes de comunicación y sistemas operativos')->firstOrFail();
         $this->get(route('specialties.show', $networks))
             ->assertOk()
+            ->assertSee('curricular-detail__hero')
+            ->assertSee('curricular-detail__plans')
             ->assertSee('Perfil del estudiante')
             ->assertSee('Administración de servidores y fundamentos de ciberseguridad.')
+            ->assertDontSee('Información oficial')
             ->assertSee('Planes de estudio por nivel')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-10.pdf')
             ->assertSee('configuracion-soporte-redes-sistemas-operativos-11.pdf')

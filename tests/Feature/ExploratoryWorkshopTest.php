@@ -41,6 +41,8 @@ class ExploratoryWorkshopTest extends TestCase
         $english = ExploratoryWorkshop::where('name', 'Inglés conversacional')->firstOrFail();
         $this->get(route('workshops.show', $english))
             ->assertOk()
+            ->assertSee('curricular-detail__hero')
+            ->assertSee('curricular-detail__plans')
             ->assertSee('Capacidades comunicativas')
             ->assertSee('nivel B1.1')
             ->assertSee('Programa de Inglés conversacional de 7.º')
