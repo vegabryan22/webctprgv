@@ -7,7 +7,7 @@
 | Proyecto | Sitio web CTP Roberto Gamboa Valverde |
 | Código | CTPRGV-WEB |
 | Creado | 2026-07-24 |
-| Última actualización | 2026-07-24 |
+| Última actualización | 2026-07-27 |
 | Responsable funcional | Dirección del CTPRGV |
 | Responsable técnico | Administración del sitio |
 | Versión inicial del plan | 0.8.1 |
@@ -77,7 +77,10 @@ CTP-C02 Módulo de noticias ────┘
 CTP-C03 Saneamiento editorial ─────> CTP-C10 Revisión integral
 
 CTP-C05 Catálogo de servicios ─┬───> CTP-C07 Directorio
-                               └───> CTP-C08 Documentos
+                               ├───> CTP-C08 Documentos
+                               └───> CTP-C15 Admisión y matrícula
+
+CTP-C08 Biblioteca documental ─────> CTP-C15 Admisión y matrícula
 
 CTP-C06 Modelo de especialidades ──> CTP-C09 Empresas y práctica
 
@@ -110,6 +113,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | CTP-C05 | Catálogo de servicios | Completado | CTP-B02 | Servicios, categorías, requisitos, responsables y documentos | Solo información confirmada puede publicarse |
 | CTP-C07 | Directorio institucional | Completado | CTP-C05 | Departamentos, contactos, extensiones, búsqueda y horarios | Datos confirmados por Dirección o Secretaría |
 | CTP-C08 | Biblioteca de documentos | Completado | CTP-C05 | Reglamentos, formularios y circulares versionados | Archivo, vigencia, categoría y responsable visibles |
+| CTP-C15 | Admisión y matrícula | Bloqueado | CTP-C05, CTP-C08 | Página pública para 7.º y 10.º, cronograma, avisos y documentos oficiales | Dirección confirma vigencia y resuelve contradicciones entre fuentes |
 
 ## Etapa 3 — Oferta técnica y vinculación
 
@@ -141,6 +145,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | Oferta académica | Coordinación Académica | CTP-C03 |
 | Especialidades y práctica | Coordinación Técnica | CTP-C06, CTP-C09 |
 | Matrícula, constancias y horarios | Secretaría | CTP-C05, CTP-C07 |
+| Admisión, prematrícula, costos y fechas | Dirección y Comité de Matrícula | CTP-C15 |
 | Becas, comedor, transporte y orientación | Administración u Orientación | CTP-C05 |
 | Proyectos, concursos e informes | Junta Administrativa | CTP-C11 |
 | Calendario y comunicados | Dirección | CTP-C01, CTP-C02 |
@@ -155,6 +160,24 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-24 | DEC-002 | Inicio conserva el CMS y añade componentes dinámicos | Evita perder edición y duplicar calendario | CTP-C01 usa una vista específica |
 | 2026-07-24 | DEC-003 | El contenido futuro será estructurado | Los bloques HTML son difíciles de validar y reutilizar | Noticias, servicios y especialidades tendrán modelos propios |
 | 2026-07-27 | DEC-004 | Inicio conserva el título administrado, pero no imprime el HTML heredado | La portada anterior duplicaba misión, valores, video y componentes dinámicos | Inicio se alimenta de módulos estructurados y el contenido anterior permanece como respaldo |
+| 2026-07-27 | DEC-005 | La futura sección de admisión separará 7.º de la escogencia de especialidad de 10.º | Son procesos, públicos y requisitos distintos | CTP-C15 tendrá recorridos independientes y documentos comunes |
+
+## Fuentes recibidas para CTP-C15
+
+| Documento | Fecha | Uso previsto | Estado de revisión |
+| --- | --- | --- | --- |
+| Circular DRED-SC07-CTPRGV-D-207-2026, Reglamento de Admisión y Matrícula | 03/07/2026 | Comunicación general y descarga asociada al reglamento | Recibida; la portada del reglamento indica 2025-2026, pero la circular y la disposición final señalan curso lectivo 2027 |
+| Reglamento de Admisión y Matrícula del CTPRGV | Rige desde junio de 2026 | Documento normativo completo para 7.º y 10.º | Bloqueado hasta confirmar o corregir el período de la portada |
+| Circular DRED-SCE07-CTPRGV-D-206-2026, Prematrícula de 7.º para 2027 | 03/07/2026 | Cronograma, requisitos y avisos específicos para aspirantes de 7.º | Bloqueada: indica ₡4.000 y ₡3.000 para la prueba en páginas distintas; también menciona I período 2025 y 2026 |
+
+### Alcance previsto de CTP-C15
+
+1. Crear una página pública de admisión y matrícula con recorridos separados para ingreso a 7.º y elección de especialidad de 10.º.
+2. Mostrar un cronograma administrable con fecha, horario, audiencia, lugar, estado y fuente.
+3. Vincular circulares y reglamentos desde la biblioteca documental, sin duplicar archivos.
+4. Permitir avisos destacados y correcciones posteriores sin modificar contenido histórico.
+5. Publicar costos, cuentas, requisitos y fechas únicamente después de su confirmación por Dirección.
+6. Integrar accesos desde Inicio, Especialidades y la navegación pública, sujetos al control de estado del sitio.
 
 ## Bitácora de entregas
 
