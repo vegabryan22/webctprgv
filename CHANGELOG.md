@@ -2,6 +2,25 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.31.0] - 2026-07-27
+
+### Añadido
+
+- Panel rápido **Estado del sitio** con interruptores para doce secciones públicas.
+- Control independiente de Noticias, Institución, Especialidades, Talleres, Junta, Contacto, Servicios, Calendario, Práctica, Directorio, Documentos y 50 Aniversario.
+- Acciones rápidas para activar o desactivar talleres y especialidades sin eliminarlos.
+- Permiso `site-sections.manage` para superadministración y editores.
+
+### Cambiado
+
+- Las secciones desactivadas desaparecen del menú, Inicio y pie de página.
+- Las rutas públicas desactivadas responden 404, mientras Inicio y Administración permanecen disponibles.
+- El formulario de talleres conserva correctamente el estado Borrador seleccionado.
+
+### Base de datos
+
+- Migración `2026_07_27_000900_create_site_sections_table.php`.
+
 ## [0.30.0] - 2026-07-27
 
 ### Añadido

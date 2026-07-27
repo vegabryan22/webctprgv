@@ -47,6 +47,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.29.2 | Contacto institucional | Formulario prioritario y canales compactos en columna lateral |
 | 0.29.3 | Contacto institucional | Redes sociales integradas en el espacio lateral |
 | 0.30.0 | CTP-C11 | Junta mantenible con categorías, productos y precios opcionales |
+| 0.31.0 | Control editorial | Estado global de secciones y desactivación curricular rápida |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -68,6 +69,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_000600_create_contact_settings.php`
 - `2026_07_27_000700_create_contact_messages_table.php`
 - `2026_07_27_000800_expand_board_publications.php`
+- `2026_07_27_000900_create_site_sections_table.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 

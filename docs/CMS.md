@@ -57,6 +57,21 @@ Cada publicación admite resumen, contenido, responsable, fuente, fecha, vigenci
 
 El HTML heredado con proyectos, licitaciones y precios demostrativos fue retirado. Las camisas del uniforme y el cuaderno de comunicaciones se cargaron como publicaciones verificadas sin precio.
 
+## Estado público del sitio
+
+Desde `0.31.0`, **Contenido → Estado del sitio** muestra en un solo panel las doce secciones públicas principales. Un editor autorizado puede activar o desactivar Noticias, Institución, Especialidades, Talleres, Junta Administrativa, Contacto, Servicios, Calendario, Práctica profesional, Directorio, Documentos y 50 Aniversario.
+
+Cuando una sección está desactivada:
+
+- desaparece de la navegación principal;
+- se retiran sus accesos de Inicio y del pie cuando corresponda;
+- sus rutas públicas responden 404;
+- sus datos y configuración permanecen intactos en MySQL.
+
+Inicio y Administración no se pueden desactivar desde este panel. El permiso requerido es `site-sections.manage`.
+
+Los listados administrativos de Especialidades y Talleres ofrecen además una acción rápida **Activar/Desactivar** para cada ficha. Desactivar cambia el registro a borrador, lo retira del catálogo público y conserva toda su información, imagen y planes.
+
 No se puede modificar su ruta ni eliminarlas desde el panel. Los scripts interactivos originales están separados del HTML y no se presentan en el editor.
 
 ## Editor
