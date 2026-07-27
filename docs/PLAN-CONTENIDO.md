@@ -204,7 +204,7 @@ CTP-C02 + C05 + C06 + C07 + C08 + C09
 | 2026-07-27 | Redes en Contacto | 0.29.3 | Completado | `ed59be4` | `75f55d9` | 79 pruebas y 493 aserciones aprobadas; tres redes verificadas con HTTP 200 | Bloque social compacto alimentado por la configuración central |
 | 2026-07-27 | Junta Administrativa mantenible | 0.30.0 | Completado | `69b9da6` | `e4dc805` | 80 pruebas y 508 aserciones aprobadas; migración local y `/junta-administrativa` con HTTP 200 | Categorías reales, precios opcionales y retiro integral de datos demostrativos |
 | 2026-07-27 | Estado público del sitio | 0.31.0 | Completado | `f89a3a2` | `7c419c8` | 83 pruebas y 529 aserciones aprobadas; ocultamiento de menú y HTTP 404 verificados | Doce módulos con interruptor global y fichas curriculares desactivables sin eliminación |
-| 2026-07-27 | Responsividad transversal | 0.31.1 | Completado | `e3b8fd8` | Pendiente | 86 pruebas y 562 aserciones aprobadas; once rutas públicas con HTTP 200 | Sitio público, calendario y panel adaptados desde teléfonos hasta pantallas amplias; biblioteca sin colisión de URL |
+| 2026-07-27 | Responsividad transversal | 0.31.1 | Completado | `e3b8fd8` | `4dad41e` | 86 pruebas y 562 aserciones aprobadas; once rutas públicas con HTTP 200 | Sitio público, calendario y panel adaptados desde teléfonos hasta pantallas amplias; biblioteca sin colisión de URL |
 
 ## Riesgos y bloqueos
 
