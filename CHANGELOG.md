@@ -2,6 +2,25 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.19.0] - 2026-07-26
+
+### Añadido
+
+- Catálogo curricular documentado a partir de 40 planes de estudio del MEP.
+- Siete especialidades técnicas con nombres oficiales, descripciones y áreas de formación.
+- Diecisiete talleres exploratorios clasificados por nivel y precargados como borradores.
+- Inglés conversacional representado como programa transversal de 7.º, 8.º y 9.º.
+- Matriz de fuentes con archivo y páginas utilizadas para cada ficha.
+
+### Cambiado
+
+- Sustitución segura de los seis nombres provisionales de especialidades cuando no tienen edición previa.
+- Selector administrativo de talleres compatible con programas que abarcan todo el tercer ciclo.
+
+### Base de datos
+
+- Migración `2026_07_26_000100_prepare_curricular_catalog_drafts.php`.
+
 ## [0.18.6] - 2026-07-24
 
 ### Corregido

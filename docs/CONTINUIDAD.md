@@ -18,12 +18,13 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.9.0–0.9.1 | CTP-C02 | Noticias estructuradas y encabezado adaptable |
 | 0.10.0 | CTP-C03 | Revisión editorial y detección de contenido pendiente |
 | 0.11.0 | CTP-C05 | Catálogo de servicios |
-| 0.12.0–0.13.0 | CTP-C06 | Especialidades de 10.º–12.º y talleres de 7.º–9.º |
+| 0.12.0–0.13.0 | CTP-C06 | Estructura administrable de especialidades de 10.º–12.º y talleres de 7.º–9.º |
 | 0.14.0–0.14.1 | CTP-B04 | Selector y refinamiento del despliegue GitOps |
 | 0.15.0 | CTP-C07 | Directorio institucional verificable |
 | 0.16.0 | CTP-C08 | Biblioteca de documentos con vigencia y reemplazos |
 | 0.17.0 | CTP-C09 | Práctica profesional, pasantías y visitas técnicas |
 | 0.18.0 | CTP-C11 | Junta Administrativa y transparencia |
+| 0.19.0 | CTP-C06 | Catálogo curricular documentado con siete especialidades y diecisiete talleres en borrador |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -35,6 +36,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_24_000800_create_document_library_tables.php`
 - `2026_07_24_000900_create_professional_experiences_table.php`
 - `2026_07_24_001000_create_board_transparency_tables.php`
+- `2026_07_26_000100_prepare_curricular_catalog_drafts.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 
@@ -90,3 +92,4 @@ CTP-C12 debe crear una historia institucional estructurada y una línea del tiem
 
 Después quedan CTP-C13 (proyectos y egresados), CTP-C04 (actualidad en portada cuando existan noticias oficiales) y CTP-C10 (revisión integral final), según las dependencias del plan.
 
+Antes de publicar el catálogo curricular de `v0.19.0`, Coordinación Técnica debe confirmar cuáles de los planes archivados corresponden a la oferta vigente del CTPRGV, asignar responsable y registrar fecha de verificación.

@@ -16,18 +16,23 @@ Cada especialidad se administra como una ficha independiente con:
 - Imagen, orden y fecha de verificación.
 - Estado borrador o publicado.
 
-## Migración inicial
+## Catálogo curricular documentado
 
-Se crean como borradores los seis nombres encontrados en el sitio heredado:
+La migración `2026_07_26_000100_prepare_curricular_catalog_drafts.php` prepara como borrador los siete nombres respaldados por los planes de estudio disponibles:
 
-1. Redes de Computadoras.
-2. Contabilidad y Finanzas.
-3. Logística y Distribución.
+1. Ejecutivo comercial y de servicio al cliente.
+2. Contabilidad y finanzas.
+3. Administración logística y distribución.
 4. Electrotecnia.
-5. Ejecutivo para Centros de Servicio.
-6. Dibujo Técnico.
+5. Dibujo y modelado de edificaciones.
+6. Configuración y soporte a redes de comunicación y sistemas operativos.
+7. Instalación y mantenimiento de sistemas eléctricos industriales.
 
-La precarga no confirma que esos nombres coincidan con la oferta oficial vigente. Coordinación Técnica debe revisarlos antes de publicar.
+La migración solo reemplaza fichas provisionales que continúan intactas y crea los registros faltantes. No sobrescribe contenido editado, verificado o publicado.
+
+La evidencia, las descripciones propuestas y los talleres clasificados por nivel se encuentran en [OFERTA-ACADEMICA-FUENTES.md](OFERTA-ACADEMICA-FUENTES.md).
+
+La presencia de un plan en el archivo documental no confirma por sí sola que la oferta se imparta actualmente en el CTPRGV. Coordinación Técnica debe confirmar cada ficha antes de publicarla.
 
 ## Regla editorial
 
@@ -41,4 +46,4 @@ No publicar cifras de empleabilidad, duración de práctica, convenios, certific
 | `specialties.manage` | Crear, editar y eliminar |
 | `specialties.publish` | Publicar después de la verificación |
 
-La migración `2026_07_24_000500_create_specialties_table.php` se ejecuta en producción exclusivamente mediante GitOps.
+Las migraciones se ejecutan en producción exclusivamente mediante GitOps.
