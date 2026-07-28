@@ -65,14 +65,15 @@ class ExploratoryWorkshopController extends Controller
 
     public function toggle(Request $request, ExploratoryWorkshop $workshop): RedirectResponse
     {
-        $publishing = $workshop->status !== 'published';
-        abort_if($publishing && ! $request->user()->hasPermission('workshops.publish'), 403);
-        $workshop->update([
-            'status' => $publishing ? 'published' : 'draft',
-            'published_at' => $publishing ? now() : null,
-        ]);
+        if ($workshop->status !== 'published') {
+            return back()->with('error', 'Primero debe publicar el taller para gestionar su visibilidad.');
+        }
 
-        return back()->with('success', $publishing ? 'Taller activado.' : 'Taller desactivado.');
+        $workshop->update(['is_active' => ! $workshop->is_active]);
+
+        return back()->with('success', $workshop->is_active
+            ? 'El taller vuelve a estar visible en el sitio.'
+            : 'El taller se ocultó sin cambiar su estado de publicación.');
     }
 
     private function validated(Request $request, ?ExploratoryWorkshop $workshop = null): array

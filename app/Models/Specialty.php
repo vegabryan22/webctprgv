@@ -12,12 +12,12 @@ class Specialty extends Model
     protected $fillable = [
         'author_id', 'name', 'slug', 'summary', 'grade_levels', 'description', 'student_profile', 'curriculum',
         'career_opportunities', 'official_program_url', 'coordinator', 'contact_email', 'image_path',
-        'status', 'verified_at', 'published_at', 'sort_order',
+        'status', 'is_active', 'verified_at', 'published_at', 'sort_order',
     ];
 
     protected function casts(): array
     {
-        return ['verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
+        return ['is_active' => 'boolean', 'verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
     }
 
     public function author(): BelongsTo
@@ -33,5 +33,10 @@ class Specialty extends Model
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published')->where('published_at', '<=', now());
+    }
+
+    public function scopePubliclyVisible(Builder $query): Builder
+    {
+        return $query->published()->where('is_active', true);
     }
 }

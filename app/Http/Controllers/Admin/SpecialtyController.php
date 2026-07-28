@@ -65,14 +65,15 @@ class SpecialtyController extends Controller
 
     public function toggle(Request $request, Specialty $specialty): RedirectResponse
     {
-        $publishing = $specialty->status !== 'published';
-        abort_if($publishing && ! $request->user()->hasPermission('specialties.publish'), 403);
-        $specialty->update([
-            'status' => $publishing ? 'published' : 'draft',
-            'published_at' => $publishing ? now() : null,
-        ]);
+        if ($specialty->status !== 'published') {
+            return back()->with('error', 'Primero debe publicar la especialidad para gestionar su visibilidad.');
+        }
 
-        return back()->with('success', $publishing ? 'Especialidad activada.' : 'Especialidad desactivada.');
+        $specialty->update(['is_active' => ! $specialty->is_active]);
+
+        return back()->with('success', $specialty->is_active
+            ? 'La especialidad vuelve a estar visible en el sitio.'
+            : 'La especialidad se ocultó sin cambiar su estado de publicación.');
     }
 
     private function validated(Request $request, ?Specialty $specialty = null): array

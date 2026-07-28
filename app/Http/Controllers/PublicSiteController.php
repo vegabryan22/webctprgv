@@ -36,8 +36,8 @@ class PublicSiteController extends Controller
             'page' => $page,
             'upcomingEvents' => $upcomingEvents,
             'latestNews' => $latestNews,
-            'specialtyCount' => Specialty::published()->count(),
-            'workshopCount' => ExploratoryWorkshop::published()->count(),
+            'specialtyCount' => Specialty::publiclyVisible()->count(),
+            'workshopCount' => ExploratoryWorkshop::publiclyVisible()->count(),
         ]);
     }
 
@@ -89,13 +89,13 @@ class PublicSiteController extends Controller
     public function specialties(): View
     {
         return view('specialties.index', [
-            'specialties' => Specialty::published()->orderBy('sort_order')->orderBy('name')->get(),
+            'specialties' => Specialty::publiclyVisible()->orderBy('sort_order')->orderBy('name')->get(),
         ]);
     }
 
     public function specialty(Specialty $specialty): View
     {
-        abort_unless(Specialty::published()->whereKey($specialty)->exists(), 404);
+        abort_unless(Specialty::publiclyVisible()->whereKey($specialty)->exists(), 404);
         $specialty->load('curricularDocuments');
 
         return view('specialties.show', compact('specialty'));
@@ -103,7 +103,7 @@ class PublicSiteController extends Controller
 
     public function workshops(): View
     {
-        $workshops = ExploratoryWorkshop::with('curricularDocuments')->published()->orderBy('sort_order')->orderBy('name')->get();
+        $workshops = ExploratoryWorkshop::with('curricularDocuments')->publiclyVisible()->orderBy('sort_order')->orderBy('name')->get();
 
         return view('workshops.index', [
             'workshopGroups' => collect([
@@ -117,7 +117,7 @@ class PublicSiteController extends Controller
 
     public function workshop(ExploratoryWorkshop $workshop): View
     {
-        abort_unless(ExploratoryWorkshop::published()->whereKey($workshop)->exists(), 404);
+        abort_unless(ExploratoryWorkshop::publiclyVisible()->whereKey($workshop)->exists(), 404);
         $workshop->load('curricularDocuments');
 
         return view('workshops.show', compact('workshop'));

@@ -78,12 +78,77 @@ class SiteSectionTest extends TestCase
         $this->actingAs($admin)->put(route('admin.specialties.toggle', $specialty))->assertSessionHas('success');
         $this->actingAs($admin)->put(route('admin.workshops.toggle', $workshop))->assertSessionHas('success');
 
-        $this->assertSame('draft', $specialty->fresh()->status);
-        $this->assertSame('draft', $workshop->fresh()->status);
-        $this->assertDatabaseHas('specialties', ['id' => $specialty->id]);
-        $this->assertDatabaseHas('exploratory_workshops', ['id' => $workshop->id]);
+        $this->assertSame('published', $specialty->fresh()->status);
+        $this->assertSame('published', $workshop->fresh()->status);
+        $this->assertFalse($specialty->fresh()->is_active);
+        $this->assertFalse($workshop->fresh()->is_active);
+        $this->assertTrue(Specialty::published()->whereKey($specialty)->exists());
+        $this->assertTrue(ExploratoryWorkshop::published()->whereKey($workshop)->exists());
+        $this->get(route('specialties'))->assertOk()->assertDontSee($specialty->name);
+        $this->get(route('workshops'))->assertOk()->assertDontSee($workshop->name);
         $this->get(route('specialties.show', $specialty))->assertNotFound();
         $this->get(route('workshops.show', $workshop))->assertNotFound();
+
+        $this->actingAs($admin)->put(route('admin.specialties.toggle', $specialty))->assertSessionHas('success');
+        $this->actingAs($admin)->put(route('admin.workshops.toggle', $workshop))->assertSessionHas('success');
+
+        $this->assertTrue($specialty->fresh()->is_active);
+        $this->assertTrue($workshop->fresh()->is_active);
+        $this->get(route('specialties.show', $specialty))->assertOk();
+        $this->get(route('workshops.show', $workshop))->assertOk();
+    }
+
+    public function test_draft_cannot_be_activated_as_a_replacement_for_publishing(): void
+    {
+        $admin = $this->superAdmin();
+        $specialty = Specialty::create([
+            'name' => 'Especialidad en preparación',
+            'slug' => 'especialidad-en-preparacion',
+            'grade_levels' => '10.º, 11.º y 12.º',
+            'status' => 'draft',
+        ]);
+        $workshop = ExploratoryWorkshop::create([
+            'name' => 'Taller en preparación',
+            'slug' => 'taller-en-preparacion',
+            'grade_level' => '7.º',
+            'summary' => 'Contenido pendiente de publicación.',
+            'status' => 'draft',
+        ]);
+
+        $this->actingAs($admin)
+            ->put(route('admin.specialties.toggle', $specialty))
+            ->assertSessionHas('error');
+        $this->actingAs($admin)
+            ->put(route('admin.workshops.toggle', $workshop))
+            ->assertSessionHas('error');
+
+        $this->assertSame('draft', $specialty->fresh()->status);
+        $this->assertSame('draft', $workshop->fresh()->status);
+    }
+
+    public function test_curricular_admin_lists_separate_publication_and_visibility(): void
+    {
+        $admin = $this->superAdmin();
+
+        $this->actingAs($admin)
+            ->get(route('admin.specialties.index'))
+            ->assertOk()
+            ->assertSee('Publicación')
+            ->assertSee('Visibilidad')
+            ->assertSee('Ocultar del sitio')
+            ->assertSee('icon-action');
+
+        $this->actingAs($admin)
+            ->get(route('admin.workshops.index'))
+            ->assertOk()
+            ->assertSee('Publicación')
+            ->assertSee('Visibilidad')
+            ->assertSee('Ocultar del sitio')
+            ->assertSee('icon-action');
+
+        $css = file_get_contents(public_path('css/admin.css'));
+        $this->assertStringContainsString('.curricular-admin-table', $css);
+        $this->assertStringContainsString('@media (max-width: 720px)', $css);
     }
 
     private function editor(): User

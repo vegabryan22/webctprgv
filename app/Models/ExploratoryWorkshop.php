@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ExploratoryWorkshop extends Model
 {
-    protected $fillable = ['author_id', 'name', 'slug', 'grade_level', 'summary', 'description', 'image_path', 'responsible', 'status', 'verified_at', 'published_at', 'sort_order'];
+    protected $fillable = ['author_id', 'name', 'slug', 'grade_level', 'summary', 'description', 'image_path', 'responsible', 'status', 'is_active', 'verified_at', 'published_at', 'sort_order'];
 
     protected function casts(): array
     {
-        return ['verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
+        return ['is_active' => 'boolean', 'verified_at' => 'datetime', 'published_at' => 'datetime', 'sort_order' => 'integer'];
     }
 
     public function curricularDocuments(): HasMany
@@ -23,5 +23,10 @@ class ExploratoryWorkshop extends Model
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published')->where('published_at', '<=', now());
+    }
+
+    public function scopePubliclyVisible(Builder $query): Builder
+    {
+        return $query->published()->where('is_active', true);
     }
 }

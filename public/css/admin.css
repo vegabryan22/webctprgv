@@ -930,6 +930,135 @@ body {
     min-width: 680px;
 }
 
+.sr-only {
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.curricular-admin-table {
+    padding: 0;
+}
+
+.curricular-admin-table table {
+    min-width: 920px;
+}
+
+.curricular-admin-table th,
+.curricular-admin-table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.curricular-admin-table td:first-child {
+    width: 42%;
+}
+
+.curricular-admin-table td:first-child strong,
+.curricular-admin-table td:first-child small {
+    display: block;
+}
+
+.curricular-admin-table td:first-child small {
+    line-height: 1.5;
+    margin-top: .25rem;
+}
+
+.status-chip {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: .76rem;
+    font-weight: 750;
+    gap: .35rem;
+    padding: .38rem .6rem;
+    white-space: nowrap;
+}
+
+.status-chip.published,
+.status-chip.active {
+    background: #e8f5e1;
+    color: #347516;
+}
+
+.status-chip.draft {
+    background: #fff3c4;
+    color: #735c00;
+}
+
+.status-chip.inactive {
+    background: #edf0f3;
+    color: #526272;
+}
+
+.status-chip.neutral {
+    background: #f3f5f7;
+    color: #70808e;
+}
+
+.row-actions {
+    align-items: center;
+    display: flex;
+    gap: .35rem;
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+
+.row-actions form {
+    margin: 0;
+}
+
+.icon-action {
+    align-items: center;
+    background: #f2f6f9;
+    border: 1px solid #d8e2ea;
+    border-radius: 9px;
+    color: var(--navy);
+    cursor: pointer;
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    padding: 0;
+    text-decoration: none;
+    transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+    width: 38px;
+}
+
+.icon-action:hover {
+    background: #e6f0f6;
+    border-color: #9bb7ca;
+    color: var(--navy);
+    transform: translateY(-1px);
+}
+
+.icon-action.visibility-on {
+    background: #fff8d7;
+    border-color: #ead87c;
+    color: #755e00;
+}
+
+.icon-action.visibility-off {
+    background: #e9f6e3;
+    border-color: #b9dba9;
+    color: #347516;
+}
+
+.icon-action.danger {
+    background: #fff1f1;
+    border-color: #f0cccc;
+    color: #a62929;
+}
+
+.icon-action.danger:hover {
+    background: #fbe2e2;
+    border-color: #dba5a5;
+    color: #851d1d;
+}
+
 th,
 td,
 .field,
@@ -1084,5 +1213,74 @@ button {
     .code-editor,
     .visual-editor {
         min-height: 320px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .curricular-admin-table {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    .curricular-admin-table table,
+    .curricular-admin-table tbody,
+    .curricular-admin-table tr,
+    .curricular-admin-table td {
+        display: block;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .curricular-admin-table thead {
+        display: none;
+    }
+
+    .curricular-admin-table tr {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        box-shadow: 0 8px 22px rgba(0, 47, 93, .06);
+        margin-bottom: .75rem;
+        overflow: hidden;
+        padding: .8rem;
+    }
+
+    .curricular-admin-table td,
+    .curricular-admin-table td:first-child {
+        align-items: center;
+        border: 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        padding: .45rem .25rem;
+        width: 100%;
+    }
+
+    .curricular-admin-table td:first-child {
+        align-items: flex-start;
+        display: block;
+        padding-bottom: .75rem;
+    }
+
+    .curricular-admin-table td[data-label]::before {
+        color: var(--muted);
+        content: attr(data-label);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+    }
+
+    .curricular-admin-table td:last-child {
+        border-top: 1px solid #e7edf1;
+        margin-top: .45rem;
+        padding-top: .8rem;
+    }
+
+    .row-actions {
+        justify-content: flex-end;
+        width: 100%;
     }
 }
