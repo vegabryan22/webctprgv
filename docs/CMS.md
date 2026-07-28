@@ -84,7 +84,12 @@ Cuando una sección está desactivada:
 
 Inicio y Administración no se pueden desactivar desde este panel. El permiso requerido es `site-sections.manage`.
 
-Los listados administrativos de Especialidades y Talleres ofrecen además una acción rápida **Activar/Desactivar** para cada ficha. Desactivar cambia el registro a borrador, lo retira del catálogo público y conserva toda su información, imagen y planes.
+Desde `0.36.0`, Especialidades y Talleres separan dos decisiones:
+
+- **Publicación:** borrador o publicado; representa la aprobación editorial.
+- **Visibilidad:** activo o inactivo; permite retirar temporalmente del sitio una ficha publicada.
+
+Ocultar una ficha publicada conserva su estado, fecha de publicación, información, imagen y planes. Los borradores no presentan controles de visibilidad y deben publicarse desde el formulario editorial. Los listados muestran ambas condiciones por separado y utilizan acciones compactas que se reorganizan como tarjetas en teléfonos.
 
 ## Admisión y matrícula
 

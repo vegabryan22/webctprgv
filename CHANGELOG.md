@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes del proyecto se documentan aquí en español. El formato se basa en *Keep a Changelog* y el proyecto utiliza versionado semántico.
 
+## [0.36.0] - 2026-07-27
+
+### Añadido
+
+- Estado independiente de visibilidad para especialidades y talleres exploratorios.
+- Indicadores separados de **Publicación** y **Visibilidad** en los listados administrativos.
+- Acciones compactas con iconos, ayudas accesibles y presentación móvil en tarjetas.
+
+### Cambiado
+
+- Ocultar una ficha publicada ya no la convierte en borrador ni borra su fecha de publicación.
+- Un borrador debe publicarse desde su formulario editorial antes de poder mostrarse u ocultarse.
+- Inicio, catálogos y detalles públicos consultan únicamente fichas publicadas y activas.
+
+### Base de datos
+
+- Migración `2026_07_27_001300_separate_curricular_visibility_from_publication.php`.
+
 ## [0.35.2] - 2026-07-27
 
 ### Corregido

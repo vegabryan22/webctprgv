@@ -57,6 +57,7 @@ El usuario estableció que el servidor no debe modificarse manualmente. Todo cam
 | 0.35.0 | Administración | Resumen convertido en tablero operativo, adaptable y sensible a permisos |
 | 0.35.1 | Control de publicación | Terminología pública unificada para el acceso de lectores |
 | 0.35.2 | GitOps | Verificación técnica compatible con el modo mantenimiento |
+| 0.36.0 | CTP-C06 | Publicación editorial y visibilidad operativa separadas en el catálogo |
 
 La bitácora con hashes exactos está en `docs/PLAN-CONTENIDO.md`.
 
@@ -82,6 +83,7 @@ Las migraciones funcionales más recientes son:
 - `2026_07_27_001000_import_seventh_grade_admission_schedule.php`
 - `2026_07_27_001100_create_admission_portal.php`
 - `2026_07_27_001200_add_maintenance_review_mode.php`
+- `2026_07_27_001300_separate_curricular_visibility_from_publication.php`
 
 No deben editarse migraciones que ya hayan llegado a producción. Si una versión ya fue desplegada, cualquier ajuste de esquema requiere una migración nueva.
 
